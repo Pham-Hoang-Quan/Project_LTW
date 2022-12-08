@@ -407,7 +407,7 @@
 									</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
+                                <input type="checkbox" id="brand-7">
                                 <label for="brand-6">
 										<span></span>
 										Stanley
@@ -415,7 +415,7 @@
 									</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
+                                <input type="checkbox" id="brand-8">
                                 <label for="brand-6">
 										<span></span>
 										Trung Quốc
@@ -423,7 +423,7 @@
 									</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
+                                <input type="checkbox" id="brand-9">
                                 <label for="brand-6">
 										<span></span>
 										INGCO
@@ -431,7 +431,7 @@
 									</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
+                                <input type="checkbox" id="brand-10">
                                 <label for="brand-6">
 										<span></span>
                                     VAC
@@ -439,7 +439,7 @@
 									</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
+                                <input type="checkbox" id="">
                                 <label for="brand-6">
 										<span></span>
 										Khác
@@ -712,7 +712,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>

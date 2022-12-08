@@ -640,7 +640,7 @@
                 <!-- product -->
                 <div class="col-md-3 col-xs-6">
                     <div class="product">
-                        <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>">
+                        <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"></a>
                         <div class="product-img">
                             <img src="<%= n.getImg()%>">
 
@@ -661,8 +661,6 @@
                             <p class="product-category"><%= n.getClassify()%></p>
                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
                             <h4 class="product-price"><%= n.getPrice()%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
-                            <div class="product-rating">
-                            </div>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
@@ -673,6 +671,7 @@
                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                         </div>
                     </div>
+
                 </div>
                 <% } %>
 
@@ -758,7 +757,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>
