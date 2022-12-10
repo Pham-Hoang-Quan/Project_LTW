@@ -23,7 +23,7 @@ public class ProductService {
                 //....
                 ResultSet rs = statement.executeQuery("select * from products");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
                 }
             }
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan mini'");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
                 }
             }
         } catch (SQLException e) {
@@ -75,7 +75,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 1  limit 5");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
                 }
             }
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public static   List<Product> getSale(){
         if(statement!=null) {
             ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 0  limit 5");
             while (rs.next()){
-                list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
             }
         }
     } catch (SQLException e) {
@@ -107,7 +107,7 @@ public static   List<Product> getSale(){
            if(statement!=null) {
                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 3");
                while (rs.next()){
-                   list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                   list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
                }
            }
        } catch (SQLException e) {

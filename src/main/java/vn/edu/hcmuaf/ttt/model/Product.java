@@ -10,7 +10,7 @@ public class Product implements Serializable {
     private String classify;
     private String oldPrice;
     private boolean isNew;
-    private String percent;
+    private int percent;
 
     private String img2;
     private String img3;
@@ -21,7 +21,7 @@ public class Product implements Serializable {
 
     }
 
-    public Product(int id, String name, String img, long price, String classify, String oldPrice, boolean isNew, String percent, String img2, String img3, String img4) {
+    public Product(int id, String name, String img, long price, String classify, String oldPrice, boolean isNew, int percent, String img2, String img3, String img4) {
         this.id = id;
         this.name = name;
         this.img = img;
@@ -91,11 +91,11 @@ public class Product implements Serializable {
         isNew = aNew;
     }
 
-    public String getPercent() {
+    public int getPercent() {
         return percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(int percent) {
         this.percent = percent;
     }
 

@@ -588,7 +588,7 @@
                                 </a>
                                 <div class="product-body">
                                     <p class="product-category"><%= p.getClassify()%></p>
-                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
+                                    <h3 class="product-name"><a href="<%= "/Project_LTW_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
                                     <h4 class="product-price"><%= p.getPrice()%>đ
                                         <% if(!p.isNew() ){ %>
                                         <del class="product-old-price"><%= p.getOldPrice()%></del>

@@ -9,11 +9,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListIndex", value = "/List-Index")
+@WebServlet(name = "ListIndex", value = "")
 public class ListIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> listn = ProductService.getLast() ;
+        List<Product> listn = ProductService.getLast();
         List<Product> lists = ProductService.getSale();
         request.setAttribute("listn", listn);
         request.setAttribute("lists", lists);

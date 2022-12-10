@@ -28,7 +28,7 @@ public class ProductDetail extends HttpServlet {
 
 
     } else
-    response.sendError(404, "Product Not Found");
+        response.sendError(404, "Product Not Found");
     }
 
     @Override

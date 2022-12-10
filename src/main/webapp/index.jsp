@@ -423,7 +423,7 @@
                     <div class="row">
                         <div class="products-tabs">
                             <!-- tab -->
-                            <div id="tab1" class="tab-pane active">
+                            <div id="tab1" class="tab-pane active" style="height: fit-content">
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
                                     <% List<Product> list = (List<Product>) request.getAttribute("listn");
@@ -559,7 +559,7 @@
                     <div class="row">
                         <div class="products-tabs">
                             <!-- tab -->
-                            <div id="tab2" class="tab-pane fade in active">
+                            <div id="tab2" class="tab-pane fade in active" style="height: fit-content">
                                 <div class="products-slick" data-nav="#slick-nav-2">
                                     <!-- product -->
                                     <% List<Product> list1 = (List<Product>) request.getAttribute("lists");
@@ -569,14 +569,19 @@
                                         <div class="product-img">
                                             <img src="<%= p.getImg()%>" alt="">
                                             <div class="product-label">
-                                                <span class="sale"><%= p.getPercent()%></span>
+                                                <span class="sale">-<%= p.getPercent()%>%</span>
 
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category"><%= p.getClassify()%></p>
                                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId() %>"><%= p.getName()%> </a></h3>
-                                            <h4 class="product-price"><%= p.getPrice()%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
+                                            <% if (p.getPercent() > 0) {%>
+                                                <h4 class="product-price"><%= p.getPrice() - (p.getPrice() * p.getPercent() / 100)%> <del class="product-old-price"><%= p.getPrice()%></del></h4>
+                                            <%} else {%>
+                                                <h4 class="product-price"><%= p.getPrice() %></h4>
+                                            <%}%>
+
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -975,7 +980,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>

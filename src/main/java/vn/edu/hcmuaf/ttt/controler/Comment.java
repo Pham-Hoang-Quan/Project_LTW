@@ -23,7 +23,7 @@ public class Comment extends HttpServlet {
         String dateComment = request.getParameter("dateComment");
 
         new CommentService().createNewComment(userIdComment,productIdComment,dateComment,textComment,ratingComment);
-        response.sendRedirect("/THDoAn_war/detail?id="+productIdComment);
+        response.sendRedirect("/Project_LTW_war/detail?id="+productIdComment);
 
     }
 }
