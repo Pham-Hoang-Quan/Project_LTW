@@ -252,13 +252,22 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li><a href="index.jsp">Trang chủ</a></li>
-                    <li><a href="store.jsp">Sản Phẩm</a></li>
-                    <li><a href="khoan-mini.html">Khoan mini</a></li>
-                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
-                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
-                    <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                    <li><a href="phukien.html">Phụ Kiện</a></li>
+                    <li><a href="/Project_LTW_war//List-Index">Trang chủ</a></li>
+                    <li><a href="/Project_LTW_war//List-Product">Sản Phẩm</a></li>
+                    <% List<Category> listm = (List<Category>) request.getAttribute("listc");
+                        for (Category p:listm) { %>
+
+
+
+
+                    <li> <a  href="<%= "/Project_LTW_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+
+<%--                    <li><a href="khoan-mini.html">Khoan mini</a></li>--%>
+<%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
+<%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
+<%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
+<%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
+                    <% } %>
                     <li><a href="support.html">Hỗ Trợ</a></li>
                 </ul>
                 <!-- /NAV -->

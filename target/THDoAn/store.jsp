@@ -256,15 +256,15 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
 
-                    <li><a href="index.jsp">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                    <li><a href="/Project_LTW_war//List-Index">Trang chủ</a></li>
+                    <li><a href="/Project_LTW_war//List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
 
 
 
 
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <li> <a  href="<%= "/Project_LTW_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
 
 
 <%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
@@ -293,9 +293,9 @@
                 <div class="col-md-12">
 
                     <ul class="breadcrumb-tree">
-                        <li><a href="index.jsp">Trang chủ</a></li>
+                        <li><a href="/Project_LTW_war//List-Index">Trang chủ</a></li>
 
-                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                        <li><a href="/Project_LTW_war//List-Product">Sản Phẩm</a></li>
 
 
                     </ul>
@@ -469,7 +469,7 @@
                             </div>
                             <div class="product-body">
                                 <p class="product-category"><%= p.getClassify()%></p>
-                                <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
+                                <h3 class="product-name"><a href="<%= "/Project_LTW_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
                                 <h4 class="product-price"><%= p.getPrice()%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
                             </div>
                         </div>
@@ -574,7 +574,7 @@
                             for (Product p:list) { %>
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
-                                <a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>">
+                                <a href="<%= "/Project_LTW_war/detail?id=" + p.getId()%>">
                                 <div class="product-img">
 
                                     <img src="<%= p.getImg()%>">
@@ -595,7 +595,7 @@
                                 </a>
                                 <div class="product-body">
                                     <p class="product-category"><%= p.getClassify()%></p>
-                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
+                                    <h3 class="product-name"><a href="<%= "/Project_LTW_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
                                     <h4 class="product-price"><%= p.getPrice()%>đ
                                         <% if(!p.isNew() ){ %>
                                         <del class="product-old-price"><%= p.getOldPrice()%></del>
@@ -611,7 +611,7 @@
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                         <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
-                                        <button class="quick-view"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
+                                        <button class="quick-view"><a href="<%= "/Project_LTW_war/detail?id=" + p.getId()%>" class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
