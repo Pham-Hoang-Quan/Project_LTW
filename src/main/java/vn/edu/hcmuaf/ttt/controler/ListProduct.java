@@ -18,6 +18,7 @@ public class ListProduct extends HttpServlet {
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
 
+
         request.setAttribute("list", list);
         request.setAttribute("listc", listc);
         request.setAttribute("listsptt", listsptt);

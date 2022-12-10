@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
@@ -15,8 +16,13 @@ public class ListIndex extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> listn = ProductService.getLast() ;
         List<Product> lists = ProductService.getSale();
+        List<Category> lista = ProductService.getCategoryIndex();
+        String CTID = request.getParameter("cName");
+        List<Product> listPI = ProductService.getCTID(CTID) ;
         request.setAttribute("listn", listn);
         request.setAttribute("lists", lists);
+        request.setAttribute("lista", lista);
+        request.setAttribute("listPI", listPI);
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
 

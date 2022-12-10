@@ -3,11 +3,13 @@ package vn.edu.hcmuaf.ttt.service;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.Category;
+import vn.edu.hcmuaf.ttt.model.Comment;
 import vn.edu.hcmuaf.ttt.model.Product;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -116,13 +118,13 @@ public static   List<Product> getSale(){
        return list;
    }
 
-    public  static   List<Product> getCTID(String cName){
+    public static    List<Product> getCTID(String cName){
 //        List<Product> list = new LinkedList<>();
 //        try {
 //            Statement statement = DBConnect.getInstall().get();
 //            if(statement!=null) {
 //                ResultSet rs = statement.executeQuery("select * from products WHERE classify = ? ");
-//                statement.setString()
+//
 //                while (rs.next()){
 //                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
 //                }
@@ -130,20 +132,40 @@ public static   List<Product> getSale(){
 //        } catch (SQLException e) {
 //            throw new RuntimeException(e);
 //        }
-//        return list;
-        return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select * from products WHERE classify = ?").bind(0,cName).mapToBean(Product.class).stream()
-                    .collect(Collectors.toList());
-
-
-        });
+//
+        List<Product> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("select * from products WHERE classify = ?")
+                        .bind(0,cName)
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
     }
+    public static List<Category> getCategoryIndex(){
+        List<Category> list = new LinkedList<>();
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            if(statement!=null) {
+                ResultSet rs = statement.executeQuery("SELECT * FROM category limit 3;");
+                while (rs.next()){
+                    list.add(new Category(rs.getInt(1),rs.getString(2)));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+
+    }
+//
 
 
 
 
 
-    public static  Product getProductById(String id){
+
+    public  static Product getProductById(String id){
        return JDBiConnector.me().withHandle(handle -> {
            return handle.createQuery("select * from products where id = ?").bind(0,id).mapToBean(Product.class).first();
 
@@ -162,13 +184,13 @@ public static   List<Product> getSale(){
 //            sql+="("+o.getId()+",'"+p.getName()+"','"+p.getImg()+"',"+p.getPrice()+",'"+p.getClassify()+"','"+p.getOldPrice()+"',"+p.isNew()+",'"+p.getPercent()+"'),";
 //        }
 //System.out.println(sql);
-//        System.out.println(getProductById("1"));
-        ProductService dao = new ProductService();
-        List<Product> lists = dao.getCTID("Khoan bê tông");
-        for(Product o : lists){
-            System.out.println(o);
-
-        }
+        System.out.println(getProductById("1"));
+//        ProductService dao = new ProductService();
+//        List<Product> lists = dao.getProductById("2");
+//        for(Product o : lists){
+//            System.out.println(o);
+//
+//        }
     }
 
 

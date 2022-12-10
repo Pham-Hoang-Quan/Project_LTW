@@ -255,11 +255,18 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
+
                     <li><a href="index.jsp">Trang chủ</a></li>
-                    <li><a href="store.jsp">Sản Phẩm</a></li>
+                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
-                    <li><a href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+
+
+
+
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+
+
 <%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
 <%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
 <%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
@@ -288,7 +295,7 @@
                     <ul class="breadcrumb-tree">
                         <li><a href="index.jsp">Trang chủ</a></li>
 
-                        <li><a href="#">Sản Phẩm</a></li>
+                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
 
 
                     </ul>

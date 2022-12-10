@@ -1,5 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
@@ -622,9 +623,10 @@
         <div class="container">
             <!-- row -->
             <div class="row">
+
                 <div class="col-md-4 col-xs-6">
                     <div class="section-title">
-                        <h4 class="title">Khoan mini</h4>
+                        <h4 class="title">Khoan Mini</h4>
                         <div class="section-nav">
                             <div id="slick-nav-3" class="products-slick-nav"></div>
                         </div>
@@ -632,7 +634,6 @@
 
                     <div class="products-widget-slick" data-nav="#slick-nav-3">
                         <div>
-                            <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
                                     <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
@@ -643,73 +644,75 @@
                                     <h4 class="product-price">980.000 <del class="product-old-price">690.000</del></h4>
                                 </div>
                             </div>
+<%--                            <% } %>--%>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-xoay-bosch-gbm-13-re-500(2q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan xoay Bosch GBM 13 RE-500</a></h3>
-                                    <h4 class="product-price">1.890.000 <del class="product-old-price">1.690.000</del></h4>
-                                </div>
-                            </div>
+<%--                            <div class="product-widget">--%>
+<%--                                <div class="product-img">--%>
+<%--                                    <img src="./img/may-khoan-xoay-bosch-gbm-13-re-500(2q).jpg" alt="">--%>
+<%--                                </div>--%>
+<%--                                <div class="product-body">--%>
+<%--                                    <p class="product-category">Khoan mini</p>--%>
+<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan xoay Bosch GBM 13 RE-500</a></h3>--%>
+<%--                                    <h4 class="product-price">1.890.000 <del class="product-old-price">1.690.000</del></h4>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-MT605-300(3q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan MT605-300</a></h3>
-                                    <h4 class="product-price">1.290.000 <del class="product-old-price">990.000</del></h4>
-                                </div>
-                            </div>
+<%--                            <div class="product-widget">--%>
+<%--                                <div class="product-img">--%>
+<%--                                    <img src="./img/may-khoan-MT605-300(3q).jpg" alt="">--%>
+<%--                                </div>--%>
+<%--                                <div class="product-body">--%>
+<%--                                    <p class="product-category">Khoan mini</p>--%>
+<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan MT605-300</a></h3>--%>
+<%--                                    <h4 class="product-price">1.290.000 <del class="product-old-price">990.000</del></h4>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- product widget -->
                         </div>
 
                         <div>
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-bosch-gbm-350-a(4q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="#">Máy khoan Bosch GBM-350</a></h3>
-                                    <h4 class="product-price">980.000 <del class="product-old-price">650.990</del></h4>
-                                </div>
-                            </div>
+<%--                            <div class="product-widget">--%>
+<%--                                <div class="product-img">--%>
+<%--                                    <img src="./img/may-khoan-bosch-gbm-350-a(4q).jpg" alt="">--%>
+<%--                                </div>--%>
+<%--                                <div class="product-body">--%>
+<%--                                    <p class="product-category">Khoan mini</p>--%>
+<%--                                    <h3 class="product-name"><a href="#">Máy khoan Bosch GBM-350</a></h3>--%>
+<%--                                    <h4 class="product-price">980.000 <del class="product-old-price">650.990</del></h4>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-toc-do-cao-maktec-mt652-300(5q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan tốc độ cao Maktec MT652-300</a></h3>
-                                    <h4 class="product-price">1.280.000 <del class="product-old-price">990.000</del></h4>
-                                </div>
-                            </div>
+<%--                            <div class="product-widget">--%>
+<%--                                <div class="product-img">--%>
+<%--                                    <img src="./img/may-khoan-toc-do-cao-maktec-mt652-300(5q).jpg" alt="">--%>
+<%--                                </div>--%>
+<%--                                <div class="product-body">--%>
+<%--                                    <p class="product-category">Khoan mini</p>--%>
+<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan tốc độ cao Maktec MT652-300</a></h3>--%>
+<%--                                    <h4 class="product-price">1.280.000 <del class="product-old-price">990.000</del></h4>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/180-LI(Q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan mini 180-LI</a></h3>
-                                    <h4 class="product-price">920.000 <del class="product-old-price">799.000</del></h4>
-                                </div>
-                            </div>
+<%--                            <div class="product-widget">--%>
+<%--                                <div class="product-img">--%>
+<%--                                    <img src="./img/180-LI(Q).jpg" alt="">--%>
+<%--                                </div>--%>
+<%--                                <div class="product-body">--%>
+<%--                                    <p class="product-category">Khoan mini</p>--%>
+<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan mini 180-LI</a></h3>--%>
+<%--                                    <h4 class="product-price">920.000 <del class="product-old-price">799.000</del></h4>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- product widget -->
                         </div>
                     </div>
@@ -901,6 +904,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </div>
             <!-- /row -->
