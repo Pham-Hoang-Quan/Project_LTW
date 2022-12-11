@@ -3,6 +3,7 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
@@ -140,9 +141,18 @@
                     </li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.html" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
+                        <% User auth= (User) session.getAttribute("auth");%>
+                        <% if(auth==null){ %>
+                        Bạn chưa đăng nhập
+                        <% }else {%>
+                        Chào bạn: <%= auth.getUser_fullname()%></p>
+                        <% } %>
+
+
+                    </a></li>
                     <li>
-                        <a href="form_dk.html" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
                 </ul>
             </div>
@@ -589,7 +599,12 @@
                                             <form class="review-form" method="post" action="/THDoAn_war/Comment">
                                                 <% Date currentDate  = Date.valueOf(LocalDate.now()); %>
                                                 <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
-                                                <input class="input" name="userIdComment" style="display: none" value="123" type="text">
+<%--                                                <input class="input" name="userIdComment" style="display: none" value="<% User auth= (User) session.getAttribute("auth");%>"--%>
+<%--                                                    <%= auth.getUser_id()%>--%>
+
+
+<%--                                                       type="text">--%>
+                                                <input class="input" name="userIdComment" style="display: none" value="<%= auth.getUser_id() %>"type="text">
                                                 <input class="input" name="productIdComment" style="display: none" value="<%=p.getId()%>" type="text" >
                                                 <textarea class="input" name="textComment" placeholder="Viết đánh giá của bạn"></textarea>
                                                 <div class="input-rating">
@@ -781,7 +796,7 @@
                         <div class="footer">
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
-                                <li><a href="login.html">Tài Khoản Của Tôi</a></li>
+                                <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
                                 <li><a href="cart.html">Xem Giỏ Hàng</a></li>
                                 <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
                                 <li><a href="support.html">Hổ Trợ</a></li>
