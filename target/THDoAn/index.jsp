@@ -425,7 +425,7 @@
                         <div class="products-tabs">
                             <!-- tab -->
                             <div id="tab1" class="tab-pane active">
-                                <div class="products-slick" data-nav="#slick-nav-1">
+                                <div class="products-slick" data-nav="#slick-nav-1" style="height: fit-content">
                                     <!-- product -->
                                     <% List<Product> list = (List<Product>) request.getAttribute("listn");
                                         for (Product p:list) { %>
@@ -561,7 +561,7 @@
                         <div class="products-tabs">
                             <!-- tab -->
                             <div id="tab2" class="tab-pane fade in active">
-                                <div class="products-slick" data-nav="#slick-nav-2">
+                                <div class="products-slick" data-nav="#slick-nav-2 " style="height: fit-content">
                                     <!-- product -->
                                     <% List<Product> list1 = (List<Product>) request.getAttribute("lists");
                                         for (Product p:list1) { %>
@@ -979,7 +979,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>
