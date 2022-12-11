@@ -586,7 +586,7 @@
                                     <!-- Review Form -->
                                     <div class="col-md-3">
                                         <div id="review-form">
-                                            <form class="review-form" method="post" action="/THDoAn_war/Comment">
+                                            <form class="review-form" method="post" action="/Project_LTW_war/Comment">
                                                 <% Date currentDate  = Date.valueOf(LocalDate.now()); %>
                                                 <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
                                                 <input class="input" name="userIdComment" style="display: none" value="123" type="text">
@@ -640,7 +640,7 @@
                 <!-- product -->
                 <div class="col-md-3 col-xs-6">
                     <div class="product">
-                        <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"></a>
+                        <a href="<%= "/Project_LTW/detail?id=" + n.getId()%>"></a>
                         <div class="product-img">
                             <img src="<%= n.getImg()%>">
 
@@ -659,12 +659,12 @@
                         </div>
                         <div class="product-body">
                             <p class="product-category"><%= n.getClassify()%></p>
-                            <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
+                            <h3 class="product-name"><a href="<%= "/Project_LTW/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
                             <h4 class="product-price"><%= n.getPrice()%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
-                                <button class="quick-view"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"  class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
+                                <button class="quick-view"><a href="<%= "/Project_LTW/detail?id=" + n.getId()%>"  class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
                             </div>
                         </div>
                         <div class="add-to-cart">
