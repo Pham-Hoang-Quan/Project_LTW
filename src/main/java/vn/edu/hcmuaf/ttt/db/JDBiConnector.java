@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.ttt.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Product;
 
 import javax.imageio.stream.ImageInputStream;
@@ -19,12 +20,12 @@ public class JDBiConnector {
     }
 
     private static void makeConnect() {
-        try {
+
         MysqlDataSource source= new MysqlDataSource();
         source.setURL("jdbc:mysql://"+DBPropties.host()+":"+DBPropties.port()+"/"+DBPropties.name());
         source.setUser(DBPropties.user());
         source.setPassword(DBPropties.pass());
-
+        try {
             source.setAutoReconnect(true);
             source.setUseCompression(true);
             jdbi= Jdbi.create(source);
@@ -38,12 +39,12 @@ public class JDBiConnector {
 
     public static void main(String[] args) {
         Jdbi me = JDBiConnector.me();
-        List<Product> products = me.withHandle(handle -> {
-            return handle.createQuery("select * from products").mapToBean(Product.class).stream().collect(Collectors.toList());
+        List<User> users = me.withHandle(handle -> {
+            return handle.createQuery("select * from user ").mapToBean(User.class).stream().collect(Collectors.toList());
 
 
         });
-        System.out.println(products);
+        System.out.println(users);
 
     }
 

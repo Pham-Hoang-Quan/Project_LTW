@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
+<meta http-equiv="Content-Type" charset="UTF-8">
 
 <head>
     <meta charset="utf-8">
@@ -266,9 +267,9 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.html" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
                     <li>
-                        <a href="form_dk.html" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
                 </ul>
             </div>
@@ -409,7 +410,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-lg btn-block">Đăng Ký</button>
             </div>
-            <div class="text-center"> Bạn đã có một tài khoản chưa? <a href="login.html">Đăng Nhập</a></div>
+            <div class="text-center"> Bạn đã có một tài khoản chưa? <a href="login.jsp">Đăng Nhập</a></div>
     </div>
     </form>
 

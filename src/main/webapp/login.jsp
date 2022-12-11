@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
+<meta http-equiv="Content-Type" charset="UTF-8">
 
 <head>
     <meta charset="utf-8">
@@ -318,9 +319,9 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.html" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
                     <li>
-                        <a href="form_dk.html" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
                 </ul>
             </div>
@@ -430,7 +431,7 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="login-form signup-form">
-        <form action="/examples/actions/confirmation.php" method="post">
+        <form action="/THDoAn_war/dologin" method="post">
             <h2 style="font-size:18px;">Đăng nhập</h2>
             <div class="text-center social-btn">
                 <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>
@@ -445,7 +446,7 @@
                             <span class="fa fa-user"></span>
                         </span>
                     </div>
-                    <input type="text" class="form-control" name="username" placeholder="Tài Khoản" required="required">
+                    <input type="text" class="form-control" name="user" placeholder="Tài Khoản" required="required">
                 </div>
             </div>
             <div class="form-group">
@@ -455,7 +456,7 @@
                             <i class="fa fa-lock"></i>
                         </span>
                     </div>
-                    <input type="password" class="form-control" name="password" placeholder="Mật Khẩu" required="required">
+                    <input type="password" class="form-control" name="pass" placeholder="Mật Khẩu" required="required">
                 </div>
             </div>
             <div class="form-group">
