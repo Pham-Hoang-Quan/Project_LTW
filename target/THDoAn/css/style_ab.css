@@ -1,0 +1,64 @@
+
+.column {
+    float: left;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    
+  }
+  
+  .left {
+    width: 60%;
+  }
+  .left2 {
+    width: 40%;
+  }
+  
+  .right {
+    width: 40%;
+  }
+
+  .right2 {
+    width: 60%;
+    padding-left: 80px ;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .row2:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .hov-img0:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .hov-img0>img{
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+  .row2{
+padding-top: 100px;
+padding-bottom: 50px;
+  }
+
+  .hov-img1:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .hov-img1>img{
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+  
