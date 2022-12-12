@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
 //          response.sendRedirect("/THDoAn_war/List-Index");
           HttpSession session = request.getSession(true);
           session.setAttribute("auth", user);
-          response.sendRedirect("/THDoAn_war/List-Index");
+          response.sendRedirect("/THDoAn_war");
       }
 
     }

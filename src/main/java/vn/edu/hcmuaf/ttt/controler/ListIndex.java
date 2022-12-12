@@ -16,6 +16,8 @@ public class ListIndex extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> listn = ProductService.getLast() ;
         List<Product> lists = ProductService.getSale();
+        List<Category> listc = ProductService.getCategory();
+
         List<Category> lista = ProductService.getCategoryIndex();
         String CTID = request.getParameter("cName");
         List<Product> listPI = ProductService.getCTID(CTID) ;
@@ -23,7 +25,7 @@ public class ListIndex extends HttpServlet {
         request.setAttribute("lists", lists);
         request.setAttribute("lista", lista);
         request.setAttribute("listPI", listPI);
-
+        request.setAttribute("listc", listc);
         request.getRequestDispatcher("index.jsp").forward(request,response);
 
     }
