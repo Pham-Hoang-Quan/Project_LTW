@@ -6,6 +6,7 @@
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
 
@@ -180,10 +181,10 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -204,44 +205,45 @@
 
                             <!-- Cart -->
                             <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Giỏ Hàng</span>
-                                    <div class="qty">2</div>
-                                </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
+                                <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="cart.html">Xem</a>
-                                        <a href="checkout.html">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span> Giỏ Hàng</span>
+                                    <div class="qty">${cart.quantily}</div>
+                                </a>
+<%--                                <div class="cart-dropdown">--%>
+<%--                                    <div class="cart-list">--%>
+<%--                                        <div class="product-widget">--%>
+<%--                                            <div class="product-img">--%>
+<%--                                                <img src="./img/180-LI(Q).jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="product-body">--%>
+<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>--%>
+<%--                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>--%>
+<%--                                            </div>--%>
+<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
+<%--                                        </div>--%>
+
+<%--                                        <div class="product-widget">--%>
+<%--                                            <div class="product-img">--%>
+<%--                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="product-body">--%>
+<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>--%>
+<%--                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>--%>
+<%--                                            </div>--%>
+<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart-summary">--%>
+<%--                                        <small>2 Sản Phẩm</small>--%>
+<%--                                        <h5>Tổng: 1.880.000</h5>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart-btns">--%>
+<%--                                        <a href="cart.jsp">Xem</a>--%>
+<%--                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
                             </div>
                             <!-- /Cart -->
 
@@ -377,11 +379,16 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                             </div>
-                            <a class="review-link" href="#">10 Đánh giá | Thêm đánh giá của bạn</a>
+                            <%List< Comment> listComment =  (List<Comment>) request.getAttribute("comment");%>
+                            <a class="review-link" href="#"><%=listComment.size()%> Đánh giá</a>
                         </div>
                         <div>
-                            <h3 class="product-price"><%= p.getPrice() %>đ <del class="product-old-price"><%= p.getOldPrice()%></del></h3>
-                           
+                            <h3 class="product-price"><%= p.getPrice() %>đ
+
+                                <% if(p.getIsNew() == 2) {%>
+                                <del class="product-old-price"><%= p.getOldPrice()%>
+                                <%}%></del></h3>
+
                         </div>
                         <p><%= p.getName()%> là dòng máy khoan HEAVY DUTY của thương hiệu Bosch, được ra mắt năm 2017. Dòng máy này hội tụ đầy đủ 3 yếu tố gồm sức mạnh, độ bền và hiệu suất. Sản phẩm được thiết kế dành riêng cho các chuyên gia, thợ lành nghề với độ chính xác gần như tuyệt đối trong mỗi mũi khoan gỗ hoặc thép...
                              Bạn cũng có thể sử dụng máy khoan để khoan hoặc sửa chữa các đồ dùng trong gia đình rất tiện dụng </p>
@@ -425,7 +432,7 @@
                         <ul class="tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Đặc điểm</a></li>
                             <li><a data-toggle="tab" href="#tab2">Thông Tin Chi Tiết</a></li>
-                            <%List< Comment> listComment =  (List<Comment>) request.getAttribute("comment");%>
+
                             <li><a data-toggle="tab" href="#tab3">Đánh giá (<%=listComment.size()%>)</a></li>
                         </ul>
                         <!-- /product tab nav -->
@@ -671,12 +678,12 @@
                             <img src="<%= n.getImg()%>">
 
                             <div class="product-label">
-                                <% if(n.isNew() ){ %>
+                                <% if(n.getIsNew() ==1 ){ %>
                                 <div class="product-label">
                                     <span class="new">New</span>
                                 </div>
                                 <% }%>
-                                <% if(!n.isNew() ){ %>
+                                <% if(n.getIsNew() == 2 ){ %>
                                 <div class="product-label">
                                     <span class="sale"><%= n.getPercent()%></span>
                                 </div>
@@ -808,7 +815,7 @@
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
                                 <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.html">Xem Giỏ Hàng</a></li>
+                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
                                 <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
                                 <li><a href="support.html">Hổ Trợ</a></li>
                             </ul>

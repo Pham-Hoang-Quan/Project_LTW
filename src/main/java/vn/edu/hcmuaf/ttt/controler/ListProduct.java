@@ -17,9 +17,24 @@ public class ListProduct extends HttpServlet {
         List<Product> list = ProductService.getData() ;
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
+        String indextpage = request.getParameter("index");
+        if(indextpage == null){
+            indextpage = "1";
+        }
+        int index = Integer.parseInt(indextpage);
+
+        int count = ProductService.getTotalProducts();
+        int endPage = count /12;
+        if(count % 12 != 0){
+            endPage++;
+        }
+        List<Product> page = ProductService.pagingProduct(index);
+
+        request.setAttribute("list", page);
 
 
-        request.setAttribute("list", list);
+        request.setAttribute("endP", endPage);
+        request.setAttribute("tag", index);
         request.setAttribute("listc", listc);
         request.setAttribute("listsptt", listsptt);
 

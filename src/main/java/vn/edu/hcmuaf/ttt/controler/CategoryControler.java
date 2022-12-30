@@ -15,13 +15,11 @@ public class CategoryControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String CTID = request.getParameter("cName");
-//
-//        List<Product> list = ProductService.getCTID(CTID) ;
-//        request.setAttribute("list", list);
-//        request.getRequestDispatcher("store.jsp").forward(request,response);
         List<Product> list = ProductService.getCTID(CTID) ;
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
+
+
 
 
         request.setAttribute("list", list);

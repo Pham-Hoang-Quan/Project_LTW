@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
 import javax.servlet.*;
@@ -20,14 +21,21 @@ public class Login extends HttpServlet {
      String user_name = request.getParameter("user");
      String user_password = request.getParameter("pass");
         User user = UserService.getInstance().checkLogib(user_name,user_password);
+        Cart cart = new Cart(user,0,0);
       if(user == null){
-          request.setAttribute("error", "username or password is incorrect");
+          request.setAttribute("mess", "Sai Tên người dùng hoặc Mật khẩu");
           request.getRequestDispatcher("login.jsp").forward(request,response);
       }else {
-//          response.sendRedirect("/THDoAn_war/List-Index");
+
+
           HttpSession session = request.getSession(true);
           session.setAttribute("auth", user);
+
+          session.setAttribute("cart",cart);
           response.sendRedirect("/THDoAn_war");
+
+
+//          response.sendRedirect("index1.jsp");
       }
 
     }

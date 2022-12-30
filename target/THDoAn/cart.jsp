@@ -1,8 +1,13 @@
-<!DOCTYPE html>
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
-
-<head>
-    <meta charset="utf-8">
+<meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
     <!-- Google font -->
@@ -215,8 +220,8 @@
                                         <h5>Tổng: 1.880.000</h5>
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="cart.html">Xem</a>
-                                        <a href="checkout.html">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="cart.jsp">Xem</a>
+                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -616,15 +621,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <%Cart cart =(Cart) session.getAttribute("cart");
+                                                double tongtien = 0;
+                                            %>
+                                            <%for (Product c:cart.getListproduct()) {
+                                            tongtien+=c.getPrice();
+                                            %>
                                                 <tr>
                                                     <td class="cart_product_img">
-                                                        <a href="#"><img src="./img/180-LI(Q).jpg" alt="Product"></a>
+                                                        <a href="#"><img src="<%= c.getImg()%>" alt="Product"></a>
                                                     </td>
                                                     <td class="cart_product_desc">
-                                                        <h5>Máy Khoan 180-LI</h5>
+                                                        <h5><%= c.getName()%></h5>
                                                     </td>
                                                     <td class="price">
-                                                        <span>980.000đ</span>
+                                                        <span><%= c.getPrice()%></span>
                                                     </td>
                                                     <td class="qty">
                                                         <div class="qty-btn d-flex">
@@ -642,41 +653,12 @@
 
                                                     </td>
                                                     <td>
-                                                        <div class="delete-product">
+                                                        <a class="delete-product" href="/THDoAn_war/deleteProduct?id=<%=c.getId()%>">
                                                             <i class="fa-solid fa-trash-can"></i>
-                                                        </div>
+                                                        </a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="cart_product_img">
-                                                        <a href="#"><img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="Product"></a>
-                                                    </td>
-                                                    <td class="cart_product_desc">
-                                                        <h5>Máy Khoan Bosch GBM-320</h5>
-                                                    </td>
-                                                    <td class="price">
-                                                        <span>900.000đ</span>
-                                                    </td>
-                                                    <td class="qty">
-                                                        <div class="qty-btn d-flex">
-                                                            <p>SL</p>
-                                                            <div class="quantity">
-                                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
-                                                                        class="fa fa-minus"
-                                                                        aria-hidden="true"></i></span>
-                                                                <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
-                                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
-                                                                        class="fa fa-plus"
-                                                                        aria-hidden="true"></i></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="delete-product">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                               <%}%>
                                                 <!-- <tr>
                                                     <td class="cart_product_img">
                                                         <a href="#"><img src="img/bg-img/cart3.jpg" alt="Product"></a>
@@ -706,12 +688,16 @@
                                     <div class="cart-summary">
                                         <h4>TỔNG</h4>
                                         <ul class="summary-table">
-                                            <li><span>Tiền Hàng:</span> <span>1.880.000đ</span></li>
+                                            <%Locale locale = new Locale("vi");
+                                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                String tt = format.format(tongtien).split(",")[0];
+                                            %>
+                                            <li><span>Tiền Hàng:</span> <span><%=tt%>đ</span></li>
                                             <li><span>Vận Chuyển:</span> <span>Free</span></li>
-                                            <li><span>Tổng Tiền:</span> <span>1.880.000đ</span></li>
+                                            <li><span>Tổng Tiền:</span> <span><%=tt%>đ</span></li>
                                         </ul>
                                         <div class="cart-btn mt-100">
-                                            <a href="checkout.html" class="btn amado-btn w-100">Thanh Toán</a>
+                                            <a href="checkout.jsp" class="btn amado-btn w-100">Thanh Toán</a>
                                         </div>
                                     </div>
                                 </div>
@@ -820,7 +806,7 @@
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
                                 <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.html">Xem Giỏ Hàng</a></li>
+                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
                                 <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
                                 <li><a href="support.html">Hổ Trợ</a></li>
                             </ul>

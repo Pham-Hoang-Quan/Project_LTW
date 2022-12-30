@@ -1,8 +1,16 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
+
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
 
@@ -170,12 +178,14 @@
                     <!-- /LOGO -->
 
                     <!-- SEARCH BAR -->
+
+
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -192,49 +202,64 @@
                                     <div class="qty">5</div>
                                 </a>
                             </div>
+<%--                            <%--%>
+<%--                                Cart cartt =(Cart) session.getAttribute("cart");--%>
+<%--                                double tongtien = 0;--%>
+<%--                            %>--%>
+<%--                            <%for (Product c:cartt.getListproduct()) {--%>
+<%--                                tongtien+=c.getPrice();--%>
+<%--                            %>--%>
+                            <div>
+                                <a href="cart.jsp">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Giỏ Hàng</span>
+                                    <div class="qty">${cart.quantily}</div>
+                                </a>
+                            </div>
+
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Giỏ Hàng</span>
-                                    <div class="qty">2</div>
-                                </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
+<%--                            <div class="dropdown">--%>
+<%--                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">--%>
+<%--                                    <i class="fa fa-shopping-cart"></i>--%>
+<%--                                    <span>Giỏ Hàng</span>--%>
+<%--                                    <div class="qty">2</div>--%>
+<%--                                </a>--%>
+<%--                                <div class="cart-dropdown">--%>
+<%--                                    <div class="cart-list">--%>
+<%--                                        <div class="product-widget">--%>
+<%--                                            <div class="product-img">--%>
+<%--                                                <img src="./img/180-LI(Q).jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="product-body">--%>
+<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>--%>
+<%--                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>--%>
+<%--                                            </div>--%>
+<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
+<%--                                        </div>--%>
 
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="cart.html">Xem</a>
-                                        <a href="checkout.html">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+<%--                                        <div class="product-widget">--%>
+<%--                                            <div class="product-img">--%>
+<%--                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">--%>
+<%--                                            </div>--%>
+<%--                                            <div class="product-body">--%>
+<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>--%>
+<%--                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>--%>
+<%--                                            </div>--%>
+<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart-summary">--%>
+<%--                                        <small>2 Sản Phẩm</small>--%>
+<%--                                        <h5>Tổng: 1.880.000</h5>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart-btns">--%>
+<%--                                        <a href="cart.jsp">Xem</a>--%>
+<%--                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- /Cart -->
 
                             <!-- Menu Toogle -->
@@ -367,6 +392,7 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
+
                     </div>
                     <!-- /aside Widget -->
 
@@ -476,10 +502,15 @@
                             <div class="product-img">
                                 <img src="<%= p.getImg()%>" alt="">
                             </div>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String tt = format.format(p.getPrice()).split(",")[0];
+                            %>
                             <div class="product-body">
                                 <p class="product-category"><%= p.getClassify()%></p>
                                 <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
-                                <h4 class="product-price"><%= p.getPrice()%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
+                                <h4 class="product-price"><%=tt%>đ<del class="product-old-price"><%= p.getOldPrice()%></del></h4>
                             </div>
                         </div>
                         <% } %>
@@ -566,17 +597,7 @@
 
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
-                    <!-- store top filter -->
-                    <!-- <div class="store-filter clearfix">
-                        
-                        <ul class="store-grid">
-                            <li class="active"><i class="fa fa-th"></i></li>
-                            <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                        </ul>
-                    </div> -->
-                    <!-- /store top filter -->
 
-                    <!-- store products -->
                     <div class="row" id="product">
                         <!-- product -->
                         <% List<Product> list = (List<Product>) request.getAttribute("list");
@@ -589,12 +610,12 @@
                                     <img src="<%= p.getImg()%>">
 
 
-                                    <% if(p.isNew() ){ %>
+                                    <% if(p.getIsNew() == 1){ %>
                                     <div class="product-label">
                                         <span class="new">New</span>
                                     </div>
                                     <% }%>
-                                    <% if(!p.isNew() ){ %>
+                                    <% if(p.getIsNew() == 2){ %>
                                     <div class="product-label">
                                         <span class="sale"><%= p.getPercent()%></span>
                                     </div>
@@ -606,7 +627,7 @@
                                     <p class="product-category"><%= p.getClassify()%></p>
                                     <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
                                     <h4 class="product-price"><%= p.getPrice()%>đ
-                                        <% if(!p.isNew() ){ %>
+                                        <% if(p.getIsNew() == 2){ %>
                                         <del class="product-old-price"><%= p.getOldPrice()%></del>
                                         <% }%>
                                     </h4>
@@ -620,11 +641,11 @@
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                         <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
-                                        <button class="quick-view"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><span class="tooltipp">xem</span></a></button>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                                 </div>
                             </div>
                         </div>
@@ -637,19 +658,44 @@
 
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">HIỂN THỊ 20-100 SẢN PHẨM</span>
+<%--                        <span class="store-qty">HIỂN THỊ 20-100 SẢN PHẨM</span>--%>
                         <ul class="store-pagination">
 
 
-                            <li class="active">
-                                <a>1</a></li>
-                            <li><a>2</a></li>
-                            <li><a>3</a></li>
-                            <li><a>4</a></li>
+<%--                            <li class="active">--%>
+<c:forEach begin="1" end="${endP}" var="i">
+    <li class="${tag == i?"active":""}"><a href="/THDoAn_war//List-Product?index=${i}">${i}</a></li>
+</c:forEach>
+<%--                            <%List<Product> page =  (List<Product>) request.getAttribute("endP");%>--%>
+<%--                            <%--%>
 
+<%--                                for (Comment c:--%>
+<%--                                        page) {--%>
+
+<%--                            %>--%>
+<%--                            <%--%>
+<%--                            <%  for (int begin = 1 int end = <%= %> "endP" %>; begin++) { %>--%>
+
+<%--                            %>--%>
+<%--                            <li><a>2</a></li>--%>
+<%--                            <%}%>--%>
+<%--                            <%List< Product> listComment =  (List<Product>) request.getAttribute("endP");%>--%>
+<%--                            <%--%>
+
+<%--                                for (Product j:--%>
+<%--                                        listComment) {--%>
+
+<%--                            %>--%>
+<%--                            <%--%>
+<%--                                for (int i = 1; i < <%= "endP"%>; i++) {--%>
+
+<%--                            %>--%>
+
+<%--                            <li><a>2</a></li>--%>
+<%--                            <%}%>--%>
 
                             <!-- <li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
-                            <li class="btn-next fa fa-angle-right"></li>
+
                         </ul>
                     </div>
                     <!-- /store bottom filter -->
@@ -753,7 +799,7 @@
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
                                 <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.html">Xem Giỏ Hàng</a></li>
+                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
                                 <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
                                 <li><a href="support.html">Hổ Trợ</a></li>
                             </ul>
