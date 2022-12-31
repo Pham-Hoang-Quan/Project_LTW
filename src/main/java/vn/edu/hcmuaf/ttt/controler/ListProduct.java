@@ -14,7 +14,7 @@ import java.util.List;
 public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> list = ProductService.getData() ;
+        List<Product> list = ProductService.getData();
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
         String indextpage = request.getParameter("index");
