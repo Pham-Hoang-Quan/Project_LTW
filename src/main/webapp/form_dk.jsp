@@ -1,3 +1,6 @@
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
@@ -267,7 +270,16 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
+                        <% User auth= (User) session.getAttribute("auth");%>
+                        <% if(auth==null){ %>
+                        Bạn chưa đăng nhập
+                        <% }else {%>
+                        Chào bạn: <%= auth.getUser_fullname()%></p>
+
+                        <% } %>
+
+                    </a></li>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -285,7 +297,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="index.jsp" class="logo">
+                            <a href="/THDoAn_war/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -295,10 +307,10 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -354,7 +366,7 @@
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">Xem</a>
-                                        <a href="checkout.html">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -379,30 +391,32 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="signup-form">
-        <form action="/examples/actions/confirmation.php" method="post">
+        <form action="/THDoAn_war/dosingup" method="post">
             <h2>Đăng Ký</h2>
 
             <p class="hint-text">Đăng ký tài khoản để trải nghiệm dịch vụ tốt nhất</p>
             <div class="form-group">
+                <p class="text-danger">${mess}</p>
                 <div class="row">
-                    <div class="col"><input type="text" class="form-control" name="first_name" placeholder="Họ" required="required"></div>
-                    <div class="col"><input type="text" class="form-control" name="last_name" placeholder="Tên" required="required"></div>
+                    <div class="col"><input type="text" class="form-control" name="user_fullname" placeholder="Họ và tên" required="required"></div>
+                    <div class="col"><input type="text" class="form-control" name=user_name placeholder="Tên người dùng(dùng để đăng nhập)" required="required"></div>
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="taikhoan" placeholder="Tài khoản" required="required">
+                <input type="text" class="form-control" name="account" placeholder="Tài khoản" required="required">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                <input type="email" class="form-control" name="user_email" placeholder="Email" required="required">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="Phone" placeholder="Số điện thoại" required="required">
+                <input type="text" class="form-control" name="user_sdt" placeholder="Số điện thoại" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required="required">
+                <input type="password" class="form-control" name="user_password" placeholder="Mật khẩu" required="required">
             </div>
+            <p class="text-danger">${messs}</p>
             <div class="form-group">
-                <input type="password" class="form-control" name="confirm_password" placeholder="Xác nhận mật khẩu" required="required">
+                <input type="password" class="form-control" name="repass" placeholder="Xác nhận mật khẩu" required="required">
             </div>
             <div class="form-group">
                 <label class="form-check-label"><input type="checkbox" required="required"> Cập Nhật <a href="#">Điều khoản</a> &amp; <a href="#">Chính sách bảo mật</a></label>
@@ -410,7 +424,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-lg btn-block">Đăng Ký</button>
             </div>
-            <div class="text-center"> Bạn đã có một tài khoản chưa? <a href="login.jsp">Đăng Nhập</a></div>
+            <div class="text-center"> Bạn đã có một tài khoản ? <a href="login.jsp">Đăng Nhập</a></div>
     </div>
     </form>
 

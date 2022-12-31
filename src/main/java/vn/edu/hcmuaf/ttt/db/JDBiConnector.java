@@ -39,12 +39,12 @@ public class JDBiConnector {
 
     public static void main(String[] args) {
         Jdbi me = JDBiConnector.me();
-        List<User> users = me.withHandle(handle -> {
-            return handle.createQuery("select * from user ").mapToBean(User.class).stream().collect(Collectors.toList());
+        List<Product> products  = me.withHandle(handle -> {
+            return handle.createQuery("select * from products ").mapToBean(Product.class).stream().collect(Collectors.toList());
 
 
         });
-        System.out.println(users);
+        System.out.println(products);
 
     }
 

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class UserService {
     private static UserService instance;
 
+
     private static Map<String, String> users = new HashMap<>();
     static {
         users.put("admin", "admin");
@@ -39,22 +40,38 @@ public class UserService {
         );
         if(users.size() != 1) return null;
         User user = users.get(0);
-//        if(!user.getUser_password().equals(hashPassword(user_password))
-//        ||!user.getUser_name().equals(user_name)) return null;
         return user;
     }
 
-//    private  String hashPassword(String user_password) {
-//        try{
-//            MessageDigest sha256 = null;
-//            sha256 = MessageDigest.getInstance("SHA-256");
-//            byte[] hash = sha256.digest(user_password.getBytes());
-//            BigInteger number = new BigInteger(1,hash);
-//            return number.toString(16);
-//        } catch (NoSuchAlgorithmException e) {
-//            return null;
-//        }
-//    }
+    public  static User checkExist(String user_name){
+        List<User> users = JDBiConnector.me().withHandle(h ->
+                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0,user_name).mapToBean(User.class).stream().collect(Collectors.toList())
+        );
+        if(users.size() != 1) return null;
+        User user = users.get(0);
+        return user;
+    }
+
+    static public  void singup(String user_fullname, String user_name, String accout, String user_email,String user_sdt, String user_password){
+       JDBiConnector.me().withHandle(h ->
+               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0)")
+                .bind(0, user_name)
+                .bind(0, user_fullname)
+                .bind(1, user_name)
+                .bind(2, accout)
+                .bind(3, user_email)
+                .bind(4, user_sdt)
+                .bind(5, user_password)
+                .execute());
+
+    }
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         System.out.println(checkLogib("tien","123"));

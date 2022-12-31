@@ -167,10 +167,10 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -225,8 +225,8 @@
                                         <h5>Tổng: 1.880.000</h5>
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="cart.html">Xem</a>
-                                        <a href="checkout.html">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="cart.jsp">Xem</a>
+                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1015,7 +1015,7 @@
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
                                 <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.html">Xem Giỏ Hàng</a></li>
+                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
                                 <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
                                 <li><a href="support.html">Hổ Trợ</a></li>
                             </ul>

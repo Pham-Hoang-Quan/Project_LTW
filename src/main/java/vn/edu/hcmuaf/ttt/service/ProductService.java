@@ -15,6 +15,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductService {
+
+    private static ProductService instance;
+
+    private ProductService(){
+
+    }
+    public static ProductService getInstance(){
+        if(instance == null){
+            instance = new ProductService();
+
+        }
+        return instance;
+    }
     public static List<Product> getData(){
         List<Product> list = new LinkedList<>();
         try {
@@ -25,7 +38,7 @@ public class ProductService {
                 //....
                 ResultSet rs = statement.executeQuery("select * from products");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
                 }
             }
         } catch (SQLException e) {
@@ -44,7 +57,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan mini'");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
                 }
             }
         } catch (SQLException e) {
@@ -77,7 +90,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 1  limit 5");
                 while (rs.next()){
-                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
                 }
             }
         } catch (SQLException e) {
@@ -91,9 +104,9 @@ public static   List<Product> getSale(){
     try {
         Statement statement = DBConnect.getInstall().get();
         if(statement!=null) {
-            ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 0  limit 5");
+            ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 2 limit 5");
             while (rs.next()){
-                list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
             }
         }
     } catch (SQLException e) {
@@ -107,9 +120,9 @@ public static   List<Product> getSale(){
        try {
            Statement statement = DBConnect.getInstall().get();
            if(statement!=null) {
-               ResultSet rs = statement.executeQuery("select * from products order by rand() limit 3");
+               ResultSet rs = statement.executeQuery("select * from products order by rand() limit 4");
                while (rs.next()){
-                   list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                   list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
                }
            }
        } catch (SQLException e) {
@@ -119,20 +132,6 @@ public static   List<Product> getSale(){
    }
 
     public static    List<Product> getCTID(String cName){
-//        List<Product> list = new LinkedList<>();
-//        try {
-//            Statement statement = DBConnect.getInstall().get();
-//            if(statement!=null) {
-//                ResultSet rs = statement.executeQuery("select * from products WHERE classify = ? ");
-//
-//                while (rs.next()){
-//                    list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getBoolean(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("select * from products WHERE classify = ?")
                         .bind(0,cName)
@@ -172,26 +171,54 @@ public static   List<Product> getSale(){
 
        });
     }
+    public  static List<Product> searchByName(String txtSearch){
+        List<Product> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("select * from products WHERE `name` LIKE ? ")
+                        .bind(0,"%" + txtSearch +"%")
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
+
+    static public int getTotalProducts(){
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            if(statement!=null) {
+                ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products");
+                while (rs.next()){
+               return  rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    public static List<Product> pagingProduct(int index) {
+        List<Product> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM products limit ?,12")
+                        .bind(0, (index-1)*12)
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
+
 
 
 
 
 
     public static void main(String[] args) {
-//        String sql="INSERT INTO category VALUES";
-//        List<Category> data = getCategory();
-//        for (Category o : data){
-//            sql+="("+o.getId()+",'"+p.getName()+"','"+p.getImg()+"',"+p.getPrice()+",'"+p.getClassify()+"','"+p.getOldPrice()+"',"+p.isNew()+",'"+p.getPercent()+"'),";
-//        }
-//System.out.println(sql);
-        System.out.println(getProductById("1"));
-//        ProductService dao = new ProductService();
-//        List<Product> lists = dao.getProductById("2");
-//        for(Product o : lists){
-//            System.out.println(o);
+
+        System.out.println(pagingProduct(1));
 //
-//        }
     }
+
 
 
 }

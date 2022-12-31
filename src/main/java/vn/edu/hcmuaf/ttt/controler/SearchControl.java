@@ -10,30 +10,24 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CategoryControler", value = "/category")
-public class CategoryControler extends HttpServlet {
+@WebServlet(name = "SearchControl", value = "/search")
+public class SearchControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String CTID = request.getParameter("cName");
-        List<Product> list = ProductService.getCTID(CTID) ;
-        List<Category> listc = ProductService.getCategory();
-        List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
-
-
-
-
-        request.setAttribute("list", list);
-        request.setAttribute("listc", listc);
-        request.setAttribute("listsptt", listsptt);
-        request.setAttribute("tag", CTID);
-
-        request.getRequestDispatcher("store.jsp").forward(request,response);
-
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     String txtSearch = request.getParameter("txt");
+        List<Category> listc = ProductService.getCategory();
+        List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
+        List<Product> listsearch = ProductService.searchByName(txtSearch);
 
+        request.setAttribute("list", listsearch);
+        request.setAttribute("listc", listc);
+        request.setAttribute("listsptt", listsptt);
+
+        request.getRequestDispatcher("store.jsp").forward(request,response);
     }
 }
