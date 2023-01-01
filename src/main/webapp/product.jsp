@@ -5,6 +5,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <html>
@@ -148,12 +150,22 @@
                         <% if(auth==null){ %>
                         Bạn chưa đăng nhập
                         <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+                        <%--                        <% if(auth.getUser_admin() == 1){%>--%>
+
+                        <%--                    <li>--%>
+                        <%--                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Quản Lý</a>--%>
+                        <%--                    </li>--%>
+                        <%--                        <%}%>--%>
                         <% } %>
 
 
 
                     </a></li>
+
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -383,7 +395,12 @@
                             <a class="review-link" href="#"><%=listComment.size()%> Đánh giá</a>
                         </div>
                         <div>
-                            <h3 class="product-price"><%= p.getPrice() %>đ
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String tt = format.format(p.getPrice()).split(",")[0];
+                            %>
+                            <h3 class="product-price"><%=tt%>đ
 
                                 <% if(p.getIsNew() == 2) {%>
                                 <del class="product-old-price"><%= p.getOldPrice()%>
@@ -701,7 +718,7 @@
                             </div>
                         </div>
                         <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
                     </div>
 

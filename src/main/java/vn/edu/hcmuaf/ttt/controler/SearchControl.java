@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
+xt
 @WebServlet(name = "SearchControl", value = "/search")
 public class SearchControl extends HttpServlet {
     @Override
@@ -19,7 +19,7 @@ public class SearchControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     String txtSearch = request.getParameter("txt");
+     String txtSearch = request.getParameter("t");
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;
         List<Product> listsearch = ProductService.searchByName(txtSearch);
