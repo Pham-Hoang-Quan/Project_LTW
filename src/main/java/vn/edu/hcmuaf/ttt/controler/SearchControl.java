@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-xt
+
 @WebServlet(name = "SearchControl", value = "/search")
 public class SearchControl extends HttpServlet {
     @Override
