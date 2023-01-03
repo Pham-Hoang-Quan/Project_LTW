@@ -241,7 +241,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row1">
-                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm</h4>
+                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm mới nhất</h4>
                                         <a href="product-manage.html">
                                             <button style="margin-left: 680px ;" class="btn btn-block btn-lg btn-gradient-primary mt-4">Xem chi tiết <i class="mdi mdi-chevron-double-right"></i></button>
                                         </a>

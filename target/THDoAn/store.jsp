@@ -142,18 +142,36 @@
                     </li>
                 </ul>
                 <ul class="header-links pull-right">
+
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
                         <% User auth= (User) session.getAttribute("auth");%>
                         <% if(auth==null){ %>
                         Bạn chưa đăng nhập
                         <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+<%--                        <% if(auth.getUser_admin() == 1){%>--%>
+
+<%--                    <li>--%>
+<%--                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Quản Lý</a>--%>
+<%--                    </li>--%>
+<%--                        <%}%>--%>
                         <% } %>
 
+
+
                     </a></li>
+
+
+<%--                    <% if(auth.getUser_admin() == 1){ %>--%>
+
+<%--                    <%}%>--%>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -217,51 +235,7 @@
                                 </a>
                             </div>
 
-                            <!-- /Wishlist -->
-
-                            <!-- Cart -->
-<%--                            <div class="dropdown">--%>
-<%--                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">--%>
-<%--                                    <i class="fa fa-shopping-cart"></i>--%>
-<%--                                    <span>Giỏ Hàng</span>--%>
-<%--                                    <div class="qty">2</div>--%>
-<%--                                </a>--%>
-<%--                                <div class="cart-dropdown">--%>
-<%--                                    <div class="cart-list">--%>
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/180-LI(Q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
-
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-summary">--%>
-<%--                                        <small>2 Sản Phẩm</small>--%>
-<%--                                        <h5>Tổng: 1.880.000</h5>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-btns">--%>
-<%--                                        <a href="cart.jsp">Xem</a>--%>
-<%--                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-                            <!-- /Cart -->
-
+                            <
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">
                                 <a href="#">
@@ -301,10 +275,10 @@
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
 
 
-<%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
-<%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
-<%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
-<%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
+                    <%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
+                    <%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
+                    <%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
+                    <%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
 
                     <% } %>
                     <li><a href="support.html">Hỗ Trợ</a></li>
@@ -626,7 +600,12 @@
                                 <div class="product-body">
                                     <p class="product-category"><%= p.getClassify()%></p>
                                     <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
-                                    <h4 class="product-price"><%= p.getPrice()%>đ
+                                    <%
+                                        Locale locale = new Locale("vi");
+                                        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                        String tt = format.format(p.getPrice()).split(",")[0];
+                                    %>
+                                    <h4 class="product-price"><%=tt%>đ
                                         <% if(p.getIsNew() == 2){ %>
                                         <del class="product-old-price"><%= p.getOldPrice()%></del>
                                         <% }%>

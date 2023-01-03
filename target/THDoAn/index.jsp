@@ -1,8 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
 
@@ -137,9 +142,22 @@
                         <% if(auth==null){ %>
                         Bạn chưa đăng nhập
                         <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+                        <%--                        <% if(auth.getUser_admin() == 1){%>--%>
+
+                        <%--                    <li>--%>
+                        <%--                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Quản Lý</a>--%>
+                        <%--                    </li>--%>
+                        <%--                        <%}%>--%>
                         <% } %>
+
+
+
                     </a></li>
+
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -190,45 +208,12 @@
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div>
+                                <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Giỏ Hàng</span>
-                                    <div class="qty">2</div>
+                                    <div class="qty">${cart.quantily}</div>
                                 </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="cart.jsp">Xem</a>
-                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /Cart -->
 
@@ -452,7 +437,12 @@
                                         <div class="product-body">
                                             <p class="product-category"><%= p.getClassify()%> </p>
                                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
-                                            <h4 class="product-price"><%= p.getPrice()%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
+                                            <%
+                                                Locale locale = new Locale("vi");
+                                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                String tt = format.format(p.getPrice()).split(",")[0];
+                                            %>
+                                            <h4 class="product-price"><%=tt%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -467,7 +457,7 @@
 <%--                                            </div>--%>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                                         </div>
                                     </div>
 
@@ -588,7 +578,12 @@
                                         <div class="product-body">
                                             <p class="product-category"><%= p.getClassify()%></p>
                                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId() %>"><%= p.getName()%> </a></h3>
-                                            <h4 class="product-price"><%= p.getPrice()%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
+                                            <%
+                                                Locale locale = new Locale("vi");
+                                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                String tt = format.format(p.getPrice()).split(",")[0];
+                                            %>
+                                            <h4 class="product-price"><%=tt%> <del class="product-old-price"><%= p.getOldPrice()%></del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -603,7 +598,7 @@
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                                         </div>
                                     </div>
                                     <% } %>
