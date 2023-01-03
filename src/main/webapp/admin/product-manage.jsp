@@ -1,23 +1,28 @@
+
+<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Drill Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="admin/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
 </head>
 
 <body>
@@ -25,94 +30,10 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="index.jsp"><img src="assets/images/LogoWeb.png" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.jsp"><img src="assets/images/LogoWeb.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-stretch">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
-                <div class="search-field d-none d-md-block">
-                    <form class="d-flex align-items-center h-100" action="#">
-                        <div class="input-group">
-                            <div class="input-group-prepend bg-transparent">
-                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                            </div>
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Tìm kiếm">
-                        </div>
-                    </form>
-                </div>
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="nav-profile-img">
-                                <img src="assets/images/faces/face1.jpg" alt="image">
-                                <span class="availability-status online"></span>
-                            </div>
-                            <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoàng Quân</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            <!-- <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a> -->
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-logout me-2 text-primary"></i> Đăng xuất </a>
-                        </div>
-                    </li>
 
-
-                    <li class="nav-item dropdown">
-
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                            <h6 class="p-3 mb-0">Notifications</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="mdi mdi-calendar"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="mdi mdi-settings"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="mdi mdi-link-variant"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-                        </div>
-                    </li>
-
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-          </button>
-            </div>
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
@@ -122,7 +43,7 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="assets/images/faces/face1.jpg" alt="profile">
+                                <img src="admin/assets/images/faces/face1.jpg" alt="profile">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
@@ -134,7 +55,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">
+                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
                             <span class="menu-title">Trang chủ</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
@@ -154,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="product-manage.html">
+                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
                             <span class="menu-title">Quản lý sản phẩm</span>
                             <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                         </a>
@@ -174,8 +95,7 @@
 
                     <li class="nav-item sidebar-actions">
                         <span class="nav-link">
-                
-                
+
 
               </span>
                     </li>
@@ -217,7 +137,6 @@
                                             <tr>
                                                 <th>Tên</th>
                                                 <th>Ảnh</th>
-                                                <th>Ngày tạo</th>
                                                 <th>Phân loại</th>
                                                 <th>Giá</th>
                                                 <th>Thao tác</th>
@@ -225,66 +144,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Máy khoan Bosch GBM 320</td>
-                                                <td><img src="assets/images/may-khoan-bosch-gbm-320(1q).jpg" alt=""></td>
-                                                <td class="text-danger"> 30-12-2020 </td>
-                                                <td class="text-success"> Khoan mini </td>
-                                                <td class="text-danger">699.000đ</td>
-                                                <td>
-                                                    <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
-                                                    <label class="badge badge-warning">Sửa <i class="mdi mdi-auto-fix"></i></label>
+                                        <% List<Product> list = (List<Product>) request.getAttribute("list");
+                                            for (Product p: list) { %>
+                                        <tr>
+                                            <td> <%= p.getName()%></td>
+                                            <td><img src="<%= p.getImg()%>" alt=""></td>
+                                            <td class="text-success"> <%= p.getClassify()%> </td>
+                                            <td class="text-danger"><%=p.getPrice()%>đ</td>
+                                            <td>
+                                                <a style="text-decoration: none" href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" title="Xem">
+                                                    <label class="badge badge-success"><i style="cursor: pointer" class="mdi mdi-eye"></i></label>
+                                                </a>
+                                                <a  title="Xóa">
+                                                    <label class="badge badge-danger"><i style="cursor: pointer" class="remove mdi mdi-close-circle-outline"></i></label>
+                                                </a>
+                                                <a title="Sửa">
+                                                    <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
+                                                </a>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Máy khoan Bosch GBM 320</td>
-                                                <td><img src="assets/images/may-khoan-bosch-gbm-320(1q).jpg" alt=""></td>
-                                                <td class="text-danger"> 30-12-2020 </td>
-                                                <td class="text-success"> Khoan mini </td>
-                                                <td class="text-danger">699.000đ</td>
-                                                <td>
-                                                    <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
-                                                    <label class="badge badge-warning">Sửa <i class="mdi mdi-auto-fix"></i></label>
+                                            </td>
+                                        </tr>
+                                        <% }%>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Máy khoan Bosch GBM 350A</td>
-                                                <td><img src="assets/images/may-khoan-bosch-gbm-350-a(4q).jpg" alt=""></td>
-                                                <td class="text-danger"> 30-12-2020 </td>
-                                                <td class="text-success"> Khoan mini </td>
-                                                <td class="text-danger">1.399.000đ</td>
-                                                <td>
-                                                    <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
-                                                    <label class="badge badge-warning">Sửa <i class="mdi mdi-auto-fix"></i></label>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Máy khoan 180-LI</td>
-                                                <td><img src="assets/images/180-LI(Q).jpg" alt=""></td>
-                                                <td class="text-danger"> 30-12-2020 </td>
-                                                <td class="text-success"> Khoan mini </td>
-                                                <td class="text-danger">1.699.000đ</td>
-                                                <td>
-                                                    <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
-                                                    <label class="badge badge-warning">Sửa <i class="mdi mdi-auto-fix"></i></label>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Máy khoan Bosch GBH 2-24</td>
-                                                <td><img src="assets/images/may-khoan-bua-bosch-gbh-2-24-dfr-300(2q).jpg" alt=""></td>
-                                                <td class="text-danger"> 30-12-2020 </td>
-                                                <td class="text-success"> Khoan động lực </td>
-                                                <td class="text-danger">699.000đ</td>
-                                                <td>
-                                                    <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
-                                                    <label class="badge badge-warning">Sửa <i class="mdi mdi-auto-fix"></i></label>
-
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -374,14 +256,14 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
+    <script src="../../admin/assets/js/off-canvas.js"></script>
+    <script src="../../admin/assets/js/hoverable-collapse.js"></script>
+    <script src="../../admin/assets/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
