@@ -163,7 +163,7 @@ public static   List<Product> getSale(){
 
 
 
-
+// Phương thức lấy sản phẩm từ csdl bằng id
     public  static Product getProductById(String id){
        return JDBiConnector.me().withHandle(handle -> {
            return handle.createQuery("select * from products where id = ?").bind(0,id).mapToBean(Product.class).first();

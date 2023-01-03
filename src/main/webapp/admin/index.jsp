@@ -48,22 +48,7 @@
                     </form>
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="nav-profile-img">
-                                <img src="assets/images/faces/face1.jpg" alt="image">
-                                <span class="availability-status online"></span>
-                            </div>
-                            <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoàng Quân</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-logout me-2 text-primary"></i> Đăng xuất </a>
-                        </div>
-                    </li>
+
 
 
                     <li class="nav-item dropdown">
@@ -138,7 +123,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">
+                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
                             <span class="menu-title">Trang chủ</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
@@ -158,7 +143,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="product-manage.html">
+                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
                             <span class="menu-title">Quản lý sản phẩm</span>
                             <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                         </a>
@@ -242,9 +227,6 @@
                                 <div class="card-body">
                                     <div class="row1">
                                         <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm mới nhất</h4>
-                                        <a href="product-manage.html">
-                                            <button style="margin-left: 680px ;" class="btn btn-block btn-lg btn-gradient-primary mt-4">Xem chi tiết <i class="mdi mdi-chevron-double-right"></i></button>
-                                        </a>
                                     </div>
 
                                     <div class="table-responsive">
@@ -254,7 +236,7 @@
                                                     <th> Tên </th>
                                                     <th> Danh mục </th>
                                                     <th> Giá </th>
-                                                    <th> Ngày thêm </th>
+                                                    <th> ID </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -268,9 +250,50 @@
                                                 <td>
                                                     <label class="badge badge-gradient-success"> <%= p.getPrice()%> đ</label>
                                                 </td>
-                                                <td> WD-12345 </td>
+                                                <td> <%= p.getId() %> </td>
                                             </tr>
                                                 <% };%>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row1">
+                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm mới nhất</h4>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th> Tên </th>
+                                                <th> Danh mục </th>
+                                                <th> Giá </th>
+                                                <th> Còn lại </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <% List<Product> listSoldOut = (List<Product>) request.getAttribute("listn");
+                                                for (Product p: list) { %>
+                                            <tr>
+                                                <td>
+                                                    <img src="<%= p.getImg()%>" class="me-2" alt="image"> <%= p.getName()%>
+                                                </td>
+                                                <td> <%= p.getClassify() %> </td>
+                                                <td>
+                                                    <label class="badge badge-gradient-success"> <%= p.getPrice()%> đ</label>
+                                                </td>
+                                                <td> <%= p.getQuantily()%> </td>
+                                            </tr>
+                                            <% };%>
 
                                             </tbody>
                                         </table>
