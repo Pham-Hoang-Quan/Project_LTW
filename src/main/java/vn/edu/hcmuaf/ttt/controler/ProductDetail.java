@@ -24,7 +24,7 @@ public class ProductDetail extends HttpServlet {
 //        String user_name = request.getParameter("user");
 //        String user_password = request.getParameter("pass");
 //        User user = UserService.getInstance().checkLogib(user_name,user_password);
-    if(id!=null){
+    if(id!=null) {
         Product product = ProductService.getProductById(id);
         request.setAttribute("product", product);
         request.setAttribute("comment", list);
