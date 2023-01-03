@@ -1,8 +1,20 @@
+<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
 
@@ -128,7 +140,21 @@
                     </li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
+                        <% User auth= (User) session.getAttribute("auth");%>
+                        <% if(auth==null){ %>
+                        Bạn chưa đăng nhập
+                        <% }else {%>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+
+                        <% } %>
+
+
+
+                    </a></li>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -293,37 +319,40 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-
+                <form action="/THDoAn_war/doHoaDon" method="post">
                 <div class="col-md-7">
                     <!-- Billing Details -->
                     <div class="billing-details">
                         <div class="section-title">
-                            <h3 class="title">Địa Chỉ Liên Lạc</h3>
+                            <h3 class="title">Thông tin giao hàng</h3>
                         </div>
+
+                        <% if(auth==null){ %>
+                        <input class="input" name="userID" style="display: none" value="1" type="text">
+                        <% }else {%>
+                        <input class="input" name="userID" style="display: none" value="<%= auth.getUser_id()%>" type="text">
+                        <% } %>
+
                         <div class="form-group">
-                            <input class="input" type="text" name="first-name" placeholder="Họ">
+                            <input class="input" type="text" name="fullName" placeholder="Họ và Tên">
                         </div>
-                        <div class="form-group">
-                            <input class="input" type="text" name="last-name" placeholder="Tên">
-                        </div>
+<%--                        <div class="form-group">--%>
+<%--                            <input class="input" type="text" name="last-name" placeholder="Tên">--%>
+<%--                        </div>--%>
                         <div class="form-group">
                             <input class="input" type="email" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="address" placeholder="Địa Chỉ">
+                            <input class="input" type="tel" name="tel" placeholder="Điện Thoại">
                         </div>
-                        <div class="form-group">
-                            <input class="input" type="text" name="city" placeholder="Thành Phố">
-                        </div>
+
                         <!-- <div class="form-group">
                             <input class="input" type="text" name="country" placeholder="Quốc Gia">
                         </div> -->
                         <!-- <div class="form-group">
                             <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
                         </div> -->
-                        <div class="form-group">
-                            <input class="input" type="tel" name="tel" placeholder="Điện Thoại">
-                        </div>
+
                         <div class="form-group">
                             <div class="input-checkbox">
                                 <input type="checkbox" id="create-account">
@@ -343,78 +372,116 @@
                         <div class="section-title">
                             <h3 class="title">ĐỊA CHỈ GIAO HÀNG</h3>
                         </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="shiping-address">
-                            <label for="shiping-address">
-                                <span></span>
-                                ĐỊA CHỈ GIAO HÀNG
-                            </label>
-                            <div class="caption">
-                                <div class="form-group">
-                                    <input class="input" type="text" name="first-name" placeholder="Họ Và Tên">
-                                </div>
-                                <!-- <div class="form-group">
-                                    <input class="input" type="text" name="last-name" placeholder="Last Name">
-                                </div> -->
-                                <div class="form-group">
-                                    <input class="input" type="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="address" placeholder="Địa Chỉ">
-                                </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="city" placeholder="Thành Phố">
-                                </div>
-                                <!-- <div class="form-group">
-                                    <input class="input" type="text" name="country" placeholder="Quốc Gia">
-                                </div> -->
-                                <!-- <div class="form-group">
-                                    <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                                </div> -->
-                                <div class="form-group">
-                                    <input class="input" type="tel" name="tel" placeholder="Điện Thoại">
-                                </div>
-                            </div>
+<%--                        <div class="input-checkbox">--%>
+<%--                            <input type="checkbox" id="shiping-address">--%>
+<%--                            <label for="shiping-address">--%>
+<%--                                <span></span>--%>
+<%--                                ĐỊA CHỈ GIAO HÀNG--%>
+<%--                            </label>--%>
+<%--                            <div class="caption">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="first-name" placeholder="Họ Và Tên">--%>
+<%--                                </div>--%>
+<%--                                <!-- <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="last-name" placeholder="Last Name">--%>
+<%--                                </div> -->--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <input class="input" type="email" name="email" placeholder="Email">--%>
+<%--                                </div>--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="address" placeholder="Địa Chỉ">--%>
+<%--                                </div>--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="city" placeholder="Thành Phố">--%>
+<%--                                </div>--%>
+<%--                                <!-- <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="country" placeholder="Quốc Gia">--%>
+<%--                                </div> -->--%>
+<%--                                <!-- <div class="form-group">--%>
+<%--                                    <input class="input" type="text" name="zip-code" placeholder="ZIP Code">--%>
+<%--                                </div> -->--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <input class="input" type="tel" name="tel" placeholder="Điện Thoại">--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+                        <div class="form-group">
+                            <input class="input" type="text" name="city" placeholder="Thành Phố/Tỉnh">
                         </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="dis" placeholder="Quận/Huyuện">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="wa" placeholder="Phường/xã">
+                        </div>
+
                     </div>
                     <!-- /Shiping Details -->
 
                     <!-- Order notes -->
                     <div class="order-notes">
-                        <textarea class="input" placeholder="Ghi chú khác"></textarea>
+                        <textarea class="input" name="note" placeholder="Ghi chú khác"></textarea>
                     </div>
                     <!-- /Order notes -->
                 </div>
 
                 <!-- Order Details -->
+
                 <div class="col-md-5 order-details">
+
                     <div class="section-title text-center">
                         <h3 class="title">Hóa Đơn</h3>
                     </div>
                     <div class="order-summary">
+
                         <div class="order-col">
                             <div><strong>SẢN PHẨM</strong></div>
                             <div><strong>TỔNG</strong></div>
                         </div>
+
+
+                        <%
+                            Cart cartt =(Cart) session.getAttribute("cart");
+                            double tongtien = 0;
+                            String tong_sp = null;
+
+                        %>
+                        <%for (Product c:cartt.getListproduct()) {
+                            tongtien+=c.getPrice();
+                            tong_sp = c.getName() + c.getName();
+
+
+
+                        %>
+                        <%Locale locale = new Locale("vi");
+                            NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+
+                            String tn = format.format(c.getPrice()).split(",")[0];
+                        %>
                         <div class="order-products">
-                            <div class="order-col">
-                                <div>Máy khoan bàn Hồng Ký HK-KT 10</div>
-                                <div>6.300.000đ</div>
-                            </div>
-                            <div class="order-col">
-                                <div>Mũi khoan kim cương 6mm Bosch 2608599049
-                                </div>
-                                <div>200.000đ</div>
+                            <div class="order-col" >
+                                <div><%=c.getName()%></div>
+                                <div><%=tn%></div>
                             </div>
                         </div>
+
+                        <%}%>
+<% String tsp = tong_sp;%>
+                        <input class="input" name="nameSP"  value="<%=tsp%>" type="text">
                         <div class="order-col">
                             <div>Phí giao hàng</div>
                             <div><strong>MIỄN PHÍ</strong></div>
                         </div>
                         <div class="order-col">
                             <div><strong>TỔNG</strong></div>
-                            <div><strong class="order-total">6.500.000đ</strong></div>
+                            <%Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String tt = format.format(tongtien).split(",")[0];
+                            %>
+
+                            <div><strong class="order-total"><%=tt %></strong></div>
                         </div>
+                        <input class="input" name="tongTien" style="display: none" value="<%=tt%>" type="text">
                     </div>
                     <div class="payment-method">
                         <div class="input-radio">
@@ -456,9 +523,11 @@
                             Bạn đọc rõ và chấp nhận <a href="#">Điều khoản và điều kiện</a>
                         </label>
                     </div>
-                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>
+<%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
+                    <button type="submit" class="primary-btn order-submit">Đặt hàng</button>
                 </div>
                 <!-- /Order Details -->
+                </form>
             </div>
             <!-- /row -->
         </div>
