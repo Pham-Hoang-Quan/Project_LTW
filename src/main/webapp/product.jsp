@@ -5,6 +5,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <html>
@@ -148,12 +150,17 @@
                         <% if(auth==null){ %>
                         Bạn chưa đăng nhập
                         <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+
                         <% } %>
 
 
 
                     </a></li>
+
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -383,15 +390,19 @@
                             <a class="review-link" href="#"><%=listComment.size()%> Đánh giá</a>
                         </div>
                         <div>
-                            <h3 class="product-price"><%= p.getPrice() %>đ
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String tt = format.format(p.getPrice()).split(",")[0];
+                            %>
+                            <h3 class="product-price"><%=tt%>đ
 
                                 <% if(p.getIsNew() == 2) {%>
                                 <del class="product-old-price"><%= p.getOldPrice()%>
                                 <%}%></del></h3>
 
                         </div>
-                        <p><%= p.getName()%> là dòng máy khoan HEAVY DUTY của thương hiệu Bosch, được ra mắt năm 2017. Dòng máy này hội tụ đầy đủ 3 yếu tố gồm sức mạnh, độ bền và hiệu suất. Sản phẩm được thiết kế dành riêng cho các chuyên gia, thợ lành nghề với độ chính xác gần như tuyệt đối trong mỗi mũi khoan gỗ hoặc thép...
-                             Bạn cũng có thể sử dụng máy khoan để khoan hoặc sửa chữa các đồ dùng trong gia đình rất tiện dụng </p>
+                        <p><%= p.getContent()%> </p>
 
                       
                         <div class="add-to-cart">
@@ -403,7 +414,7 @@
                                     <span class="qty-down">-</span>
                                 </div>
                             </div>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
                         <ul class="product-btns">
@@ -430,7 +441,7 @@
                     <div id="product-tab">
                         <!-- product tab nav -->
                         <ul class="tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Đặc điểm</a></li>
+<%--                            <li class="active"><a data-toggle="tab" href="#tab1">Đặc điểm</a></li>--%>
                             <li><a data-toggle="tab" href="#tab2">Thông Tin Chi Tiết</a></li>
 
                             <li><a data-toggle="tab" href="#tab3">Đánh giá (<%=listComment.size()%>)</a></li>
@@ -440,33 +451,35 @@
                         <!-- product tab content -->
                         <div class="tab-content">
                             <!-- tab1  -->
-                            <div id="tab1" class="tab-pane fade in active">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>Công suất 600W giúp khoan tốt trên thép, gỗ, nhôm…</p>
-                                        <p>Motor chổi than mạnh mẽ.</p>
-                                        <p>1 chế độ khoan thường với tốc độ không tải lên tới 2.600 vòng/phút, mô men xoắn định mức 20Nm.</p>
-                                        <p>Nút đảo chiều với 3 chế độ khoan ra, khoan vô, khóa.</p>
-                                        <p>Thiết kế nhỏ gọn, trọng lượng 1,7kg, dễ cầm nắm, thao tác.</p>
+<%--                            <div id="tab1" class="tab-pane fade in active">--%>
+<%--                                <div class="row">--%>
+<%--                                    <div class="col-md-12">--%>
+<%--&lt;%&ndash;                                        <p>Công suất 600W giúp khoan tốt trên thép, gỗ, nhôm…</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <p>Motor chổi than mạnh mẽ.</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <p>1 chế độ khoan thường với tốc độ không tải lên tới 2.600 vòng/phút, mô men xoắn định mức 20Nm.</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <p>Nút đảo chiều với 3 chế độ khoan ra, khoan vô, khóa.</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <p>Thiết kế nhỏ gọn, trọng lượng 1,7kg, dễ cầm nắm, thao tác.</p>&ndash;%&gt;--%>
+<%--                                        <p><%= p.getInfo()%></p>--%>
 
-                                        
-                                    </div>
-                                </div>
-                            </div>
+<%--                                        --%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- /tab1  -->
 
                             <!-- tab2  -->
                             <div id="tab2" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p> Cấu tạo từ các vật liệu cao cấp</p>
-                                        <p> Công suất 600W, khoan được trên nhiều chất liệu</p>
-                                        <p> Cò máy điều chỉnh tốc độ vô cấp</p>
-                                        <p> Nút đảo chiều với 3 tính năng khoan ra, khoan vô, khóa</p>
-                                        <p> Đầu cặp kim loại mạnh mẽ với đường kính cặp tối đa 13mm</p>
-                                        <p> Động cơ chổi than hoạt động mạnh mẽ</p>
-                                        <p> Nặng 1,7kg, thiết kế nhỏ gọn, chắc chắn</p>
-                                        
+<%--                                        <p> Cấu tạo từ các vật liệu cao cấp</p>--%>
+<%--                                        <p> Công suất 600W, khoan được trên nhiều chất liệu</p>--%>
+<%--                                        <p> Cò máy điều chỉnh tốc độ vô cấp</p>--%>
+<%--                                        <p> Nút đảo chiều với 3 tính năng khoan ra, khoan vô, khóa</p>--%>
+<%--                                        <p> Đầu cặp kim loại mạnh mẽ với đường kính cặp tối đa 13mm</p>--%>
+<%--                                        <p> Động cơ chổi than hoạt động mạnh mẽ</p>--%>
+<%--                                        <p> Nặng 1,7kg, thiết kế nhỏ gọn, chắc chắn</p>--%>
+<%--                                        --%>
+                                        <p><%= p.getInfo()%></p>
 
                                     </div>
                                 </div>
@@ -693,7 +706,7 @@
                         <div class="product-body">
                             <p class="product-category"><%= n.getClassify()%></p>
                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
-                            <h4 class="product-price"><%= n.getPrice()%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
+                            <h4 class="product-price"><%= tt%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
@@ -701,7 +714,7 @@
                             </div>
                         </div>
                         <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
                     </div>
 

@@ -38,7 +38,7 @@ public class ProductService {
                 //....
                 ResultSet rs = statement.executeQuery("select * from products");
                 while (rs.next()){
-                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14)));
                 }
             }
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan mini'");
                 while (rs.next()){
-                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14)));
                 }
             }
         } catch (SQLException e) {
@@ -90,7 +90,7 @@ public class ProductService {
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 1  limit 5");
                 while (rs.next()){
-                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+                    list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14)));
                 }
             }
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public static   List<Product> getSale(){
         if(statement!=null) {
             ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 2 limit 5");
             while (rs.next()){
-                list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+                list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14)));
             }
         }
     } catch (SQLException e) {
@@ -122,7 +122,7 @@ public static   List<Product> getSale(){
            if(statement!=null) {
                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 4");
                while (rs.next()){
-                   list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+                   list.add(new Product(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14)));
                }
            }
        } catch (SQLException e) {
@@ -215,7 +215,7 @@ public static   List<Product> getSale(){
 
     public static void main(String[] args) {
 
-        System.out.println(pagingProduct(1));
+        System.out.println(getSale());
 //
     }
 
