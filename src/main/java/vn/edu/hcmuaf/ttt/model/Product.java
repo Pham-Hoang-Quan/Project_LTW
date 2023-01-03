@@ -16,13 +16,16 @@ public class Product implements Serializable {
     private String img3;
     private String img4;
     private int quantily;
+    private String content;
+    private String info;
+
 
 
     public Product(){
 
     }
 
-    public Product(String id, String name, String img, long price, String classify, String oldPrice, int isNew, String percent, String img2, String img3, String img4, int quantily) {
+    public Product(String id, String name, String img, long price, String classify, String oldPrice, int isNew, String percent, String img2, String img3, String img4, int quantily, String content, String info) {
         this.id = id;
         this.name = name;
         this.img = img;
@@ -35,14 +38,16 @@ public class Product implements Serializable {
         this.img3 = img3;
         this.img4 = img4;
         this.quantily = quantily;
+        this.content = content;
+        this.info = info;
     }
 
     public String getId() {
         return id;
     }
-public String getKey(){
+    public String getKey(){
         return id;
-}
+    }
     public void setId(String id) {
         this.id = id;
     }
@@ -135,10 +140,26 @@ public String getKey(){
         this.quantily = quantily;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", img='" + img + '\'' +
                 ", price=" + price +
@@ -150,6 +171,8 @@ public String getKey(){
                 ", img3='" + img3 + '\'' +
                 ", img4='" + img4 + '\'' +
                 ", quantily=" + quantily +
+                ", content='" + content + '\'' +
+                ", info='" + info + '\'' +
                 '}';
     }
 }
