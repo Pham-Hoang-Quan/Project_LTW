@@ -10,16 +10,22 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProAdmin", value = "/ProAdmin")
-public class ProAdmin extends HttpServlet {
+@WebServlet(name = "LoadProduct", value = "/LoadProduct")
+public class LoadProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> list = ProductService.getData();
+        String id= request.getParameter("id");
         List<Category> listc = ProductService.getCategory();
 
-        request.setAttribute("list", list);
+        if (id != null) {
+            Product product = ProductService.getProductById(id);
+            request.setAttribute("product", product);
+        } else {
+            response.sendError(404, "Product Not Found");
+        }
         request.setAttribute("listc", listc);
-        request.getRequestDispatcher("admin/product-manage.jsp").forward(request, response);
+
+        request.getRequestDispatcher("admin/editProduct.jsp").forward(request, response);
     }
 
     @Override

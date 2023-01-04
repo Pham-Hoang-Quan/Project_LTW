@@ -121,12 +121,12 @@
                     </div>
 
                     <main>
-                        <form class="d-flex align-items-center h-100" action="#">
+                        <form  class="d-flex align-items-center h-100" action="searchAdminProduct" method="post">
                             <div class="input-group">
-                                <div class="input-group-prepend bg-transparent">
+                                <button type="submit" class="input-group-prepend bg-transparent">
                                     <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                                </div>
-                                <input type="text" class="form-control  todo-list-input" placeholder="Tìm kiếm sản phẩm">
+                                </button>
+                                <input name="txt" type="text" class="form-control  todo-list-input" placeholder="Tìm kiếm sản phẩm">
                             </div>
                         </form>
                         <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
@@ -155,10 +155,10 @@
                                                 <a style="text-decoration: none" href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" title="Xem">
                                                     <label class="badge badge-success"><i style="cursor: pointer" class="mdi mdi-eye"></i></label>
                                                 </a>
-                                                <a  title="Xóa">
+                                                <a style="text-decoration: none" title="Xóa" href="<%= "/THDoAn_war/DeleteProduct?id=" + p.getId() %>">
                                                     <label class="badge badge-danger"><i style="cursor: pointer" class="remove mdi mdi-close-circle-outline"></i></label>
                                                 </a>
-                                                <a title="Sửa">
+                                                <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
                                                 </a>
 
@@ -194,59 +194,75 @@
                 <div class="card-body">
                     <h4 class="card-title">Thêm sản phẩm</h4>
                     <p class="card-description"> Nhập thông tin </p>
-                    <form class="forms-sample">
+                    <form action="AddProduct" method="post" class="forms-sample">
                         <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Mã sản phẩm</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="exampleInputUsername2" placeholder="0001">
+                                <input name="id" type="text" class="form-control"  placeholder="0001">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Tên sản phẩm">
+                                <input name="name" type="text" class="form-control" id="exampleInputUsername2" placeholder="Tên sản phẩm">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Danh mục</label>
+                            <label for="" class="col-sm-3 col-form-label">Danh mục</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Vd: khoan mini">
+                                <select name="classify" class="form-control" id="browsers">
+                                    <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+                                    <% List<Category> lista = (List<Category>) request.getAttribute("listc");
+                                        for (Category p:lista) { %>
+                                        <option value="<%=p.getcName()%>"><%=p.getcName()%></option>
+                                    <%}%>
+
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Ảnh</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="exampleInputMobile" placeholder="Url ảnh">
+                                <input name="img" type="file" class="form-control"  placeholder="Url ảnh">
+<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
+<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
+<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Ngày tạo</label>
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Giảm giá (%)</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Ngày ra mắt">
+                                <input name="percent" type="number" class="form-control"  placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Số lượng</label>
+                            <div class="col-sm-9">
+                                <input name="qty" type="number" class="form-control" id="exampleInputPassword2" placeholder="0">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Giá</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Đơn giá">
+                                <input name="price" type="number" class="form-control" id="exampleInputConfirmPassword2" placeholder="Đơn giá">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="exampleInputMobile" placeholder="">
+                                <input name="content" type="text" class="form-control" id="" placeholder="Mô tả sản phẩm">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Nhà sản xuất</label>
+                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Thông tin</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="exampleInputMobile" placeholder="Nhập mã nhà sản xuất">
+                                <input name="info" type="text" class="form-control" id="exampleInputMobile" placeholder="Thông tin về sản phẩm">
                             </div>
                         </div>
-                        <div class="form-check form-check-flat form-check-primary">
-                            <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input"> Sản phẩm mới !!!<i class="input-helper"></i></label>
-                        </div>
+<%--                        <div class="form-check form-check-flat form-check-primary">--%>
+<%--                            <label class="form-check-label">--%>
+<%--                            <input  type="checkbox" class="form-check-input"> Sản phẩm mới !!!<i class="input-helper"></i></label>--%>
+<%--                        </div>--%>
                         <button type="submit" class="btn btn-gradient-primary me-2 close">Thêm</button>
                         <button class="btn btn-light close">Hủy bỏ</button>
                     </form>
