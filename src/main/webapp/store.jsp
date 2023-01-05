@@ -267,6 +267,7 @@
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
                     <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
+
                         for (Category p:lista) {%>
 
 
@@ -279,6 +280,7 @@
                     <%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
                     <%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
                     <%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
+
 
                     <% } %>
                     <li><a href="support.html">Hỗ Trợ</a></li>
