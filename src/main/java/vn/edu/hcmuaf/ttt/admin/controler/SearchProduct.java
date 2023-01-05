@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
@@ -21,6 +22,9 @@ public class SearchProduct extends HttpServlet {
         String txtSearch = request.getParameter("txt"); // lay duoc txt nguoi dung nhap vao
         List<Product> list = ProductService.searchByName(txtSearch);
 
+        List<Category> listc = ProductService.getCategory();
+
+        request.setAttribute("listc", listc);
         request.setAttribute("list", list);
         request.getRequestDispatcher("admin/product-manage.jsp").forward(request, response);
     }
