@@ -12,11 +12,12 @@ public class hoaDon implements Serializable {
     private String disitrict;
     private String ward;
     private String note;
+    private String id;
     private String tenSp;
     private String toongGia;
+    private String soLuong;
 
-
-    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sđt, String city, String disitrict, String ward, String note, String tenSp, String toongGia) {
+    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sđt, String city, String disitrict, String ward, String note, String id, String tenSp, String toongGia, String soLuong) {
         this.soHD = soHD;
         this.user_id = user_id;
         this.hoVaTen = hoVaTen;
@@ -26,8 +27,10 @@ public class hoaDon implements Serializable {
         this.disitrict = disitrict;
         this.ward = ward;
         this.note = note;
+        this.id = id;
         this.tenSp = tenSp;
         this.toongGia = toongGia;
+        this.soLuong = soLuong;
     }
 
     public int getSoHD() {
@@ -102,6 +105,14 @@ public class hoaDon implements Serializable {
         this.note = note;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getTenSp() {
         return tenSp;
     }
@@ -118,6 +129,14 @@ public class hoaDon implements Serializable {
         this.toongGia = toongGia;
     }
 
+    public String getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(String soLuong) {
+        this.soLuong = soLuong;
+    }
+
     @Override
     public String toString() {
         return "hoaDon{" +
@@ -130,8 +149,10 @@ public class hoaDon implements Serializable {
                 ", disitrict='" + disitrict + '\'' +
                 ", ward='" + ward + '\'' +
                 ", note='" + note + '\'' +
+                ", id='" + id + '\'' +
                 ", tenSp='" + tenSp + '\'' +
                 ", toongGia='" + toongGia + '\'' +
+                ", soLuong='" + soLuong + '\'' +
                 '}';
     }
 }

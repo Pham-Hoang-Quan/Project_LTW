@@ -19,9 +19,12 @@ public class addToCart extends HttpServlet {
    Cart cart = (Cart) session.getAttribute("cart");
    String id = request.getParameter("id");
 
+
         Product product = ProductService.getProductById(id);
 product.setQuantily(1);
         cart.put(product);
+
+
         List<Product> list = ProductService.getData() ;
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;

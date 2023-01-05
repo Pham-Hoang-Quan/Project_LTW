@@ -172,7 +172,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="index.jsp" class="logo">
+                            <a href="/THDoAn_war/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -195,12 +195,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="heart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">5</div>
-                                </a>
+
                             </div>
                             <!-- /Wishlist -->
 
@@ -436,6 +431,7 @@
 
                         <div class="order-col">
                             <div><strong>SẢN PHẨM</strong></div>
+                            <div><strong>Số lượng</strong></div>
                             <div><strong>TỔNG</strong></div>
                         </div>
 
@@ -443,13 +439,13 @@
                         <%
                             Cart cartt =(Cart) session.getAttribute("cart");
                             double tongtien = 0;
-                            String tong_sp = null;
 
+      int i= 0;
                         %>
                         <%for (Product c:cartt.getListproduct()) {
-                            tongtien+=c.getPrice();
-                            tong_sp = c.getName() + c.getName();
+                            tongtien+=(c.getPrice()*c.getQuantily());
 
+                        i++;
 
 
                         %>
@@ -461,13 +457,20 @@
                         <div class="order-products">
                             <div class="order-col" >
                                 <div><%=c.getName()%></div>
+                                <div><%=c.getQuantily()%></div>
                                 <div><%=tn%></div>
                             </div>
                         </div>
+                        <input class="input" name="id<%=i%>"  style="display: none" value="<%=c.getId()%>" type="text">
+                        <input class="input" name="nameSP<%=i%>"  style="display: none" value="<%=c.getName()%>" type="text">
+                        <input class="input" name="soLuong<%=i%>"  style="display: none"  value="<%=c.getQuantily()%>" type="text">
+                        <input class="input" name="id<%=i%>"  style="display: none"  value="<%=c.getId()%>" type="text">
+
+
 
                         <%}%>
-<% String tsp = tong_sp;%>
-                        <input class="input" name="nameSP"  value="<%=tsp%>" type="text">
+
+                        <input class="input" name="countSP"  style="display: none" value="<%=cartt.getListproduct().size()%>" type="number">
                         <div class="order-col">
                             <div>Phí giao hàng</div>
                             <div><strong>MIỄN PHÍ</strong></div>
@@ -546,7 +549,7 @@
                         <p>Đăng Ký <strong>Bản Tin</strong></p>
                         <form>
                             <input class="input" type="email" placeholder="Nhập Email Của Bạn">
-                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Đăng Ký</button>
+                            <button class="newsletter-btn"><i class="fa fa-envelope"></i>Đăng Ký</button>
                         </form>
                         <ul class="newsletter-follow">
                             <li>
