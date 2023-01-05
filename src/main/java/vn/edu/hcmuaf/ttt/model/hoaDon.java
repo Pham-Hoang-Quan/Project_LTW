@@ -1,15 +1,13 @@
 package vn.edu.hcmuaf.ttt.model;
 
-import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
-
 import java.io.Serializable;
 
-public class hoaDon extends HoaDon implements Serializable {
+public class hoaDon implements Serializable {
     private int soHD;
     private String user_id;
     private String hoVaTen;
     private String HD_email;
-    private String HD_sdt;
+    private String HD_sđt;
     private String city;
     private String disitrict;
     private String ward;
@@ -18,12 +16,12 @@ public class hoaDon extends HoaDon implements Serializable {
     private String toongGia;
 
 
-    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sdt, String city, String disitrict, String ward, String note, String tenSp, String toongGia) {
+    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sđt, String city, String disitrict, String ward, String note, String tenSp, String toongGia) {
         this.soHD = soHD;
         this.user_id = user_id;
         this.hoVaTen = hoVaTen;
         this.HD_email = HD_email;
-        this.HD_sdt = HD_sdt;
+        this.HD_sđt = HD_sđt;
         this.city = city;
         this.disitrict = disitrict;
         this.ward = ward;
@@ -64,12 +62,12 @@ public class hoaDon extends HoaDon implements Serializable {
         this.HD_email = HD_email;
     }
 
-    public String getHD_sdt() {
-        return HD_sdt;
+    public String getHD_sđt() {
+        return HD_sđt;
     }
 
-    public void setHD_sdt(String HD_sdt) {
-        this.HD_sdt = HD_sdt;
+    public void setHD_sđt(String HD_sđt) {
+        this.HD_sđt = HD_sđt;
     }
 
     public String getCity() {
@@ -127,7 +125,7 @@ public class hoaDon extends HoaDon implements Serializable {
                 ", user_id='" + user_id + '\'' +
                 ", hoVaTen='" + hoVaTen + '\'' +
                 ", HD_email='" + HD_email + '\'' +
-                ", HD_sđt='" + HD_sdt + '\'' +
+                ", HD_sđt='" + HD_sđt + '\'' +
                 ", city='" + city + '\'' +
                 ", disitrict='" + disitrict + '\'' +
                 ", ward='" + ward + '\'' +

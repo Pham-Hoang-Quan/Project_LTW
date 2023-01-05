@@ -171,12 +171,8 @@ public static   List<Product> getSale(){
     }
     public  static List<Product> searchByName(String txtSearch){
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from products WHERE `id` LIKE ? or `name` like ? or `classify` like ? or `price` like ? or `quantily` like ? ")
+                handle.createQuery("select * from products WHERE `name` LIKE ? ")
                         .bind(0,"%" + txtSearch +"%")
-                        .bind(1,"%" + txtSearch +"%")
-                        .bind(2,"%" + txtSearch +"%")
-                        .bind(3,"%" + txtSearch +"%")
-                        .bind(4,"%" + txtSearch +"%")
                         .mapToBean(Product.class)
                         .stream()
                         .collect(Collectors.toList())
@@ -237,7 +233,7 @@ public static   List<Product> getSale(){
     static public  void editProduct(String id, String name, String classify, String percent, int qty, int price,
                                       String content, String info){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" update products set id = ?, name = ?, price = ?, classify = ?, percent = ?, quantily = ?, content = ?, info = ? where id = ?")
+                h.createUpdate(" update products set id = ?, name = ?, price = ?, classify = ?, percent = ?, quantily = ?, content = ?, info = ?")
 
                         .bind(0, id)
                         .bind(1,name )
@@ -247,20 +243,10 @@ public static   List<Product> getSale(){
                         .bind(5, qty)
                         .bind(6, content)
                         .bind(7, info)
-                        .bind(8, id)
                         .execute());
     }
 
-    public static List<Product> NeedToAddProduct(int index) {
-        List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM products limit ?,12")
-                        .bind(0, (index-1)*12)
-                        .mapToBean(Product.class)
-                        .stream()
-                        .collect(Collectors.toList())
-        );
-        return list;
-    }
+
 
     public static void main(String[] args) {
 
