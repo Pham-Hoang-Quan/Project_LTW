@@ -201,13 +201,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="heart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">5</div>
-                                </a>
-                            </div>
+
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
@@ -218,39 +212,7 @@
                                     <span> Giỏ Hàng</span>
                                     <div class="qty">${cart.quantily}</div>
                                 </a>
-<%--                                <div class="cart-dropdown">--%>
-<%--                                    <div class="cart-list">--%>
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/180-LI(Q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
 
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-summary">--%>
-<%--                                        <small>2 Sản Phẩm</small>--%>
-<%--                                        <h5>Tổng: 1.880.000</h5>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-btns">--%>
-<%--                                        <a href="cart.jsp">Xem</a>--%>
-<%--                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
                             </div>
                             <!-- /Cart -->
 
@@ -431,8 +393,9 @@
                         </div>
                         <p><%= p.getContent()%> </p>
 
-                      
+
                         <div class="add-to-cart">
+<%--                        <div class="add-to-cart">--
 <%--                            <div class="qty-label">--%>
 <%--                             Số lượng--%>
 <%--                                <div class="input-number">--%>
@@ -440,7 +403,7 @@
 <%--                                    <span class="qty-up">+</span>--%>
 <%--                                    <span class="qty-down">-</span>--%>
 <%--                                </div>--%>
-<%--                            </div>--%>
+<%--                            </div>--
                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
@@ -448,16 +411,12 @@
 <%--                            <li><a href="#"><i class="fa fa-heart-o"></i>Thích</a></li>--%>
 <%--                            <li><a href="#"><i class="fa fa-exchange"></i>So sánh</a></li>--%>
 <%--                        </ul>--%>
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                       </div>
 
                       
 
-                        <ul class="product-links">
-                            <li>Chia sẻ:</li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                        </ul>
+
 
                     </div>
 
@@ -470,6 +429,7 @@
                         <!-- product tab nav -->
                         <ul class="tab-nav">
 <%--                            <li class="active"><a data-toggle="tab" href="#tab1">Đặc điểm</a></li>--%>
+
                             <li><a data-toggle="tab" href="#tab2">Thông Tin Chi Tiết</a></li>
 
                             <li><a data-toggle="tab" href="#tab3">Đánh giá (<%=listComment.size()%>)</a></li>

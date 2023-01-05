@@ -3,13 +3,11 @@ package vn.edu.hcmuaf.ttt.service;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.Category;
-import vn.edu.hcmuaf.ttt.model.Comment;
 import vn.edu.hcmuaf.ttt.model.Product;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -131,7 +129,7 @@ public static   List<Product> getSale(){
        return list;
    }
 
-    public static    List<Product> getCTID(String cName){
+    public static List<Product> getCTID(String cName){
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("select * from products WHERE classify = ?")
                         .bind(0,cName)
@@ -163,7 +161,7 @@ public static   List<Product> getSale(){
 
 
 
-
+// Phương thức lấy sản phẩm từ csdl bằng id
     public  static Product getProductById(String id){
        return JDBiConnector.me().withHandle(handle -> {
            return handle.createQuery("select * from products where id = ?").bind(0,id).mapToBean(Product.class).first();
@@ -219,9 +217,46 @@ public static   List<Product> getSale(){
         );
         return list;
     }
+    public static void deleteProduct(String id) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("delete from products where id = ? ")
+                        .bind(0, id)
+                        .execute());
+    }
+
+    static public  void insertProduct(String id, String name, String classify, String img, String percent, int qty, int price,
+                                      String content, String info){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate(" INSERT into products(id, name, img, price, classify, percent, quantily, content, info) VALUES (?,?,?,?,?,?,?,?,?)")
+
+                        .bind(0, id)
+                        .bind(1,name )
+                        .bind(2, img)
+                        .bind(3, price)
+                        .bind(4, classify)
+                        .bind(5, percent)
+                        .bind(6, qty)
+                        .bind(7, content)
+                        .bind(8, info)
+                        .execute());
+    }
 
 
+    static public  void editProduct(String id, String name, String classify, String percent, int qty, int price,
+                                      String content, String info){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate(" update products set id = ?, name = ?, price = ?, classify = ?, percent = ?, quantily = ?, content = ?, info = ?")
 
+                        .bind(0, id)
+                        .bind(1,name )
+                        .bind(2, price)
+                        .bind(3, classify)
+                        .bind(4, percent)
+                        .bind(5, qty)
+                        .bind(6, content)
+                        .bind(7, info)
+                        .execute());
+    }
 
 
 
