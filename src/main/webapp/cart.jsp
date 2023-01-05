@@ -271,266 +271,41 @@
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Sản Phẩm</h3>
-                        <div class="checkbox-filter">
 
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-1">
-                                <label for="category-1">
-                                    <span></span>
-                                    Khoan mini
-                                    <small>(120)</small>
-                                </label>
-                            </div>
-
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-2">
-                                <label for="category-2">
-                                    <span></span>
-                                    Khoan động lực
-                                    <small>(740)</small>
-                                </label>
-                            </div>
-
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-3">
-                                <label for="category-3">
-                                    <span></span>
-                                    Khoan bê tông
-                                    <small>(1450)</small>
-                                </label>
-                            </div>
-
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-4">
-                                <label for="category-4">
-                                    <span></span>
-                                    Khoan bàn
-                                    <small>(578)</small>
-                                </label>
-                            </div>
-
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-5">
-                                <label for="category-5">
-                                    <span></span>
-                                    Phụ kiện
-                                    <small>(120)</small>
-                                </label>
-                            </div>
-
-
-                        </div>
-                    </div>
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Giá</h3>
-                        <div class="price-filter">
-                            <div id="price-slider"></div>
-                            <div class="input-number price-min">
-                                <input id="price-min" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                            <span>-</span>
-                            <div class="input-number price-max">
-                                <input id="price-max" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Nhãn Hiệu</h3>
-                        <div class="checkbox-filter">
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-1">
-                                <label for="brand-1">
-                                    <span></span>
-                                    Bosch
-                                    <small>(578)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-2">
-                                <label for="brand-2">
-                                    <span></span>
-                                    CFCooper
-                                    <small>(125)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-3">
-                                <label for="brand-3">
-                                    <span></span>
-                                    DeWalt
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-4">
-                                <label for="brand-4">
-                                    <span></span>
-                                    DongCheng
-                                    <small>(578)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-5">
-                                <label for="brand-5">
-                                    <span></span>
-                                    YATO
-                                    <small>(125)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    Makita
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    Stanley
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    Trung Quốc
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    INGCO
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    VAC
-                                    <small>(755)</small>
-                                </label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-                                    <span></span>
-                                    Khác
-                                    <small>(755)</small>
-                                </label>
-                            </div>
 
-                        </div>
-                    </div>
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Sản Phẩm Tương Tự</h3>
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product12.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Khoan động lực</p>
-                                <h3 class="product-name"><a href="product.html"> Máy khoan động lực Bosch GSB 16 RE</a>
-                                </h3>
-                                <h4 class="product-price">1.590.000đ <del class="product-old-price">1.950.000đ</del>
-                                </h4>
-                            </div>
-                        </div>
+
                         <!-- /product widget -->
 
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product14.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Khoan bàn</p>
-                                <h3 class="product-name"><a href="product.html"> Máy khoan bàn 13mm Hồng Ký KD600</a>
-                                </h3>
-                                <h4 class="product-price">2.590.000đ<del class="product-old-price"></del></h4>
-                            </div>
-                        </div>
+
                         <!-- /product widget -->
 
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product15.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Khoan động lực</p>
-                                <h3 class="product-name"><a href="product.html"> Máy khoan động lực Bosch GSB 550</a>
-                                </h3>
-                                <h4 class="product-price">1.200.000đ<del class="product-old-price"></del></h4>
 
-                            </div>
-                        </div>
                         <!-- product widget -->
                     </div>
 
                     <div>
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product17.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Khoan mini</p>
-                                <h3 class="product-name"><a href="product.html"> Máy khoan bắn vít Benyu BY6113</a></h3>
-                                <h4 class="product-price">590.000đ<del class="product-old-price">690.000đ</del></h4>
 
-                            </div>
-                        </div>
                         <!-- /product widget -->
 
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product09.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                v class="product-body">
-                                <p class="product-category">Khoan bàn</p>
-                                <h3 class="product-name"><a href="product.html">Máy khoan phay phi 16 WDDM ZX7016</a>
-                                </h3>
-                                <h4 class="product-price">18.000.000đ <del class="product-old-price"></del></h4>
 
-                            </div>
-                        </div>
                         <!-- /product widget -->
 
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product19.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Khoan bê tông</p>
-                                <h3 class="product-name"><a href="product.html"> Máy khoan bê tông Ken 2826BS</a></h3>
-                                <h4 class="product-price">1.380.000đ<del class="product-old-price">1.950.000đ</del></h4>
-                            </div>
-                        </div>
+
                         <!-- /product widget -->
 
                     </div>
@@ -571,6 +346,7 @@
                     <!-- store products -->
                     <div class="cart-table-area section-padding-100">
                         <div class="container-fluid">
+                            <form method="post" action="/THDoAn_war/doSoLuong">
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="cart-title mt-50">
@@ -591,9 +367,11 @@
                                             <tbody>
                                             <%Cart cart =(Cart) session.getAttribute("cart");
                                                 double tongtien = 0;
+                                                int i = 0;
                                             %>
                                             <%for (Product c:cart.getListproduct()) {
-                                            tongtien+=c.getPrice();
+                                            tongtien+=(c.getPrice()*c.getQuantily());
+                                            i++;
                                             %>
                                             <%Locale locale = new Locale("vi");
                                                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
@@ -616,7 +394,9 @@
                                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                                         class="fa fa-minus"
                                                                         aria-hidden="true"></i></span>
-                                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity<%=i%>" value="<%=c.getQuantily()%>">
+                                                                <input type="text"  style="display: none" name="productId<%=i%>" value="<%=c.getId()%>">
+
                                                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                                                         class="fa fa-plus"
                                                                         aria-hidden="true"></i></span>
@@ -631,7 +411,7 @@
                                                     </td>
                                                 </tr>
                                                <%}%>
-
+                                            <input type="number" name="countSP" value="<%=cart.getListproduct().size()%>" id="">
                                             </tbody>
                                         </table>
                                     </div>
@@ -644,16 +424,18 @@
                                                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                                                 String tt = format.format(tongtien).split(",")[0];
                                             %>
+                                            <input type="number" style="display: none" name="tongtien" value="<%=tongtien%>">
                                             <li><span>Tiền Hàng:</span> <span><%=tt%>đ</span></li>
                                             <li><span>Vận Chuyển:</span> <span>Free</span></li>
                                             <li><span>Tổng Tiền:</span> <span><%=tt%>đ</span></li>
                                         </ul>
                                         <div class="cart-btn mt-100">
-                                            <a href="checkout.jsp" class="btn amado-btn w-100">Thanh Toán</a>
+                                            <button type="submit"  class="btn amado-btn w-100">Thanh Toán</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /store products -->
@@ -733,7 +515,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>

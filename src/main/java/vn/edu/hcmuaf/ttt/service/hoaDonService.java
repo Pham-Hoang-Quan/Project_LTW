@@ -6,21 +6,25 @@ public class hoaDonService {
     public hoaDonService(){
 
     }
-    static public  void hoaDon(String user_id, String hoVaTen, String HD_email,String HD_sdt,String city, String disitrict, String ward, String note, String tenSp, String toongGia){
+    static public  void hoaDon(String soHD ,String user_id, String hoVaTen, String HD_email,String HD_sdt,String city, String disitrict, String ward, String note,String id, String tenSp, String toongGia,String soLuong){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" INSERT INTO hoadon VALUES (null,?,?,?,?,?,?,?,?,?,?)")
+                h.createUpdate(" INSERT INTO hoadon VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                        .bind(0, soHD)
+                        .bind(1, user_id)
+                        .bind(2,hoVaTen )
+                        .bind(3, HD_email)
+                        .bind(4, HD_sdt)
+                        .bind(5, city)
+                        .bind(6, disitrict)
+                        .bind(7, ward)
+                        .bind(8, note)
+                        .bind(9,id)
+                        .bind(10, tenSp)
+                        .bind(11, toongGia)
+                        .bind(12, soLuong)
 
-                        .bind(0, user_id)
-                        .bind(1,hoVaTen )
-                        .bind(2, HD_email)
-                        .bind(3, HD_sdt)
-                        .bind(4, city)
-                        .bind(5, disitrict)
-                        .bind(6, ward)
-                        .bind(7, note)
-                        .bind(8, tenSp)
-                        .bind(9, toongGia)
                         .execute());
 
     }
+
 }

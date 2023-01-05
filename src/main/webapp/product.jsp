@@ -308,10 +308,10 @@
                 <% Product p= (Product) request.getAttribute("product"); %>
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="index.jsp">Trang chủ</a></li>
-                        <li><a href="store.jsp">Sản Phẩm</a></li>
+                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
+                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
 <%--                        <li><a href="product.jsp">MÁY KHOAN XOAY BOSCH GBM 13 RE</a></li>--%>
-                        <li><a href="product.jsp"><%= p.getName()%></a></li>
+                        <li><a href="#"><%= p.getName()%></a></li>
 
                     </ul>
                 </div>
@@ -376,17 +376,44 @@
 
                 <!-- Product details -->
                 <div class="col-md-5">
+                    <%List< Comment> listComment =  (List<Comment>) request.getAttribute("comment");
+                    int tongR = 0;
+                    int sao =0;
+
+                    %>
+                    <%for (Comment c:
+                            listComment) {
+                        tongR+=c.getRating();
+                        sao = tongR/listComment.size();
+
+                    %>
+
+                    <%}%>
+<%--                    <% Product p= (Product) request.getAttribute("product"); %>--%>
+
+<%--                    double tongR = 0;--%>
+<%--                    %>--%>
+
+
+
+
                     <div class="product-details">
+
                         <h2 class="product-name"><%= p.getName()%></h2>
                         <div>
+
                             <div class="product-rating">
+                                <%
+
+                                    for (int i = 0; i < sao; i++) {
+                                %>
                                 <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
+                                <%}%>
+
+
+
                             </div>
-                            <%List< Comment> listComment =  (List<Comment>) request.getAttribute("comment");%>
+
                             <a class="review-link" href="#"><%=listComment.size()%> Đánh giá</a>
                         </div>
                         <div>
@@ -406,21 +433,21 @@
 
                       
                         <div class="add-to-cart">
-                            <div class="qty-label">
-                             Số lượng
-                                <div class="input-number">
-                                    <input type="number">
-                                    <span class="qty-up">+</span>
-                                    <span class="qty-down">-</span>
-                                </div>
-                            </div>
+<%--                            <div class="qty-label">--%>
+<%--                             Số lượng--%>
+<%--                                <div class="input-number">--%>
+<%--                                    <input type="number">--%>
+<%--                                    <span class="qty-up">+</span>--%>
+<%--                                    <span class="qty-down">-</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
-                        <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i>Thích</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i>So sánh</a></li>
-                        </ul>
+<%--                        <ul class="product-btns">--%>
+<%--                            <li><a href="#"><i class="fa fa-heart-o"></i>Thích</a></li>--%>
+<%--                            <li><a href="#"><i class="fa fa-exchange"></i>So sánh</a></li>--%>
+<%--                        </ul>--%>
 
                       
 
@@ -433,6 +460,7 @@
                         </ul>
 
                     </div>
+
                 </div>
                 <!-- /Product details -->
 
@@ -490,87 +518,87 @@
                             <div id="tab3" class="tab-pane fade in">
                                 <div class="row">
                                     <!-- Rating -->
-                                    <div class="col-md-3">
-                                        <div id="rating">
-                                            <div class="rating-avg">
-                                                <span>4.5</span>
-                                                <div class="rating-stars">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
-                                            <ul class="rating">
-                                                <li>
-                                                    <div class="rating-stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="rating-progress">
-                                                        <div style="width: 80%;"></div>
-                                                    </div>
-                                                    <span class="sum">3</span>
-                                                </li>
-                                                <li>
-                                                    <div class="rating-stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="rating-progress">
-                                                        <div style="width: 60%;"></div>
-                                                    </div>
-                                                    <span class="sum">2</span>
-                                                </li>
-                                                <li>
-                                                    <div class="rating-stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="rating-progress">
-                                                        <div></div>
-                                                    </div>
-                                                    <span class="sum">0</span>
-                                                </li>
-                                                <li>
-                                                    <div class="rating-stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="rating-progress">
-                                                        <div></div>
-                                                    </div>
-                                                    <span class="sum">0</span>
-                                                </li>
-                                                <li>
-                                                    <div class="rating-stars">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="rating-progress">
-                                                        <div></div>
-                                                    </div>
-                                                    <span class="sum">0</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+<%--                                    <div class="col-md-3">--%>
+<%--                                        <div id="rating">--%>
+<%--                                            <div class="rating-avg">--%>
+<%--                                                <span>4.5</span>--%>
+<%--                                                <div class="rating-stars">--%>
+<%--                                                    <i class="fa fa-star"></i>--%>
+<%--                                                    <i class="fa fa-star"></i>--%>
+<%--                                                    <i class="fa fa-star"></i>--%>
+<%--                                                    <i class="fa fa-star"></i>--%>
+<%--                                                    <i class="fa fa-star-o"></i>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                            <ul class="rating">--%>
+<%--                                                <li>--%>
+<%--                                                    <div class="rating-stars">--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="rating-progress">--%>
+<%--                                                        <div style="width: 80%;"></div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <span class="sum">3</span>--%>
+<%--                                                </li>--%>
+<%--                                                <li>--%>
+<%--                                                    <div class="rating-stars">--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="rating-progress">--%>
+<%--                                                        <div style="width: 60%;"></div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <span class="sum">2</span>--%>
+<%--                                                </li>--%>
+<%--                                                <li>--%>
+<%--                                                    <div class="rating-stars">--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="rating-progress">--%>
+<%--                                                        <div></div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <span class="sum">0</span>--%>
+<%--                                                </li>--%>
+<%--                                                <li>--%>
+<%--                                                    <div class="rating-stars">--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="rating-progress">--%>
+<%--                                                        <div></div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <span class="sum">0</span>--%>
+<%--                                                </li>--%>
+<%--                                                <li>--%>
+<%--                                                    <div class="rating-stars">--%>
+<%--                                                        <i class="fa fa-star"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                        <i class="fa fa-star-o"></i>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="rating-progress">--%>
+<%--                                                        <div></div>--%>
+<%--                                                    </div>--%>
+<%--                                                    <span class="sum">0</span>--%>
+<%--                                                </li>--%>
+<%--                                            </ul>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
                                     <!-- /Rating -->
 
                                     <!-- Reviews -->
@@ -603,13 +631,13 @@
                                                 </li>
                                                 <%}%>
                                             </ul>
-                                            <ul class="reviews-pagination">
-                                                <li class="active">1</li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                            </ul>
+<%--                                            <ul class="reviews-pagination">--%>
+<%--                                                <li class="active">1</li>--%>
+<%--                                                <li><a href="#">2</a></li>--%>
+<%--                                                <li><a href="#">3</a></li>--%>
+<%--                                                <li><a href="#">4</a></li>--%>
+<%--                                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>--%>
+<%--                                            </ul>--%>
                                         </div>
                                     </div>
                                     <!-- /Reviews -->
@@ -706,7 +734,7 @@
                         <div class="product-body">
                             <p class="product-category"><%= n.getClassify()%></p>
                             <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
-                            <h4 class="product-price"><%= tt%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
+                            <h4 class="product-price"><%=tt%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>

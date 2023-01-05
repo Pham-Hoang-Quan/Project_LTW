@@ -265,14 +265,14 @@
                 <ul class="main-nav nav navbar-nav">
 
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                    <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
-                        for (Category p:lista) { %>
+                        for (Category p:lista) {%>
 
 
 
 
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%=p.getcName()%></a></li>
 
 
                     <%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
@@ -300,10 +300,12 @@
 
                 <div class="col-md-12">
 
+
                     <ul class="breadcrumb-tree">
-                        <li><a href="index.jsp">Trang chủ</a></li>
+                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
 
                         <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+
 
 
                     </ul>
@@ -643,7 +645,7 @@
 
 <%--                            <li class="active">--%>
 <c:forEach begin="1" end="${endP}" var="i">
-    <li class="${tag == i?"active":""}"><a href="/THDoAn_war//List-Product?index=${i}">${i}</a></li>
+    <li class="${tag == i?"active":""}"><a href="/THDoAn_war/List-Product?index=${i}">${i}</a></li>
 </c:forEach>
 <%--                            <%List<Product> page =  (List<Product>) request.getAttribute("endP");%>--%>
 <%--                            <%--%>
