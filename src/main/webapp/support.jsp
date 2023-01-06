@@ -303,7 +303,7 @@
                         <span><%=h.getNgayTaoHD()%></span>
                     </td>
                     <td class="date">
-                        <button style="background:#d10024;color:#f0e2ff;"><a href="<%="/THDoAn_war/dodetailbill?soHD=" +h.getSoHD() %>">Xem</a></button>
+                        <button style="background:#d10024;"><a href="<%="/THDoAn_war/dodetailbill?soHD=" +h.getSoHD() %>" style="color: #f0e2ff;">Xem</a></button>
                     </td>
 
                     <td>
@@ -359,7 +359,7 @@
                             <div class="footer">
                                 <h3 class="footer-title">Thông Tin</h3>
                                 <ul class="footer-links">
-                                    <li><a href="about.html">Giới thiệu</a></li>
+                                    <li><a href="about.jsp">Giới thiệu</a></li>
                                     <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
                                     <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
                                     <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>

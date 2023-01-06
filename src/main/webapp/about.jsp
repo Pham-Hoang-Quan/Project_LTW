@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 
+
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
  
@@ -429,7 +430,7 @@
                                 <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                 <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                 <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="phukien.html">Phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>
@@ -440,7 +441,7 @@
                         <div class="footer">
                             <h3 class="footer-title">Thông Tin</h3>
                             <ul class="footer-links">
-                                <li><a href="about.html">Giới thiệu</a></li>
+                                <li><a href="about.jsp">Giới thiệu</a></li>
                                 <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
                                 <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
                                 <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>
