@@ -171,19 +171,7 @@ public static   List<Product> getSale(){
     }
     public  static List<Product> searchByName(String txtSearch){
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from products WHERE `name` LIKE ? || classify LIKE  ?")
-                        .bind(0,"%" + txtSearch +"%")
-                        .bind(1,"%" + txtSearch +"%")
-                        .mapToBean(Product.class)
-                        .stream()
-                        .collect(Collectors.toList())
-        );
-        return list;
-    }
-
-    public  static List<Product> searchByCategory(String txtSearch){
-        List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from category WHERE cName LIKE ? ")
+                handle.createQuery("select * from products WHERE `name` LIKE ? ")
                         .bind(0,"%" + txtSearch +"%")
                         .mapToBean(Product.class)
                         .stream()

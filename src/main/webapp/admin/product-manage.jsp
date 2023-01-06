@@ -28,79 +28,11 @@
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
-            </div>
 
-        </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item nav-profile">
-                        <a href="#" class="nav-link">
-                            <div class="nav-profile-image">
-                                <img src="admin/assets/images/faces/face1.jpg" alt="profile">
-                                <span class="login-status online"></span>
-                                <!--change to offline or busy as needed-->
-                            </div>
-                            <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2"> Hoàng Quân</span>
-                                <span class="text-secondary text-small">Admin</span>
-                            </div>
-                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
-                            <span class="menu-title">Trang chủ</span>
-                            <i class="mdi mdi-home menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="oder-manage.html">
-                            <span class="menu-title">Quản lý đơn hàng</span>
 
-                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-                        </a>
-
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user-manage.html">
-                            <span class="menu-title">Quản lý người dùng</span>
-                            <i class="mdi mdi-contacts menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
-                            <span class="menu-title">Quản lý sản phẩm</span>
-                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="statistical.html">
-                            <span class="menu-title">Thống kê</span>
-                            <i class="mdi mdi-chart-bar menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin-manage.html">
-                            <span class="menu-title">Quản lý quản trị viên</span>
-                            <i class="mdi mdi-table-large menu-icon"></i>
-                        </a>
-                    </li>
-
-                    <li class="nav-item sidebar-actions">
-                        <span class="nav-link">
-
-
-              </span>
-                    </li>
-                </ul>
-            </nav>
+            <jsp:include page="menu.jsp"></jsp:include>
             <!-- partial -->
             <div class="main-panel">
                 <div style="padding-top: 0 ;" class="content-wrapper">
@@ -161,7 +93,6 @@
                                                 <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
                                                 </a>
-
                                             </td>
                                         </tr>
                                         <% }%>

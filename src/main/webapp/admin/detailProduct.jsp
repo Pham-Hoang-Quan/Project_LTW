@@ -129,7 +129,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="oder-manage.html">
+          <a class="nav-link" href="order-manage.jsp">
             <span class="menu-title">Quản lý đơn hàng</span>
 
             <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -137,7 +137,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user-manage.html">
+          <a class="nav-link" href="user-manage.jsp">
             <span class="menu-title">Quản lý người dùng</span>
             <i class="mdi mdi-contacts menu-icon"></i>
           </a>

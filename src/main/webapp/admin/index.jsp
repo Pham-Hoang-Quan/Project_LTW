@@ -35,8 +35,8 @@
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
+                    <span class="mdi mdi-menu"></span>
+                </button>
                 <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                         <div class="input-group">
@@ -105,71 +105,7 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item nav-profile">
-                        <a href="#" class="nav-link">
-
-                            <div class="nav-profile-text d-flex flex-column">
-                                <% User auth= (User) session.getAttribute("auth");%>
-                                <% if(auth==null){ %>
-                                <span class="font-weight-bold mb-2">Chưa đăng nhập</span>
-                                <% }else {%>
-                                <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>
-                                <% } %>
-                                <span class="text-secondary text-small">Admin</span>
-                            </div>
-                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
-                            <span class="menu-title">Trang chủ</span>
-                            <i class="mdi mdi-home menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="oder-manage.html">
-                            <span class="menu-title">Quản lý đơn hàng</span>
-
-                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-                        </a>
-
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user-manage.html">
-                            <span class="menu-title">Quản lý người dùng</span>
-                            <i class="mdi mdi-contacts menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
-                            <span class="menu-title">Quản lý sản phẩm</span>
-                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="statistical.html">
-                            <span class="menu-title">Thống kê</span>
-                            <i class="mdi mdi-chart-bar menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin-manage.html">
-                            <span class="menu-title">Quản lý quản trị viên</span>
-                            <i class="mdi mdi-table-large menu-icon"></i>
-                        </a>
-                    </li>
-
-                    <li class="nav-item sidebar-actions">
-                        <span class="nav-link">
-                
-                
-
-              </span>
-                    </li>
-                </ul>
-            </nav>
+            <jsp:include page="menu.jsp"></jsp:include>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -262,135 +198,8 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 grid-margin">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row1">
-                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm mới nhất</h4>
-                                    </div>
 
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th> Tên </th>
-                                                <th> Danh mục </th>
-                                                <th> Giá </th>
-                                                <th> Còn lại </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <% List<Product> listSoldOut = (List<Product>) request.getAttribute("listn");
-                                                for (Product p: list) { %>
-                                            <tr>
-                                                <td>
-                                                    <img src="<%= p.getImg()%>" class="me-2" alt="image"> <%= p.getName()%>
-                                                </td>
-                                                <td> <%= p.getClassify() %> </td>
-                                                <td>
-                                                    <label class="badge badge-gradient-success"> <%= p.getPrice()%> đ</label>
-                                                </td>
-                                                <td> <%= p.getQuantily()%> </td>
-                                            </tr>
-                                            <% };%>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-7 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Danh sách Admin</h4>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th> # </th>
-                                                    <th> Tên </th>
-                                                    <th> Ngày tạo </th>
-                                                    <th> Chức vụ </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 1 </td>
-                                                    <td> Hoàng Quân </td>
-                                                    <td> 28-8-2020</td>
-                                                    <td>
-                                                        Admin
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> 2 </td>
-                                                    <td> Thị Tiên </td>
-                                                    <td> 18-8-2020 </td>
-                                                    <td>
-                                                        Admin
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> 3 </td>
-                                                    <td> Hoài Thu </td>
-                                                    <td> 19-8-2020 </td>
-                                                    <td>
-                                                        Admin
-                                                    </td>
-                                                </tr>
-
-                                                <!-- <tr>
-                                                    <td> 5 </td>
-                                                    <td> Ronald </td>
-                                                    <td> Jun 05, 2015 </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr> -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title text-white">Todo</h4>
-                                    <div class="add-items d-flex">
-                                        <input type="text" class="form-control todo-list-input" placeholder="Nhứng việc cần làm hôm nay">
-                                        <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Thêm</button>
-                                    </div>
-                                    <div class="list-wrapper">
-                                        <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                                            <li>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                              <input class="checkbox" type="checkbox"> Họp với team Sale </label>
-                                                </div>
-                                                <i class="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li class="completed">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                              <input class="checkbox" type="checkbox" checked> Chuẩn bị sản phẩm mới </label>
-                                                </div>
-                                                <i class="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
