@@ -151,7 +151,7 @@
                         <% }else {%>
                         Chào bạn: <%= auth.getUser_fullname()%>
                         <% if(auth.getUser_admin() == 1){%>
-                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
                         <%}%>
                         <% } %>
                     </a></li>
