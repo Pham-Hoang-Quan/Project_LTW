@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.ttt.controler;
 
-import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 

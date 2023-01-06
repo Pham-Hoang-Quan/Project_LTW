@@ -162,7 +162,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row1">
-                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm mới nhất</h4>
+                                        <h4 style="display:inline-block ;" class="card-title">Danh sách sản phẩm cần nhập</h4>
                                     </div>
 
                                     <div class="table-responsive">

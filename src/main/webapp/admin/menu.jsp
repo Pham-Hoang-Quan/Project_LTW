@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="order-manage.jsp">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/OrderList">
                 <span class="menu-title">Quản lý đơn hàng</span>
 
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -51,17 +51,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="admin-manage.html">
-                <span class="menu-title">Quản lý quản trị viên</span>
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/CategoryAdmin">
+                <span class="menu-title">Quản lý quản danh mục</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
         </li>
 
         <li class="nav-item sidebar-actions">
                         <span class="nav-link">
-
-
-
               </span>
         </li>
     </ul>

@@ -3,8 +3,6 @@ package vn.edu.hcmuaf.ttt.admin.service;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
-import vn.edu.hcmuaf.ttt.model.Product;
-import vn.edu.hcmuaf.ttt.model.hoaDon;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

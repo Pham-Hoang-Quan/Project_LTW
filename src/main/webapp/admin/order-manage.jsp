@@ -84,7 +84,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <% List<hoaDon> list = (List<hoaDon>) request.getAttribute("listHD");
+                                            <% List<hoaDon> list = (List<hoaDon>) request.getAttribute("listHD0");
                                                 for (hoaDon h: list) { %>
                                             <tr>
                                                 <td><%=h.getSoHD()%></td>
@@ -92,13 +92,13 @@
                                                 <td class="text-danger"> <%= h.getToongGia()%> đ </td>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-                                                    <a>
+                                                    <a href="<%= "/THDoAn_war/AcceptOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-success">Xác nhận</label>
                                                     </a>
-                                                    <a>
+                                                    <a href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-danger">Hủy đơn</label>
                                                     </a>
-                                                    <a>
+                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
 
@@ -107,51 +107,7 @@
 
                                             </tr>
                                             <%}%>
-                                                <tr>
-                                                    <td>DH001</td>
-                                                    <td>Hoàng Quân</td>
-                                                    <td class="text-danger"> 2.800.000 đ </td>
-                                                    <td>0982449711</td>
-                                                    <td>
-                                                        <a>
-                                                            <label class="badge badge-success">Xác nhận</label>
-                                                        </a>
-                                                        <a>
-                                                            <label class="badge badge-danger">Hủy đơn</label>
-                                                        </a>
-                                                        <a>
-                                                            <label class="badge badge-info">Xem chi tiết</label>
-                                                        </a>
 
-                                                    </td>
-
-
-                                                </tr>
-                                                <tr>
-                                                    <td>DH002</td>
-                                                    <td>Hoài Thu</td>
-                                                    <td class="text-danger"> 800.000 đ </td>
-                                                    <td><label class="badge badge-success">Xác nhận</label> <label class="badge badge-danger">Hủy đơn</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH003</td>
-                                                    <td>Thị Tiên</td>
-                                                    <td class="text-danger"> 2.990.000 đ </td>
-                                                    <td><label class="badge badge-success">Xác nhận</label> <label class="badge badge-danger">Hủy đơn</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH004</td>
-                                                    <td>Hoàng Thùy</td>
-                                                    <td class="text-danger"> 5.800.000 đ </td>
-                                                    <td><label class="badge badge-success">Xác nhận</label> <label class="badge badge-danger">Hủy đơn</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH005</td>
-                                                    <td>Minh Tú</td>
-                                                    <td class="text-danger">10.990.000 đ </td>
-                                                    <td><label class="badge badge-success">Xác nhận</label> <label class="badge badge-danger">Hủy đơn</label></td>
-
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -176,39 +132,27 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>DH001</td>
-                                                    <td>Hoàng Quân</td>
-                                                    <td class="text-danger"> 2.800.000 đ </td>
-                                                    <td><label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label></td>
+                                            <% List<hoaDon> list1 = (List<hoaDon>) request.getAttribute("listHD1");
+                                                for (hoaDon h: list1) { %>
+                                            <tr>
+                                                <td><%=h.getSoHD()%></td>
+                                                <td><%=h.getHoVaTen()%></td>
+                                                <td class="text-danger"> <%= h.getToongGia()%> đ </td>
+                                                <td><%=h.getHD_sdt()%></td>
+                                                <td>
+                                                    <a href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                        <label class="badge badge-danger">Xóa</label>
+                                                    </a>
+                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
+                                                        <label class="badge badge-info">Xem chi tiết</label>
+                                                    </a>
+
+                                                </td>
 
 
-                                                </tr>
-                                                <tr>
-                                                    <td>DH002</td>
-                                                    <td>Hoài Thu</td>
-                                                    <td class="text-danger"> 800.000 đ </td>
-                                                    <td><label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH003</td>
-                                                    <td>Thị Tiên</td>
-                                                    <td class="text-danger"> 2.990.000 đ </td>
-                                                    <td><label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH004</td>
-                                                    <td>Hoàng Thùy</td>
-                                                    <td class="text-danger"> 5.800.000 đ </td>
-                                                    <td><label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>DH005</td>
-                                                    <td>Minh Tú</td>
-                                                    <td class="text-danger">10.990.000 đ <i class="mdi mdi-arrow-up"></i></td>
-                                                    <td><label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label></td>
+                                            </tr>
+                                            <%}%>
 
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
