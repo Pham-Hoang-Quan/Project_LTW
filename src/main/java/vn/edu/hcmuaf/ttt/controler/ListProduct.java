@@ -38,6 +38,7 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("listc", listc);
         request.setAttribute("listsptt", listsptt);
 
+
     request.getRequestDispatcher("store.jsp").forward(request,response);
 
     }

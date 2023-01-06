@@ -8,6 +8,7 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 
@@ -152,22 +153,8 @@
                         <% if(auth.getUser_admin() == 1){%>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
                         <%}%>
-<%--                        <% if(auth.getUser_admin() == 1){%>--%>
-
-<%--                    <li>--%>
-<%--                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Quản Lý</a>--%>
-<%--                    </li>--%>
-<%--                        <%}%>--%>
                         <% } %>
-
-
-
                     </a></li>
-
-
-<%--                    <% if(auth.getUser_admin() == 1){ %>--%>
-
-<%--                    <%}%>--%>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -213,13 +200,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="heart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">5</div>
-                                </a>
-                            </div>
+                            <
 <%--                            <%--%>
 <%--                                Cart cartt =(Cart) session.getAttribute("cart");--%>
 <%--                                double tongtien = 0;--%>
@@ -283,7 +264,9 @@
 
 
                     <% } %>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
+                    <%if(auth!=null){%>
+                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <%}%>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -492,77 +475,11 @@
                             </div>
                         </div>
                         <% } %>
-                        <!-- /product widget -->
 
-                        <!-- product widget -->
-<%--                        <div class="product-widget">--%>
-<%--                            <div class="product-img">--%>
-<%--                                <img src="./img/product14.jpg" alt="">--%>
-<%--                            </div>--%>
-<%--                            <div class="product-body">--%>
-<%--                                <p class="product-category">Khoan bàn</p>--%>
-<%--                                <h3 class="product-name"><a href="product.html"> Máy khoan bàn 13mm Hồng Ký KD600</a></h3>--%>
-<%--                                <h4 class="product-price">2.590.000đ<del class="product-old-price"></del></h4>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-<%--                        <div class="product-widget">--%>
-<%--                            <div class="product-img">--%>
-<%--                                <img src="./img_khoan_dong_luc/product15.jpg" alt="">--%>
-<%--                            </div>--%>
-<%--                            <div class="product-body">--%>
-<%--                                <p class="product-category">Khoan động lực</p>--%>
-<%--                                <h3 class="product-name"><a href="product.html"> Máy khoan động lực Bosch GSB 550</a></h3>--%>
-<%--                                <h4 class="product-price">1.200.000đ<del class="product-old-price"></del></h4>--%>
-
-<%--                            </div>--%>
-<%--                        </div>--%>
-                        <!-- product widget -->
                     </div>
 
                     <div>
-                        <!-- product widget -->
-<%--                        <div class="product-widget">--%>
-<%--                            <div class="product-img">--%>
-<%--                                <img src="./img_khoan_mini/product17.jpg" alt="">--%>
-<%--                            </div>--%>
-<%--                            <div class="product-body">--%>
-<%--                                <p class="product-category">Khoan mini</p>--%>
-<%--                                <h3 class="product-name"><a href="product.html"> Máy khoan bắn vít Benyu BY6113</a></h3>--%>
-<%--                                <h4 class="product-price">590.000đ<del class="product-old-price">690.000đ</del></h4>--%>
 
-<%--                            </div>--%>
-<%--                        </div>--%>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-<%--                        <div class="product-widget">--%>
-<%--                            <div class="product-img">--%>
-<%--                                <img src="./img/product09.jpg" alt="">--%>
-<%--                            </div>--%>
-<%--                            <div class="product-body">--%>
-
-<%--                                <p class="product-category">Khoan bàn</p>--%>
-<%--                                <h3 class="product-name"><a href="product.html">Máy khoan phay phi 16 WDDM ZX7016</a></h3>--%>
-<%--                                <h4 class="product-price">18.000.000đ <del class="product-old-price"></del></h4>--%>
-
-<%--                            </div>--%>
-<%--                        </div>--%>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-<%--                        <div class="product-widget">--%>
-<%--                            <div class="product-img">--%>
-<%--                                <img src="./img_khoan_be_tong/product19.jpg" alt="">--%>
-<%--                            </div>--%>
-<%--                            <div class="product-body">--%>
-<%--                                <p class="product-category">Khoan bê tông</p>--%>
-<%--                                <h3 class="product-name"><a href="product.html"> Máy khoan bê tông Ken 2826BS</a></h3>--%>
-<%--                                <h4 class="product-price">1.380.000đ<del class="product-old-price">1.950.000đ</del></h4>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
 
 
 
@@ -609,11 +526,13 @@
                                         NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                                         String tt = format.format(p.getPrice()).split(",")[0];
                                     %>
+
                                     <h4 class="product-price"><%=tt%>đ
                                         <% if(p.getIsNew() == 2){ %>
                                         <del class="product-old-price"><%= p.getOldPrice()%></del>
                                         <% }%>
                                     </h4>
+
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

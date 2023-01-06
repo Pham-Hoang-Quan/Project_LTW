@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
-import vn.edu.hcmuaf.ttt.service.transService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@WebServlet(name = "hoaDon", value = "/doHoaDon")
-public class hoaDon extends HttpServlet {
+@WebServlet(name = "hoaDonCon", value = "/doHoaDon")
+public class hoaDonCon extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,8 +27,10 @@ public class hoaDon extends HttpServlet {
         String dis = request.getParameter("dis");
         String wa = request.getParameter("wa");
         String note = request.getParameter("note");
+        String dateComment = request.getParameter("dateComment");
 
-        String tongGia = request.getParameter("tongTien");
+//        String tongGia = request.getParameter("tongTien");
+
 
         List<String[]> listHoadon = new ArrayList<>();
         int idi = Integer.parseInt(request.getParameter("countSP"));
@@ -38,17 +39,19 @@ public class hoaDon extends HttpServlet {
             String id = request.getParameter("id"+i);
             String nameSP = request.getParameter("nameSP"+i);
             String soLuong = request.getParameter("soLuong" +i);
-            String[] s = new String[3];
+            String tongGia = request.getParameter("gia" + i);
+            String[] s = new String[4];
             s[0] = id;
             s[1] = nameSP;
             s[2] = soLuong;
+            s[3] = tongGia;
             listHoadon.add(s);
         }
         Random r = new Random();
         int soHD = r.nextInt(10000);
         for (String[] s:
              listHoadon) {
-            new hoaDonService().hoaDon(soHD+"",user_id,fullName,email,tel,city,dis,wa,note,s[0],s[1],tongGia,s[2]);
+            new hoaDonService().hoaDon(soHD+"",user_id,fullName,email,tel,city,dis,wa,note,s[0],s[1],s[3],s[2],dateComment);
 //            new transService().trans(soHD+"",s[0],s[1],s[2]);
         }
 

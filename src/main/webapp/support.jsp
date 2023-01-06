@@ -1,8 +1,17 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
 
@@ -132,7 +141,17 @@
                     </li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
+                        <% User auth= (User) session.getAttribute("auth");%>
+                        <% if(auth==null){ %>
+                        Bạn chưa đăng nhập
+                        <% }else {%>
+                        Chào bạn: <%= auth.getUser_fullname()%>
+                        <% if(auth.getUser_admin() == 1){%>
+                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
+                        <%}%>
+                        <% } %>
+                    </a></li>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -150,7 +169,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="index.jsp" class="logo">
+                            <a href="/THDoAn_war/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -160,10 +179,10 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -173,55 +192,16 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="heart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">5</div>
-                                </a>
-                            </div>
+
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div>
+                                <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Giỏ Hàng</span>
-                                    <div class="qty">2</div>
+                                    <div class="qty">${cart.quantily}</div>
                                 </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="cart.jsp">Xem</a>
-                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /Cart -->
 
@@ -252,15 +232,7 @@
             <!-- responsive-nav -->
             <div id="responsive-nav">
                 <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
-                    <li><a href="index.jsp">Trang chủ</a></li>
-                    <li><a href="store.jsp">Sản Phẩm</a></li>
-                    <li><a href="khoan-mini.html">Khoan mini</a></li>
-                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
-                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
-                    <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                    <li><a href="phukien.html">Phụ Kiện</a></li>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
+
 
                 </ul>
                 <!-- /NAV -->
@@ -280,8 +252,8 @@
                 <div class="col-md-12">
                     <h3 class="breadcrumb-header"></h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Trang Chủ</a></li>
-                        <li class="active">Hỗ Trợ</li>
+                        <li><a href="/THDoAn_war/">Trang Chủ</a></li>
+                        <li class="#">Lịch sử mua hàng</li>
                     </ul>
                 </div>
             </div>
@@ -290,108 +262,57 @@
         <!-- /container -->
     </div>
     <!-- /BREADCRUMB -->
-    <div id="mainBody">
+    <div class="container">
+        <div class="cart-table clearfix">
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Tên</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>ngày Đặt Hàng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% List<hoaDon> listh = (List<hoaDon>) request.getAttribute("lshoadon");
 
-        <hr class="soften">
-        <p>Chúng tôi sẽ hỗ trợ bạn. Liên hệ với chúng tôi qua những cách sau:</p>
-        <hr class="soften" />
-        <div class="row-4">
-            <div class="span4">
-                <h4 class="h4-1">Chi tiết liên hệ</h4>
-                <p> Khu Phố 6,<br /> Thủ Đức, Tp.Hồ Chí Minh
-                    <br /><br /> DH20DT@.gmail.com
-                    <br />SĐT: 092837112<br /> Fax 1234565679<br /> dh20dt.com
-                </p>
-            </div>
+                    for (hoaDon h:listh) {%>
 
-            <div class="span4">
-                <h4 class="h4-1">Giờ mở cửa</h4>
-                <h5> Thứ hai-Thứ sáu</h5>
-                <p>09:00am - 09:00pm<br /><br /></p>
-                <h5>Thứ bảy</h5>
-                <p>09:00am - 07:00pm<br /><br /></p>
-                <h5>Chủ nhật</h5>
-                <p>12:30pm - 06:00pm<br /><br /></p>
-            </div>
-            <div class="span4">
-                <h4 class="h4-1">Email</h4>
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="control-group">
-
-                            <input type="text" placeholder="Tên" class="input-xlarge" />
-
-                        </div>
-                        <div class="control-group">
-
-                            <input type="text" placeholder="Email" class="input-xlarge" />
-
-                        </div>
-                        <div class="control-group">
-
-                            <input type="text" placeholder="Việc cần hộ trợ" class="input-xlarge" />
-
-                        </div>
-                        <div class="control-group">
-                            <textarea rows="3" id="textarea" class="input-xlarge"></textarea>
+                <tr>
+                    <td class="cart_product_img">
+<%--                        <a href="#"><img src="  " alt="Product"></a>--%>
+                    </td>
+                    <td class="cart_product_desc">
+                        <h5><a href="<%= "/THDoAn_war/detail?id=" + h.getId()%>"><%=h.getTenSp()%></a></h5>
+                    </td>
+                    <td class="qty">
+                        <div class="qty-btn d-flex">
+                            <p><%=h.getSoLuong()%></p>
 
                         </div>
 
-                        <button class="btn btn-large" type="submit">Gửi</button>
+                    </td>
+                    <td class="price">
 
-                    </fieldset>
-                </form>
-            </div>
+                        <span><%=h.getToongGia()%> đ </span>
+                    </td>
+                    <td class="date">
+
+                        <span><%=h.getNgayTaoHD()%></span>
+                    </td>
+
+                    <td>
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
+                </tr>
+
+<%}%>
+                </tbody>
+            </table>
         </div>
-        <!-- SECTION -->
-        <div class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /SECTION -->
-
-        <!-- NEWSLETTER -->
-        <div id="newsletter" class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="newsletter">
-                            <p>Đăng Ký <strong>Bản Tin</strong></p>
-                            <form>
-                                <input class="input" type="email" placeholder="Nhập Email Của Bạn">
-                                <button class="newsletter-btn"><i class="fa fa-envelope"></i> Đăng Ký</button>
-                            </form>
-                            <ul class="newsletter-follow">
-                                <li>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /NEWSLETTER -->
-
+    </div>
 
         <!-- FOOTER -->
         <footer id="footer">
@@ -423,7 +344,7 @@
                                     <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
                                     <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
                                     <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                    <li><a href="phukien.html">Phụ kiện<a></li>
+                                    <li><a href="phukien.html">Phụ kiện</a></li>
                                 </ul>
                             </div>
                         </div>

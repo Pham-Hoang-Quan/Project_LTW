@@ -250,7 +250,9 @@
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
+                    <%if(auth!=null){%>
+                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <%}%>
                 </ul>
                 <!-- /NAV -->
             </div>
