@@ -98,7 +98,7 @@
                                                     <a href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-danger">Hủy đơn</label>
                                                     </a>
-                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>"><a>
+                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
 

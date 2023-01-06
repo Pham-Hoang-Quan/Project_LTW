@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
+import vn.edu.hcmuaf.ttt.model.hoaDon;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

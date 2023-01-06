@@ -1,6 +1,9 @@
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,16 +49,17 @@
             <div class="card">
               <div class="card-body">
                 <div style="">
+                  <% hoaDon h = (hoaDon) request.getAttribute("TTHD1");%>
                   <div>
-                    <p> <span class="card-title">Số hóa đơn:</span> </p>
-                    <p> <span class="card-title">Ngày đặt:</span>  </p>
-                    <p> <span class="card-title">Tên khách hàng:</span> </p>
+                    <p> <span class="card-title">Số hóa đơn:</span>  </p>
+                    <p> <span class="card-title">Ngày đặt:</span> <%=h.getNgayTaoHD()%> </p>
+                    <p> <span class="card-title">Tên khách hàng:</span> <%= h.getHoVaTen()%> </p>
                   </div>
 
                   <div>
-                    <p> <span class="card-title">Email</span> </p>
-                    <p> <span class="card-title">Số điện thoại</span> </p>
-                    <p> <span class="card-title">Địa chỉ:</span> </p>
+                    <p> <span class="card-title">Email</span> <%= h.getHD_email()%></p>
+                    <p> <span class="card-title">Số điện thoại</span> <%= h.getHD_sdt()%></p>
+                    <p> <span class="card-title">Địa chỉ:</span> <%= h.getWard()%> <%= h.getDisitrict()%> <%= h.getCity()%></p>
                   </div>
                 </div>
 
@@ -63,31 +67,55 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
+                    <% List<hoaDon> listhh = (List<hoaDon>) request.getAttribute("LSsoHD");
+                      int total = 0 ;
+                    %>
+
+
+
+
                     <tr>
                       <th> Tên Sản Phẩm</th>
                       <th> Số Lượng</th>
-                      <th> Đơn Giá </th>
                       <th> Thành tiền </th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%  for (hoaDon hh:listhh) {
+                      String s = hh.getToongGia();
+                      int i = Integer.parseInt(s);
+
+                      total+=i;
+                    %>
+
                     <tr>
                       <td>
-
-                      </td>
-                      <td> </td>
-                      <td>
-
+                        <%=hh.getTenSp()%>
                       </td>
                       <td>
+                        <%=hh.getSoLuong()%>
+                      </td>
+                      <%Locale locale = new Locale("vi");
+                        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                        String j = format.format(i).split(",")[0];
+                      %>
+                      <td>
+                        <%= j%>đ
+                      </td>
+                      <td>
+                      </td>
                     </tr>
-
+<%}%>
 
                     </tbody>
                   </table>
                   <p> </p>
                  <div>
-                    <p> <span class="card-title">Tổng tiền: </span> </p>
+                   <%Locale locale = new Locale("vi");
+                     NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                     String gia = format.format(total).split(",")[0];
+                   %>
+                    <p> <span class="card-title">Tổng tiền: <%=gia%>đ</span> </p>
                  </div>
 
                 </div>
