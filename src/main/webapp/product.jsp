@@ -250,7 +250,9 @@
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
+                    <%if(auth!=null){%>
+                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <%}%>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -393,11 +395,17 @@
                         </div>
                         <p><%= p.getContent()%> </p>
 
+<<<<<<< HEAD
+
+                        <div class="add-to-cart">
+<%--                        <div class="add-to-cart">--
+=======
                       
 
                         <div class="add-to-cart">
 
 
+>>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
 <%--                            <div class="qty-label">--%>
 <%--                             Số lượng--%>
 <%--                                <div class="input-number">--%>
@@ -405,8 +413,12 @@
 <%--                                    <span class="qty-up">+</span>--%>
 <%--                                    <span class="qty-down">-</span>--%>
 <%--                                </div>--%>
+<<<<<<< HEAD
+<%--                            </div>--
+=======
 <%--                            </div>--%>
 
+>>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
@@ -414,6 +426,11 @@
 <%--                            <li><a href="#"><i class="fa fa-heart-o"></i>Thích</a></li>--%>
 <%--                            <li><a href="#"><i class="fa fa-exchange"></i>So sánh</a></li>--%>
 <%--                        </ul>--%>
+<<<<<<< HEAD
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                       </div>
+=======
+>>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
 
                       
 
@@ -430,6 +447,7 @@
                         <!-- product tab nav -->
                         <ul class="tab-nav">
 <%--                            <li class="active"><a data-toggle="tab" href="#tab1">Đặc điểm</a></li>--%>
+
                             <li><a data-toggle="tab" href="#tab2">Thông Tin Chi Tiết</a></li>
 
                             <li><a data-toggle="tab" href="#tab3">Đánh giá (<%=listComment.size()%>)</a></li>

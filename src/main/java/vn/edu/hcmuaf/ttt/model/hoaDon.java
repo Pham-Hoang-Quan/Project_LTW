@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class hoaDon implements Serializable {
     private int soHD;
@@ -12,11 +13,18 @@ public class hoaDon implements Serializable {
     private String disitrict;
     private String ward;
     private String note;
+    private String id;
     private String tenSp;
     private String toongGia;
 
+    private String soLuong;
+    private Date ngayTaoHD ;
 
-    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sđt, String city, String disitrict, String ward, String note, String tenSp, String toongGia) {
+    public hoaDon(){
+
+    }
+
+    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sđt, String city, String disitrict, String ward, String note, String id, String tenSp, String toongGia, String soLuong, Date ngayTaoHD) {
         this.soHD = soHD;
         this.user_id = user_id;
         this.hoVaTen = hoVaTen;
@@ -26,8 +34,11 @@ public class hoaDon implements Serializable {
         this.disitrict = disitrict;
         this.ward = ward;
         this.note = note;
+        this.id = id;
         this.tenSp = tenSp;
         this.toongGia = toongGia;
+        this.soLuong = soLuong;
+        this.ngayTaoHD = ngayTaoHD;
     }
 
     public int getSoHD() {
@@ -102,6 +113,14 @@ public class hoaDon implements Serializable {
         this.note = note;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getTenSp() {
         return tenSp;
     }
@@ -118,6 +137,22 @@ public class hoaDon implements Serializable {
         this.toongGia = toongGia;
     }
 
+    public String getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(String soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public Date getNgayTaoHD() {
+        return ngayTaoHD;
+    }
+
+    public void setNgayTaoHD(Date ngayTaoHD) {
+        this.ngayTaoHD = ngayTaoHD;
+    }
+
     @Override
     public String toString() {
         return "hoaDon{" +
@@ -130,8 +165,11 @@ public class hoaDon implements Serializable {
                 ", disitrict='" + disitrict + '\'' +
                 ", ward='" + ward + '\'' +
                 ", note='" + note + '\'' +
+                ", id='" + id + '\'' +
                 ", tenSp='" + tenSp + '\'' +
                 ", toongGia='" + toongGia + '\'' +
+                ", soLuong='" + soLuong + '\'' +
+                ", ngayTaoHD=" + ngayTaoHD +
                 '}';
     }
 }

@@ -146,12 +146,7 @@
                         <% if(auth.getUser_admin() == 1){%>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a>
                         <%}%>
-                        <%--                        <% if(auth.getUser_admin() == 1){%>--%>
 
-                        <%--                    <li>--%>
-                        <%--                        <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Quản Lý</a>--%>
-                        <%--                    </li>--%>
-                        <%--                        <%}%>--%>
                         <% } %>
 
 
@@ -255,7 +250,10 @@
 <%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
 <%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
 <%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
+
+                    <%if(auth!=null){%>
+                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <%}%>
                 </ul>
                 <!-- /NAV -->
             </div>
