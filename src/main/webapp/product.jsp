@@ -395,42 +395,14 @@
                         </div>
                         <p><%= p.getContent()%> </p>
 
-<<<<<<< HEAD
 
-                        <div class="add-to-cart">
-<%--                        <div class="add-to-cart">--
-=======
-                      
 
                         <div class="add-to-cart">
 
-
->>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
-<%--                            <div class="qty-label">--%>
-<%--                             Số lượng--%>
-<%--                                <div class="input-number">--%>
-<%--                                    <input type="number">--%>
-<%--                                    <span class="qty-up">+</span>--%>
-<%--                                    <span class="qty-down">-</span>--%>
-<%--                                </div>--%>
-<<<<<<< HEAD
-<%--                            </div>--
-=======
-<%--                            </div>--%>
-
->>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
-<%--                        <ul class="product-btns">--%>
-<%--                            <li><a href="#"><i class="fa fa-heart-o"></i>Thích</a></li>--%>
-<%--                            <li><a href="#"><i class="fa fa-exchange"></i>So sánh</a></li>--%>
-<%--                        </ul>--%>
-<<<<<<< HEAD
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
-                       </div>
-=======
->>>>>>> c6fae8875a520e28fcc4c2516c33b905169ec62a
+
 
                       
 
@@ -477,14 +449,7 @@
                             <div id="tab2" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-12">
-<%--                                        <p> Cấu tạo từ các vật liệu cao cấp</p>--%>
-<%--                                        <p> Công suất 600W, khoan được trên nhiều chất liệu</p>--%>
-<%--                                        <p> Cò máy điều chỉnh tốc độ vô cấp</p>--%>
-<%--                                        <p> Nút đảo chiều với 3 tính năng khoan ra, khoan vô, khóa</p>--%>
-<%--                                        <p> Đầu cặp kim loại mạnh mẽ với đường kính cặp tối đa 13mm</p>--%>
-<%--                                        <p> Động cơ chổi than hoạt động mạnh mẽ</p>--%>
-<%--                                        <p> Nặng 1,7kg, thiết kế nhỏ gọn, chắc chắn</p>--%>
-<%--                                        --%>
+
                                         <p><%= p.getInfo()%></p>
 
                                     </div>
@@ -609,13 +574,7 @@
                                                 </li>
                                                 <%}%>
                                             </ul>
-<%--                                            <ul class="reviews-pagination">--%>
-<%--                                                <li class="active">1</li>--%>
-<%--                                                <li><a href="#">2</a></li>--%>
-<%--                                                <li><a href="#">3</a></li>--%>
-<%--                                                <li><a href="#">4</a></li>--%>
-<%--                                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>--%>
-<%--                                            </ul>--%>
+
                                         </div>
                                     </div>
                                     <!-- /Reviews -->
@@ -627,11 +586,7 @@
                                                 <% Date currentDate  = Date.valueOf(LocalDate.now()); %>
 
                                                 <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
-<%--                                                <input class="input" name="userIdComment" style="display: none" value="<% User auth= (User) session.getAttribute("auth");%>"--%>
-<%--                                                    <%= auth.getUser_id()%>--%>
 
-
-<%--                                                       type="text">--%>
 
                                                 <% if(auth==null){ %>
                                                 <input class="input" name="userIdComment" style="display: none" value="1" type="text">
