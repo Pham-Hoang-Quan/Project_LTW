@@ -272,6 +272,7 @@
                     <th>Số lượng</th>
                     <th>Thành tiền</th>
                     <th>ngày Đặt Hàng</th>
+                    <th>xem chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -300,6 +301,9 @@
                     <td class="date">
 
                         <span><%=h.getNgayTaoHD()%></span>
+                    </td>
+                    <td class="date">
+                        <button style="background:#d10024;color:#f0e2ff;"><a href="<%="/THDoAn_war/dodetailbill?soHD=" +h.getSoHD() %>">Xem</a></button>
                     </td>
 
                     <td>

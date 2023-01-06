@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.ttt.service;
 
 import vn.edu.hcmuaf.ttt.controler.hoaDonCon;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
+import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class hoaDonService {
     }
     static public  void hoaDon(String soHD ,String user_id, String hoVaTen, String HD_email,String HD_sdt,String city, String disitrict, String ward, String note,String id, String tenSp, String toongGia,String soLuong, String ngayTaoHD){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" INSERT INTO hoadon VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                h.createUpdate(" INSERT INTO hoadon VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)")
                         .bind(0, soHD)
                         .bind(1, user_id)
                         .bind(2,hoVaTen )
@@ -43,9 +44,31 @@ public class hoaDonService {
         return list;
     }
 
+    public  static List<hoaDon> getdetaibill(int soHD){
+        List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM hoadon WHERE soHD = ?")
+                        .bind(0,soHD)
+                        .mapToBean(hoaDon.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
+    public  static hoaDon getinfoBill(int soHD){
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT DISTINCT HoVaTen, HD_email, HD_sdt, city, district, ward, note, ngayTaoHD FROM hoadon WHERE soHD = ?")
+                    .bind(0,soHD)
+                    .mapToBean(hoaDon.class).first();
+
+
+
+        });
+    }
+
+
 
     public static void main(String[] args) {
-        System.out.println(getlichSu("7"));
+        System.out.println(getdetaibill(3533));
 
     }
 
