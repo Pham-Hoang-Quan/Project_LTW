@@ -41,6 +41,7 @@ public class hoaDonCon extends HttpServlet {
             String soLuong = request.getParameter("soLuong" +i);
             String tongGia = request.getParameter("gia" + i);
             String[] s = new String[4];
+
             s[0] = id;
             s[1] = nameSP;
             s[2] = soLuong;
@@ -51,8 +52,10 @@ public class hoaDonCon extends HttpServlet {
         int soHD = r.nextInt(10000);
         for (String[] s:
              listHoadon) {
-            new hoaDonService().hoaDon(soHD+"",user_id,fullName,email,tel,city,dis,wa,note,s[0],s[1],s[3],s[2],dateComment);
-//            new transService().trans(soHD+"",s[0],s[1],s[2]);
+
+                new hoaDonService().hoaDon(soHD + "", user_id, fullName, email, tel, city, dis, wa, note, s[0], s[1], s[3], s[2], dateComment);
+//            new transService().trans(soHD+
+
         }
 
 
