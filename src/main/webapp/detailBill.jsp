@@ -248,7 +248,7 @@
 
         <ul class="breadcrumb-tree">
           <li><a href="/THDoAn_war/">Trang Chủ</a></li>
-          <li class="active">Chi tiết đơn hàng</li>
+          <li class="#">Chi tiết đơn hàng</li>
         </ul>
       </div>
     </div>
@@ -476,7 +476,7 @@
           <div class="footer">
             <h3 class="footer-title">Thông Tin</h3>
             <ul class="footer-links">
-              <li><a href="about.html">Giới thiệu</a></li>
+              <li><a href="about.jsp">Giới thiệu</a></li>
               <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
               <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
               <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>
