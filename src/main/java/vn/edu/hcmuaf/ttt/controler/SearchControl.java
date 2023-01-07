@@ -19,7 +19,7 @@ public class SearchControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     String txtSearch = request.getParameter("txt");
+     String txtSearch = request.getParameter("s");
 
         List<Category> listc = ProductService.getCategory();
         List<Product> listsptt = ProductService.getSanPhamTuongTu() ;

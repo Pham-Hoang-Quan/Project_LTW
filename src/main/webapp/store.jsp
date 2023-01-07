@@ -189,7 +189,7 @@
                         <div class="header-search">
                             <form action="search" method="post">
 
-                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <input name="s" class="input" placeholder="Tìm Sản Phẩm">
                                 <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -200,14 +200,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <
-<%--                            <%--%>
-<%--                                Cart cartt =(Cart) session.getAttribute("cart");--%>
-<%--                                double tongtien = 0;--%>
-<%--                            %>--%>
-<%--                            <%for (Product c:cartt.getListproduct()) {--%>
-<%--                                tongtien+=c.getPrice();--%>
-<%--                            %>--%>
+
                             <div>
                                 <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
@@ -216,7 +209,7 @@
                                 </a>
                             </div>
 
-                            <
+
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">
                                 <a href="#">
@@ -248,21 +241,8 @@
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
                     <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
-
                         for (Category p:lista) {%>
-
-
-
-
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%=p.getcName()%></a></li>
-
-
-                    <%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
-                    <%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
-                    <%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
-                    <%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
-
-
                     <% } %>
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>

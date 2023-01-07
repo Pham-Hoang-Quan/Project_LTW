@@ -65,6 +65,18 @@ public class hoaDonService {
 
         });
     }
+    static public  void updateQty(String soluong,String id){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("UPDATE products\n" +
+                                "SET quantily = quantily - ? \n" +
+                                "WHERE id = ?")
+
+                        .bind(0, soluong)
+                        .bind(1,id )
+
+
+                        .execute());
+    }
 
 
 

@@ -181,7 +181,7 @@
                         <div class="header-search">
                             <form action="search" method="post">
 
-                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <input name="s" class="input" placeholder="Tìm Sản Phẩm">
                                 <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
