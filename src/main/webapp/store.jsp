@@ -338,102 +338,10 @@
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Nhãn Hiệu</h3>
-                        <div class="checkbox-filter">
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-1">
-                                <label for="brand-1">
-										<span></span>
-										Bosch
-										<small>(578)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-2">
-                                <label for="brand-2">
-										<span></span>
-										CFCooper
-										<small>(125)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-3">
-                                <label for="brand-3">
-										<span></span>
-										DeWalt
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-4">
-                                <label for="brand-4">
-										<span></span>
-                                        DongCheng
-										<small>(578)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-5">
-                                <label for="brand-5">
-										<span></span>
-										YATO
-										<small>(125)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-6">
-                                <label for="brand-6">
-										<span></span>
-										Makita
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-7">
-                                <label for="brand-6">
-										<span></span>
-										Stanley
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-8">
-                                <label for="brand-6">
-										<span></span>
-										Trung Quốc
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-9">
-                                <label for="brand-6">
-										<span></span>
-										INGCO
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="brand-10">
-                                <label for="brand-6">
-										<span></span>
-                                    VAC
-										<small>(755)</small>
-									</label>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="">
-                                <label for="brand-6">
-										<span></span>
-										Khác
-										<small>(755)</small>
-									</label>
-                            </div>
-
-                        </div>
-                    </div>
                     <!-- /aside Widget -->
-
+                    <div class="aside">
+                     <button class="primary-btn cta-btn" id="filterProducts">Áp dụng</button>
+                    </div>
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Sản Phẩm Tương Tự</h3>
