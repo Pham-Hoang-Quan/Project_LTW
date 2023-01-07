@@ -477,7 +477,7 @@
             </div>
             <div class="clearfix">
                 <label class="float-left form-check-label"><input type="checkbox">Nhớ tài khoản?</label>
-                <a href="password.html" target="_blank" class="float-right text-success">Quên mật khẩu?</a>
+                <a href="password.jsp" target="_blank" class="float-right text-success">Quên mật khẩu?</a>
             </div>
 
         </form>

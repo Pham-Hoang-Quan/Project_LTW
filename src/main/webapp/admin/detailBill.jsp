@@ -59,7 +59,7 @@
                   <div>
                     <p> <span class="card-title">Email</span> <%= h.getHD_email()%></p>
                     <p> <span class="card-title">Số điện thoại</span> <%= h.getHD_sdt()%></p>
-                    <p> <span class="card-title">Địa chỉ:</span> <%= h.getWard()%> <%= h.getDisitrict()%> <%= h.getCity()%></p>
+                    <p> <span class="card-title">Địa chỉ:</span> <%= h.getWard()%> <%= h.getDistrict()%> <%= h.getCity()%></p>
                   </div>
                 </div>
 
