@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.util.List" %>
@@ -23,6 +24,8 @@
     <link rel="stylesheet" href="admin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
+
 </head>
 
 <body>
@@ -82,7 +85,12 @@
                                             <td> <%= p.getName()%></td>
                                             <td><img src="<%= p.getImg()%>" alt=""></td>
                                             <td class="text-success"> <%= p.getClassify()%> </td>
-                                            <td class="text-danger"><%=p.getPrice()%>đ</td>
+                                            <%
+                                                Locale locale = new Locale("vi");
+                                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                String gia = format.format(p.getPrice()).split(",")[0];
+                                            %>
+                                            <td class="text-danger"><%=gia%>đ</td>
                                             <td>
                                                 <a style="text-decoration: none" href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" title="Xem">
                                                     <label class="badge badge-success"><i style="cursor: pointer" class="mdi mdi-eye"></i></label>
@@ -101,6 +109,18 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="pagination">
+                                <a href="#">&laquo;</a>
+                                <%  int tag = (int) request.getAttribute("tag");
+                                    int endP = (int) request.getAttribute("endP");
+                                    for (int i = 1; i <= endP; i++) {%>
+                                        <a class="<%= tag == i ? "active": ""%>" href="ProAdmin?index=<%=i%>"><%=i%></a>
+                                <%}%>
+                                <a class="active" href="#">&raquo;</a>
                             </div>
                         </div>
 
@@ -143,6 +163,8 @@
                             <div class="col-sm-9">
                                 <select name="classify" class="form-control" id="browsers">
                                     <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+                                    <%@ page import="java.util.Locale" %>
+                                    <%@ page import="java.text.NumberFormat" %>
                                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                                         for (Category p:lista) { %>
                                         <option value="<%=p.getcName()%>"><%=p.getcName()%></option>
@@ -253,5 +275,18 @@
         left: 0;
         right: 0;
         background-color: #818181a8;
+    }
+</style>
+<%--css phân trang--%>
+<style>
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
     }
 </style>
