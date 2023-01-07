@@ -146,12 +146,12 @@
                     <h4 class="card-title">Thêm sản phẩm</h4>
                     <p class="card-description"> Nhập thông tin </p>
                     <form action="AddProduct" method="post" class="forms-sample">
-                        <div class="form-group row">
-                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Mã sản phẩm</label>
-                            <div class="col-sm-9">
-                                <input name="id" type="text" class="form-control"  placeholder="0001">
-                            </div>
-                        </div>
+<%--                        <div class="form-group row">--%>
+<%--                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Mã sản phẩm</label>--%>
+<%--                            <div class="col-sm-9">--%>
+<%--                                <input name="id" type="text" class="form-control"  placeholder="0001">--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên</label>
                             <div class="col-sm-9">
@@ -176,10 +176,10 @@
                         <div class="form-group row">
                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Ảnh</label>
                             <div class="col-sm-9">
-                                <input name="img" type="file" class="form-control"  placeholder="Url ảnh">
-<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
-<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
-<%--                                <input type="file" class="form-control"  placeholder="Url ảnh">--%>
+                                <input name="img" type="text" class="form-control"  placeholder="Url ảnh">
+                                <input name="img2"  type="text" class="form-control"  placeholder="Url ảnh">
+                                <input name="img3"  type="text" class="form-control"  placeholder="Url ảnh">
+                                <input name="img4"  type="text" class="form-control"  placeholder="Url ảnh">
                             </div>
                         </div>
                         <div class="form-group row">
