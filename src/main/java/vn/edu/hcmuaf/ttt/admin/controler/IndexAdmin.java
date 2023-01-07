@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.admin.service.IndexService;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -17,8 +18,8 @@ public class IndexAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> list = ProductService.getData();
         List<Product> listn = ProductService.getLast();
+        List<Product> needToAdd = IndexService.needToAdd();
 
-        request.setAttribute("listn", listn);
 
         String countProduct;
         try {
@@ -26,7 +27,28 @@ public class IndexAdmin extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        String countHD;
+        try {
+            countHD = HoaDon.CountHD();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<String> listTongGia = HoaDon.getTienHH();
+
+        // phân trang
+        int count = ProductService.countProduct(); // số lượng sp trong database
+        int endPage = count/10; // mỗi trang có 10 sản phẩm
+        if(count % 10 != 0) {
+            endPage++;
+        }
+
         request.setAttribute("countProduct", countProduct);
+        request.setAttribute("countHD", countHD);
+        request.setAttribute("listTongGia", listTongGia);
+        request.setAttribute("listn", listn);
+        request.setAttribute("needToAdd", needToAdd);
+        request.setAttribute("endP", endPage);
 
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 

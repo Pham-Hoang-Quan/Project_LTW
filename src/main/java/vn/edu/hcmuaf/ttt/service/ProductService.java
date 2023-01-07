@@ -49,6 +49,14 @@ public class ProductService {
         return list;
 
 
+
+
+
+    }
+
+    // đếm bao nhiêu sản phẩm từ hàm getData()
+    public static int countProduct() {
+        return getData().size();
     }
 
     public static List<Product> getKhoanMini() {
@@ -209,6 +217,17 @@ public static   List<Product> getSale(){
         );
         return list;
     }
+
+    public static List<Product> pagingProductAdmin(int index) {
+        List<Product> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM products limit ?,10")
+                        .bind(0, (index-1)*10)
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
@@ -254,7 +273,7 @@ public static   List<Product> getSale(){
 
     public static void main(String[] args) {
 
-        System.out.println(getSale());
+        System.out.println(countProduct());
 //
     }
 
