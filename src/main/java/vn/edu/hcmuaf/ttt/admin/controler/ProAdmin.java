@@ -37,6 +37,7 @@ public class ProAdmin extends HttpServlet {
 //        request.setAttribute("list", list);
         request.setAttribute("listc", listc);
         request.setAttribute("endP", endPage);
+        request.setAttribute("tag", index);
         request.getRequestDispatcher("admin/product-manage.jsp").forward(request, response);
 
     }

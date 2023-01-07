@@ -115,11 +115,12 @@
                         <div class="col-lg-6 grid-margin stretch-card">
                             <div class="pagination">
                                 <a href="#">&laquo;</a>
-                                <% int endP = (int) request.getAttribute("endP");
-                                    for (int i = 1; i < endP; i++) {%>
-                                        <a href="ProAdmin?index=<%=i%>"><%=i%></a>
+                                <%  int tag = (int) request.getAttribute("tag");
+                                    int endP = (int) request.getAttribute("endP");
+                                    for (int i = 1; i <= endP; i++) {%>
+                                        <a class="<%= tag == i ? "active": ""%>" href="ProAdmin?index=<%=i%>"><%=i%></a>
                                 <%}%>
-                                <a href="#">&raquo;</a>
+                                <a class="active" href="#">&raquo;</a>
                             </div>
                         </div>
 
