@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.service;
 
+import vn.edu.hcmuaf.ttt.controler.ProductFilterQueryParams;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.Category;
@@ -229,7 +230,7 @@ public static   List<Product> getSale(){
         try {
             Statement statement = DBConnect.getInstall().get();
             if(statement!=null) {
-                ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products");
+                ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products WHERE classify IN ('Khoan mini', 'Khoan bàn') and price <= 700000");
                 while (rs.next()){
                return  rs.getInt(1);
                 }
@@ -238,6 +239,20 @@ public static   List<Product> getSale(){
             throw new RuntimeException(e);
         }
         return 0;
+    }
+
+    public static List<Product> getFilteredProducts(int index, ProductFilterQueryParams productQuery) {
+
+        List<Product> filteredProducts = JDBiConnector.me().withHandle(handle -> handle.createQuery(
+                        "SELECT * FROM products WHERE classify IN (<classifies>) AND price >= :minPrice AND price <= :maxPrice LIMIT 12 OFFSET :index"
+                )
+                .bindBean(new ProductFilterQueryParams(productQuery.getMaxPrice(), productQuery.getMinPrice(), index, productQuery.getClassifies()))
+                .bindList("classifies", productQuery.getClassifies())
+                .mapToBean(Product.class)
+                .stream()
+                .collect(Collectors.toList()));
+
+        return filteredProducts;
     }
 
     public static List<Product> pagingProduct(int index) {

@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ListProduct", value = "/List-Product")
@@ -28,7 +29,11 @@ public class ListProduct extends HttpServlet {
         if(count % 12 != 0){
             endPage++;
         }
-        List<Product> page = ProductService.pagingProduct(index);
+
+        List<String> classifies = new ArrayList<String>();
+                classifies.add("Khoan mini");
+        classifies.add("Khoan bàn");
+        List<Product> page = ProductService.getFilteredProducts(index, new ProductFilterQueryParams(700000, 1000, index, classifies));
 
         request.setAttribute("list", page);
 
