@@ -184,10 +184,10 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
+                        <form action="search" method="post">
 
-                            <input class="input" placeholder="Tìm Sản Phẩm">
-                            <button class="search-btn"><i class="fa fa-search"></i></button>
+                            <input name="s" class="input" placeholder="Tìm Sản Phẩm">
+                            <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                 </div>

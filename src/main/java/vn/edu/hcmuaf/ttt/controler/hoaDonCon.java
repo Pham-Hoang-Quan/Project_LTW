@@ -29,6 +29,7 @@ public class hoaDonCon extends HttpServlet {
         String note = request.getParameter("note");
         String dateComment = request.getParameter("dateComment");
 
+
 //        String tongGia = request.getParameter("tongTien");
 
 
@@ -54,9 +55,13 @@ public class hoaDonCon extends HttpServlet {
              listHoadon) {
 
                 new hoaDonService().hoaDon(soHD + "", user_id, fullName, email, tel, city, dis, wa, note, s[0], s[1], s[3], s[2], dateComment);
-//            new transService().trans(soHD+
+
+            new hoaDonService().updateQty(s[2], s[0]);
+
 
         }
+
+
 
 
 
