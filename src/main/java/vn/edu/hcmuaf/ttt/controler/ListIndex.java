@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -17,11 +18,16 @@ public class ListIndex extends HttpServlet {
         List<Product> listn = ProductService.getLast() ;
         List<Product> lists = ProductService.getSale();
         List<Category> listc = ProductService.getCategory();
-
         List<Category> lista = ProductService.getCategoryIndex();
+        List<Product> listKM = ProductService.getKhoanMini();
+        List<Product> listKDL = ProductService.getKhoanDongLuc();
+        List<Product> listKBT = ProductService.getKhoanBeTong();
         String CTID = request.getParameter("cName");
         List<Product> listPI = ProductService.getCTID(CTID) ;
         request.setAttribute("listn", listn);
+        request.setAttribute("listKM", listKM);
+        request.setAttribute("listKDL", listKDL);
+        request.setAttribute("listKBT", listKBT);
         request.setAttribute("lists", lists);
         request.setAttribute("lista", lista);
         request.setAttribute("listPI", listPI);

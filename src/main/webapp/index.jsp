@@ -182,7 +182,7 @@
                         <div class="header-search">
                             <form action="search" method="post">
 
-                                <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                                <input name="s" class="input" placeholder="Tìm Sản Phẩm">
                                 <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -246,10 +246,6 @@
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
-<%--                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>--%>
-<%--                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>--%>
-<%--                    <li><a href="khoan-ban.html">Khoan bàn</a></li>--%>
-<%--                    <li><a href="phukien.html">Phụ Kiện</a></li>--%>
 
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
@@ -636,92 +632,73 @@
                         </div>
                     </div>
 
+
                     <div class="products-widget-slick" data-nav="#slick-nav-3">
                         <div>
+                            <!-- product widget -->
+                            <% List<Product> listkmn = (List<Product>) request.getAttribute("listKM");
+                                for (Product k:listkmn) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Khoan mini</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM 320</a></h3>
-                                    <h4 class="product-price">980.000 <del class="product-old-price">690.000</del></h4>
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%> đ<del class="product-old-price"><%= k.getOldPrice()%> </del></h4>
                                 </div>
                             </div>
-<%--                            <% } %>--%>
+                            <%}%>
+                            <!-- /product widget -->
+
+                            <!-- product widget -->
 
                             <!-- /product widget -->
 
                             <!-- product widget -->
-<%--                            <div class="product-widget">--%>
-<%--                                <div class="product-img">--%>
-<%--                                    <img src="./img/may-khoan-xoay-bosch-gbm-13-re-500(2q).jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="product-body">--%>
-<%--                                    <p class="product-category">Khoan mini</p>--%>
-<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan xoay Bosch GBM 13 RE-500</a></h3>--%>
-<%--                                    <h4 class="product-price">1.890.000 <del class="product-old-price">1.690.000</del></h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-                            <!-- /product widget -->
 
-                            <!-- product widget -->
-<%--                            <div class="product-widget">--%>
-<%--                                <div class="product-img">--%>
-<%--                                    <img src="./img/may-khoan-MT605-300(3q).jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="product-body">--%>
-<%--                                    <p class="product-category">Khoan mini</p>--%>
-<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan MT605-300</a></h3>--%>
-<%--                                    <h4 class="product-price">1.290.000 <del class="product-old-price">990.000</del></h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                             <!-- product widget -->
                         </div>
 
                         <div>
                             <!-- product widget -->
-<%--                            <div class="product-widget">--%>
-<%--                                <div class="product-img">--%>
-<%--                                    <img src="./img/may-khoan-bosch-gbm-350-a(4q).jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="product-body">--%>
-<%--                                    <p class="product-category">Khoan mini</p>--%>
-<%--                                    <h3 class="product-name"><a href="#">Máy khoan Bosch GBM-350</a></h3>--%>
-<%--                                    <h4 class="product-price">980.000 <del class="product-old-price">650.990</del></h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                            <% List<Product> listkmn1 = (List<Product>) request.getAttribute("listKM");
+                                for (Product k:listkmn1) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
+                            <div class="product-widget">
+                                <div class="product-img">
+                                    <img src="<%=k.getImg()%>" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%> đ<del class="product-old-price"><%= k.getOldPrice()%> </del></h4>
+                                </div>
+                            </div>
+                            <%}%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-<%--                            <div class="product-widget">--%>
-<%--                                <div class="product-img">--%>
-<%--                                    <img src="./img/may-khoan-toc-do-cao-maktec-mt652-300(5q).jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="product-body">--%>
-<%--                                    <p class="product-category">Khoan mini</p>--%>
-<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan tốc độ cao Maktec MT652-300</a></h3>--%>
-<%--                                    <h4 class="product-price">1.280.000 <del class="product-old-price">990.000</del></h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-<%--                            <div class="product-widget">--%>
-<%--                                <div class="product-img">--%>
-<%--                                    <img src="./img/180-LI(Q).jpg" alt="">--%>
-<%--                                </div>--%>
-<%--                                <div class="product-body">--%>
-<%--                                    <p class="product-category">Khoan mini</p>--%>
-<%--                                    <h3 class="product-name"><a href="product.html">Máy khoan mini 180-LI</a></h3>--%>
-<%--                                    <h4 class="product-price">920.000 <del class="product-old-price">799.000</del></h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+
+                            <!-- product widget -->
                             <!-- product widget -->
                         </div>
                     </div>
                 </div>
-
+                <div class="clearfix visible-sm visible-xs"></div>
                 <div class="col-md-4 col-xs-6">
                     <div class="section-title">
                         <h4 class="title">Khoan động lực</h4>
@@ -733,83 +710,63 @@
                     <div class="products-widget-slick" data-nav="#slick-nav-4">
                         <div>
                             <!-- product widget -->
+                            <% List<Product> listkdl = (List<Product>) request.getAttribute("listKDL");
+                                for (Product k:listkdl) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-13-re-gom-bo-set(1q).jpg" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 13 RE</a></h3>
-                                    <h4 class="product-price">1.980.000 <del class="product-old-price">1.820.000 </del></h4>
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%> đ<del class="product-old-price"><%= k.getOldPrice()%> </del></h4>
                                 </div>
                             </div>
+                            <%}%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-550-re-bo-set-1(2q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 550 - 06011A15K7 </a></h3>
-                                    <h4 class="product-price">1.780.000 <del class="product-old-price">990.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-16-re-300(3q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 16 RE</a></h3>
-                                    <h4 class="product-price">1.950.000 <del class="product-old-price">1.590.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- product widget -->
                         </div>
 
                         <div>
                             <!-- product widget -->
+                            <% List<Product> listkdl1 = (List<Product>) request.getAttribute("listKDL");
+                                for (Product k:listkdl1) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-550-a(4q).jpg" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 550</a></h3>
-                                    <h4 class="product-price">1.200.000 <del class="product-old-price">990.000</del></h4>
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%> đ<del class="product-old-price"><%= k.getOldPrice()%> </del></h4>
                                 </div>
                             </div>
+                            <%}%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-13-re-500(5q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 13 RE</a></h3>
-                                    <h4 class="product-price">1.650.000 <del class="product-old-price">1.390.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/may-khoan-dong-luc-bosch-gsb-550-mp-set-19-chi-tiet(6q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan động lực</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan động lực Bosch GSB 550 MP</a></h3>
-                                    <h4 class="product-price">1.710.000 <del class="product-old-price">1.390.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- product widget -->
                             <!-- product widget -->
                         </div>
@@ -829,82 +786,63 @@
                     <div class="products-widget-slick" data-nav="#slick-nav-5">
                         <div>
                             <!-- product widget -->
+                            <% List<Product> listkk = (List<Product>) request.getAttribute("listKBT");
+                                for (Product k:listkk) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/may-khoan-bua-bosch-gbh-2-26-dre-500x500(1q).jpg" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-26 DRE</a></h3>
-                                    <h4 class="product-price">4.300.000 <del class="product-old-price">3.750.000</del></h4>
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%> đ <del class="product-old-price"><%=k.getOldPrice()%></del></h4>
                                 </div>
                             </div>
+                            <%}%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="img/may-khoan-bua-bosch-gbh-2-24-dfr-300(2q).jpg" alt="Máy Ảnh Fujifilm Instax Square SQ1 - Hàng Chính Hãng" class="WebpImg__StyledImg-sc-h3ozu8-0 fWjUGo">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-24 DFR</a></h3>
-                                    <h4 class="product-price">3.980.000 <del class="product-old-price">3.550.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="img/may-khoan-bua-bosch-gbh-2-28-dv-400(3q).jpg" alt="Máy Ảnh Fujifilm X-T100 + Lens 15-45mm (24.2MP) - Hàng Chính Hãng" class="WebpImg__StyledImg-sc-h3ozu8-0 fWjUGo">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-28 DV</a></h3>
-                                    <h4 class="product-price">5.980.000 <del class="product-old-price">4.990.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- product widget -->
                         </div>
 
+
                         <div>
+                            <% List<Product> listk1 = (List<Product>) request.getAttribute("listKBT");
+                                for (Product k:listk1) { %>
+                            <%
+                                Locale locale = new Locale("vi");
+                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                String price = format.format(k.getPrice()).split(",")[0];
+                            %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="img/may-khoan-bua-bosch-gbh-2-24-dre-790w-300(4q).jpg" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-24 DRE (790W)</a></h3>
-                                    <h4 class="product-price">4.500.000 <del class="product-old-price">3.600.000</del></h4>
+                                    <p class="product-category"><%=k.getClassify()%></p>
+                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + k.getId()%>"><%=k.getName()%></a></h3>
+                                    <h4 class="product-price"><%=price%>đ<del class="product-old-price"><%=k.getOldPrice()%></del></h4>
                                 </div>
                             </div>
+                            <%}%>
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="img/may-khoan-bua-bosch-gbh-2-24-re-790w(5q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-24 RE (790W)</a></h3>
-                                    <h4 class="product-price">3.400.000 <del class="product-old-price">3.100.000</del></h4>
-                                </div>
-                            </div>
+
                             <!-- /product widget -->
 
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="img/may-khoan-bua-bosch-gbh-2-26e-500(6q).jpg" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Khoan bê tông</p>
-                                    <h3 class="product-name"><a href="product.html">Máy khoan búa Bosch GBH 2-26E</a></h3>
-                                    <h4 class="product-price">3.900.000 <del class="product-old-price">3.500.000</del></h4>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
