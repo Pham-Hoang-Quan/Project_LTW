@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.ttt.controler;
+package vn.edu.hcmuaf.ttt.common.types;
 
 import vn.edu.hcmuaf.ttt.model.Category;
 
@@ -23,8 +23,12 @@ public class ProductFilterParams {
         this.classifies = classifies;
     }
 
-    public int getIndex() {
+    public int getOffset() {
         return (index - 1) * 12;
+    }
+
+    public int getPageIndex() {
+        return index;
     }
 
     public void setIndex(int index) {

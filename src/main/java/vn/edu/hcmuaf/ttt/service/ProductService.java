@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.ttt.service;
 
-import vn.edu.hcmuaf.ttt.controler.ProductFilterParams;
-import vn.edu.hcmuaf.ttt.controler.ProductFilterQuery;
+import vn.edu.hcmuaf.ttt.common.types.ProductFilterParams;
+import vn.edu.hcmuaf.ttt.common.types.ProductFilterQuery;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.Category;
@@ -24,7 +24,7 @@ public class ProductService {
     private static final String withPriceFiltering = "price >= :minPrice AND price <= :maxPrice ";
     private static final String withClassifyFiltering = "classify IN (<classifies>) ";
     private static final String countProduct = "SELECT COUNT(id) FROM products";
-    private static final String withPagination = "LIMIT 12 OFFSET :index";
+    private static final String withPagination = "LIMIT 12 OFFSET :offset";
     private static final String fetchProductsWithFiltering = new StringBuilder().append(withSelectProdudcts)
             .append(" WHERE ")
             .append(withClassifyFiltering)
@@ -248,7 +248,7 @@ public class ProductService {
         boolean shouldGetProductsByAllClassifies = filterParams.getClassifies() == null || filterParams.getClassifies().size() == 0;
         if (shouldGetProductsByAllClassifies) {
             return JDBiConnector.me().withHandle(handle -> handle.createQuery(
-                        countProduct
+                            countProduct
                     )
                     .mapTo(Integer.class).one());
 
@@ -289,7 +289,7 @@ public class ProductService {
         return withPagination;
     }
 
-    public static List<Product> getFilteredProducts(int index, ProductFilterParams productQuery) {
+    public static List<Product> getFilteredProducts(ProductFilterParams productQuery) {
         boolean shouldGetProductsByAllClassifies = productQuery.getClassifies() == null || productQuery.getClassifies().size() == 0;
         if (shouldGetProductsByAllClassifies) {
             return JDBiConnector.me().withHandle(handle -> handle.createQuery(
@@ -297,9 +297,8 @@ public class ProductService {
                                     .append(" WHERE ")
                                     .append(withPriceFiltering)
                                     .append(withPagination)
-//                            "SELECT * FROM products WHERE price >= :minPrice AND price <= :maxPrice LIMIT 12 OFFSET :index"
                     )
-                    .bindBean(new ProductFilterQuery(productQuery.getMaxPrice(), productQuery.getMinPrice(), index, new ArrayList<>()))
+                    .bindBean(new ProductFilterQuery(productQuery.getMaxPrice(), productQuery.getMinPrice(), productQuery.getPageIndex(), new ArrayList<>()))
                     .mapToBean(Product.class)
                     .stream()
                     .collect(Collectors.toList()));
@@ -307,9 +306,8 @@ public class ProductService {
 
         return JDBiConnector.me().withHandle(handle -> handle.createQuery(
                         new StringBuilder().append(fetchProductsWithFiltering).append(withPagination)
-//                        "SELECT * FROM products WHERE classify IN (<classifies>) AND price >= :minPrice AND price <= :maxPrice LIMIT 12 OFFSET :index"
                 )
-                .bindBean(new ProductFilterQuery(productQuery.getMaxPrice(), productQuery.getMinPrice(), index, productQuery.getClassifies()))
+                .bindBean(new ProductFilterQuery(productQuery.getMaxPrice(), productQuery.getMinPrice(), productQuery.getPageIndex(), productQuery.getClassifies()))
                 .bindList("classifies", productQuery.getClassifies())
                 .mapToBean(Product.class)
                 .stream()

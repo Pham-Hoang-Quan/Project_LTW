@@ -1,13 +1,12 @@
-package vn.edu.hcmuaf.ttt.controler;
-
-import vn.edu.hcmuaf.ttt.model.Category;
+package vn.edu.hcmuaf.ttt.common.types;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductFilterQuery {
     private double maxPrice;
     private double minPrice;
+
+    private int pageIndex;
 
     public double getMinPrice() {
         if (this.minPrice == 0) {
@@ -16,22 +15,22 @@ public class ProductFilterQuery {
         return minPrice;
     }
 
-    public ProductFilterQuery(double maxPrice, double minPrice, int index, List<String> classifies) {
+    public ProductFilterQuery(double maxPrice, double minPrice, int pageIndex, List<String> classifies) {
         this.maxPrice = maxPrice;
         this.minPrice = minPrice;
-        this.index = index;
+        this.pageIndex = pageIndex;
         this.classifies = classifies;
     }
 
-    public int getIndex() {
-        return (index - 1) * 12;
+    public int getOffset() {
+        return (pageIndex - 1) * 12;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    private int index;
+    private int offset;
 
     public List<String> getClassifies() {
         return this.classifies;
