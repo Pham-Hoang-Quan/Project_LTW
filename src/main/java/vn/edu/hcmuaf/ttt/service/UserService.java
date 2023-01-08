@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.Category;
+import vn.edu.hcmuaf.ttt.model.Product;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -49,6 +50,8 @@ public class UserService {
         return user;
     }
 
+
+
     public  static User checkExist(String user_name){
         List<User> users = JDBiConnector.me().withHandle(h ->
                 h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0,user_name).mapToBean(User.class).stream().collect(Collectors.toList())
@@ -57,6 +60,8 @@ public class UserService {
         User user = users.get(0);
         return user;
     }
+
+  
 
     static public  void singup(String user_fullname, String user_name, String accout, String user_email,String user_sdt, String user_password){
        JDBiConnector.me().withHandle(h ->
@@ -72,13 +77,21 @@ public class UserService {
 
     }
 
-    public  static User getUserdx(){
-        List<User> userss = JDBiConnector.me().withHandle(h ->
-                h.createQuery(" SELECT * FROM `user` WHERE user_id = 0;").mapToBean(User.class).stream().collect(Collectors.toList())
-        );
-        if(users.size() != 1) return null;
-        User user = userss.get(0);
-        return user;
+
+
+
+   static public User findByUserNameAndEmail(String user_email) {
+       return JDBiConnector.me().withHandle(handle -> {
+           return handle.createQuery(" SELECT * FROM `user` WHERE user_email = ?")
+                   .bind(0, user_email)
+
+                   .mapToBean(User.class).first();
+
+
+       });
+
+
+
     }
 
 
@@ -92,7 +105,7 @@ public class UserService {
 
 
     public static void main(String[] args) {
-        System.out.println(getUserdx());
+        System.out.println(findByUserNameAndEmail("tn6994050@gm"));
     }
 
 }
