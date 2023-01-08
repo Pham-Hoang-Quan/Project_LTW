@@ -425,11 +425,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                     </div>
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><span class="tooltipp">xem</span></a></button>
-                                    </div>
+
                                 </div>
                                 <div class="add-to-cart">
                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
@@ -573,10 +569,10 @@
                             <h3 class="footer-title">Thông Tin</h3>
                             <ul class="footer-links">
                                 <li><a href="about.jsp">Giới thiệu</a></li>
-                                <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
-                                <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
-                                <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>
-                                <li><a href="đk_đk.html">Điều khoản và điều kiện</a></li>
+                                <li><a href="lien_he.jsp">Liên hệ chúng tôi</a></li>
+                                <li><a href="Cs_bao_mat.jsp">Chính sách bảo mật</a></li>
+                                <li><a href="Cs_trahang.jsp">Đơn hàng và Trả hàng</a></li>
+                                <li><a href="dk_dk.jsp">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
                     </div>

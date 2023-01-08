@@ -1,12 +1,16 @@
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 
+
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
- 
- 
+    <title>Drill Technology</title>
+
+
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -118,8 +122,7 @@
             }
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -134,8 +137,17 @@
                         <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
                     </li>
                 </ul>
-                <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+                <ul class="header-links pull-right">>
+                    <% User auth= (User) session.getAttribute("auth");%>
+                    <% if(auth==null){ %>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
+                    <% }else {%>
+                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>
+                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>
+                    <% if(auth.getUser_admin() == 1){%>
+                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <%}%>
+                    <% } %>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -144,7 +156,7 @@
         </div>
         <!-- /TOP HEADER -->
 
-         <!-- /TOP HEADER -->
+        <!-- /TOP HEADER -->
 
         <!-- MAIN HEADER -->
         <div id="header">
@@ -155,7 +167,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="index.jsp" class="logo">
+                            <a href="/THDoAn_war/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -165,10 +177,10 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form action="search" method="post">
 
-                                <input class="input" placeholder="Tìm Sản Phẩm">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                <input name="s" class="input" placeholder="Tìm Sản Phẩm">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -178,55 +190,16 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="heart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">5</div>
-                                </a>
-                            </div>
+
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div>
+                                <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Giỏ Hàng</span>
-                                    <div class="qty">2</div>
+                                    <div class="qty">${cart.quantily}</div>
                                 </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="cart.jsp">Xem</a>
-                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /Cart -->
 
@@ -256,16 +229,7 @@
             <!-- responsive-nav -->
             <div id="responsive-nav">
                 <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
-                    <li><a href="index.jsp">Trang chủ</a></li>
-                    <li><a href="store.jsp">Sản Phẩm</a></li>
-                    <li><a href="khoan-mini.html">Khoan mini</a></li>
-                    <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
-                    <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
-                    <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                    <li><a href="phukien.html">Phụ Kiện</a></li>
-                    <li><a href="support.html">Hỗ Trợ</a></li>
-                </ul>
+
                 <!-- /NAV -->
             </div>
             <!-- /responsive-nav -->
@@ -282,8 +246,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="index.jsp">Trang chủ</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
+                        <li><a href="#">Điều khoản và điều kiện</a></li>
 
                     </ul>
                 </div>
@@ -295,19 +259,26 @@
     <!-- /BREADCRUMB -->
 
     <!-- SECTION -->
-    
-        <!-- container -->
-       
-            <!-- row -->
-           <div class="container" id="container">
-           <h1>Chính sách bảo mật</h1>
-           <p> Chính sách Bảo mật này nhằm giúp bạn hiểu cách trang web thu thập và sử dụng thông tin cá nhân của bạn thông qua việc bạn sử dụng trang web, bao gồm bất kỳ thông tin nào có thể được cung cấp thông qua trang web khi bạn đăng ký tài khoản, hãy đăng ký để nhận thông tin liên lạc từ chúng tôi, hoặc khi bạn mua một sản phẩm hoặc dịch vụ, hãy yêu cầu thông tin dịch vụ bổ sung từ chúng tôi.</p>
-           <p>Chúng tôi sử dụng thông tin cá nhân của bạn để liên lạc khi cần thiết liên quan đến việc bạn sử dụng trang web của chúng tôi, để trả lời các câu hỏi hoặc gửi các tài liệu và thông tin mà bạn yêu cầu.</p>
-           <p>Trang web của chúng tôi coi trọng vấn đề bảo mật thông tin và sử dụng các phương pháp hay nhất để bảo vệ thông tin và khoản thanh toán của khách hàng.</p>
-           <p>Mọi thông tin giao dịch sẽ được bảo mật trừ khi cơ quan pháp luật yêu cầu.</p>
-           </div>
 
-                  
+    <!-- container -->
+
+    <!-- row -->
+    <div class="container" id="container">
+        <h1>Điểu khoản và điều kiện</h1>
+        <h4>1. Giới thiệu</h4>
+        <p>Chào mừng đén với website của chúng tôi.</p>
+        <p>Khi bạn truy cập trang web của chúng tôi, bạn đồng ý với các điều khoản này.</p>
+        <p>Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc bớt bất kỳ phần nào của Điều khoản Bán hàng này vào bất kỳ lúc nào.</p>
+        <p>Các thay đổi có hiệu lực ngay khi đăng trên trang web mà không cần thông báo trước. Và khi bạn tiếp tục sử dụng trang web, sau khi các thay đổi đối với các Điều khoản này được đăng lên, đồng nghĩa với việc bạn chấp nhận những thay đổi đó.</p>
+        <p>Vui lòng kiểm tra lại thường xuyên để cập nhật các thay đổi của chúng tôi. </p>
+        <h4>2. các điều kiện sử dụng website</h4>
+        <p>Khi truy cập vào website của chúng tôi, khách hàng phải đảm bảo từ 18 tuổi trở lên, hoặc truy cập dưới sự giám sát của cha mẹ hoặc người giám hộ hợp pháp.</p>
+        <p>Khách hàng đảm bảo có đủ hành vi dân sự để thực hiện các giao dịch mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.</p>
+        <p>Trong quá trình đăng ký, bạn đồng ý nhận các email quảng cáo từ trang web. Nếu bạn không muốn tiếp tục nhận thư, bạn có thể chọn không tham gia bằng cách nhấp vào liên kết ở cuối bất kỳ email quảng cáo nào.</p>
+
+    </div>
+
+
 
     <!-- NEWSLETTER -->
     <div id="newsletter" class="section">
@@ -358,11 +329,9 @@
                             <h3 class="footer-title">About </h3>
                             <p>Địa Chỉ Thông Tin Liên Lạc</p>
                             <ul class="footer-links">
-                                <li>
-                                    <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
-                                </li>
-                                <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0929831012</a></li>
-                                <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
+                                <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>0929831012</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -371,11 +340,11 @@
                         <div class="footer">
                             <h3 class="footer-title">Sản Phảm</h3>
                             <ul class="footer-links">
-                                <li><a href="khoan-mini.html">Khoan mini</a></li>
-                                <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
-                                <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
-                                <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện<a></li>
+                                <li><a href="#">Khoan mini</a></li>
+                                <li><a href="#">Khoan động lực</a></li>
+                                <li><a href="#">Khoan bê tông</a></li>
+                                <li><a href="#">Khoan bàn</a></li>
+                                <li><a href="#">phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>
@@ -387,10 +356,10 @@
                             <h3 class="footer-title">Thông Tin</h3>
                             <ul class="footer-links">
                                 <li><a href="about.jsp">Giới thiệu</a></li>
-                                <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
-                                <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
-                                <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>
-                                <li><a href="đk_đk.html">Điều khoản và điều kiện</a></li>
+                                <li><a href="lien_he.jsp">Liên hệ chúng tôi</a></li>
+                                <li><a href="Cs_bao_mat.jsp">Chính sách bảo mật</a></li>
+                                <li><a href="Cs_trahang.jsp">Đơn hàng và Trả hàng</a></li>
+                                <li><a href="dk_dk.jsp">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
                     </div>
@@ -399,10 +368,11 @@
                         <div class="footer">
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
-                                <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
-                                <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
-                                <li><a href="support.html">Hổ Trợ</a></li>
+                                <li><a href="#">Tài Khoản Của Tôi</a></li>
+                                <li><a href="#">Xem Giỏ Hàng</a></li>
+                                <li><a href="#">Danh Sách Yêu Thích</a></li>
+                                <li><a href="#">Theo Dõi Đơn Hàng Của Tôi</a></li>
+                                <li><a href="#">Hổ Trợ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -427,7 +397,11 @@
                             <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
                             <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
                         </ul>
-
+                        <span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" >Colorlib</a> -->
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
                     </div>
                 </div>
                 <!-- /row -->
@@ -484,7 +458,7 @@
             }
         });
     </script>
-  
+
 </body>
 
 </html>

@@ -576,6 +576,7 @@
                                     <!-- /Reviews -->
 
                                     <!-- Review Form -->
+                                    <%if (auth != null) {%>
                                     <div class="col-md-3">
                                         <div id="review-form">
                                             <form class="review-form" method="post" action="/THDoAn_war/Comment">
@@ -609,6 +610,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <%}else {%>
+                                    <h5>Để viết đánh giá bạn cần đăng nhập</h5>
+                                    <%}%>
                                     <!-- /Review Form -->
                                 </div>
                             </div>
@@ -772,10 +776,10 @@
                             <h3 class="footer-title">Thông Tin</h3>
                             <ul class="footer-links">
                                 <li><a href="about.jsp">Giới thiệu</a></li>
-                                <li><a href="lien_he.html">Liên hệ chúng tôi</a></li>
-                                <li><a href="Cs_bao_mat.html">Chính sách bảo mật</a></li>
-                                <li><a href="Cs_trahang.html">Đơn hàng và Trả hàng</a></li>
-                                <li><a href="đk_đk.html">Điều khoản và điều kiện</a></li>
+                                <li><a href="lien_he.jsp">Liên hệ chúng tôi</a></li>
+                                <li><a href="Cs_bao_mat.jsp">Chính sách bảo mật</a></li>
+                                <li><a href="Cs_trahang.jsp">Đơn hàng và Trả hàng</a></li>
+                                <li><a href="dk_dk.jsp">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
                     </div>
