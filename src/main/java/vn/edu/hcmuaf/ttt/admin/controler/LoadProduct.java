@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -14,18 +15,26 @@ import java.util.List;
 public class LoadProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id= request.getParameter("id");
-        List<Category> listc = ProductService.getCategory();
-
-        if (id != null) {
-            Product product = ProductService.getProductById(id);
-            request.setAttribute("product", product);
+        User user = (User) request.getSession().getAttribute("auth");
+        boolean isLoggedIn = user != null;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        if (!isLoggedIn || isNormalUser)  {
+            response.sendRedirect("/THDoAn_war/List-Product");
         } else {
-            response.sendError(404, "Product Not Found");
-        }
-        request.setAttribute("listc", listc);
+            String id= request.getParameter("id");
+            List<Category> listc = ProductService.getCategory();
 
-        request.getRequestDispatcher("admin/editProduct.jsp").forward(request, response);
+            if (id != null) {
+                Product product = ProductService.getProductById(id);
+                request.setAttribute("product", product);
+            } else {
+                response.sendError(404, "Product Not Found");
+            }
+            request.setAttribute("listc", listc);
+
+            request.getRequestDispatcher("admin/editProduct.jsp").forward(request, response);
+        }
+
     }
 
     @Override
