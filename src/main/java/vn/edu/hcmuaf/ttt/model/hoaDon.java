@@ -10,7 +10,7 @@ public class hoaDon implements Serializable {
     private String HD_email;
     private String HD_sdt;
     private String city;
-    private String disitrict;
+    private String district;
     private String ward;
     private String note;
     private String id;
@@ -25,14 +25,14 @@ public class hoaDon implements Serializable {
 
     }
 
-    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sdt, String city, String disitrict, String ward, String note, String id, String tenSp, String toongGia, String soLuong, Date ngayTaoHD, int status) {
+    public hoaDon(int soHD, String user_id, String hoVaTen, String HD_email, String HD_sdt, String city, String district, String ward, String note, String id, String tenSp, String toongGia, String soLuong, Date ngayTaoHD, int status) {
         this.soHD = soHD;
         this.user_id = user_id;
         this.hoVaTen = hoVaTen;
         this.HD_email = HD_email;
         this.HD_sdt = HD_sdt;
         this.city = city;
-        this.disitrict = disitrict;
+        this.district = district;
         this.ward = ward;
         this.note = note;
         this.id = id;
@@ -91,12 +91,12 @@ public class hoaDon implements Serializable {
         this.city = city;
     }
 
-    public String getDisitrict() {
-        return disitrict;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setDisitrict(String disitrict) {
-        this.disitrict = disitrict;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getWard() {
@@ -172,7 +172,7 @@ public class hoaDon implements Serializable {
                 ", HD_email='" + HD_email + '\'' +
                 ", HD_sđt='" + HD_sdt + '\'' +
                 ", city='" + city + '\'' +
-                ", disitrict='" + disitrict + '\'' +
+                ", disitrict='" + district + '\'' +
                 ", ward='" + ward + '\'' +
                 ", note='" + note + '\'' +
                 ", id='" + id + '\'' +

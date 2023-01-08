@@ -1,6 +1,8 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
@@ -126,9 +128,22 @@
                             <div class="card bg-gradient-danger card-img-holder text-white">
                                 <div class="card-body">
                                     <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3"> Doanh thu trong tháng <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3"> Doanh thu <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                                     </h4>
-                                    <h2 class="mb-5">19.280.000 đ</h2>
+                                    <% List<String> listTongGia = (List<String>) request.getAttribute("listTongGia");
+                                    int total = 0;%>
+                                    <%  for (String tg :listTongGia) {
+
+                                        int i = Integer.parseInt(tg);
+
+                                        total+=i;}
+                                    %>
+                                    <%
+                                        Locale locale = new Locale("vi");
+                                        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                        String t = format.format(total).split(",")[0];
+                                    %>
+                                    <h2 class="mb-5"><%= t %> đ</h2>
 
                                 </div>
                             </div>
@@ -137,9 +152,10 @@
                             <div class="card bg-gradient-info card-img-holder text-white">
                                 <div class="card-body">
                                     <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">Số đơn hàng trong tháng <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3">Số đơn <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                                     </h4>
-                                    <h2 class="mb-5">28</h2>
+                                    <% String countHD = (String) request.getAttribute("countHD"); %>
+                                    <h2 class="mb-5"><%= countHD %></h2>
 
                                 </div>
                             </div>
@@ -176,7 +192,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <% List<Product> list = (List<Product>) request.getAttribute("listn");
+                                            <% List<Product> list = (List<Product>) request.getAttribute("needToAdd");
                                                 for (Product p: list) { %>
                                             <tr>
                                                 <td>
@@ -184,7 +200,11 @@
                                                 </td>
                                                 <td> <%= p.getClassify() %> </td>
                                                 <td>
-                                                    <label class="badge badge-gradient-success"> <%= p.getPrice()%> đ</label>
+                                                    <%Locale locale1 = new Locale("vi");
+                                                        NumberFormat format1 = NumberFormat.getCurrencyInstance(locale1);
+                                                        String g = format1.format(p.getPrice()).split(",")[0];
+                                                    %>
+                                                    <label class="badge badge-gradient-success"> <%=g%> đ</label>
                                                 </td>
                                                 <td> <%= p.getId() %> </td>
                                             </tr>

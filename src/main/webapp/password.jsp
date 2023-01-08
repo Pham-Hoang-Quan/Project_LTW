@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<html>
+<meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
     <!-- Google font -->
@@ -379,9 +380,13 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="signup-form">
-        <form action="/examples/actions/confirmation.php" method="post">
+        <form action="/THDoAn_war/forgot_password" method="post">
             <h2 style="font-size:18px;">Lấy Lại Mật Khẩu</h2>
+
+            <p class="text-danger">${error}</p>
+            <p class="text-danger">${message}</p>
             <div class="form-group">
+
                 <input type="text" class="form-control" name="email" placeholder="Nhập Email Hoặc Sô điện thoại" required="required">
             </div>
 
@@ -390,6 +395,7 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Tiếp Theo</button>
             </div>
             <div class="text-center"> Bạn có cần hổ trợ không? <a href="#">Hộ Trợ</a></div>
+        </form>
     </div>
     </form>
 

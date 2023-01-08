@@ -45,8 +45,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="statistical.html">
-                <span class="menu-title">Thống kê</span>
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/SliderList">
+                <span class="menu-title">Quản lý slider</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
         </li>
