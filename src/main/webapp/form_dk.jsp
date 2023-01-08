@@ -269,17 +269,17 @@
                     <li><a href="#"><i class="fa fa-envelope-o"></i> DH20DT@email.com</a></li>
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
-                <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
-                        <% User auth= (User) session.getAttribute("auth");%>
-                        <% if(auth==null){ %>
-                        Bạn chưa đăng nhập
-                        <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
-
-                        <% } %>
-
-                    </a></li>
+                <ul class="header-links pull-right">>
+                    <% User auth= (User) session.getAttribute("auth");%>
+                    <% if(auth==null){ %>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
+                    <% }else {%>
+                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>
+                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>
+                    <% if(auth.getUser_admin() == 1){%>
+                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <%}%>
+                    <% } %>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -320,55 +320,15 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div>
+                                <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Giỏ Hàng</span>
-                                    <div class="qty">3</div>
+                                    <div class="qty">${cart.quantily}</div>
                                 </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="#">Xem</a>
-                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /Cart -->
 

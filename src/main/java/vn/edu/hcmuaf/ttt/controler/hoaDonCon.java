@@ -30,8 +30,6 @@ public class hoaDonCon extends HttpServlet {
         String dateComment = request.getParameter("dateComment");
 
 
-//        String tongGia = request.getParameter("tongTien");
-
 
         List<String[]> listHoadon = new ArrayList<>();
         int idi = Integer.parseInt(request.getParameter("countSP"));

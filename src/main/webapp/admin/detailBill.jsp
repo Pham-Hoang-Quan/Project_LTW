@@ -57,9 +57,11 @@
                   </div>
 
                   <div>
+
                     <p> <strong class="">Email: </strong> <%= h.getHD_email()%></p>
                     <p> <strong class="">Số điện thoại: </strong> <%= h.getHD_sdt()%></p>
                     <p> <strong class="">Địa chỉ:</strong> <%= h.getWard()%> <%= h.getDisitrict()%> <%= h.getCity()%></p>
+
                   </div>
                 </div>
 
