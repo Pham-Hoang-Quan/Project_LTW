@@ -49,6 +49,14 @@ public class ProductService {
         return list;
 
 
+
+
+
+    }
+
+    // đếm bao nhiêu sản phẩm từ hàm getData()
+    public static int countProduct() {
+        return getData().size();
     }
 
     public static List<Product> getKhoanMini() {
@@ -242,6 +250,17 @@ public static   List<Product> getSale(){
         );
         return list;
     }
+
+    public static List<Product> pagingProductAdmin(int index) {
+        List<Product> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM products limit ?,10")
+                        .bind(0, (index-1)*10)
+                        .mapToBean(Product.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
@@ -249,20 +268,23 @@ public static   List<Product> getSale(){
                         .execute());
     }
 
-    static public  void insertProduct(String id, String name, String classify, String img, String percent, int qty, int price,
+    static public  void insertProduct(String name, String classify, String img, String img2, String img3, String img4, String percent, int qty, int price,
                                       String content, String info){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" INSERT into products(id, name, img, price, classify, percent, quantily, content, info) VALUES (?,?,?,?,?,?,?,?,?)")
+                h.createUpdate(" INSERT into products( name, img, img2, img3, img4, price, classify, percent, quantily, content, info) VALUES (?,?,?,?,?,?,?,?,?,?,?)")
 
-                        .bind(0, id)
-                        .bind(1,name )
-                        .bind(2, img)
-                        .bind(3, price)
-                        .bind(4, classify)
-                        .bind(5, percent)
-                        .bind(6, qty)
-                        .bind(7, content)
-                        .bind(8, info)
+                        //.bind(0, id)
+                        .bind(0,name )
+                        .bind(1, img)
+                        .bind(2, img2)
+                        .bind(3, img3)
+                        .bind(4, img4)
+                        .bind(5, price)
+                        .bind(6, classify)
+                        .bind(7, percent)
+                        .bind(8, qty)
+                        .bind(9, content)
+                        .bind(10, info)
                         .execute());
     }
 
@@ -287,7 +309,7 @@ public static   List<Product> getSale(){
 
     public static void main(String[] args) {
 
-        System.out.println(getSale());
+        System.out.println(countProduct());
 //
     }
 

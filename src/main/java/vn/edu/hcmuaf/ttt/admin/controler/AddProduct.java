@@ -20,13 +20,16 @@ public class AddProduct extends HttpServlet {
         String name = request.getParameter("name");
         String classify = request.getParameter("classify");
         String img = request.getParameter("img");
+        String img2 = request.getParameter("img2");
+        String img3 = request.getParameter("img3");
+        String img4 = request.getParameter("img4");
         String percent = request.getParameter("percent");
         int qty = Integer.parseInt(request.getParameter("qty"));
         int price = Integer.parseInt(request.getParameter("price"));
         String content = request.getParameter("content");
         String info = request.getParameter("info");
 
-        ProductService.insertProduct(id,name, classify, img, percent, qty, price, content, info);
+        ProductService.insertProduct(name, classify, img, img2, img3, img4, percent, qty, price, content, info);
         response.sendRedirect("ProAdmin");
     }
 }

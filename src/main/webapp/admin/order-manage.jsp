@@ -2,6 +2,8 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,18 +46,18 @@
                             <i class="mdi mdi-cart"></i>
                             </span> Quản lý đơn hàng
                         </h3>
-                        <nav aria-label="breadcrumb">
-                            <div class="search-field d-none d-md-block">
-                                <form class="d-flex align-items-center h-100" action="#">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                                        </div>
-                                        <input type="text" class="form-control todo-list-input" placeholder="Tìm kiếm đơn hàng">
-                                    </div>
-                                </form>
-                            </div>
-                        </nav>
+<%--                        <nav aria-label="breadcrumb">--%>
+<%--                            <div class="search-field d-none d-md-block">--%>
+<%--                                <form class="d-flex align-items-center h-100" action="SearchOrder">--%>
+<%--                                    <div class="input-group">--%>
+<%--                                        <div class="input-group-prepend bg-transparent">--%>
+<%--                                            <i class="input-group-text border-0 mdi mdi-magnify"></i>--%>
+<%--                                        </div>--%>
+<%--                                        <input name="txt" type="text" class="form-control todo-list-input" placeholder="Tìm kiếm đơn hàng">--%>
+<%--                                    </div>--%>
+<%--                                </form>--%>
+<%--                            </div>--%>
+<%--                        </nav>--%>
                     </div>
 
                     <main>
@@ -89,16 +91,22 @@
                                             <tr>
                                                 <td><%=h.getSoHD()%></td>
                                                 <td><%=h.getHoVaTen()%></td>
-                                                <td class="text-danger"> <%= h.getToongGia()%> đ </td>
+                                                <%  int tg = Integer.parseInt(h.getToongGia());
+                                                    Locale locale = new Locale("vi");
+                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                    String gia1 = format.format(tg).split(",")[0];
+                                                %>
+                                                <td class="text-danger"> <%=gia1%> đ </td>
+
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-                                                    <a href="<%= "/THDoAn_war/AcceptOrder?SoHD=" + h.getSoHD() %>">
+                                                    <a style="text-decoration: none" href="<%= "/THDoAn_war/AcceptOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-success">Xác nhận</label>
                                                     </a>
-                                                    <a href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                    <a style="text-decoration: none" href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-danger">Hủy đơn</label>
                                                     </a>
-                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
+                                                    <a style="text-decoration: none" href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
 
@@ -137,13 +145,19 @@
                                             <tr>
                                                 <td><%=h.getSoHD()%></td>
                                                 <td><%=h.getHoVaTen()%></td>
-                                                <td class="text-danger"> <%= h.getToongGia()%> đ </td>
+                                                <%  int tg = Integer.parseInt(h.getToongGia());
+                                                    Locale locale = new Locale("vi");
+                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                    String gia = format.format(tg).split(",")[0];
+                                                %>
+                                                <td class="text-danger"> <%=gia%> đ </td>
+<%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-                                                    <a href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                    <a style="text-decoration: none" href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-danger">Xóa</label>
                                                     </a>
-                                                    <a href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
+                                                    <a style="text-decoration: none" href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
 
