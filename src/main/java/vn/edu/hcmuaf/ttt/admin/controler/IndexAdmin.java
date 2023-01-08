@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.IndexService;
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
@@ -15,21 +16,27 @@ import java.util.List;
 public class IndexAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> list = ProductService.getData();
-        List<Product> listn = ProductService.getLast();
+        User user = (User) request.getSession().getAttribute("auth");
+        boolean isLoggedIn = user != null;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        if (!isLoggedIn || isNormalUser)  {
+            response.sendRedirect("/THDoAn_war/List-Product");
+        } else {
+            List<Product> list = ProductService.getData();
+            List<Product> listn = ProductService.getLast();
 
-        request.setAttribute("listn", listn);
+            request.setAttribute("listn", listn);
 
-        String countProduct;
-        try {
-            countProduct = IndexService.CountProducts();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            String countProduct;
+            try {
+                countProduct = IndexService.CountProducts();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            request.setAttribute("countProduct", countProduct);
+
+            request.getRequestDispatcher("admin/index.jsp").forward(request, response);
         }
-        request.setAttribute("countProduct", countProduct);
-
-        request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-
 
     }
 

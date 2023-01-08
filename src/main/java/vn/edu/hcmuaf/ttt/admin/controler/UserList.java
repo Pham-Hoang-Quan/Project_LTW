@@ -13,10 +13,18 @@ import java.util.List;
 public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> listUser = UserService.listUser();
+        User user = (User) request.getSession().getAttribute("auth");
+        boolean isLoggedIn = user != null;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        if (!isLoggedIn || isNormalUser)  {
+            response.sendRedirect("/THDoAn_war/List-Product");
+        } else {
+            List<User> listUser = UserService.listUser();
 
-        request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("admin/user-manage.jsp").forward(request, response);
+            request.setAttribute("listUser", listUser);
+            request.getRequestDispatcher("admin/user-manage.jsp").forward(request, response);
+        }
+
     }
 
     @Override

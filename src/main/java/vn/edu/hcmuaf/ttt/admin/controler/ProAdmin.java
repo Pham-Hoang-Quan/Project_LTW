@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -14,12 +15,19 @@ import java.util.List;
 public class ProAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> list = ProductService.getData();
-        List<Category> listc = ProductService.getCategory();
+        User user = (User) request.getSession().getAttribute("auth");
+        boolean isLoggedIn = user != null;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        if (!isLoggedIn || isNormalUser)  {
+            response.sendRedirect("/THDoAn_war/List-Product");
+        } else {
+            List<Product> list = ProductService.getData();
+            List<Category> listc = ProductService.getCategory();
 
-        request.setAttribute("list", list);
-        request.setAttribute("listc", listc);
-        request.getRequestDispatcher("admin/product-manage.jsp").forward(request, response);
+            request.setAttribute("list", list);
+            request.setAttribute("listc", listc);
+            request.getRequestDispatcher("admin/product-manage.jsp").forward(request, response);
+        }
 
     }
 
