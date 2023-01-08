@@ -2,13 +2,13 @@ package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
+import vn.edu.hcmuaf.ttt.service.CategoryService;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ListProduct", value = "/List-Product")
@@ -24,16 +24,31 @@ public class ListProduct extends HttpServlet {
         }
         int index = Integer.parseInt(indextpage);
 
-        int count = ProductService.getTotalProducts();
+
+
+        String[] categories = request.getParameterValues("category");
+        double minPrice;
+        double maxPrice;
+        try {
+            minPrice = Double.parseDouble(request.getParameter("minPrice"));
+            maxPrice  = Double.parseDouble(request.getParameter("maxPrice"));
+        } catch (NullPointerException e) {
+            minPrice = 0;
+            maxPrice = 0;
+        }
+
+
+
+        List<Category> classifies = CategoryService.getCategoriesBasedOnId(categories);
+
+        int count = ProductService.countTotalProducts(new ProductFilterParams(maxPrice, minPrice, index, classifies));
         int endPage = count /12;
         if(count % 12 != 0){
             endPage++;
         }
 
-        List<String> classifies = new ArrayList<String>();
-                classifies.add("Khoan mini");
-        classifies.add("Khoan bàn");
-        List<Product> page = ProductService.getFilteredProducts(index, new ProductFilterQueryParams(700000, 1000, index, classifies));
+
+        List<Product> page = ProductService.getFilteredProducts(index, new ProductFilterParams(maxPrice, minPrice, index, classifies));
 
         request.setAttribute("list", page);
 

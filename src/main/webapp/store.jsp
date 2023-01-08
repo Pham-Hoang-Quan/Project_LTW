@@ -301,7 +301,7 @@
                                 for (Category p:list3) { %>
 
                             <div class="input-checkbox">
-                                <input type="checkbox" name="categoryCheck" id="category-<%=p.getCid()%>">
+                                <input type="checkbox" name="categoryCheck" id="category-<%=p.getCid()%>" check="false">
                                 <label for="category-<%=p.getCid()%>">
 										<span></span>
 										<%= p.getcName()%>
@@ -634,6 +634,7 @@
     <script src="js/nouislider.min.js"></script>
     <script src="js/jquery.zoom.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/store.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
