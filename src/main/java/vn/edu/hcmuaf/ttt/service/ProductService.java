@@ -46,6 +46,7 @@ public class ProductService {
     }
 
     public static List<Product> getData() {
+
         List<Product> list = new LinkedList<>();
         try {
             Statement statement = DBConnect.getInstall().get();
@@ -74,7 +75,7 @@ public class ProductService {
     public static int countProduct() {
         return getData().size();
     }
-
+    //sản phẩm khoan Bê Mini cho index
     public static List<Product> getKhoanMini() {
         List<Product> list = new LinkedList<>();
 
@@ -91,7 +92,7 @@ public class ProductService {
         }
         return list;
     }
-
+    //sản phẩm khoan Bê động lực cho index
     public static List<Product> getKhoanDongLuc() {
         List<Product> list = new LinkedList<>();
 
@@ -125,6 +126,7 @@ public class ProductService {
         }
         return list;
     }
+
 
     public static List<Category> getCategory() {
         List<Category> list = new LinkedList<>();
@@ -176,6 +178,7 @@ public class ProductService {
         }
         return list;
     }
+
 
     //sản phẩm tương tự
     public static List<Product> getSanPhamTuongTu() {
@@ -232,6 +235,7 @@ public class ProductService {
 
         });
     }
+
 
     public static List<Product> searchByName(String txtSearch) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
@@ -325,7 +329,7 @@ public class ProductService {
         );
         return list;
     }
-
+//Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM products limit ?,10")
@@ -336,7 +340,6 @@ public class ProductService {
         );
         return list;
     }
-
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
@@ -344,8 +347,10 @@ public class ProductService {
                         .execute());
     }
 
+
     static public void insertProduct(String name, String classify, String img, String img2, String img3, String img4, String percent, int qty, int price,
                                      String content, String info) {
+
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate(" INSERT into products( name, img, img2, img3, img4, price, classify, percent, quantily, content, info) VALUES (?,?,?,?,?,?,?,?,?,?,?)")
 
@@ -363,6 +368,7 @@ public class ProductService {
                         .bind(10, info)
                         .execute());
     }
+
 
 
     static public void editProduct(String id, String name, String classify, String percent, int qty, int price,

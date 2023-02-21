@@ -38,11 +38,12 @@ public class Cart implements Serializable {
             }
         updateTotalMoneyAndQuantily();
         }
+        //thêm sản phẩm hai lần ghi dè lên
         public  void put(String key, int quantily){
         if(data.containsKey(key)){
-            Product p1 = data.get(key);
+            Product p1 = data.get(key);// lấy sản phẩm ra
             p1.setQuantily(quantily);
-            data.put(key,p1);
+            data.put(key,p1);// put ngược vào
         }
             updateTotalMoneyAndQuantily();
         }
@@ -68,11 +69,11 @@ public class Cart implements Serializable {
         }
 
 
-
+//mỗi lần thay đổi giá trị số lượng thì cập nhật lại
     private void updateTotalMoneyAndQuantily() {
         total = 0;
         quantily =0;
-        for (Product p : data.values()){
+        for (Product p : data.values()){ // for tất cả các phần tử trong map
             total += p.getQuantily()*p.getPrice();
             quantily += p.getQuantily();
     }

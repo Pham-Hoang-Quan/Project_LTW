@@ -1,4 +1,4 @@
-
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
@@ -309,56 +309,11 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu Thích</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
+
                             <!-- /Wishlist -->
 
                             <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Giỏ Hàng</span>
-                                    <div class="qty">3</div>
-                                </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/180-LI(Q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
 
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>2 Sản Phẩm</small>
-                                        <h5>Tổng: 1.880.000</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="#">Xem</a>
-                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- /Cart -->
 
                             <!-- Menu Toogle -->
@@ -380,19 +335,46 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="signup-form">
-        <form action="/THDoAn_war/forgot_password" method="post">
+        <form action="/THDoAn_war/forgot-password" method="post">
             <h2 style="font-size:18px;">Lấy Lại Mật Khẩu</h2>
 
-            <p class="text-danger">${error}</p>
-            <p class="text-danger">${message}</p>
-            <div class="form-group">
 
-                <input type="text" class="form-control" name="email" placeholder="Nhập Email Hoặc Sô điện thoại" required="required">
+            <div class="form-group">
+                <input type="text" class="form-control" name="user" placeholder="Tên Đăng nhâp" required="required">
+
+                <input type="text" class="form-control" name="email" placeholder="Nhập Email" required="required">
+            </div>
+<% String message = (String) request.getAttribute("message");
+    User acc = (User) request.getAttribute("acc");
+    if(acc != null) {
+        if(message != null){
+
+
+%>
+            <div class="alert-danger">
+        <%= message%>
+
             </div>
 
+            <%
+                    }
+                }
+                if (acc == null) {
+                    if (message != null) {
+            %>
+            <div class="alert-danger">
+
+                <%= message %>
+            </div>
+            <%
+                    }
+                }
+            %>
+
+
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Tiếp Theo</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Xác nhận</button>
             </div>
             <div class="text-center"> Bạn có cần hổ trợ không? <a href="#">Hộ Trợ</a></div>
         </form>
