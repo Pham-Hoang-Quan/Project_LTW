@@ -13,6 +13,7 @@ public class hoaDonService {
     public hoaDonService(){
 
     }
+    //lấy thông tin từ trang thanh toán
     static public  void hoaDon(String soHD ,String user_id, String hoVaTen, String HD_email,String HD_sdt,String city, String disitrict, String ward, String note,String id, String tenSp, String toongGia,String soLuong, String ngayTaoHD){
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate(" INSERT INTO hoadon VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,0)")
@@ -34,6 +35,7 @@ public class hoaDonService {
                         .execute());
 
     }
+    //lịch sử đơn hàng
     public  static List<hoaDon> getlichSu(String user_id){
         List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM hoadon WHERE user_id like ?")
@@ -55,6 +57,7 @@ public class hoaDonService {
         );
         return list;
     }
+    //đơn hàng chi tiết
     public  static hoaDon getinfoBill(int soHD){
         return JDBiConnector.me().withHandle(handle -> {
             return handle.createQuery("SELECT DISTINCT HoVaTen, HD_email, HD_sdt, city, district, ward, note, ngayTaoHD FROM hoadon WHERE soHD = ?")
@@ -65,6 +68,7 @@ public class hoaDonService {
 
         });
     }
+    //chỉnh sủa số lượng khi thêm giỏ hàng
     static public  void updateQty(String soluong,String id){
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("UPDATE products\n" +

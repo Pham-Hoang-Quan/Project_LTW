@@ -20,6 +20,7 @@ public class CommentService {
         );
         return list;
     }
+
     public boolean createNewComment(  String user_id ,
      int id ,
      String ngayTao ,

@@ -26,6 +26,7 @@ public class ProductService {
         }
         return instance;
     }
+    //lấy sản phẩm từ csdl lên
     public static List<Product> getData(){
         List<Product> list = new LinkedList<>();
         try {
@@ -58,7 +59,7 @@ public class ProductService {
     public static int countProduct() {
         return getData().size();
     }
-
+    //sản phẩm khoan Bê Mini cho index
     public static List<Product> getKhoanMini() {
         List<Product> list = new LinkedList<>();
 
@@ -75,7 +76,7 @@ public class ProductService {
         }
         return list;
     }
-
+    //sản phẩm khoan Bê động lực cho index
     public static List<Product> getKhoanDongLuc() {
         List<Product> list = new LinkedList<>();
 
@@ -92,6 +93,7 @@ public class ProductService {
         }
         return list;
     }
+    //sản phẩm khoan Bê tông dùng cho index
     public static List<Product> getKhoanBeTong() {
         List<Product> list = new LinkedList<>();
 
@@ -108,7 +110,7 @@ public class ProductService {
         }
         return list;
     }
-
+//sản phẩm phân loại ở trang sản pham
     public static List<Category> getCategory(){
         List<Category> list = new LinkedList<>();
         try {
@@ -173,7 +175,7 @@ public static   List<Product> getSale(){
        }
        return list;
    }
-
+//lấy ra tên các loại sản phẩm
     public static List<Product> getCTID(String cName){
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("select * from products WHERE classify = ?")
@@ -184,6 +186,7 @@ public static   List<Product> getSale(){
         );
         return list;
     }
+    //danh sách phân loại để hiện thị ở trang index
     public static List<Category> getCategoryIndex(){
         List<Category> list = new LinkedList<>();
         try {
@@ -214,9 +217,10 @@ public static   List<Product> getSale(){
 
        });
     }
+    //tìm kiếm sản phẩm bằng tên
     public  static List<Product> searchByName(String txtSearch){
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from products WHERE `name` LIKE ? ")
+                handle.createQuery("select * from products WHERE `name` LIKE ?")
                         .bind(0,"%" + txtSearch +"%")
                         .mapToBean(Product.class)
                         .stream()
@@ -224,7 +228,7 @@ public static   List<Product> getSale(){
         );
         return list;
     }
-
+    //tính tổng sản phẩm để phân trang
     static public int getTotalProducts(){
         try {
             Statement statement = DBConnect.getInstall().get();
@@ -239,18 +243,18 @@ public static   List<Product> getSale(){
         }
         return 0;
     }
-
-    public static List<Product> pagingProduct(int index) {
+//Phân trang sản phẩm
+public static List<Product> pagingProduct(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM products limit ?,12")
-                        .bind(0, (index-1)*12)
+                        .bind(0, (index-1)*12)//bắt đầu từ 0
                         .mapToBean(Product.class)
                         .stream()
                         .collect(Collectors.toList())
         );
         return list;
     }
-
+//Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM products limit ?,10")
@@ -261,13 +265,14 @@ public static   List<Product> getSale(){
         );
         return list;
     }
+    //xóa sản phâm trên admin
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
                         .bind(0, id)
                         .execute());
     }
-
+//Thêm sản phẩm trên admin
     static public  void insertProduct(String name, String classify, String img, String img2, String img3, String img4, String percent, int qty, int price,
                                       String content, String info){
         JDBiConnector.me().withHandle(h ->
@@ -288,7 +293,7 @@ public static   List<Product> getSale(){
                         .execute());
     }
 
-
+//Phương thức sửa sản phẩm trên admin
     static public  void editProduct(String id, String name, String classify, String percent, int qty, int price,
                                       String content, String info){
         JDBiConnector.me().withHandle(h ->
