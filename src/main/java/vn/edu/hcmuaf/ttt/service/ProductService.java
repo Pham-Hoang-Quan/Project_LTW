@@ -67,7 +67,7 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id ;").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products ").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
 
     }
@@ -97,7 +97,7 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan mini' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("select * from products WHERE classify = 'khoan mini' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
     //sản phẩm khoan Bê động lực cho index
@@ -120,7 +120,7 @@ public class ProductService {
 ////        }
 ////        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan động lực' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("select * from products WHERE classify = 'khoan động lực' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
@@ -146,7 +146,7 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan bê tông' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("select * from products WHERE classify = 'khoan bê tông' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
@@ -187,7 +187,7 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id and isNew = 1  limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products WHERE isNew = 1  limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
@@ -210,7 +210,7 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id and isNew = 2 limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products WHERE isNew = 2 limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
@@ -251,13 +251,13 @@ public class ProductService {
 //        }
 //        return list;
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id order by rand() limit 4").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("select * from products  order by rand() limit 4").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
     public static List<Product> getCTID(String cName) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select  products.*, images.link_img from images,products WHERE pro_id = products.id and classify = ?")
+                handle.createQuery("select  * from products WHERE classify = ?")
                         .bind(0, cName)
                         .mapToBean(Product.class)
                         .stream()
@@ -300,7 +300,7 @@ public class ProductService {
     // Phương thức lấy sản phẩm từ csdl bằng id
     public static Product getProductById(String id) {
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select products.*, images.link_img FROM images,products WHERE images.pro_id = products.id and id = ?").bind(0, id).mapToBean(Product.class).first();
+            return handle.createQuery("select * FROM products WHERE id = ?").bind(0, id).mapToBean(Product.class).first();
 
 
         });
@@ -308,7 +308,7 @@ public class ProductService {
     // lây hình ảnh sản phẩm bằng id pro
     public static Product getImgByProID(String id) {
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT * FROM images, products WHERE images.pro_id = products.id AND pro_id = ? LIMIT 1").bind(0, id).mapToBean(Product.class).first();
+            return handle.createQuery("SELECT * FROM products WHERE  pro_id = ? LIMIT 1").bind(0, id).mapToBean(Product.class).first();
 
 
         });
@@ -318,7 +318,7 @@ public class ProductService {
 //tim liem sp bang ten
     public static List<Product> searchByName(String txtSearch) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select products.*, images.link_img FROM images,products WHERE images.pro_id = products.id and `name` LIKE ? ")
+                handle.createQuery("select * FROM products WHERE `name` LIKE ? ")
                         .bind(0, "%" + txtSearch + "%")
                         .mapToBean(Product.class)
                         .stream()
@@ -403,7 +403,7 @@ public class ProductService {
 
     public static List<Product> pagingProduct(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id limit ?,12")
+                handle.createQuery("SELECT * FROM products limit ?,12")
                         .bind(0, (index - 1) * 12)
                         .mapToBean(Product.class)
                         .stream()

@@ -291,29 +291,37 @@
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
+<%--lọc theo sản phẩm--%>
                     <div class="aside">
-                        <h3 class="aside-title">Sản Phẩm</h3>
+                        <h3 class="aside-title">tìm kiếm sản phẩm </h3>
                         <div class="checkbox-filter">
                             <% List<Category> list3 = (List<Category>) request.getAttribute("listc");
                                 for (Category p:list3) { %>
 
                             <div class="input-checkbox">
                                 <input type="checkbox" name="categoryCheck" id="category-<%=p.getCid()%>" check="false">
+
                                 <label for="category-<%=p.getCid()%>">
+
 										<span></span>
 										<%= p.getcName()%>
 										<small>(120)</small>
 									</label>
+
+
+
+
                             </div>
 
 
 
 <% } %>
                         </div>
-                    </div>
+
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
+<%--lọc theo giá--%>
                     <div class="aside">
                         <h3 class="aside-title">Giá</h3>
                         <div class="price-filter">
@@ -332,12 +340,16 @@
                         </div>
 
                     </div>
+
+
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
                     <!-- /aside Widget -->
+<%-- áp dụng để lọc--%>
                     <div class="aside">
                      <button class="primary-btn cta-btn" id="filterProducts">Áp dụng</button>
+                    </div>
                     </div>
                     <!-- aside Widget -->
                     <div class="aside">
@@ -346,7 +358,7 @@
                             for (Product p:list1) { %>
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="<%= p.getLink_img()%>" alt="">
+                                <img src="<%= p.getImg()%>" alt="">
                             </div>
                             <%
                                 Locale locale = new Locale("vi");
@@ -386,9 +398,9 @@
                             <div class="product">
                                 <a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>">
                                 <div class="product-img">
-                                    <a href="id=<%=p.getId()%>"><p><%=p.getId()%></p></a>
 
-                                    <img src="<%=p.getLink_img()%>">
+
+                                    <img src="<%=p.getImg()%>">
 
 
                                     <% if(p.getIsNew() == 1){ %>
@@ -668,7 +680,21 @@
             }
         });
     </script>
-
+<script>
+    function getSelectedPriceRanges() {
+        var priceFilters = [];
+        var checkboxes = document.getElementsByName('price');
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                var range = checkboxes[i].value.split('-');
+                var minPrice = range[0];
+                var maxPrice = range[1];
+                priceFilters.push({ minPrice: minPrice, maxPrice: maxPrice });
+            }
+        }
+        return priceFilters;
+    }
+</script>
 </body>
 
 </html>
