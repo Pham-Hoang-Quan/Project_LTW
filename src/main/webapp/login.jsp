@@ -440,10 +440,13 @@
         <form action="/THDoAn_war/dologin" method="post">
             <h2 style="font-size:18px;">Đăng nhập</h2>
             <div class="text-center social-btn">
-<%--                <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>--%>
-                <a href="https://www.facebook.com/dialog/oauth?client_id=359123991240252&redirect_uri=https://localhost:8443/AccessFacebook/login-facebook">Login Facebook</a>
-                <a href="https://www.twitter.com" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Đăng nhập bằng<b> Twitter</b></a>
-                <a href="https://www.google.com" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Đăng nhập bằng<b> Google</b></a>
+                <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>
+                <a href="https://www.facebook.com/dialog/oauth?client_id=359123991240252&redirect_uri=https://localhost:8443/AccessFacebook/login-facebook" class="btn btn-info btn-block">Login Facebook</a>
+<%--                <a href="https://www.twitter.com" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Đăng nhập bằng<b> Twitter</b></a>--%>
+                <a href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&redirect_uri=
+                http://localhost:8080/THDoAn_war/LoginGoogle&response_type=code
+		   &client_id=490492384758-nrgqa1ke34a74mj7ml033ftnhvrhjnh1.apps.googleusercontent.com
+		   " class="btn btn-danger btn-block"><i class="fa fa-google"></i>Đăng nhập bằng<b> Google</b></a>
             </div>
             <div class="or-seperator"><i>hoặc</i></div>
 
