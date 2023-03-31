@@ -22,6 +22,7 @@ public class Comment extends HttpServlet {
         int ratingComment = Integer.parseInt(request.getParameter("ratingComment"));
         String dateComment = request.getParameter("dateComment");
 
+
         new CommentService().createNewComment(userIdComment,productIdComment,dateComment,textComment,ratingComment);
         response.sendRedirect("/THDoAn_war/detail?id="+productIdComment);
 

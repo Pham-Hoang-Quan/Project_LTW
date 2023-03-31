@@ -47,29 +47,31 @@ public class ProductService {
 
     public static List<Product> getData() {
 
-        List<Product> list = new LinkedList<>();
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                //lấy sản phẩm bk
-//                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 3");
-                //....
-                ResultSet rs = statement.executeQuery("select * from products");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2),
-                            rs.getString(3), rs.getInt(4), rs.getString(5)
-                            , rs.getString(6), rs.getInt(7), rs.getString(8),
-                            rs.getString(9), rs.getString(10), rs.getString(11),
-                            rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
-
+//        List<Product> list = new LinkedList<>();
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                //lấy sản phẩm bk
+////                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 3");
+//                //....
+//                ResultSet rs = statement.executeQuery("select * from products");
+//                while (rs.next()) {
+//                                        list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id ;").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
 
     }
+
 
     // đếm bao nhiêu sản phẩm từ hàm getData()
     public static int countProduct() {
@@ -77,54 +79,75 @@ public class ProductService {
     }
     //sản phẩm khoan Bê Mini cho index
     public static List<Product> getKhoanMini() {
-        List<Product> list = new LinkedList<>();
-
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan mini' order by rand() LIMIT 3");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
+//        List<Product> list = new LinkedList<>();
+//
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan mini' order by rand() LIMIT 3");
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan mini' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
     //sản phẩm khoan Bê động lực cho index
     public static List<Product> getKhoanDongLuc() {
-        List<Product> list = new LinkedList<>();
-
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan động lực' order by rand() LIMIT 3");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
+//        List<Product> list = new LinkedList<>();
+////
+////        try {
+////            Statement statement = DBConnect.getInstall().get();
+////            if (statement != null) {
+////                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan động lực' order by rand() LIMIT 3");
+////                while (rs.next()) {
+////                    list.add(new Product(rs.getString(1), rs.getString(2),
+////                            rs.getInt(3), rs.getString(4)
+////                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+////
+////                }
+////            }
+////        } catch (SQLException e) {
+////            throw new RuntimeException(e);
+////        }
+////        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan động lực' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
 
     public static List<Product> getKhoanBeTong() {
-        List<Product> list = new LinkedList<>();
-
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan bê tông' order by rand() LIMIT 3");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
+//        List<Product> list = new LinkedList<>();
+//
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                ResultSet rs = statement.executeQuery("select * from products where classify = 'khoan bê tông' order by rand() LIMIT 3");
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//                    //                    list.add(new Product(rs.getString(1), rs.getString(2),
+////                            rs.getInt(3), rs.getString(4)
+////                            , rs.getString(5), rs.getInt(6), rs.getString(7),
+////                            rs.getInt(8), rs.getString(9), rs.getString(10)));
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id and classify = 'khoan bê tông' order by rand() LIMIT 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
 
 
@@ -147,59 +170,94 @@ public class ProductService {
 
     //lay sản phẩm mới
     public static List<Product> getLast() {
-        List<Product> list = new LinkedList<>();
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 1  limit 5");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
+//        List<Product> list = new LinkedList<>();
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 1  limit 5");
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id and isNew = 1  limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
 
     // sản phẩm sale
     public static List<Product> getSale() {
-        List<Product> list = new LinkedList<>();
-        try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
-                ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 2 limit 5");
-                while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
+//        List<Product> list = new LinkedList<>();
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                ResultSet rs = statement.executeQuery("SELECT * FROM products WHERE isNew = 2 limit 5");
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE pro_id = products.id and isNew = 2 limit 5").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
 
 
-    //sản phẩm tương tự
-    public static List<Product> getSanPhamTuongTu() {
-        List<Product> list = new LinkedList<>();
+    public static List<String> getImgDetail() {
+        List<String> list = new LinkedList<>();
         try {
             Statement statement = DBConnect.getInstall().get();
             if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 4");
+                ResultSet rs = statement.executeQuery("select link_img from products JOIN images on products.id = images.pro_id\n" +
+                        "WHERE products.id = 1");
                 while (rs.next()) {
-                    list.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14)));
+                    list.add(rs.getString(1));
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return list;
+
+    }
+    //sản phẩm tương tự
+    public static List<Product> getSanPhamTuongTu() {
+//        List<Product> list = new LinkedList<>();
+//        try {
+//            Statement statement = DBConnect.getInstall().get();
+//            if (statement != null) {
+//                ResultSet rs = statement.executeQuery("select * from products order by rand() limit 4");
+//                while (rs.next()) {
+//                    list.add(new Product(rs.getString(1), rs.getString(2),
+//                            rs.getInt(3), rs.getString(4)
+//                            , rs.getString(5), rs.getInt(6), rs.getString(7),rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11)));
+//
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select products.*, images.link_img from images,products WHERE pro_id = products.id order by rand() limit 4").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
     }
 
     public static List<Product> getCTID(String cName) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from products WHERE classify = ?")
+                handle.createQuery("select  products.*, images.link_img from images,products WHERE pro_id = products.id and classify = ?")
                         .bind(0, cName)
                         .mapToBean(Product.class)
                         .stream()
@@ -207,6 +265,18 @@ public class ProductService {
         );
         return list;
     }
+
+    // Quan lam thu
+//    public static List<String> getImgDetail(int id) {
+//        List<Product> list = JDBiConnector.me().withHandle(handle ->
+//                handle.createQuery("select link_img from products JOIN images on products.id = images.pro_id WHERE products.id = ?")
+//                        .bind(0, id)
+//                        .mapToBean(Product.class)
+//                        .stream()
+//                        .collect(Collectors.toList())
+//        );
+//        return list;
+//    }
 
     public static List<Category> getCategoryIndex() {
         List<Category> list = new LinkedList<>();
@@ -230,16 +300,25 @@ public class ProductService {
     // Phương thức lấy sản phẩm từ csdl bằng id
     public static Product getProductById(String id) {
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("select * from products where id = ?").bind(0, id).mapToBean(Product.class).first();
+            return handle.createQuery("select products.*, images.link_img FROM images,products WHERE images.pro_id = products.id and id = ?").bind(0, id).mapToBean(Product.class).first();
+
+
+        });
+    }
+    // lây hình ảnh sản phẩm bằng id pro
+    public static Product getImgByProID(String id) {
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT * FROM images, products WHERE images.pro_id = products.id AND pro_id = ? LIMIT 1").bind(0, id).mapToBean(Product.class).first();
 
 
         });
     }
 
 
+//tim liem sp bang ten
     public static List<Product> searchByName(String txtSearch) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("select * from products WHERE `name` LIKE ? ")
+                handle.createQuery("select products.*, images.link_img FROM images,products WHERE images.pro_id = products.id and `name` LIKE ? ")
                         .bind(0, "%" + txtSearch + "%")
                         .mapToBean(Product.class)
                         .stream()
@@ -274,7 +353,10 @@ public class ProductService {
         try {
             Statement statement = DBConnect.getInstall().get();
             if (statement != null) {
-                ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products WHERE classify IN ('Khoan mini', 'Khoan bàn') and price <= 700000");
+                //của thu
+               // ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products WHERE classify IN ('Khoan mini', 'Khoan bàn') and price <= 700000");
+                //đếm số sản phẩm để phân trang
+                ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products");
                 while (rs.next()) {
                     return rs.getInt(1);
                 }
@@ -321,13 +403,14 @@ public class ProductService {
 
     public static List<Product> pagingProduct(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM products limit ?,12")
+                handle.createQuery("SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id limit ?,12")
                         .bind(0, (index - 1) * 12)
                         .mapToBean(Product.class)
                         .stream()
                         .collect(Collectors.toList())
         );
         return list;
+        //SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id ;
     }
 //Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
@@ -389,8 +472,9 @@ public class ProductService {
 
 
     public static void main(String[] args) {
+//        System.out.println(ProductService.pagingProduct(1));
+        System.out.println(ProductService.getProductById("1"));
 
-        System.out.println(countProduct());
 //
     }
 

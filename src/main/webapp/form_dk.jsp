@@ -356,7 +356,7 @@
 
             <p class="hint-text">Đăng ký tài khoản để trải nghiệm dịch vụ tốt nhất</p>
             <div class="form-group">
-                <p class="text-danger">${mess}</p>
+                <p class="alert-danger">${mess}</p>
                 <div class="row">
                     <div class="col"><input type="text" class="form-control" name="user_fullname" placeholder="Họ và tên" required="required"></div>
                     <div class="col"><input type="text" class="form-control" name=user_name placeholder="Tên người dùng(dùng để đăng nhập)" required="required"></div>
@@ -371,10 +371,21 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="user_sdt" placeholder="Số điện thoại" required="required">
             </div>
+            <%  String pass = request.getParameter("user_password");
+            if(pass == null){
+            %>
+            <small id="emailHelp" class="form-text text-muted">Mật khẩu phải có ít nhất 8 ký tự.</small>
+            <small id="emailHelp1" class="form-text text-muted">Mật khẩu phải có ít nhất một ký tự đặt biệt.</small>
+            <%}%>
+            <p class="alert-danger">${meseger}</p>
+            <p class="alert-danger">${mesegers}</p>
             <div class="form-group">
                 <input type="password" class="form-control" name="user_password" placeholder="Mật khẩu" required="required">
             </div>
-            <p class="text-danger">${messs}</p>
+
+
+
+            <p class="alert-danger">${messs}</p>
             <div class="form-group">
                 <input type="password" class="form-control" name="repass" placeholder="Xác nhận mật khẩu" required="required">
             </div>
@@ -386,6 +397,7 @@
             </div>
             <div class="text-center"> Bạn đã có một tài khoản ? <a href="login.jsp">Đăng Nhập</a></div>
     </div>
+
     </form>
 
 
