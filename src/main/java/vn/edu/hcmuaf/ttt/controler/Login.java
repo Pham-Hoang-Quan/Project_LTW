@@ -1,8 +1,10 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.bean.LoginUser;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Cart;
+import vn.edu.hcmuaf.ttt.service.CommentService;
 import vn.edu.hcmuaf.ttt.service.CookieUtils;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
@@ -24,7 +26,9 @@ public class Login extends HttpServlet {
         LoginUser userl = new LoginUser();
         String user_name = request.getParameter("user");
      String user_password = request.getParameter("pass");
+
         User user = UserService.getInstance().checkLogib(user_name,user_password);
+
         Cart cart = new Cart(user,0,0);
       if(user == null){
           request.setAttribute("mess", "Sai Tên người dùng hoặc Mật khẩu");
