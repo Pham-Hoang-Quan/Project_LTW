@@ -301,20 +301,20 @@
                     <div id="product-main-img">
                         <div class="product-preview">
 <%--                            <img src="./img_khoan_mini/product01.jpg" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+    <img src="<%= p.getImg()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getLink_img()%>" alt="">
+                            <img src="<%= p.getImg2()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getLink_img()%>" alt="">
+                            <img src="<%= p.getImg3()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-<%--                            <img src="<%= p.getImg4()%>" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+<%--                            <img src="<%= p.getImg4%>" alt="">--%>
+    <img src="<%= p.getImg4()%>" alt="">
                         </div>
                     </div>
                 </div>
@@ -325,22 +325,22 @@
                     <div id="product-imgs">
                         <div class="product-preview">
 <%--                            <img src="<%= p.getImg()%>" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+    <img src="<%= p.getImg()%>" alt="">
                         </div>
 
                         <div class="product-preview">
 <%--                            <img src="<%= p.getImg2()%>" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+    <img src="<%= p.getImg2()%>" alt="">
                         </div>
 
                         <div class="product-preview">
 <%--                            <img src="<%= p.getImg3()%>" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+    <img src="<%= p.getImg3()%>" alt="">
                         </div>
 
                         <div class="product-preview">
 <%--                            <img src="<%= p.getImg4()%>" alt="">--%>
-    <img src="<%= p.getLink_img()%>" alt="">
+    <img src="<%= p.getImg4()%>" alt="">
                         </div>
                     </div>
                 </div>
@@ -558,7 +558,7 @@
                     <div class="product">
                         <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"></a>
                         <div class="product-img">
-                            <img src="<%= n.getLink_img()%>">
+                            <img src="<%= n.getImg()%>">
 
                             <div class="product-label">
                                 <% if(n.getIsNew() ==1 ){ %>

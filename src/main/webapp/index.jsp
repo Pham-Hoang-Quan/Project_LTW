@@ -416,7 +416,7 @@
 
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="<%= p.getLink_img() %>" alt="">
+                                            <img src="<%= p.getImg() %>" alt="">
                                             <div class="product-label">
 
                                                 <span class="new">NEW</span>
@@ -557,7 +557,7 @@
 
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="<%= p.getLink_img()%>" alt="">
+                                            <img src="<%= p.getImg()%>" alt="">
                                             <div class="product-label">
                                                 <span class="sale"><%= p.getPercent()%></span>
 
@@ -639,7 +639,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -670,7 +670,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -713,7 +713,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -744,7 +744,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -789,7 +789,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -820,7 +820,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getLink_img()%>" alt="">
+                                    <img src="<%=k.getImg()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
