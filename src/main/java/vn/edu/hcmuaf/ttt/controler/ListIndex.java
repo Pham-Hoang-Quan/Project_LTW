@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @WebServlet(name = "ListIndex", value = "")
 public class ListIndex extends HttpServlet {
+
+    String name="List_Index";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> listn = ProductService.getLast() ;
@@ -51,6 +55,7 @@ public class ListIndex extends HttpServlet {
 
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
+        DB.me().insert(new Log(Log.INFO,1,name, listn.toString(),0));
 
     }
 

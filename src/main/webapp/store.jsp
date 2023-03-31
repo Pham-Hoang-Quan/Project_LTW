@@ -346,7 +346,7 @@
                             for (Product p:list1) { %>
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="<%= p.getImg()%>" alt="">
+                                <img src="<%= p.getLink_img()%>" alt="">
                             </div>
                             <%
                                 Locale locale = new Locale("vi");
@@ -386,8 +386,9 @@
                             <div class="product">
                                 <a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>">
                                 <div class="product-img">
+                                    <a href="id=<%=p.getId()%>"><p><%=p.getId()%></p></a>
 
-                                    <img src="<%= p.getImg()%>">
+                                    <img src="<%=p.getLink_img()%>">
 
 
                                     <% if(p.getIsNew() == 1){ %>

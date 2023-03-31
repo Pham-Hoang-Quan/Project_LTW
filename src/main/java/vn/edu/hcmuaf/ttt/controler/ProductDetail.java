@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.*;
 import vn.edu.hcmuaf.ttt.model.Comment;
 import vn.edu.hcmuaf.ttt.service.CommentService;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "ProductDetail", value = "/detail")
 public class ProductDetail extends HttpServlet {
+    String name="Product_Detail";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String id= request.getParameter("id");
@@ -33,6 +36,7 @@ public class ProductDetail extends HttpServlet {
 //        HttpSession session = request.getSession(true);
 //        session.setAttribute("auth", user);
         request.getRequestDispatcher("product.jsp").forward(request, response);
+        DB.me().insert(new Log(Log.INFO,1,name, product.toString(),0));
 
 
 

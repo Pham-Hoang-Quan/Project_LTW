@@ -381,7 +381,7 @@
                                         %>
                                         <tr>
                                             <td class="cart_product_img">
-                                                <a href="#"><img src="<%= c.getImg()%>" alt="Product"></a>
+<%--                                                <a href="#"><img src="<%= c.getImg()%>" alt="Product"></a>--%>
                                             </td>
                                             <td class="cart_product_desc">
                                                 <h5><%= c.getName()%></h5>

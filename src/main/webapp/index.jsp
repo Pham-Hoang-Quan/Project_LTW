@@ -392,12 +392,12 @@
                     <div class="section-title">
                         <h3 class="title">News</h3>
                         <div class="section-nav">
-                            <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="store.jsp">Khoan Mini</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan động lực</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan bê tông</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan bàn</a></li>
-                            </ul>
+<%--                            <ul class="section-tab-nav tab-nav">--%>
+<%--                                <li class="active"><a data-toggle="tab" href="store.jsp">Khoan Mini</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan động lực</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan bê tông</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan bàn</a></li>--%>
+<%--                            </ul>--%>
                         </div>
                     </div>
                 </div>
@@ -416,7 +416,7 @@
 
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="<%= p.getImg() %>" alt="">
+                                            <img src="<%= p.getLink_img() %>" alt="">
                                             <div class="product-label">
 
                                                 <span class="new">NEW</span>
@@ -533,12 +533,12 @@
                     <div class="section-title">
                         <h3 class="title">Sale</h3>
                         <div class="section-nav">
-                            <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="store.jsp">Khoan mini</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan động lực</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan bê tông</a></li>
-                                <li><a data-toggle="tab" href="store.jsp">Khoan bàn</a></li>
-                            </ul>
+<%--                            <ul class="section-tab-nav tab-nav">--%>
+<%--                                <li class="active"><a data-toggle="tab" href="store.jsp">Khoan mini</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan động lực</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan bê tông</a></li>--%>
+<%--                                <li><a data-toggle="tab" href="store.jsp">Khoan bàn</a></li>--%>
+<%--                            </ul>--%>
                         </div>
                     </div>
                 </div>
@@ -557,7 +557,7 @@
 
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="<%= p.getImg()%>" alt="">
+                                            <img src="<%= p.getLink_img()%>" alt="">
                                             <div class="product-label">
                                                 <span class="sale"><%= p.getPercent()%></span>
 
@@ -639,7 +639,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -670,7 +670,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -713,7 +713,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -744,7 +744,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -789,7 +789,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>
@@ -820,7 +820,7 @@
                             %>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="<%=k.getImg()%>" alt="">
+                                    <img src="<%=k.getLink_img()%>" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category"><%=k.getClassify()%></p>

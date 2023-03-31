@@ -7,6 +7,8 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.service.CommentService" %>
+<%@ page import="vn.edu.hcmuaf.ttt.admin.service.HoaDon" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -147,7 +149,12 @@
                     </li>
                 </ul>
                 <ul class="header-links pull-right">>
-                    <% User auth= (User) session.getAttribute("auth");%>
+                    <% User auth= (User) session.getAttribute("auth");
+//                 String user_id = (String) session.getAttribute("user_id");
+//                String id = request.getParameter("id");
+//
+//                boolean hasPurchased = CommentService.checkUserPurchase(user_id, id);
+                    %>
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
@@ -294,19 +301,20 @@
                     <div id="product-main-img">
                         <div class="product-preview">
 <%--                            <img src="./img_khoan_mini/product01.jpg" alt="">--%>
-    <img src="<%= p.getImg()%>" alt="">
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg2()%>" alt="">
+                            <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg3()%>" alt="">
+                            <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg4()%>" alt="">
+<%--                            <img src="<%= p.getImg4()%>" alt="">--%>
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
                     </div>
                 </div>
@@ -316,19 +324,23 @@
                 <div class="col-md-2  col-md-pull-5">
                     <div id="product-imgs">
                         <div class="product-preview">
-                            <img src="<%= p.getImg()%>" alt="">
+<%--                            <img src="<%= p.getImg()%>" alt="">--%>
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg2()%>" alt="">
+<%--                            <img src="<%= p.getImg2()%>" alt="">--%>
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg3()%>" alt="">
+<%--                            <img src="<%= p.getImg3()%>" alt="">--%>
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="<%= p.getImg4()%>" alt="">
+<%--                            <img src="<%= p.getImg4()%>" alt="">--%>
+    <img src="<%= p.getLink_img()%>" alt="">
                         </div>
                     </div>
                 </div>
@@ -349,10 +361,7 @@
                     %>
 
                     <%}%>
-<%--                    <% Product p= (Product) request.getAttribute("product"); %>--%>
 
-<%--                    double tongR = 0;--%>
-<%--                    %>--%>
 
 
 
@@ -424,22 +433,6 @@
 
                         <!-- product tab content -->
                         <div class="tab-content">
-                            <!-- tab1  -->
-<%--                            <div id="tab1" class="tab-pane fade in active">--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-md-12">--%>
-<%--&lt;%&ndash;                                        <p>Công suất 600W giúp khoan tốt trên thép, gỗ, nhôm…</p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <p>Motor chổi than mạnh mẽ.</p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <p>1 chế độ khoan thường với tốc độ không tải lên tới 2.600 vòng/phút, mô men xoắn định mức 20Nm.</p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <p>Nút đảo chiều với 3 chế độ khoan ra, khoan vô, khóa.</p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <p>Thiết kế nhỏ gọn, trọng lượng 1,7kg, dễ cầm nắm, thao tác.</p>&ndash;%&gt;--%>
-<%--                                        <p><%= p.getInfo()%></p>--%>
-
-<%--                                        --%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-                            <!-- /tab1  -->
 
                             <!-- tab2  -->
                             <div id="tab2" class="tab-pane fade in">
@@ -456,89 +449,7 @@
                             <!-- tab3  -->
                             <div id="tab3" class="tab-pane fade in">
                                 <div class="row">
-                                    <!-- Rating -->
-<%--                                    <div class="col-md-3">--%>
-<%--                                        <div id="rating">--%>
-<%--                                            <div class="rating-avg">--%>
-<%--                                                <span>4.5</span>--%>
-<%--                                                <div class="rating-stars">--%>
-<%--                                                    <i class="fa fa-star"></i>--%>
-<%--                                                    <i class="fa fa-star"></i>--%>
-<%--                                                    <i class="fa fa-star"></i>--%>
-<%--                                                    <i class="fa fa-star"></i>--%>
-<%--                                                    <i class="fa fa-star-o"></i>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <div class="rating-stars">--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="rating-progress">--%>
-<%--                                                        <div style="width: 80%;"></div>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="sum">3</span>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <div class="rating-stars">--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="rating-progress">--%>
-<%--                                                        <div style="width: 60%;"></div>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="sum">2</span>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <div class="rating-stars">--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="rating-progress">--%>
-<%--                                                        <div></div>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="sum">0</span>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <div class="rating-stars">--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="rating-progress">--%>
-<%--                                                        <div></div>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="sum">0</span>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <div class="rating-stars">--%>
-<%--                                                        <i class="fa fa-star"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                        <i class="fa fa-star-o"></i>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="rating-progress">--%>
-<%--                                                        <div></div>--%>
-<%--                                                    </div>--%>
-<%--                                                    <span class="sum">0</span>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-                                    <!-- /Rating -->
+
 
                                     <!-- Reviews -->
                                     <div class="col-md-6">
@@ -585,11 +496,9 @@
                                                 <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
 
 
-                                                <% if(auth==null){ %>
-                                                <input class="input" name="userIdComment" style="display: none" value="1" type="text">
-                                                <% }else {%>
+
                                                 <input class="input" name="userIdComment" style="display: none" value="<%= auth.getUser_id()%>" type="text">
-                                                <% } %>
+
 
 
 
@@ -611,7 +520,7 @@
                                         </div>
                                     </div>
                                     <%}else {%>
-                                    <h5>Để viết đánh giá bạn cần đăng nhập</h5>
+                                    <h5>Để viết đánh giá bạn cần mua sản phẩm</h5>
                                     <%}%>
                                     <!-- /Review Form -->
                                 </div>
@@ -649,7 +558,7 @@
                     <div class="product">
                         <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"></a>
                         <div class="product-img">
-                            <img src="<%= n.getImg()%>">
+                            <img src="<%= n.getLink_img()%>">
 
                             <div class="product-label">
                                 <% if(n.getIsNew() ==1 ){ %>
