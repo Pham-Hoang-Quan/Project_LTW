@@ -5,20 +5,19 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private String id;
     private String name;
-    //    private String img;
+    private String img;
     private long price;
     private String classify;
     private String oldPrice;
     private int isNew;
     private String percent;
-
-    //    private String img2;
-//    private String img3;
-//    private String img4;
+    private String img2;
+    private String img3;
+    private String img4;
     private int quantily;
     private String content;
     private String info;
-    private  String link_img;
+//    private  String link_img;
 
 
 
@@ -26,30 +25,23 @@ public class Product implements Serializable {
 
     }
 
-    public Product(String id, String name, long price, String classify, String oldPrice, int isNew, String percent, int quantily, String content, String info, String link_img) {
+    public Product(String id, String name, String img, long price, String classify, String oldPrice, int isNew, String percent, String img2, String img3, String img4, int quantily, String content, String info) {
         this.id = id;
         this.name = name;
-//        this.img = img;
+        this.img = img;
         this.price = price;
         this.classify = classify;
         this.oldPrice = oldPrice;
         this.isNew = isNew;
         this.percent = percent;
-//        this.img2 = img2;
-//        this.img3 = img3;
-//        this.img4 = img4;
+        this.img2 = img2;
+        this.img3 = img3;
+        this.img4 = img4;
         this.quantily = quantily;
         this.content = content;
         this.info = info;
-        this.link_img = link_img;
     }
 
-    public String getLink_img() {
-        return link_img;
-    }
-    public void setLink_img(String link_img) {
-        this.link_img = link_img;
-    }
 
     public String getId() {
         return id;
@@ -69,13 +61,13 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-//    public String getImg() {
-//        return img;
-//    }
+    public String getImg() {
+        return img;
+    }
 
-//    public void setImg(String img) {
-//        this.img = img;
-//    }
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public long getPrice() {
         return price;
@@ -117,29 +109,29 @@ public class Product implements Serializable {
         this.percent = percent;
     }
 
-//    public String getImg2() {
-//        return img2;
-//    }
-//
-//    public void setImg2(String img2) {
-//        this.img2 = img2;
-//    }
-//
-//    public String getImg3() {
-//        return img3;
-//    }
-//
-//    public void setImg3(String img3) {
-//        this.img3 = img3;
-//    }
-//
-//    public String getImg4() {
-//        return img4;
-//    }
-//
-//    public void setImg4(String img4) {
-//        this.img4 = img4;
-//    }
+    public String getImg2() {
+        return img2;
+    }
+
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
+
+    public String getImg3() {
+        return img3;
+    }
+
+    public void setImg3(String img3) {
+        this.img3 = img3;
+    }
+
+    public String getImg4() {
+        return img4;
+    }
+
+    public void setImg4(String img4) {
+        this.img4 = img4;
+    }
 
     public int getQuantily() {
         return quantily;
@@ -182,7 +174,7 @@ public class Product implements Serializable {
                 ", quantily=" + quantily +
                 ", content='" + content + '\'' +
                 ", info='" + info + '\'' +
-                ", img= '" + link_img + '\'' +
+                ", img= '"+ '\'' +
                 '}';
     }
 
