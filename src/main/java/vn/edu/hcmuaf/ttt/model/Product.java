@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private String id;
     private String name;
-//    private String img;
+    //    private String img;
     private long price;
     private String classify;
     private String oldPrice;
     private int isNew;
     private String percent;
 
-//    private String img2;
+    //    private String img2;
 //    private String img3;
 //    private String img4;
     private int quantily;
