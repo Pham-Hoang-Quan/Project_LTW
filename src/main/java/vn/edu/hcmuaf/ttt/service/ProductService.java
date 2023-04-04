@@ -315,7 +315,7 @@ public class ProductService {
     }
 
 
-//tim liem sp bang ten
+    //tim liem sp bang ten
     public static List<Product> searchByName(String txtSearch) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("select * FROM products WHERE `name` LIKE ? ")
@@ -354,7 +354,7 @@ public class ProductService {
             Statement statement = DBConnect.getInstall().get();
             if (statement != null) {
                 //của thu
-               // ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products WHERE classify IN ('Khoan mini', 'Khoan bàn') and price <= 700000");
+                // ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products WHERE classify IN ('Khoan mini', 'Khoan bàn') and price <= 700000");
                 //đếm số sản phẩm để phân trang
                 ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM products");
                 while (rs.next()) {
@@ -412,7 +412,7 @@ public class ProductService {
         return list;
         //SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id ;
     }
-//Phân trang sản phẩm trên admin
+    //Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM products limit ?,10")

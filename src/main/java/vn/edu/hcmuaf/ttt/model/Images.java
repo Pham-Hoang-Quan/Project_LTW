@@ -15,6 +15,9 @@ public class Images {
         this.link_img = link_img;
     }
 
+    public Images() {
+    }
+
     public String getImg_id() {
         return img_id;
     }

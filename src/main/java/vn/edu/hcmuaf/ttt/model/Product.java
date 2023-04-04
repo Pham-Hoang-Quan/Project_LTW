@@ -11,7 +11,6 @@ public class Product implements Serializable {
     private String oldPrice;
     private int isNew;
     private String percent;
-
     private String img2;
     private String img3;
     private String img4;
