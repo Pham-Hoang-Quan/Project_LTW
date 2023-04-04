@@ -440,7 +440,9 @@
         <form action="/THDoAn_war/dologin" method="post">
             <h2 style="font-size:18px;">Đăng nhập</h2>
             <div class="text-center social-btn">
-                <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>
+                <fb:login-button size="large" scope="public_profile,email" onlogin="checkLoginState();">Đăng nhập bằng FaceBook
+                </fb:login-button>
+<%--                <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>--%>
                 <a href="https://www.facebook.com/dialog/oauth?client_id=359123991240252&redirect_uri=https://localhost:8443/AccessFacebook/login-facebook" class="btn btn-info btn-block">Login Facebook</a>
 <%--                <a href="https://www.twitter.com" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Đăng nhập bằng<b> Twitter</b></a>--%>
                 <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?scope=profile%20email&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FTHDoAn_war%2FLoginGoogle&response_type=code&client_id=490492384758-nrgqa1ke34a74mj7ml033ftnhvrhjnh1.apps.googleusercontent.com&service=lso&o2v=1&flowName=GeneralOAuthFlow
@@ -524,6 +526,52 @@
                 loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
             }
         });
+    </script>
+    <script>
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            console.log(response.authResponse.accessToken);
+            //alert(response.authResponse.accessToken);
+            if (response.status === 'connected') {
+                window.location.href='signinController.jsp?access_token='+response.authResponse.accessToken;
+            } else {
+                // The person is not logged into your app or we are unable to tell.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+            }
+        }
+        // This function is called when someone finishes with the Login
+        // Button. See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId : '881163912960538',
+                cookie : true, // enable cookies to allow the server to access
+                // the session
+                xfbml : true, // parse social plugins on this page
+                version : 'v2.8' // use graph api version 2.8
+            });
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        };
+        // Load the SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        // Here we run a very simple test of the Graph API after login is
+        // successful. See statusChangeCallback() for when this call is made.
     </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
