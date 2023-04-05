@@ -1,16 +1,17 @@
 package vn.edu.hcmuaf.ttt.controler;
 
-import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.bean.LoginUser;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Cart;
-import vn.edu.hcmuaf.ttt.service.CommentService;
 import vn.edu.hcmuaf.ttt.service.CookieUtils;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "Login", value = "/dologin")
@@ -25,7 +26,7 @@ public class Login extends HttpServlet {
 
         LoginUser userl = new LoginUser();
         String user_name = request.getParameter("user");
-     String user_password = request.getParameter("pass");
+        String user_password = request.getParameter("pass");
 
         User user = UserService.getInstance().checkLogib(user_name,user_password);
 
