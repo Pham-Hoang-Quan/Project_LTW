@@ -1,29 +1,22 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="java.util.List" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
-
 <html>
-<meta http-equiv="Content-Type" charset="UTF-8">
+
 
 <head>
-
+    <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
+
+
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="css/slick.css" />
@@ -37,6 +30,8 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/style_ab.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
@@ -147,6 +142,8 @@
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
+<%--                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="fa fa-user-o"></i>
@@ -155,7 +152,7 @@
                         <div class="cart-dropdown">
                             <h4>THÔNG TIN TÀI KHOẢN</h4>
                             <div class="cart-summary">
-                                <h5> <%= auth.getUser_fullname()%></h5>
+                                <h4> <%= auth.getUser_fullname()%></h4>
                                 <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
                                 <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
                                 <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
@@ -166,9 +163,6 @@
                     </li>
 
 
-
-
-<%--                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
 <%--                    <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
                     <% if(auth.getUser_admin() == 1){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
@@ -201,8 +195,6 @@
                     <!-- /LOGO -->
 
                     <!-- SEARCH BAR -->
-
-
                     <div class="col-md-6">
                         <div class="header-search">
                             <form action="search" method="post">
@@ -219,6 +211,9 @@
                         <div class="header-ctn">
                             <!-- Wishlist -->
 
+                            <!-- /Wishlist -->
+
+                            <!-- Cart -->
                             <div>
                                 <a href="cart.jsp">
                                     <i class="fa fa-shopping-cart"></i>
@@ -226,7 +221,7 @@
                                     <div class="qty">${cart.quantily}</div>
                                 </a>
                             </div>
-
+                            <!-- /Cart -->
 
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">
@@ -254,18 +249,7 @@
             <!-- responsive-nav -->
             <div id="responsive-nav">
                 <!-- NAV -->
-                <ul class="main-nav nav navbar-nav">
 
-                    <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
-                    <% List<Category> lista = (List<Category>) request.getAttribute("listc");
-                        for (Category p:lista) {%>
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%=p.getcName()%></a></li>
-                    <% } %>
-                    <%if(auth!=null){%>
-                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
-                    <%}%>
-                </ul>
                 <!-- /NAV -->
             </div>
             <!-- /responsive-nav -->
@@ -280,250 +264,45 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-
                 <div class="col-md-12">
-
-
                     <ul class="breadcrumb-tree">
                         <li><a href="/THDoAn_war/">Trang chủ</a></li>
-
-                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
-
-
+                        <li><a href="#">Điều khoản và điều kiện</a></li>
 
                     </ul>
-
-
                 </div>
             </div>
             <!-- /row -->
-
         </div>
         <!-- /container -->
     </div>
     <!-- /BREADCRUMB -->
 
     <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <!-- ASIDE -->
-                <div id="aside" class="col-md-3">
-                    <!-- aside Widget -->
-<%--lọc theo sản phẩm--%>
-                    <div class="aside">
-                        <h3 class="aside-title">tìm kiếm sản phẩm </h3>
-                        <div class="checkbox-filter">
-                            <% List<Category> list3 = (List<Category>) request.getAttribute("listc");
-                                for (Category p:list3) { %>
 
-                            <div class="input-checkbox">
-                                <input type="checkbox" name="categoryCheck" id="category-<%=p.getCid()%>" check="false">
+    <!-- container -->
 
-                                <label for="category-<%=p.getCid()%>">
+    <!-- row -->
+    <div class="container" id="container">
+        <h2>Thông tin tài khoản</h2>
 
-										<span></span>
-										<%= p.getcName()%>
-										<small>(120)</small>
-									</label>
-
-
-
-
-                            </div>
-
-
-
-<% } %>
-                        </div>
-
-                    <!-- /aside Widget -->
-
-                    <!-- aside Widget -->
-<%--lọc theo giá--%>
-                    <div class="aside">
-                        <h3 class="aside-title">Giá</h3>
-                        <div class="price-filter">
-                            <div id="price-slider"></div>
-                            <div class="input-number price-min">
-                                <input id="price-min" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                            <span>-</span>
-                            <div class="input-number price-max">
-                                <input id="price-max" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <!-- /aside Widget -->
-
-                    <!-- aside Widget -->
-                    <!-- /aside Widget -->
-<%-- áp dụng để lọc--%>
-                    <div class="aside">
-                     <button class="primary-btn cta-btn" id="filterProducts">Áp dụng</button>
-                    </div>
-                    </div>
-                    <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Sản Phẩm Tương Tự</h3>
-                        <% List<Product> list1 = (List<Product>) request.getAttribute("listsptt");
-                            for (Product p:list1) { %>
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="<%= p.getImg()%>" alt="">
-                            </div>
-                            <%
-                                Locale locale = new Locale("vi");
-                                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                                String tt = format.format(p.getPrice()).split(",")[0];
-                            %>
-                            <div class="product-body">
-                                <p class="product-category"><%= p.getClassify()%></p>
-                                <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
-                                <h4 class="product-price"><%=tt%>đ<del class="product-old-price"><%= p.getOldPrice()%></del></h4>
-                            </div>
-                        </div>
-                        <% } %>
-
-                    </div>
-
-                    <div>
-
-
-
-
-
-
-                    </div>
-                    <!-- /aside Widget -->
-                </div>
-                <!-- /ASIDE -->
-
-                <!-- STORE -->
-                <div id="store" class="col-md-9">
-
-                    <div class="row" id="product">
-                        <!-- product -->
-                        <% List<Product> list = (List<Product>) request.getAttribute("list");
-                            for (Product p:list) { %>
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>">
-                                <div class="product-img">
-
-
-                                    <img src="<%=p.getImg()%>">
-
-
-                                    <% if(p.getIsNew() == 1){ %>
-                                    <div class="product-label">
-                                        <span class="new">New</span>
-                                    </div>
-                                    <% }%>
-                                    <% if(p.getIsNew() == 2){ %>
-                                    <div class="product-label">
-                                        <span class="sale"><%= p.getPercent()%></span>
-                                    </div>
-                                    <% }%>
-
-                                </div>
-                                </a>
-                                <div class="product-body">
-                                    <p class="product-category"><%= p.getClassify()%></p>
-                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
-                                    <%
-                                        Locale locale = new Locale("vi");
-                                        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                                        String tt = format.format(p.getPrice()).split(",")[0];
-                                    %>
-
-                                    <h4 class="product-price"><%=tt%>đ
-                                        <% if(p.getIsNew() == 2){ %>
-                                        <del class="product-old-price"><%= p.getOldPrice()%></del>
-                                        <% }%>
-                                    </h4>
-
-                                    <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-
-                                </div>
-                                <div class="add-to-cart">
-                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
-                                </div>
-                            </div>
-                        </div>
-                        <% } %>
-                        <!-- /product -->
-
-
-                    </div>
-                    <!-- /store products -->
-
-                    <!-- store bottom filter -->
-                    <div class="store-filter clearfix">
-<%--                        <span class="store-qty">HIỂN THỊ 20-100 SẢN PHẨM</span>--%>
-                        <ul class="store-pagination">
-
-
-<%--                            <li class="active">--%>
-<c:forEach begin="1" end="${endP}" var="i">
-    <li class="${tag == i?"active":""}"><a href="/THDoAn_war/List-Product?index=${i}">${i}</a></li>
-</c:forEach>
-<%--                            <%List<Product> page =  (List<Product>) request.getAttribute("endP");%>--%>
-<%--                            <%--%>
-
-<%--                                for (Comment c:--%>
-<%--                                        page) {--%>
-
-<%--                            %>--%>
-<%--                            <%--%>
-<%--                            <%  for (int begin = 1 int end = <%= %> "endP" %>; begin++) { %>--%>
-
-<%--                            %>--%>
-<%--                            <li><a>2</a></li>--%>
-<%--                            <%}%>--%>
-<%--                            <%List< Product> listComment =  (List<Product>) request.getAttribute("endP");%>--%>
-<%--                            <%--%>
-
-<%--                                for (Product j:--%>
-<%--                                        listComment) {--%>
-
-<%--                            %>--%>
-<%--                            <%--%>
-<%--                                for (int i = 1; i < <%= "endP"%>; i++) {--%>
-
-<%--                            %>--%>
-
-<%--                            <li><a>2</a></li>--%>
-<%--                            <%}%>--%>
-
-                            <!-- <li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
-
-                        </ul>
-                    </div>
-                    <!-- /store bottom filter -->
-                </div>
-                <!-- /STORE -->
+        <div class="row">
+            <div class="column left">
+                <h4>Họ và Tên: <%= auth.getUser_fullname()%></h4>
+                <p>Email: <%= auth.getUser_email()%></p>
+                <p>Tài khoản: <%= auth.getAccount()%></p>
+                <p>Tên đăng nhập: <%=auth.getUser_name()%></p>
+                <p>Số điện thoại: <%=auth.getUser_sdt()%></p>
             </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
+            <div class="column right" >
+                <h4> <%= auth.getUser_fullname()%></h4>
+                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
+                <p><a href="updateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
+                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+            </div>
     </div>
-    <!-- /SECTION -->
+
+
 
     <!-- NEWSLETTER -->
     <div id="newsletter" class="section">
@@ -574,11 +353,9 @@
                             <h3 class="footer-title">About </h3>
                             <p>Địa Chỉ Thông Tin Liên Lạc</p>
                             <ul class="footer-links">
-                                <li>
-                                    <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
-                                </li>
-                                <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0929831012</a></li>
-                                <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
+                                <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>0929831012</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -587,11 +364,11 @@
                         <div class="footer">
                             <h3 class="footer-title">Sản Phảm</h3>
                             <ul class="footer-links">
-                                <li><a href="khoan-mini.html">Khoan mini</a></li>
-                                <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
-                                <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
-                                <li><a href="khoan-ban.html">Khoan bàn</a></li>
-                                <li><a href="phukien.html">Phụ kiện</a></li>
+                                <li><a href="#">Khoan mini</a></li>
+                                <li><a href="#">Khoan động lực</a></li>
+                                <li><a href="#">Khoan bê tông</a></li>
+                                <li><a href="#">Khoan bàn</a></li>
+                                <li><a href="#">phụ kiện</a></li>
                             </ul>
                         </div>
                     </div>
@@ -615,10 +392,11 @@
                         <div class="footer">
                             <h3 class="footer-title">Dịch Vụ</h3>
                             <ul class="footer-links">
-                                <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
-                                <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
-                                <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
-                                <li><a href="support.html">Hổ Trợ</a></li>
+                                <li><a href="#">Tài Khoản Của Tôi</a></li>
+                                <li><a href="#">Xem Giỏ Hàng</a></li>
+                                <li><a href="#">Danh Sách Yêu Thích</a></li>
+                                <li><a href="#">Theo Dõi Đơn Hàng Của Tôi</a></li>
+                                <li><a href="#">Hổ Trợ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -643,7 +421,11 @@
                             <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
                             <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
                         </ul>
-
+                        <span class="copyright">
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" >Colorlib</a> -->
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</span>
                     </div>
                 </div>
                 <!-- /row -->
@@ -661,7 +443,6 @@
     <script src="js/nouislider.min.js"></script>
     <script src="js/jquery.zoom.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/store.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -701,21 +482,7 @@
             }
         });
     </script>
-<script>
-    function getSelectedPriceRanges() {
-        var priceFilters = [];
-        var checkboxes = document.getElementsByName('price');
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                var range = checkboxes[i].value.split('-');
-                var minPrice = range[0];
-                var maxPrice = range[1];
-                priceFilters.push({ minPrice: minPrice, maxPrice: maxPrice });
-            }
-        }
-        return priceFilters;
-    }
-</script>
+
 </body>
 
 </html>

@@ -106,6 +106,18 @@ public static User findByUserAndEmail(String user_name, String user_email){
   return userList.get(0);
 }
 
+    //cập nhật tài khoản người dùng
+    static public void updateUser(String user_fullname, String user_name, String account, String user_email, String user_sdt, String user_password, String user_id){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("UPDATE `user` SET user_fullname = ?, user_name = ?, user_email = ?, user_sdt = ?, account= ?, user_password =? WHERE user_id =?")
+                        .bind(0, user_fullname)
+                        .bind(1,user_name)
+                        .bind(2,account)
+                        .bind(3,user_email)
+                        .bind(4,user_sdt)
+                        .bind(5, user_password)
+                        .bind(6,user_id).execute());
+    }
 
 
 
