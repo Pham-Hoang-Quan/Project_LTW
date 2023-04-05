@@ -457,16 +457,15 @@ public class ProductService {
     static public void editProduct(String id, String name, String classify, String percent, int qty, int price,
                                    String content, String info) {
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" update products set id = ?, name = ?, price = ?, classify = ?, percent = ?, quantily = ?, content = ?, info = ?")
-
-                        .bind(0, id)
-                        .bind(1, name)
-                        .bind(2, price)
-                        .bind(3, classify)
-                        .bind(4, percent)
-                        .bind(5, qty)
-                        .bind(6, content)
-                        .bind(7, info)
+                h.createUpdate(" update products set name = ?, price = ?, classify = ?, percent = ?, quantily = ?, content = ?, info = ? where id = ?")
+                        .bind(0, name)
+                        .bind(1, price)
+                        .bind(2, classify)
+                        .bind(3, percent)
+                        .bind(4, qty)
+                        .bind(5, content)
+                        .bind(6, info)
+                        .bind(7, id)
                         .execute());
     }
 
