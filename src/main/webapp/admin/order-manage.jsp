@@ -31,9 +31,6 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
-<%--        <jsp:include page="nav.jsp"></jsp:include>--%>
-        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             <jsp:include page="menu.jsp"></jsp:include>
@@ -46,18 +43,6 @@
                             <i class="mdi mdi-cart"></i>
                             </span> Quản lý đơn hàng
                         </h3>
-<%--                        <nav aria-label="breadcrumb">--%>
-<%--                            <div class="search-field d-none d-md-block">--%>
-<%--                                <form class="d-flex align-items-center h-100" action="SearchOrder">--%>
-<%--                                    <div class="input-group">--%>
-<%--                                        <div class="input-group-prepend bg-transparent">--%>
-<%--                                            <i class="input-group-text border-0 mdi mdi-magnify"></i>--%>
-<%--                                        </div>--%>
-<%--                                        <input name="txt" type="text" class="form-control todo-list-input" placeholder="Tìm kiếm đơn hàng">--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </div>--%>
-<%--                        </nav>--%>
                     </div>
 
                     <main>

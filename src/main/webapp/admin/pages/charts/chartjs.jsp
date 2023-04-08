@@ -14,7 +14,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="admin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
   </head>
@@ -219,7 +219,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/charts/chartjs.html">
+              <a class="nav-link" href="../../pages/charts/chartjs.jsp">
                 <span class="menu-title">Charts</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
               </a>

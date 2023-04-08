@@ -137,7 +137,7 @@
                         <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
                     </li>
                 </ul>
-                <ul class="header-links pull-right">>
+                <ul class="header-links pull-right">
                     <% User auth= (User) session.getAttribute("auth");%>
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target=""><i class="fa fa-user-o"></i>Đăng nhập</a></li>
