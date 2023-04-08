@@ -308,11 +308,14 @@ public class ProductService {
         );
         return list;
     }
-
+    public static int getCountLog1() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -1)")
+                .mapTo(Integer.class).one());
+    }
     public static int countTotalProducts(ProductFilterParams filterParams) {
         boolean shouldGetProductsByAllClassifies = filterParams.getClassifies() == null || filterParams.getClassifies().size() == 0;
         if (shouldGetProductsByAllClassifies) {
-            return JDBiConnector.me().withHandle(handle -> handle.createQuery(
+             return JDBiConnector.me().withHandle(handle -> handle.createQuery(
                             countProduct
                     )
                     .mapTo(Integer.class).one());
@@ -394,6 +397,7 @@ public class ProductService {
         return list;
         //SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id ;
     }
+
     //Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
@@ -454,7 +458,8 @@ public class ProductService {
 
     public static void main(String[] args) {
 //        System.out.println(ProductService.pagingProduct(1));
-        System.out.println(ProductService.getProductById("1"));
+        // System.out.println(ProductService.getProductById("1"));
+        System.out.println(ProductService.getCountLog1());
 
 //
     }

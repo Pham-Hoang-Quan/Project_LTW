@@ -18,6 +18,10 @@ public class ListLog extends HttpServlet {
         List<Log> logList = LogService.getData();
         request.setAttribute("logList", logList);
         request.getRequestDispatcher("admin/logTest.jsp").forward(request, response);
+
+        int countLog1 = LogService.getCountLog1();
+        request.setAttribute("countLog1", countLog1);
+
     }
 
     @Override

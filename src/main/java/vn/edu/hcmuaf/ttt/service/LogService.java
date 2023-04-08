@@ -42,8 +42,12 @@ public class LogService {
     }
     public static void main(String[] args) {
 //
-        System.out.println(LogService.logDetail(311));
+        System.out.println(LogService.getCountLog1());
 
 //
+    }
+    public static int getCountLog1() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -1)")
+                .mapTo(Integer.class).one());
     }
 }
