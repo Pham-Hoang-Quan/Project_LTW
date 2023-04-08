@@ -325,15 +325,33 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>
-                        <% User auth= (User) session.getAttribute("auth");%>
-                        <% if(auth==null){ %>
-                        Bạn chưa đăng nhập
-                        <% }else {%>
-                        Chào bạn: <%= auth.getUser_fullname()%></p>
-                        <% } %>
 
-                    </a></li>
+                    <% User auth= (User) session.getAttribute("auth");%>
+                    <% if(auth==null){ %>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
+                    <% }else {%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-user-o"></i>
+                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
+                        </a>
+                        <div class="cart-dropdown">
+                            <h4>THÔNG TIN TÀI KHOẢN</h4>
+                            <div class="cart-summary">
+                                <h5> <%= auth.getUser_fullname()%></h5>
+                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
+                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
+                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <% if(auth.getUser_admin() == 1){%>
+                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <%}%>
+                    <% } %>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -409,14 +427,14 @@
     <div class="login-form signup-form">
         <form action="/THDoAn_war/dologin" method="post">
             <h2 style="font-size:18px;">Đăng nhập</h2>
+            <p class="alert-success">${success}</p>
             <div class="text-center social-btn">
                 <fb:login-button size="large" scope="public_profile,email" onlogin="checkLoginState();">Đăng nhập bằng FaceBook
                 </fb:login-button>
-<%--                <a href="https://www.facebook.com" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Đăng nhập bằng<b> Facebook</b></a>--%>
-<%--                <a href="https://www.facebook.com/dialog/oauth?client_id=519780096794346&redirect_uri=https://localhost:8443/AccessFacebook/login-facebook" class="btn btn-info btn-block">Login Facebook</a>--%>
-<%--                <a href="https://www.twitter.com" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Đăng nhập bằng<b> Twitter</b></a>--%>
-                <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?scope=profile%20email&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FTHDoAn_war%2FLoginGoogle&response_type=code&client_id=490492384758-nrgqa1ke34a74mj7ml033ftnhvrhjnh1.apps.googleusercontent.com&service=lso&o2v=1&flowName=GeneralOAuthFlow
-		   " class="btn btn-danger btn-block"><i class="fa fa-google"></i>Đăng nhập bằng<b> Google</b></a>
+
+                <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/THDoAn_war/loginGoogle&response_type=code
+                  &client_id=105931047224-vs7r2jb3ju6tlal834icl8t67e9h9gdp.apps.googleusercontent.com&approval_prompt=force" class="btn btn-danger btn-block"><i class="fa fa-google"></i>Đăng nhập bằng<b> Google</b></a>
+
             </div>
             <div class="or-seperator"><i>hoặc</i></div>
 
@@ -522,7 +540,10 @@
         }
         window.fbAsyncInit = function() {
             FB.init({
-                appId : '3211636435805195',
+                //id của quan
+                // appId : '3211636435805195',
+                //id của tiên
+                appId : '3109656989181170',
                 cookie : true, // enable cookies to allow the server to access
                 // the session
                 xfbml : true, // parse social plugins on this page
