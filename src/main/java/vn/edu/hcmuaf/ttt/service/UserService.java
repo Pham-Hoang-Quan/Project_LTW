@@ -51,6 +51,7 @@ public class UserService {
     }
 
 
+
 //Phương thức ktra user_name có bị trùng hay không khi đăng ký
     public  static User checkExist(String user_name){
         List<User> users = JDBiConnector.me().withHandle(h ->
@@ -107,17 +108,40 @@ public static User findByUserAndEmail(String user_name, String user_email){
   return userList.get(0);
 }
 
+
+
+
     //cập nhật tài khoản người dùng
-    static public void updateUser(String user_fullname, String user_name, String account, String user_email, String user_sdt, String user_password, String user_id){
-        JDBiConnector.me().withHandle(h ->
-                h.createUpdate("UPDATE `user` SET user_fullname = ?, user_name = ?, user_email = ?, user_sdt = ?, account= ?, user_password =? WHERE user_id =?")
-                        .bind(0, user_fullname)
+    static  public  void  updateFull_name(String user_fullname,String user_name, String account, String user_email, String user_sdt, String user_pass, String user_id){
+        JDBiConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE `user` SET user_fullname = ?,user_name = ?, account = ?,user_email = ?, user_sdt = ?, user_password =? WHERE user_id = ?;")
+                        .bind(0,user_fullname)
                         .bind(1,user_name)
                         .bind(2,account)
                         .bind(3,user_email)
                         .bind(4,user_sdt)
-                        .bind(5, user_password)
+                        .bind(5,user_pass)
                         .bind(6,user_id).execute());
+    }
+
+    static  public User checkPassword(String user_name){
+       return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT user_password FROM `user` WHERE user_name = ?")
+                    .bind(0, user_name).mapToBean(User.class).first();
+        });
+    }
+
+    //lấy thông tin user bằng google
+    static public  void singupGoogle(String user_name, String user_email, String user_pass){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0)")
+                        .bind(0,user_email)
+
+                        .bind(1, user_name)
+                        .bind(2, user_email)
+                        .bind(3, user_pass)
+                        .execute());
+
     }
 
 
@@ -129,8 +153,12 @@ public static User findByUserAndEmail(String user_name, String user_email){
 
 
 
+
+
+
     public static void main(String[] args) {
-        System.out.println(findByUserNameAndEmail("tn6994050@gm"));
+        UserService.singupGoogle("117750417231575822567", "20130431@st.hcmuaf.edu.vn", "1234");
+
     }
 
 }
