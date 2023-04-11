@@ -371,18 +371,29 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="user_sdt" placeholder="Số điện thoại" required="required">
             </div>
-            <%  String pass = request.getParameter("user_password");
-            if(pass == null){
-            %>
-            <small id="emailHelp" class="form-text text-muted">Mật khẩu phải có ít nhất 8 ký tự.</small>
-            <small id="emailHelp1" class="form-text text-muted">Mật khẩu phải có ít nhất một ký tự đặt biệt.</small>
-            <%}%>
-            <p class="alert-danger">${meseger}</p>
-            <p class="alert-danger">${mesegers}</p>
-            <div class="form-group">
-                <input type="password" class="form-control" name="user_password" placeholder="Mật khẩu" required="required">
-            </div>
+<%--            <%  String pass = request.getParameter("user_password");--%>
+<%--            if(pass == null){--%>
+<%--            %>--%>
+<%--            <small id="emailHelp" class="form-text text-muted">Mật khẩu phải có ít nhất 8 ký tự.</small>--%>
+<%--            <small id="emailHelp1" class="form-text text-muted">Mật khẩu phải có ít nhất một ký tự đặt biệt.</small>--%>
+<%--            <%}%>--%>
 
+<%--            <p class="alert-danger">${meseger}</p>--%>
+<%--            <p class="alert-danger">${mesegers}</p>--%>
+
+
+
+<%--            <div class="form-group">--%>
+<%--                <input type="password" id="password"class="form-control" name="user_password" placeholder="Mật khẩu" required="required" >--%>
+<%--            </div>--%>
+
+            <p id="paragraph" class="form-text text-muted" >Mật khẩu phải có ít nhất 8 ký tự. </p>
+            <p id="paragraph1" class="form-text text-muted" >Mật khẩu phải có ít nhất một ký tự đặt biệt.</p>
+            <div class="form-group">
+            <input type="password" id="password" class="form-control" name="user_password"  placeholder="Mật khẩu" oninput="hideParagraph()">
+            </div>
+            <h5 id="password-length-message"></h5>
+            <h5 id="password-special-char-message"></h5>
 
 
             <p class="alert-danger">${messs}</p>
@@ -448,5 +459,49 @@
     <script src="js/bootshop.js"></script>
 
 </body>
+<script>
+    const passwordInput = document.getElementById("password");
+    const passwordLengthMessage = document.getElementById("password-length-message");
+    const passwordSpecialCharMessage = document.getElementById("password-special-char-message");
 
+    passwordInput.addEventListener("input", function() {
+        const password = passwordInput.value;
+        const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
+
+        if (password.length >= 8) {
+            passwordLengthMessage.innerText = "Mật khẩu đủ dài!";
+            passwordLengthMessage.style.color = "green";
+        } else {
+            passwordLengthMessage.innerText = "Mật khẩu phải ít nhất 8 ký tự!";
+            passwordLengthMessage.style.color = "red";
+        }
+
+        if (hasSpecialChar) {
+            passwordSpecialCharMessage.innerText = "Mật khẩu chứa ký tự đặc biệt!";
+            passwordSpecialCharMessage.style.color = "green";
+        } else {
+            passwordSpecialCharMessage.innerText = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt!";
+            passwordSpecialCharMessage.style.color = "red";
+        }
+    });
+
+
+
+
+</script>
+<script>
+    function hideParagraph() {
+        var input = document.getElementById("password").value;
+        var paragraph = document.getElementById("paragraph");
+        var paragraph1 = document.getElementById("paragraph1");
+        if (input !== "") {
+            paragraph.style.display = "none";
+            paragraph1.style.display = "none";
+        } else {
+            paragraph.style.display = "block";
+            paragraph1.style.display = "block";
+        }
+
+    }
+</script>
 </html>
