@@ -443,8 +443,10 @@
             <div class="text-center social-btn">
                 <fb:login-button size="large" scope="public_profile,email" onlogin="checkLoginState();">Đăng nhập bằng FaceBook
                 </fb:login-button>
+
                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/THDoAn_war/loginGoogle&response_type=code
                   &client_id=105931047224-vs7r2jb3ju6tlal834icl8t67e9h9gdp.apps.googleusercontent.com&approval_prompt=force" class="btn btn-danger btn-block"><i class="fa fa-google"></i>Đăng nhập bằng<b> Google</b></a>
+
             </div>
             <div class="or-seperator"><i>hoặc</i></div>
 
@@ -533,7 +535,7 @@
             console.log(response.authResponse.accessToken);
             //alert(response.authResponse.accessToken);
             if (response.status === 'connected') {
-                window.location.href='signinController.jsp?access_token='+response.authResponse.accessToken;
+                window.location.href='fb_info.jsp?access_token='+response.authResponse.accessToken;
             } else {
                 // The person is not logged into your app or we are unable to tell.
                 document.getElementById('status').innerHTML = 'Please log ' +
@@ -550,7 +552,8 @@
         }
         window.fbAsyncInit = function() {
             FB.init({
-                appId : '3109656989181170',
+
+                appId : '3211636435805195',
                 cookie : true, // enable cookies to allow the server to access
                 // the session
                 xfbml : true, // parse social plugins on this page

@@ -1,19 +1,9 @@
 package vn.edu.hcmuaf.ttt.service;
 
 import vn.edu.hcmuaf.ttt.bean.User;
-import vn.edu.hcmuaf.ttt.db.DBConnect;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
-import vn.edu.hcmuaf.ttt.model.Category;
-import vn.edu.hcmuaf.ttt.model.Product;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -75,6 +65,15 @@ public class UserService {
                 .bind(4, user_sdt)
                 .bind(5, user_password)
                 .execute());
+
+    }
+    static public void sinupFB(String user_fullname,String user_name, String user_email){
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,123,0)")
+                        .bind(0,user_fullname)
+                        .bind(1,user_name)
+                        .bind(2, user_email)
+                        .execute());
 
     }
 
