@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.Logingg;
 
+import vn.edu.hcmuaf.ttt.bean.User;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -17,14 +19,15 @@ public class LoginGoogleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code == null || code.isEmpty()) {
-            RequestDispatcher dis = request.getRequestDispatcher("logingg.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
             dis.forward(request, response);
         } else {
             String accessToken = GoogleUtils.getToken(code);
-            GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-            request.setAttribute("id", googlePojo.getId());
-            request.setAttribute("name", googlePojo.getName());
-            request.setAttribute("email", googlePojo.getEmail());
+            User user = GoogleUtils.getUserInfo(accessToken);
+            request.setAttribute("id", user.getId());
+            request.setAttribute("name", user.getUser_fullname());
+            request.setAttribute("email", user.getemail());
+
             RequestDispatcher dis = request.getRequestDispatcher("indexlogingg.jsp");
             dis.forward(request, response);
         }

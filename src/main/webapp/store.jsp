@@ -142,7 +142,8 @@
                         <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
                     </li>
                 </ul>
-                <ul class="header-links pull-right">>
+                <ul class="header-links pull-right">
+
                     <% User auth= (User) session.getAttribute("auth");%>
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
@@ -150,7 +151,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="fa fa-user-o"></i>
-                            <span>Chào bạn: <%= auth.getUser_fullname()%></span>
+                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
                         </a>
                         <div class="cart-dropdown">
                             <h4>THÔNG TIN TÀI KHOẢN</h4>
@@ -165,11 +166,6 @@
 
                     </li>
 
-
-
-
-<%--                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
-<%--                    <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
                     <% if(auth.getUser_admin() == 1){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <%}%>

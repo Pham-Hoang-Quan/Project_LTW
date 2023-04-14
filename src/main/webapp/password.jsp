@@ -268,7 +268,33 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i>Đăng Nhập</a></li>
+
+                    <% User auth= (User) session.getAttribute("auth");%>
+                    <% if(auth==null){ %>
+                    <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
+                    <% }else {%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-user-o"></i>
+                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
+                        </a>
+                        <div class="cart-dropdown">
+                            <h4>THÔNG TIN TÀI KHOẢN</h4>
+                            <div class="cart-summary">
+                                <h5> <%= auth.getUser_fullname()%></h5>
+                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
+                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
+                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <% if(auth.getUser_admin() == 1){%>
+                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <%}%>
+                    <% } %>
                     <li>
                         <a href="form_dk.jsp" target="_blank"> <i class="fa fa-dollar"></i>Đăng Ký</a>
                     </li>
@@ -335,7 +361,8 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="signup-form">
-        <form action="/THDoAn_war/forgot-password" method="post">
+<%--        <form action="/THDoAn_war/forgot-password" method="post">--%>
+    <form action="/THDoAn_war/forgot-password" method="post">
             <h2 style="font-size:18px;">Lấy Lại Mật Khẩu</h2>
 
 
