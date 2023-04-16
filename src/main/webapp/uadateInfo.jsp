@@ -269,24 +269,21 @@
                     <li><a href="#"><i class="fa fa-envelope-o"></i> DH20DT@email.com</a></li>
                     <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
                 </ul>
-                <ul class="header-links pull-right">>
+                <ul class="header-links pull-right">
+
                     <% User auth= (User) session.getAttribute("auth");%>
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
-
-<%--                    --%>
-<%--                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
-
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="fa fa-user-o"></i>
-                            <span>Chào bạn: <%= auth.getUser_fullname()%></span>
+                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
                         </a>
                         <div class="cart-dropdown">
                             <h4>THÔNG TIN TÀI KHOẢN</h4>
                             <div class="cart-summary">
-                                <h4> <%= auth.getUser_fullname()%></h4>
+                                <h5> <%= auth.getUser_fullname()%></h5>
                                 <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
                                 <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
                                 <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
@@ -296,7 +293,6 @@
 
                     </li>
 
-<%--                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
                     <% if(auth.getUser_admin() == 1){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <%}%>
@@ -400,7 +396,7 @@
 
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="user_email" placeholder="Email" required="required" value="<%=auth.getUser_email()%>">
+                <input type="email" class="form-control" name="user_email" placeholder="Email" required="required" value="<%=auth.getemail()%>">
 <%--                email cũ--%>
 <%--                <input class="date" style="display: none" value="<%=auth.getUser_email()%>" type="text">--%>
             </div>

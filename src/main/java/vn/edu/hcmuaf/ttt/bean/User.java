@@ -8,25 +8,71 @@ public class User implements Serializable {
     private String user_fullname;
     private String user_name;
     private String account;
-    private String user_email;
+    private String email;
     private String user_sdt;
     private String user_password;
     private int user_admin;
+
+    private boolean verified_email;
+
+
+    private String id;
+
+    private String id_fb;
 
     public User(){
 
     }
 
-    public User(String user_id, String user_fullname, String user_name, String account, String user_email, String user_sdt, String user_password, int user_admin) {
+    public User(String user_id, String user_fullname, String user_name, String account, String email, String user_sdt, String user_password, int user_admin, boolean verified_email, String id, String id_fb) {
         this.user_id = user_id;
         this.user_fullname = user_fullname;
         this.user_name = user_name;
         this.account = account;
-        this.user_email = user_email;
+        this.email = email;
         this.user_sdt = user_sdt;
         this.user_password = user_password;
         this.user_admin = user_admin;
+        this.verified_email = verified_email;
+        this.id = id;
+        this.id_fb = id_fb;
     }
+
+    public String getId_fb() {
+        return id_fb;
+    }
+
+    public void setId_fb(String id_fb) {
+        this.id_fb = id_fb;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isVerified_email() {
+        return verified_email;
+    }
+
+    public void setVerified_email(boolean verified_email) {
+        this.verified_email = verified_email;
+    }
+
+
+
+
 
     public String getUser_id() {
         return user_id;
@@ -60,12 +106,12 @@ public class User implements Serializable {
         this.account = account;
     }
 
-    public String getUser_email() {
-        return user_email;
+    public String getemail() {
+        return email;
     }
 
     public void setUser_email(String user_email) {
-        this.user_email = user_email;
+        this.email = user_email;
     }
 
     public String getUser_sdt() {
@@ -99,10 +145,13 @@ public class User implements Serializable {
                 ", user_fullname='" + user_fullname + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", account='" + account + '\'' +
-                ", user_email='" + user_email + '\'' +
+                ", email='" + email + '\'' +
                 ", user_sdt='" + user_sdt + '\'' +
                 ", user_password='" + user_password + '\'' +
                 ", user_admin=" + user_admin +
+                ", verified_email=" + verified_email +
+                ", id='" + id + '\'' +
+                ", id_fb='" + id_fb + '\'' +
                 '}';
     }
 }

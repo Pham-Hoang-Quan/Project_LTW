@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.ttt.service.UserService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <!doctype html>
@@ -30,15 +31,15 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 
-		      	<form action="/THDoAn_war/singup-google" method="post">
+		      	<form action="/THDoAn_war/doLogingg" method="post">
 		      		<div class="form-group">
-						<label name="user_name1" class="form-control" > ID: <%= id%></label>
-						<input class="date" name="user_name" style="display: none" value="<%=id%>" type="text">
+						<label name="id1" class="form-control" > ID: <%= id%></label>
+						<input class="id" name="id" style="display: none"  value="<%=id%>" type="text">
 		      		</div>
 	            <div class="form-group">
 
-					<label name="user_mail1" class="form-control">Email: <%= email%></label>
-					<input class="date" name="user_email" style="display: none" value="<%=email%>" type="text">
+					<label name="email1" class="form-control">Email: <%= email%></label>
+					<input class="email" name="email" style="display: none"   value="<%=email%>" type="text">
 
 	            </div>
 	            <div class="form-group">

@@ -39,6 +39,14 @@ public class UserService {
         User user = users.get(0);
         return user;
     }
+    public  static User checkemailandidgg(String email){
+        List<User> users = JDBiConnector.me().withHandle(h ->
+                h.createQuery("SELECT * FROM `user` WHERE user_email = ?").bind(0,email).mapToBean(User.class).stream().collect(Collectors.toList())
+        );
+        if(users.size() != 1) return null;
+        User user = users.get(0);
+        return user;
+    }
 
 
 
@@ -56,7 +64,7 @@ public class UserService {
 //Phuong thức cho đăng ký
     static public  void singup(String user_fullname, String user_name, String accout, String user_email,String user_sdt, String user_password){
        JDBiConnector.me().withHandle(h ->
-               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0)")
+               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0,0,0,0)")
                 .bind(0, user_name)
                 .bind(0, user_fullname)
                 .bind(1, user_name)
@@ -67,15 +75,32 @@ public class UserService {
                 .execute());
 
     }
-    static public void sinupFB(String user_fullname,String user_name, String user_email){
+    //lấy dữ liệu user từ facbook
+    static public void sinupFB(String user_fullname, String user_email, String pass, String id_fb){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,123,0)")
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,0,?)")
                         .bind(0,user_fullname)
-                        .bind(1,user_name)
-                        .bind(2, user_email)
+                        .bind(1,id_fb)
+                        .bind(2,user_email)
+                        .bind(3, pass)
+                        .bind(4,id_fb)
                         .execute());
 
     }
+    //Kiểm tra id_fb đã có chưa
+    static public User checkIb_fb(String user_name) {
+        List<User> users = JDBiConnector.me().withHandle(h ->
+                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0,user_name).mapToBean(User.class).stream().collect(Collectors.toList())
+        );
+        if(users.size() != 1) return null;
+        User user = users.get(0);
+        return user;
+
+
+
+    }
+
+    //lấy thông tin từ email
 
 
 
@@ -130,15 +155,16 @@ public static User findByUserAndEmail(String user_name, String user_email){
         });
     }
 
-    //lấy thông tin user bằng google
-    static public  void singupGoogle(String user_name, String user_email, String user_pass){
+    //lấy thông tin xuống bằng gg
+    static public  void singupGoogle(String user_name, String email, String user_pass){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0)")
-                        .bind(0,user_email)
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0)")
+                        .bind(0,email)
 
                         .bind(1, user_name)
-                        .bind(2, user_email)
+                        .bind(2, email)
                         .bind(3, user_pass)
+                        .bind(4,user_name)
                         .execute());
 
     }
@@ -156,8 +182,9 @@ public static User findByUserAndEmail(String user_name, String user_email){
 
 
     public static void main(String[] args) {
-        UserService.singupGoogle("117750417231575822567", "20130431@st.hcmuaf.edu.vn", "1234");
+        System.out.println(UserService.checkIb_fb("1630335000760827"));
 
+//
     }
 
 }
