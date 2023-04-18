@@ -1,4 +1,3 @@
-
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%--<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>--%>
 <%--<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>--%>
@@ -10,12 +9,10 @@
 <%--<body>--%>
 
 
-
 <%--<form method="post" action="checkOTP" method="post">--%>
 
 <%--    <% String otp = (String) session.getAttribute("otp");%>--%>
 <%--    <% int intNumber1 = (int) session.getAttribute("expiryTime");%>--%>
-
 
 
 <%--&lt;%&ndash;    <input type="" id="" name="otp" value=" <%=otp%>">&ndash;%&gt;--%>
@@ -43,20 +40,20 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-<link type="text/css" rel="stylesheet" href="css/base.css" />
+<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+<link type="text/css" rel="stylesheet" href="css/base.css"/>
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
 
 <!-- Font Awesome Icon -->
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
 <!-- update the version number as needed -->
 <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
 <!-- include only the Firebase features as you need -->
@@ -173,6 +170,7 @@
                 background: white;
                 box-shadow: none;
             }
+
             body {
                 border-top: 16px solid #ffa100;
             }
@@ -302,29 +300,31 @@
             </ul>
             <ul class="header-links pull-right">
 
-                <% User auth= (User) session.getAttribute("auth");%>
-                <% if(auth==null){ %>
+                <% User auth = (User) session.getAttribute("auth");%>
+                <% if (auth == null) { %>
                 <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
-                <% }else {%>
+                <% } else {%>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-user-o"></i>
-                        <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
+                        <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i
+                                class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
                     </a>
                     <div class="cart-dropdown">
                         <h4>THÔNG TIN TÀI KHOẢN</h4>
                         <div class="cart-summary">
-                            <h5> <%= auth.getUser_fullname()%></h5>
+                            <h5><%= auth.getUser_fullname()%>
+                            </h5>
                             <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                            <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                            <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+                            <p><a href="uadateInfo.jsp" style="color: #0b0c0d">Cập nhật tài khoản</a></p>
+                            <p><a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
 
                         </div>
                     </div>
 
                 </li>
 
-                <% if(auth.getUser_admin() == 1){%>
+                <% if (auth.getUser_admin() == 1) {%>
                 <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
@@ -394,21 +394,24 @@
     <!-- /MAIN HEADER -->
 </header>
 <div class="signup-form">
+    <% User user = (User) session.getAttribute("user");%>
     <%--        <form action="/THDoAn_war/forgot-password" method="post">--%>
     <form action="/THDoAn_war/checkOTP" method="post">
         <h2 style="font-size:18px;">Nhập mã OTP</h2>
-            <% String otp = (String) session.getAttribute("otp");%>
-            <% int intNumber1 = (int) session.getAttribute("expiryTime");%>
+        <% String otp = (String) session.getAttribute("otp");%>
+        <% int intNumber1 = (int) session.getAttribute("expiryTime");%>
 
-            <input  name="expiryTime" style="display: none"  value="<%=intNumber1%>">
-            <input class="date" name="otp" style="display: none"  value="<%=otp%>" type="text">
+        <input name="expiryTime" style="display: none" value="<%=intNumber1%>">
+        <input class="date" name="otp" style="display: none" value="<%=otp%>" type="text">
+        <input name="id_user" style="display: none" value="<%=user.getUser_id()%>">
+        <input name="looker_user" style="display: none" value="<%=user.getLooked()%>">
+
         <p class="text-danger">${messs}</p>
         <p class="text-success">${message}</p>
         <p class="text-danger">${err}</p>
+        <p class="text-danger">${errr}</p>
         <div class="form-group">
-                    <input type="text" class="form-control" name="enterOTP" placeholder="Nhập mã OTP" required="required">
-
-
+            <input type="text" class="form-control" name="enterOTP" placeholder="Nhập mã OTP" required="required">
         </div>
 
 
@@ -416,7 +419,6 @@
 
         <%--    <% String otp = (String) session.getAttribute("otp");%>--%>
         <%--    <% int intNumber1 = (int) session.getAttribute("expiryTime");%>--%>
-
 
 
         <%--&lt;%&ndash;    <input type="" id="" name="otp" value=" <%=otp%>">&ndash;%&gt;--%>
@@ -428,46 +430,45 @@
         <%--    </div>--%>
         <%--    <button type="submit">Gửi</button>--%>
         <%--</form>--%>
-<%--        <% String message = (String) request.getAttribute("message");--%>
-<%--            User acc = (User) request.getAttribute("acc");--%>
-<%--            if(acc != null) {--%>
-<%--                if(message != null){--%>
+        <%--        <% String message = (String) request.getAttribute("message");--%>
+        <%--            User acc = (User) request.getAttribute("acc");--%>
+        <%--            if(acc != null) {--%>
+        <%--                if(message != null){--%>
 
 
-<%--        %>--%>
-<%--        <div class="alert-danger">--%>
-<%--            <%= message%>--%>
+        <%--        %>--%>
+        <%--        <div class="alert-danger">--%>
+        <%--            <%= message%>--%>
 
-<%--        </div>--%>
+        <%--        </div>--%>
 
-<%--        <%--%>
-<%--                }--%>
-<%--            }--%>
-<%--            if (acc == null) {--%>
-<%--                if (message != null) {--%>
-<%--        %>--%>
-<%--        <div class="alert-danger">--%>
+        <%--        <%--%>
+        <%--                }--%>
+        <%--            }--%>
+        <%--            if (acc == null) {--%>
+        <%--                if (message != null) {--%>
+        <%--        %>--%>
+        <%--        <div class="alert-danger">--%>
 
-<%--            <%= message %>--%>
-<%--        </div>--%>
-<%--        <%--%>
-<%--                }--%>
-<%--            }--%>
-<%--        %>--%>
-
+        <%--            <%= message %>--%>
+        <%--        </div>--%>
+        <%--        <%--%>
+        <%--                }--%>
+        <%--            }--%>
+        <%--        %>--%>
 
 
         <div class="form-group">
             <button type="submit" class="btn btn-success btn-lg btn-block">Gửi</button>
         </div>
-        <div class="text-center"> Bạn có cần hổ trợ không? <a href="#">Hộ Trợ</a></div>
+        <div class="text-center"> Bạn có cần hỗ trợ không? <a href="#">Hỗ Trợ</a></div>
     </form>
 </div>
 </form>
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const loadEl = document.querySelector('#load');
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!

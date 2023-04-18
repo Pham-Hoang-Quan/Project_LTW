@@ -111,8 +111,6 @@ public class UserService {
                    .bind(0, user_email)
 
                    .mapToBean(User.class).first();
-
-
        });
 
 

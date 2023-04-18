@@ -1,12 +1,8 @@
 package vn.edu.hcmuaf.ttt.MailOTP;
 
-import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
-import vn.edu.hcmuaf.ttt.model.Product;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class OTPService {
 
@@ -19,17 +15,15 @@ public class OTPService {
 
 
                         .execute());
-
     }
 
 
 
-//check OTP
+    //check OTP
     static public OTP checkCodeOTP(String codeOTP) {
         return JDBiConnector.me().withHandle(handle -> {
             return handle.createQuery(" SELECT* FROM mailotp WHERE codeOTP = ?")
                     .bind(0, codeOTP)
-
                     .mapToBean(OTP.class).first();
 
 
@@ -63,10 +57,25 @@ public class OTPService {
                         .bind(1,user_id).execute());
     }
 
+    //khóa người dùng khi nhập sai mã otp quá 3 lần
+    static public boolean updateLockUser(String user_id) {
+        JDBiConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE `user` SET locked = 1 WHERE user_id = ?;")
+                        .bind(0,user_id).execute());
+        return false;
+    }
 
+    //mở khóa người dùng
+    static public boolean updateUnlockUser(String user_email) {
+        JDBiConnector.me().withHandle(handle ->
+                handle.createUpdate("UPDATE `user` SET locked = 0 WHERE user_email = ?;")
+                        .bind(0,user_email).execute());
+        return false;
+    }
 
     public static void main(String[] args) {
-System.out.println(OTPService.expires_at());
+
+        System.out.println(OTPService.updateLockUser("21"));
     }
 
 
