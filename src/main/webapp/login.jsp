@@ -46,6 +46,8 @@
         -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
+
+
     <style media="screen">
         body {
             background: #ffffff;
@@ -400,39 +402,7 @@
                                     <span>Giỏ Hàng</span>
 
                                 </a>
-<%--                                <div class="cart-dropdown">--%>
-<%--                                    <div class="cart-list">--%>
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/180-LI(Q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan 180-LI</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>980.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
 
-<%--                                        <div class="product-widget">--%>
-<%--                                            <div class="product-img">--%>
-<%--                                                <img src="./img/may-khoan-bosch-gbm-320(1q).jpg" alt="">--%>
-<%--                                            </div>--%>
-<%--                                            <div class="product-body">--%>
-<%--                                                <h3 class="product-name"><a href="product.html">Máy khoan Bosch GBM-320</a></h3>--%>
-<%--                                                <h4 class="product-price"><span class="qty">1x</span>900.000</h4>--%>
-<%--                                            </div>--%>
-<%--                                            <button class="delete"><i class="fa fa-close"></i></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-summary">--%>
-<%--                                        <small>2 Sản Phẩm</small>--%>
-<%--                                        <h5>Tổng: 1.880.000</h5>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="cart-btns">--%>
-<%--                                        <a href="#">Xem</a>--%>
-<%--                                        <a href="checkout.jsp">Thanh Toán<i class="fa fa-arrow-circle-right"></i></a>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
                             </div>
                             <!-- /Cart -->
 

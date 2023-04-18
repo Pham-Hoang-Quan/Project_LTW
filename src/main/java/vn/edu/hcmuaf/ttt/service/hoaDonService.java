@@ -1,10 +1,7 @@
 package vn.edu.hcmuaf.ttt.service;
 
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
-
-import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,7 +57,8 @@ public class hoaDonService {
     //đơn hàng chi tiết
     public  static hoaDon getinfoBill(int soHD){
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT DISTINCT HoVaTen, HD_email, HD_sdt, city, district, ward, note, ngayTaoHD FROM hoadon WHERE soHD = ?")
+            return handle.createQuery("SELECT DISTINCT HoVaTen, HD_email, HD_sdt, city, district, ward, note, " +
+                            "ngayTaoHD FROM hoadon WHERE soHD = ?")
                     .bind(0,soHD)
                     .mapToBean(hoaDon.class).first();
 
