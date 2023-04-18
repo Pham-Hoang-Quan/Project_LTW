@@ -67,7 +67,7 @@ public class ForgotPassController extends HttpServlet {
                 sb.append("Bạn đang sử dụng chức năng quên mật khẩu");
 //                sb.append("You password is <b>").append(acc.getUser_password());
                 sb.append("Chúng tôi gửi đến bạn mã OTP:  ").append(Integer.parseInt(otpString));
-                sb.append("mã OTP hết hạn lúc:  ").append(expires_at);
+                sb.append("Mã OTP hết hạn lúc:  ").append(expires_at);
                 sb.append("Trân trọng");
                 sb.append("Người quản lý. ");
 
@@ -81,7 +81,7 @@ public class ForgotPassController extends HttpServlet {
         } catch (Exception e){
             request.setAttribute("message", e.getMessage());
 
-        }request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+        } request.getRequestDispatcher("otpMail.jsp").forward(request, response);
 
     }
 }

@@ -20,11 +20,13 @@ public class User implements Serializable {
 
     private String id_fb;
 
+    private int looked;
+
     public User(){
 
     }
 
-    public User(String user_id, String user_fullname, String user_name, String account, String email, String user_sdt, String user_password, int user_admin, boolean verified_email, String id, String id_fb) {
+    public User(String user_id, String user_fullname, String user_name, String account, String email, String user_sdt, String user_password, int user_admin, boolean verified_email, String id, String id_fb, int looked) {
         this.user_id = user_id;
         this.user_fullname = user_fullname;
         this.user_name = user_name;
@@ -36,6 +38,7 @@ public class User implements Serializable {
         this.verified_email = verified_email;
         this.id = id;
         this.id_fb = id_fb;
+        this.looked = looked;
     }
 
     public String getId_fb() {
@@ -70,9 +73,13 @@ public class User implements Serializable {
         this.verified_email = verified_email;
     }
 
+    public int getLooked() {
+        return looked;
+    }
 
-
-
+    public void setLooked(int looked) {
+        this.looked = looked;
+    }
 
     public String getUser_id() {
         return user_id;
@@ -152,6 +159,7 @@ public class User implements Serializable {
                 ", verified_email=" + verified_email +
                 ", id='" + id + '\'' +
                 ", id_fb='" + id_fb + '\'' +
+                ", looked=" + looked +
                 '}';
     }
 }
