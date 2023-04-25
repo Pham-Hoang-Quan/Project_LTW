@@ -10,7 +10,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
 @WebServlet(name = "addToCart", value = "/addToCart")
 public class addToCart extends HttpServlet {
     @Override

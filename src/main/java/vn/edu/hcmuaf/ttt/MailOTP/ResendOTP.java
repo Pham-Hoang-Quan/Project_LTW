@@ -1,7 +1,6 @@
-package vn.edu.hcmuaf.ttt.controler;
+package vn.edu.hcmuaf.ttt.MailOTP;
 
 import vn.edu.hcmuaf.ttt.Mail.EmailUtil;
-import vn.edu.hcmuaf.ttt.MailOTP.OTPService;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Email;
 import vn.edu.hcmuaf.ttt.service.UserService;
@@ -13,19 +12,18 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Random;
 
-@WebServlet(name = "ForgotPassController", value = "/forgot-password")
-public class ForgotPassController extends HttpServlet {
+@WebServlet(name = "ResendOTP", value = "/ResendOTP")
+public class ResendOTP extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("password.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String email = request.getParameter("email");
-            String user = request.getParameter("user");
+            String email = request.getParameter("emaill");
+            String user = request.getParameter("users");
             User acc = UserService.findByUserAndEmail(user, email);
 
 
@@ -82,3 +80,4 @@ public class ForgotPassController extends HttpServlet {
 
     }
 }
+
