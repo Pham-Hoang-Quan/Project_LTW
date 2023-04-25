@@ -15,7 +15,6 @@ public class User implements Serializable {
 
     private boolean verified_email;
 
-
     private String id;
 
     private String id_fb;

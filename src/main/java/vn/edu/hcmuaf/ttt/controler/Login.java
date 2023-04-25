@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.ttt.bean.LoginUser;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.model.Cart;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 @WebServlet(name = "Login", value = "/dologin")
 public class Login extends HttpServlet {
     @Override
@@ -28,16 +28,22 @@ public class Login extends HttpServlet {
         String user_name = request.getParameter("user");
         String user_password = request.getParameter("pass");
 
-        User user = UserService.getInstance().checkLogib(user_name,user_password);
+        User user = UserService.getInstance().checkLogib(user_name);
 
         Cart cart = new Cart(user,0,0);
+
       if(user == null){
           request.setAttribute("mess", "Sai Tên người dùng hoặc Mật khẩu");
           request.getRequestDispatcher("login.jsp").forward(request,response);
-      }else {
-          HttpSession session = request.getSession(true);
-          session.setAttribute("auth", user);
-          session.setAttribute("cart",cart);
+      } else {
+          String hashedPassword = user.getUser_password();
+          boolean passMatch = BCrypt.checkpw(user_password, hashedPassword);
+          if (passMatch) {
+              HttpSession session = request.getSession(true);
+              session.setAttribute("auth", user);
+              session.setAttribute("cart",cart);
+              session.setAttribute("userId", user.getUser_id());
+          }
 
           if(userl.isRemember()){
               CookieUtils.add("user", user_name, 2, response);
@@ -49,11 +55,8 @@ public class Login extends HttpServlet {
 
           request.setAttribute("messs", "Bạn đã đăng nhập thành công");
           response.sendRedirect("/THDoAn_war/");
-
-
-
 //          response.sendRedirect("index1.jsp");
       }
-
     }
+
 }

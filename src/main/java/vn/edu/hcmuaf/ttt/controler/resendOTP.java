@@ -13,11 +13,10 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Random;
 
-@WebServlet(name = "ForgotPassController", value = "/forgot-password")
-public class ForgotPassController extends HttpServlet {
+@WebServlet(name = "sendOTP", value = "/sendOTP")
+public class resendOTP extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("password.jsp").forward(request, response);
 
     }
 
@@ -73,6 +72,7 @@ public class ForgotPassController extends HttpServlet {
                 EmailUtil.send(email1);
                 OTPService.codeOTP(Integer.parseInt(otpString), created_at, expires_at);
                 request.setAttribute("message", "OTP đã được gửi vào mail của bạn bạn hãy xem mail và nhập mã OTP.");
+
             }
 
         } catch (Exception e){
