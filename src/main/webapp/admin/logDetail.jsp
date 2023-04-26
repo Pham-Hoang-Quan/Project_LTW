@@ -31,6 +31,7 @@
 <body>
 <div class="container-scroller">
   <!-- partial:../../partials/_navbar.html -->
+  <jsp:include page="nav.jsp"></jsp:include>
   <!-- partial -->
   <div class="container-fluid page-body-wrapper">
     <!-- partial:../../partials/_sidebar.html -->

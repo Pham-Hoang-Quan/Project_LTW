@@ -1,15 +1,19 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
-import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.model.Product;
+import vn.edu.hcmuaf.ttt.service.ProductService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "DeleteOrder", value = "/DeleteOrder")
-public class DeleteOrder extends HttpServlet {
+@WebServlet(name = "HidenProductList", value = "/HidenProductList")
+public class HidenProductList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
@@ -18,11 +22,9 @@ public class DeleteOrder extends HttpServlet {
         if (!isLoggedIn || isNormalUser) {
             response.sendRedirect("/THDoAn_war/List-Product");
         } else {
-            String soHD = request.getParameter("SoHD");
-
-            HoaDon.deleteOrder(soHD);
-
-            response.sendRedirect("OrderList");
+            List<Product> list = ProductService.getHidenProduct();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("admin/hidenProduct.jsp").forward(request, response);
         }
     }
 

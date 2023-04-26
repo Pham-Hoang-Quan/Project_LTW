@@ -1,8 +1,9 @@
+<%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="http://localhost:8080/THDoAn_war/IndexAdmin"><img src="assets/images/LogoWeb.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo" href="index.jsp"><img src="admin/assets/images/LogoWeb.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.jsp"><img src="assets/images/LogoWeb.png" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -19,11 +20,27 @@
             </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="nav-profile-text">
+                        <% User auth= (User) session.getAttribute("auth");%>
+                        <% if(auth==null){ %>
+                        <p class="mb-1 text-black">Chưa đăng nhập</p>
+                        <% }else {%>
+                        <p class="mb-1 text-black"><%= auth.getUser_fullname()%></p>
+                        <% } %>
 
-
-
+                    </div>
+                </a>
+                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="/ListLog">
+                        <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/THDoAn_war/LogOutAdmin">
+                        <i  class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                </div>
+            </li>
             <li class="nav-item dropdown">
-
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                     <h6 class="p-3 mb-0">Notifications</h6>
                     <div class="dropdown-divider"></div>

@@ -150,7 +150,7 @@
                     <% } else{%>
                     <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>
                         <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>
-                    <% if(auth.getUser_admin() == 1){%>
+                    <% if(auth.getUser_admin() > 0){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <% } %>
                     <%}%>

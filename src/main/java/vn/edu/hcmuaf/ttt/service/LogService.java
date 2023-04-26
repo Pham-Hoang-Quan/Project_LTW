@@ -43,11 +43,27 @@ public class LogService {
     public static void main(String[] args) {
 //
         System.out.println(LogService.getCountLog1());
+        System.out.println(LogService.getCountLog2());
+        System.out.println(LogService.getCountLog3());
+        System.out.println(LogService.getCountLog4());
 
 //
     }
     public static int getCountLog1() {
         return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -1)")
+                .mapTo(Integer.class).one());
+    }
+
+    public static int getCountLog2() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -2)")
+                .mapTo(Integer.class).one());
+    }
+    public static int getCountLog3() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -3)")
+                .mapTo(Integer.class).one());
+    }
+    public static int getCountLog4() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -4)")
                 .mapTo(Integer.class).one());
     }
 }

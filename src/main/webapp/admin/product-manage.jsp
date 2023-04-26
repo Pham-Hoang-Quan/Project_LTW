@@ -31,7 +31,7 @@
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-
+        <jsp:include page="nav.jsp"></jsp:include>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
 
@@ -100,6 +100,9 @@
                                                 </a>
                                                 <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
+                                                </a>
+                                                <a title="Sửa" href="<%= "/THDoAn_war/HidenProduct?id=" + p.getId() %>" >
+                                                    <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i>Ẩn</label>
                                                 </a>
                                             </td>
                                         </tr>

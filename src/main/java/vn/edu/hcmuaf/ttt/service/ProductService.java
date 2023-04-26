@@ -49,7 +49,7 @@ public class ProductService {
 
 //
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT * FROM products ").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products WHERE  isNew = 1 and isNew = 2").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
 
     }
@@ -386,7 +386,7 @@ public class ProductService {
     //Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM products limit ?,10")
+                handle.createQuery("SELECT * FROM products where isNew = 1 and isNew = 2 limit ?,10")
                         .bind(0, (index - 1) * 10)
                         .mapToBean(Product.class)
                         .stream()
@@ -397,6 +397,18 @@ public class ProductService {
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
+                        .bind(0, id)
+                        .execute());
+    }
+    public static void hidenProduct(String id) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("update products set isNew = 3 where id = ? ")
+                        .bind(0, id)
+                        .execute());
+    }
+    public static void unhidenProduct(String id) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("update products set isNew = 1 where id = ? ")
                         .bind(0, id)
                         .execute());
     }
@@ -440,7 +452,11 @@ public class ProductService {
                         .execute());
     }
 
-
+    public static List<Product> getHidenProduct() {
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select * from products WHERE isNew = 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
+    }
     public static void main(String[] args) {
 //        System.out.println(ProductService.pagingProduct(1));
         // System.out.println(ProductService.getProductById("1"));

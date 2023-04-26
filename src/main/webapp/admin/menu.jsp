@@ -13,11 +13,28 @@
                     <% }else {%>
                     <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>
                     <% } %>
+                    <% if (auth.getUser_admin() == 1) { %>
                     <span class="text-secondary text-small">Admin</span>
+                    <%}%>
+                    <% if (auth.getUser_admin() == 2) { %>
+                    <span class="text-secondary text-small">Nhân viên bán hàng</span>
+                    <%}%>
+                    <% if (auth.getUser_admin() == 3) { %>
+                    <span class="text-secondary text-small">Nhân viên đóng gói</span>
+                    <%}%>
+
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
         </li>
+<%--        //user_admin = 1 là admin => quản lý tất cả trang admin, thăng chức nhân viên, trang thống kê.--%>
+<%--        //---------- = 2 là nhân viên bán hàng : chỉ thêm, xóa, sửa sản phẩm, xem doanh thu theo tháng--%>
+<%--        // --------- = 3 là nhân viên quản lý đơn hàng: xem trang đơn hàng, xác nhận, hủy đơn--%>
+
+        <% if(auth.getUser_admin() == 1){%>
+
+
+
         <li class="nav-item">
             <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
                 <span class="menu-title">Trang chủ</span>
@@ -61,5 +78,51 @@
                         <span class="nav-link">
               </span>
         </li>
+        <% } %>
+        <% if(auth.getUser_admin() == 2){%>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
+                <span class="menu-title">Trang chủ</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
+                <span class="menu-title">Quản lý sản phẩm</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/HidenProductList">
+                <span class="menu-title">Danh sách sản phẩm đã ẩn</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item sidebar-actions">
+                        <span class="nav-link">
+              </span>
+        </li>
+        <% } %>
+        <% if(auth.getUser_admin() == 3){%>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
+                <span class="menu-title">Trang chủ</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/OrderList">
+                <span class="menu-title">Quản lý đơn hàng</span>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item sidebar-actions">
+                        <span class="nav-link">
+              </span>
+        </li>
+        <% } %>
+
     </ul>
 </nav>

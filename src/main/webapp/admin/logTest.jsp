@@ -44,6 +44,7 @@
 <body>
 <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
+    <jsp:include page="nav.jsp"></jsp:include>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
@@ -196,9 +197,14 @@
             labels: ["<%=month - 3%>", "<%=month - 2%>", "<%=month - 1%>", "<%=month%>"],
             datasets: [{
                 label: '# of Votes',
-                <% int countLog1 = (Integer) request.getAttribute("countLog1");%>
-                data: ["<%= countLog1%>", 50, 3, 5],
-                //data: [30, 50, 3, 5],
+                <%
+                int countLog1 = (int) request.getAttribute("countLog1");
+                int countLog2 = (int) request.getAttribute("countLog2");
+                int countLog3 = (int) request.getAttribute("countLog3");
+                int countLog4 = (int) request.getAttribute("countLog4");
+                %>
+                <%--data: ["<%= countLog1%>", 50, 3, 5],--%>
+                data: [<%=countLog1%>, <%=countLog2%>, <%=countLog3%>, <%=countLog4%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -771,15 +777,7 @@
         //Data from an URL ?
         $.get(urlUsers, function(responseData) {
             //Mofify "responseData" before showing ?
-            var modifiedUsers = responseData.map(eachUser => {
-                return {
-                    id: eachUser.id,
-                    name: eachUser.name,
-                    email: eachUser.email,
-                    address: `${eachUser.address.street}, ${eachUser.address.suite}, ${eachUser.address.city}`,
-                    phone: eachUser.phone
-                };
-            });
+
             table = $('#log_table').DataTable({
                 "processing": true,
 
@@ -805,5 +803,8 @@
             table.ajax.reload();
         });
     });
-
+console.log("datatable");
+</script>
+<script type="text/javascript"
+        charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
 </script>

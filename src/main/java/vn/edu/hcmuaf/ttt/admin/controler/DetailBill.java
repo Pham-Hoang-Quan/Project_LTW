@@ -16,7 +16,7 @@ public class DetailBill extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
-        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
             response.sendRedirect("/THDoAn_war/List-Product");
         } else {

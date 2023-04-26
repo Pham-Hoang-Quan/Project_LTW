@@ -158,7 +158,6 @@ public static User findByUserAndEmail(String user_name, String user_email){
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0)")
                         .bind(0,email)
-
                         .bind(1, user_name)
                         .bind(2, email)
                         .bind(3, user_pass)
