@@ -364,6 +364,7 @@
 <%--        <form action="/THDoAn_war/forgot-password" method="post">--%>
     <form action="/THDoAn_war/forgot-password" method="post">
             <h2 style="font-size:18px;">Lấy Lại Mật Khẩu</h2>
+        <p class="text-danger">${messages}</p>
 
 
             <div class="form-group">

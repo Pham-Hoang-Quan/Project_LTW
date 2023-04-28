@@ -6,8 +6,12 @@
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.MessageDigest" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<%@page import="java.util.Base64"%>
+
 
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
@@ -148,6 +152,7 @@
 <%--                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
 
                     <% } else{%>
+
                     <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>
                         <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>
                     <% if(auth.getUser_admin() == 1){%>
@@ -245,11 +250,31 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                    <%if (auth == null ){%>
+                    <%String plainText = "1";
+                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());
+                    %>
+
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
+                    <%}else {%>
+                    <%
+//                        byte[] bytes = {Byte.parseByte(auth.getUser_id())}; // Chuyển số 1 thành mảng byte
+//                        String encoded = Base64.getEncoder().encodeToString(bytes); // Mã hóa mảng byte bằng Base64
+
+                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());
+
+                    %>
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>">Sản Phẩm</a></li>
+                    <% List<Category> lista = (List<Category>) request.getAttribute("listc");
+                        for (Category p:lista) { %>
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <% } %>
+                    <%}%>
+
 
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>

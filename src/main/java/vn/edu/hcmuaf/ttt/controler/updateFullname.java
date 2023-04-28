@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
 import javax.servlet.*;
@@ -19,6 +21,7 @@ public class updateFullname extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user_fullname = request.getParameter("user_fullnameN");
         String user_id  = request.getParameter("user_id");
+        int id_user = Integer.parseInt(user_id);
         String account  = request.getParameter("account");
         String user_name = request.getParameter("user_name");
         String user_email = request.getParameter("user_email");
@@ -43,9 +46,12 @@ public class updateFullname extends HttpServlet {
                     session.invalidate();
                     request.setAttribute("success","cập nhật tài khoản thành công mời bạn đăng nhập lại");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
+                    DB.me().insert(new Log(Log.INFO,id_user,"update-fullname", user_fullname+", "+user_name+", "+ account+", "+ user_email+", "+user_sdt +", "+ user_pass ,0));
                 }  else {
                     request.setAttribute("messerger","mật khẩu cũ không trùng khớp");
                     request.getRequestDispatcher("uadateInfo.jsp").forward(request,response);
+                    DB.me().insert(new Log(Log.WARNING,id_user,"update-fullname_mật khẩu cũ không trùng khớp", enterpass_old ,0));
+
                 }
             }
 

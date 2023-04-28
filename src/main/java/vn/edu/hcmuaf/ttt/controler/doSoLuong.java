@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 
 import javax.servlet.*;
@@ -37,10 +39,12 @@ public class doSoLuong extends HttpServlet {
         for (String[] s:
              listHoadon) {
             cart.put(s[0],Integer.parseInt(s[1]));
+            DB.me().insert(new Log(Log.INFO,1,"Thêm số lượng", s[0] + ", Số lượng"+ s[1] ,0));
         }
         session.removeAttribute("cart");
         session.setAttribute("cart",cart);
         response.sendRedirect("checkout.jsp");
+
 
 
     }

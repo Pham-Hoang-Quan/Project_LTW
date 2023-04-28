@@ -44,7 +44,7 @@ public class Log extends AbBean  implements Serializable {
         this.creatAt = creatAt;
         this.status = status;
     }
-    public Log(int level,int user_id, String scr,  String content, int status) {
+    public Log(int level, int user_id, String scr,  String content, int status) {
 
         this.level = level;
         this.scr = scr;

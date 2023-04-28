@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -32,5 +34,6 @@ public class SearchControl extends HttpServlet {
         request.setAttribute("listsptt", listsptt);
 
         request.getRequestDispatcher("store.jsp").forward(request,response);
+        DB.me().insert(new Log(Log.INFO,1,"search", "noi dung: " + txtSearch + listsearch.toString() ,0));
     }
 }

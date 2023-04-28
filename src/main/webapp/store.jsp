@@ -147,11 +147,13 @@
                     <% User auth= (User) session.getAttribute("auth");%>
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
+                    <input class="input" name="userId" style="display: none" value="1" type="text" >
                     <% }else {%>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="fa fa-user-o"></i>
                             <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
+                            <input class="input" name="userId" style="display: none" value="<%=auth.getUser_id()%>" type="text" >
                         </a>
                         <div class="cart-dropdown">
                             <h4>THÔNG TIN TÀI KHOẢN</h4>
@@ -382,6 +384,7 @@
                                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                                 String tt = format.format(p.getPrice()).split(",")[0];
                             %>
+
                             <div class="product-body">
                                 <p class="product-category"><%= p.getClassify()%></p>
                                 <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>

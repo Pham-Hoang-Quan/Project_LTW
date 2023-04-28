@@ -41,6 +41,7 @@ public class User implements Serializable {
         this.looked = looked;
     }
 
+
     public String getId_fb() {
         return id_fb;
     }

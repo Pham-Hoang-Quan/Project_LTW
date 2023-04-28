@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
@@ -42,11 +44,12 @@ product.setQuantily(1);
 
         request.setAttribute("list", page);
         request.setAttribute("endP", endPage);
-        request.setAttribute("tag", index);
-        request.setAttribute("listc", listc);
+        request.setAttribute("tag", index);       request.setAttribute("listc", listc);
         request.setAttribute("listsptt", listsptt);
 
         request.getRequestDispatcher("store.jsp").forward(request,response);
+
+        DB.me().insert(new Log(Log.INFO,1,"Thêm vào giỏ hàng", id,0));
 
 
 

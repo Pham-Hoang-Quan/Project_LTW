@@ -428,6 +428,7 @@
         <form action="/THDoAn_war/dologin" method="post">
             <h2 style="font-size:18px;">Đăng nhập</h2>
             <p class="alert-success">${success}</p>
+            <p class="alert-danger">${locked}</p>
             <div class="text-center social-btn">
                 <fb:login-button size="large" scope="public_profile,email" onlogin="checkLoginState();">Đăng nhập bằng FaceBook
                 </fb:login-button>

@@ -33,8 +33,7 @@ public class ProductDetail extends HttpServlet {
         request.setAttribute("comment", list);
         request.setAttribute("listsptt", listsptt);
         request.setAttribute("listc", listc);
-//        HttpSession session = request.getSession(true);
-//        session.setAttribute("auth", user);
+
         request.getRequestDispatcher("product.jsp").forward(request, response);
         DB.me().insert(new Log(Log.INFO,1,name, product.toString(),0));
 

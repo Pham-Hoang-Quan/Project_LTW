@@ -46,16 +46,14 @@ public class ListIndex extends HttpServlet {
         request.setAttribute("listPI", listPI);
         request.setAttribute("listc", listc);
 
-
-
-
-
-
-
+//
+//        String userId = request.getParameter("u");
+//        int userid = Integer.parseInt(userId);
 
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
         DB.me().insert(new Log(Log.INFO,1,name, listn.toString(),0));
+
 
     }
 

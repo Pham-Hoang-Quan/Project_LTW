@@ -180,7 +180,7 @@ public static User findByUserAndEmail(String user_name, String user_email){
 
 
     public static void main(String[] args) {
-        System.out.println(UserService.checkIb_fb("1630335000760827"));
+        System.out.println(UserService.checkLogib("chi", "123"));
 
 //
     }
