@@ -31,9 +31,9 @@ public class UserService {
         return instance;
     }
     //Phương thức để đăng nhập
-    public  static User checkLogib(String user_name, String user_password){
+    public  static User checkLogib(String user_name){
         List<User> users = JDBiConnector.me().withHandle(h ->
-                h.createQuery("SELECT * FROM `user` WHERE user_name = ? AND user_password = ?").bind(0,user_name).bind(1,user_password).mapToBean(User.class).stream().collect(Collectors.toList())
+                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0,user_name).mapToBean(User.class).stream().collect(Collectors.toList())
         );
         if(users.size() != 1) return null;
         User user = users.get(0);
@@ -64,7 +64,7 @@ public class UserService {
 //Phuong thức cho đăng ký
     static public  void singup(String user_fullname, String user_name, String accout, String user_email,String user_sdt, String user_password){
        JDBiConnector.me().withHandle(h ->
-               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0,0,0,0)")
+               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0,0,0,0,0)")
                 .bind(0, user_name)
                 .bind(0, user_fullname)
                 .bind(1, user_name)
@@ -128,8 +128,18 @@ public static User findByUserAndEmail(String user_name, String user_email){
     );
   if(userList.size() == 0) return null;
   return userList.get(0);
+
 }
 
+    public static User findByID(String user_id){
+        List<User> userList = JDBiConnector.me().withHandle(h ->
+                h.createQuery("SELECT * FROM `user` WHERE user_id =?")
+                        .bind(1, user_id)
+                        .mapToBean(User.class).stream().collect(Collectors.toList())
+        );
+        if(userList.size() == 0) return null;
+        return userList.get(0);
+    }
 
 
 

@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.CategoryService;
 import vn.edu.hcmuaf.ttt.service.ProductService;
+import vn.edu.hcmuaf.ttt.service.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -36,7 +37,10 @@ public class ListProduct extends HttpServlet {
         List<Product> page = ProductService.getFilteredProducts(params);
         List<Product> listsptt = ProductService.getSanPhamTuongTu();
 
+<<<<<<< HEAD
 //
+=======
+>>>>>>> 19e1a260646893a61756f7bd4295f261f7f10bd5
         request.setAttribute("list", page);
         request.setAttribute("endP", LastPageCalculator.getEndPage(params));
         request.setAttribute("tag", params.getPageIndex());
@@ -66,6 +70,7 @@ public class ListProduct extends HttpServlet {
 //        request.setAttribute("list", filter);
 //                request.setAttribute("endP", LastPageCalculator.getEndPage(params));
 //        request.setAttribute("tag", params.getPageIndex());
+<<<<<<< HEAD
 
 //        HttpSession session = request.getSession(false);
 //        String userId = (String) session.getAttribute("userId");
@@ -90,6 +95,19 @@ public class ListProduct extends HttpServlet {
 
 
 
+=======
+//        HttpSession session = request.getSession();
+//        String userId = (String) session.getAttribute("userId");
+//        int userid = Integer.parseInt(userId);
+//
+//        //Kiểm tra xem session có tồn tại không
+//        if (userId != null) {
+//            // Lấy giá trị id user từ session
+//            request.getRequestDispatcher("store.jsp").forward(request, response);
+//            DB.me().insert(new Log(Log.INFO,userid,name, page.toString(),0));
+//
+//        }
+>>>>>>> 19e1a260646893a61756f7bd4295f261f7f10bd5
     }
 
     @Override
