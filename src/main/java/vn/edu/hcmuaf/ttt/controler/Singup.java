@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import org.mindrot.jbcrypt.BCrypt;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
 import javax.servlet.*;
@@ -44,10 +46,14 @@ public class Singup extends HttpServlet {
                 if(user_password.equals(re_pass)){
                     UserService.singup(user_fullname,user_name,account,user_email,user_sdt, hashedPassword);
                     response.sendRedirect("login.jsp");
+                    DB.me().insert(new Log(Log.INFO,1,"dosingup-singup", user_fullname + ", " + user_name + ", "+ account + ", "+ user_email + ", "+ user_sdt+ ", " + user_password,0));
+
                 }else{
                     request.setAttribute("messs", "Mật khẩu không trùng khớp!");
 
                     request.getRequestDispatcher("form_dk.jsp").forward(request,response);
+                    DB.me().insert(new Log(Log.INFO,1,"dosingup-Mật khẩu không trùng khớp", user_password +",mật khẩu nhập lại:  " + re_pass ,0));
+
                 }
             }
 
@@ -57,6 +63,8 @@ public class Singup extends HttpServlet {
         }else {
             request.setAttribute("mess", "Tên người dùng đã tồn tại, vui lòng đặt tên khác!");
             request.getRequestDispatcher("form_dk.jsp").forward(request,response);
+            DB.me().insert(new Log(Log.INFO,1,"dosingup-Tên người dùng đã tồn tại", user_name,0));
+
         }
     }
 

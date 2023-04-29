@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
 import javax.servlet.*;
@@ -20,6 +22,7 @@ public class hoaDonCon extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user_id = request.getParameter("userID");
+        int id_user = Integer.parseInt(user_id);
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
@@ -55,6 +58,7 @@ public class hoaDonCon extends HttpServlet {
                 new hoaDonService().hoaDon(soHD + "", user_id, fullName, email, tel, city, dis, wa, note, s[0], s[1], s[3], s[2], dateComment);
 
             new hoaDonService().updateQty(s[2], s[0]);
+            DB.me().insert(new Log(Log.INFO,id_user,"doHoaDon-Lập hóa đơn", "soHD: "+soHD + ", Họ và Tên:"+fullName +", Email: "+ email+", SĐT: " + tel +", Thành Phố: "+ city+ ", Quận: "+ dis+", Xã: "+ wa +", ghi chú: "+note+", Tên sản Phẩm: "+s[1]+", Tổng giá: "+ s[3]+", số lượng: "+s[2] ,0));
 
 
         }
