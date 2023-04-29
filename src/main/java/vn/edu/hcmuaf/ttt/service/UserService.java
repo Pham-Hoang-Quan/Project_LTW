@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 
@@ -31,13 +32,19 @@ public class UserService {
         return instance;
     }
     //Phương thức để đăng nhập
-    public  static User checkLogib(String user_name){
+    public static User checkLogib(String user_name, String user_password) {
         List<User> users = JDBiConnector.me().withHandle(h ->
-                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0,user_name).mapToBean(User.class).stream().collect(Collectors.toList())
+                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0, user_name).mapToBean(User.class).stream().collect(Collectors.toList())
         );
-        if(users.size() != 1) return null;
+        if (users.size() != 1) {
+            return null;
+        }
         User user = users.get(0);
-        return user;
+        if (BCrypt.checkpw(user_password, user.getUser_password())) {
+            return user;
+        } else {
+            return null;
+        }
     }
     public  static User checkemailandidgg(String email){
         List<User> users = JDBiConnector.me().withHandle(h ->
@@ -177,22 +184,17 @@ public static User findByUserAndEmail(String user_name, String user_email){
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public static void main(String[] args) {
-        System.out.println(UserService.checkIb_fb("1630335000760827"));
-
-//
+        System.out.println(UserService.checkLogib("nhukhung", "nhukhung@"));
     }
+
+
+
+
+
+
+
+
+
 
 }

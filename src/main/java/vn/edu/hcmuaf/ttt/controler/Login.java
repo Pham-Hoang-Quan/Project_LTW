@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
         String user_name = request.getParameter("user");
         String user_password = request.getParameter("pass");
 
-        User user = UserService.getInstance().checkLogib(user_name);
+        User user = UserService.getInstance().checkLogib(user_name, user_password);
 
         Cart cart = new Cart(user,0,0);
 
@@ -36,14 +36,10 @@ public class Login extends HttpServlet {
           request.setAttribute("mess", "Sai Tên người dùng hoặc Mật khẩu");
           request.getRequestDispatcher("login.jsp").forward(request,response);
       } else {
-          String hashedPassword = user.getUser_password();
-          boolean passMatch = BCrypt.checkpw(user_password, hashedPassword);
-          if (passMatch) {
               HttpSession session = request.getSession(true);
               session.setAttribute("auth", user);
               session.setAttribute("cart",cart);
               session.setAttribute("userId", user.getUser_id());
-          }
 
           if(userl.isRemember()){
               CookieUtils.add("user", user_name, 2, response);
