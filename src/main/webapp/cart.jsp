@@ -5,6 +5,8 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Random" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.discount" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
@@ -16,21 +18,21 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" href="css1/slick.css" />
+<link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="stylesheet" href="css1/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css1/all.min.css">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="css1/style.css" />
 
 <!-- update the version number as needed -->
 <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
@@ -436,10 +438,12 @@
                                     </table>
                                 </div>
                             </div>
+                            <% discount discount = (discount) session.getAttribute("discount");%>
                             <div class="col-12 col-lg-4">
                                 <div class="cart-summary">
                                     <h4>TỔNG</h4>
                                     <ul class="summary-table">
+
                                         <%Locale locale = new Locale("vi");
                                             NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                                             String tt = format.format(tongtien).split(",")[0];
@@ -447,10 +451,50 @@
                                         <input type="number" style="display: none" name="tongtien" value="<%=tongtien%>">
                                         <li><span>Tiền Hàng:</span> <span><%=tt%>đ</span></li>
                                         <li><span>Vận Chuyển:</span> <span>Free</span></li>
+
+                                        <p class="alert-danger">${discount_err}</p>
+                                        <p class="alert-danger">${discount_errr}</p>
+                                        <p class="alert-danger">${discount_errrr}</p>
+
+
+
+
+                                        <%if(discount != null){%>
+                                        <%Locale lo = new Locale("vi");
+                                            NumberFormat fo = NumberFormat.getCurrencyInstance(lo);
+                                            String reduPrice = fo.format(discount.getReducedPrice()).split(",")[0];
+                                        %>
+
+                                        <li><span>Đã áp dụng mã giảm giá <%=discount.getReduce()%> : </span> <span>-<%=reduPrice%>đ</span></li>
+
+                                        <input class="date"  name="ex"  value="<%=discount.getExpires_at()%>" type="text">
+
+                                        <% int tonggia = (int) (tongtien - discount.getReducedPrice());%>
+                                        <%Locale localee = new Locale("vi");
+                                            NumberFormat formatt = NumberFormat.getCurrencyInstance(localee);
+                                            String totalPrice = formatt.format(tonggia).split(",")[0];
+                                        %>
+                                        <li><span>Tổng Tiền:</span> <span><%=totalPrice%>đ</span></li>
+                                        <%}else {%>
+
+                                        <li><span>Nhập mã giảm giá</span>
+                                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">
+                                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>
+                                        </li>
                                         <li><span>Tổng Tiền:</span> <span><%=tt%>đ</span></li>
+                                        <%}%>
+
+<%--                                        <div class="order-col">--%>
+<%--                                            <div>Nhập mã giảm giá</div>--%>
+<%--                                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">--%>
+<%--                                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>--%>
+<%--                                        </div>--%>
+
+
+
                                     </ul>
                                     <div class="cart-btn mt-100">
-                                        <button type="submit" style="background: #d10024; color: honeydew; align-content: center;   " class="btn amado-btn w-100">Thanh Toán</button>
+                                        <button type="submit" style="background: #d10024; color: honeydew; align-content: center;" class="btn amado-btn w-100" name="action" value="submit">Thanh Toán</button>
                                     </div>
                                 </div>
                             </div>

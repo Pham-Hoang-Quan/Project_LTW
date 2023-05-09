@@ -6,7 +6,7 @@
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-
+<%@page import="java.util.Base64"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <html>
@@ -20,20 +20,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-    <link type="text/css" rel="stylesheet" href="css/base.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css1/base.css" />
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css1/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css1/style.css" />
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -245,11 +245,31 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                    <%if (auth == null ){%>
+                    <%String plainText = "1";
+                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());
+                    %>
+
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
+                    <%}else {%>
+                    <%
+                        //                        byte[] bytes = {Byte.parseByte(auth.getUser_id())}; // Chuyển số 1 thành mảng byte
+//                        String encoded = Base64.getEncoder().encodeToString(bytes); // Mã hóa mảng byte bằng Base64
+
+                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());
+
+                    %>
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>">Sản Phẩm</a></li>
+                    <% List<Category> lista = (List<Category>) request.getAttribute("listc");
+                        for (Category p:lista) { %>
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <% } %>
+                    <%}%>
+
 
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>

@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 
@@ -31,13 +32,19 @@ public class UserService {
         return instance;
     }
     //Phương thức để đăng nhập
-    public  static User checkLogib(String user_name, String user_password){
+    public static User checkLogib(String user_name, String user_password) {
         List<User> users = JDBiConnector.me().withHandle(h ->
-                h.createQuery("SELECT * FROM `user` WHERE user_name = ? AND user_password = ?").bind(0,user_name).bind(1,user_password).mapToBean(User.class).stream().collect(Collectors.toList())
+                h.createQuery("SELECT * FROM `user` WHERE user_name = ?").bind(0, user_name).mapToBean(User.class).stream().collect(Collectors.toList())
         );
-        if(users.size() != 1) return null;
+        if (users.size() != 1) {
+            return null;
+        }
         User user = users.get(0);
-        return user;
+        if (BCrypt.checkpw(user_password, user.getUser_password())) {
+            return user;
+        } else {
+            return null;
+        }
     }
     public  static User checkemailandidgg(String email){
         List<User> users = JDBiConnector.me().withHandle(h ->
@@ -64,7 +71,7 @@ public class UserService {
 //Phuong thức cho đăng ký
     static public  void singup(String user_fullname, String user_name, String accout, String user_email,String user_sdt, String user_password){
        JDBiConnector.me().withHandle(h ->
-               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0,0,0,0)")
+               h.createUpdate("INSERT INTO `user` VALUES (null,?,?,?,?,?,?, 0,0,0,0,0)")
                 .bind(0, user_name)
                 .bind(0, user_fullname)
                 .bind(1, user_name)
@@ -78,7 +85,7 @@ public class UserService {
     //lấy dữ liệu user từ facbook
     static public void sinupFB(String user_fullname, String user_email, String pass, String id_fb){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,0,?)")
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,0,?,0)")
                         .bind(0,user_fullname)
                         .bind(1,id_fb)
                         .bind(2,user_email)
@@ -128,8 +135,18 @@ public static User findByUserAndEmail(String user_name, String user_email){
     );
   if(userList.size() == 0) return null;
   return userList.get(0);
+
 }
 
+    public static User findByID(String user_id){
+        List<User> userList = JDBiConnector.me().withHandle(h ->
+                h.createQuery("SELECT * FROM `user` WHERE user_id =?")
+                        .bind(1, user_id)
+                        .mapToBean(User.class).stream().collect(Collectors.toList())
+        );
+        if(userList.size() == 0) return null;
+        return userList.get(0);
+    }
 
 
 
@@ -156,7 +173,7 @@ public static User findByUserAndEmail(String user_name, String user_email){
     //lấy thông tin xuống bằng gg
     static public  void singupGoogle(String user_name, String email, String user_pass){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0)")
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0,0)")
                         .bind(0,email)
                         .bind(1, user_name)
                         .bind(2, email)
@@ -166,22 +183,17 @@ public static User findByUserAndEmail(String user_name, String user_email){
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public static void main(String[] args) {
-        System.out.println(UserService.checkIb_fb("1630335000760827"));
-
-//
+        System.out.println(UserService.checkLogib("tien1", "1234567@                                   "));
     }
+
+
+
+
+
+
+
+
+
 
 }

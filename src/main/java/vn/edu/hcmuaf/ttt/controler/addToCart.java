@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
@@ -10,7 +12,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
 @WebServlet(name = "addToCart", value = "/addToCart")
 public class addToCart extends HttpServlet {
     @Override
@@ -47,6 +48,7 @@ product.setQuantily(1);
         request.setAttribute("listsptt", listsptt);
 
         request.getRequestDispatcher("store.jsp").forward(request,response);
+        DB.me().insert(new Log(Log.INFO,1,"Thêm vào giỏ hàng", id,0));
 
 
 

@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
@@ -22,6 +24,7 @@ public class deleteProduct extends HttpServlet {
 
         response.sendRedirect("cart.jsp");
 
+        DB.me().insert(new Log(Log.INFO,1,"deleteProduct", id,0));
 
     }
 

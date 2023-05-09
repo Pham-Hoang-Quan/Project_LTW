@@ -3,7 +3,6 @@ package vn.edu.hcmuaf.ttt.db;
 import vn.edu.hcmuaf.ttt.bean.AbBean;
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.model.Logging;
-
 public class DB {
     private static DB install;
     public static DB me(){

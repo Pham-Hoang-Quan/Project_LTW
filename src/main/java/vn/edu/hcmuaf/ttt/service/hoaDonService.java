@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.ttt.service;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,20 @@ public class hoaDonService {
                         .execute());
 
     }
+    //lấy mã giảm giá
+    static public  void discount(int id_dis , String name, String reduce, int reducedPrice, Timestamp created_at, Timestamp expires_at) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate(" INSERT INTO discount VALUES (?,?,?,?,?,?,0)")
+                        .bind(0, id_dis)
+                        .bind(1, name)
+                        .bind(2,reduce)
+                        .bind(3, reducedPrice)
+                        .bind(4, created_at)
+                        .bind(5, expires_at)
+                        .execute());
+    }
+
+
     //lịch sử đơn hàng
     public  static List<hoaDon> getlichSu(String user_id){
         List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
@@ -83,7 +98,7 @@ public class hoaDonService {
 
 
     public static void main(String[] args) {
-        System.out.println(getdetaibill(3533));
+
 
     }
 
