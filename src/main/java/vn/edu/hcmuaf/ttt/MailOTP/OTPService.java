@@ -49,7 +49,7 @@ public class OTPService {
 
     }
 
-    //update mật ramdom theo id
+    //update mật khẩu ramdom theo id
     static  public  void  updatePassRD(String user_pass, String user_id){
         JDBiConnector.me().withHandle(handle ->
                 handle.createUpdate("UPDATE `user` SET user_password =? WHERE user_id = ?;")

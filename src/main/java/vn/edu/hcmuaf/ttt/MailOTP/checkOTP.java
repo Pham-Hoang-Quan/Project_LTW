@@ -26,34 +26,6 @@ public class checkOTP extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String userOtp = request.getParameter("enterOTP");
-//        OTP code = OTPService.checkCodeOTP(userOtp);
-//        OTP expires_at = (OTP) OTPService.expires_at();
-//        Timestamp ht = new Timestamp(System.currentTimeMillis());
-
-
-//        Timestamp  expires_at1 = new Timestamp(System.currentTimeMillis() + 5*60*1000);
-
-//        if (userOtp.equals(code)) {
-////            if (ht.before(expires_at)) {
-//                // Mã OTP hợp lệ và chưa hết hạn
-//                // Thực hiện các thao tác tiếp theo ở đây
-//
-//            } else {
-//                // Mã OTP đã hết hạn
-//                // Thực hiện xử lý tại đây
-//                request.setAttribute("mess", "Mã OTP đã hết hạn");
-//            }
-//            response.sendRedirect("indext.jsp");
-//        } else {
-//            // Mã OTP không đúng
-//            // Thực hiện xử lý tại đâ
-//            request.setAttribute("messs", "Mã OTP không đúng");
-//            response.sendRedirect("indext.jsp");
-//
-//
-//        }
-// Kiểm tra xem mã OTP có hợp lệ không
 
         String action = request.getParameter("action");
         String userOtp = request.getParameter("enterOTP");
