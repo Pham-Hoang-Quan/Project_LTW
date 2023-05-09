@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
@@ -27,8 +28,14 @@ public class updateFullname extends HttpServlet {
         String user_email = request.getParameter("user_email");
         String user_sdt = request.getParameter("user_sdt");
         String user_pass = request.getParameter("user_passNew");
+
         String enterpass_old = request.getParameter("enterpass_old");
         String pass_old = request.getParameter("pass_old");
+
+        //mã hóa
+        String hashedPassword = BCrypt.hashpw(user_pass, BCrypt.gensalt());
+        boolean match = BCrypt.checkpw(enterpass_old, pass_old);
+//        BCrypt.checkpw(user_password, user.getUser_password())
         User a = UserService.checkExist(user_name);
 
         if(a == null){
@@ -40,8 +47,8 @@ public class updateFullname extends HttpServlet {
                 request.getRequestDispatcher("uadateInfo.jsp").forward(request, response);
 
             }else{
-                if(enterpass_old.equals(pass_old)){
-                    UserService.updateFull_name(user_fullname,user_name, account, user_email,user_sdt, user_pass, user_id);
+                if(match == true){
+                    UserService.updateFull_name(user_fullname,user_name, account, user_email,user_sdt, hashedPassword, user_id);
                     HttpSession session = request.getSession(false);
                     session.invalidate();
                     request.setAttribute("success","cập nhật tài khoản thành công mời bạn đăng nhập lại");
