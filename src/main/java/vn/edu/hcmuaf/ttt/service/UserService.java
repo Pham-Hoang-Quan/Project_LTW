@@ -185,7 +185,7 @@ public static User findByUserAndEmail(String user_name, String user_email){
     }
 
     public static void main(String[] args) {
-        System.out.println(UserService.checkLogib("nhukhung", "nhukhung@"));
+        System.out.println(UserService.checkLogib("tien1", "1234567@                                   "));
     }
 
 

@@ -402,12 +402,28 @@
 
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Xác nhận</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" id="myButton">Xác nhận</button>
+            <div class="text-success" id="myText" style="display:none">Vui lòng chờ trong vài giây.</div>
         </div>
         <div class="text-center"> Bạn có cần hổ trợ không? <a href="#">Hộ Trợ</a></div>
     </form>
 </div>
 </form>
+
+
+
+<script>
+    // Lấy đối tượng button bằng id
+    var button = document.getElementById("myButton");
+    // Lấy đối tượng div bằng id
+    var text = document.getElementById("myText");
+
+    // Thêm sự kiện click cho button
+    button.addEventListener("click", function() {
+        // Hiện thị div
+        text.style.display = "block";
+    });
+</script>
 
 
 <script>

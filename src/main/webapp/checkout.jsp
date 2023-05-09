@@ -1,15 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.time.LocalDate" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
+<%@ page import="java.util.Random" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <!DOCTYPE html>
@@ -157,7 +155,7 @@
                         <div class="cart-summary">
                             <h5> <%= auth.getUser_fullname()%></h5>
                             <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                            <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
+                            <p><a href="uadateInfo.jsp" style="color: #0b0c0d">Cập nhật tài khoản</a></p>
                             <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
 
                         </div>
@@ -187,7 +185,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="/THDoAn_war/" class="logo">
-                            <img src="./img/Logo250px.png" alt="">
+                            <img src="img/Logo250px.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -425,25 +423,95 @@
 
                         <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
 
-
-
                         <%}%>
-
+                        <% discount discount = (discount) session.getAttribute("discount");%>
                         <input class="input" name="countSP"  style="display: none" value="<%=cartt.getListproduct().size()%>" type="number">
                         <div class="order-col">
                             <div>Phí giao hàng</div>
                             <div><strong>MIỄN PHÍ</strong></div>
                         </div>
+                        <%if(discount != null){%>
                         <div class="order-col">
-                            <div><strong>TỔNG</strong></div>
+                            <div>Đã áp dụng mã giảm giá <%=discount.getReduce()%></div>
+                            <input class="date" style="display: none" name="reduceSesstion"  value="<%=discount.getReduce()%>" type="text">
+
                             <%Locale locale = new Locale("vi");
                                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                                String tt = format.format(tongtien).split(",")[0];
+                                String reduPrice = format.format(discount.getReducedPrice()).split(",")[0];
+                            %>
+                            <div><strong>-<%=reduPrice%></strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>TỔNG</strong></div>
+                            <% int tonggia = (int) (tongtien - discount.getReducedPrice());%>
+                            <%Locale local = new Locale("vi");
+                                NumberFormat forma = NumberFormat.getCurrencyInstance(local);
+                                String tt = forma.format(tonggia).split(",")[0];
+                            %>
+
+                            <div><strong class="order-total"><%=tt %>đ</strong></div>
+                            <input class="input" name="tongTien" style="display: none" value="<%=tt%>đ" type="text">
+
+                        </div>
+                        <%}else {%>
+<%--                        <div class="order-col">--%>
+<%--                            <div>Nhập mã giảm giá</div>--%>
+<%--                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">--%>
+<%--                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>--%>
+<%--                        </div>--%>
+                        <div class="order-col">
+                            <input class="date" style="display: none" name="reduceSesstion"  value="null" type="text">
+                            <div><strong>TỔNG</strong></div>
+                            <%Locale local = new Locale("vi");
+                                NumberFormat forma = NumberFormat.getCurrencyInstance(local);
+                                String tt = forma.format(tongtien).split(",")[0];
                             %>
 
                             <div><strong class="order-total"><%=tt %></strong></div>
+                            <input class="input" name="tongTien" style="display: none" value="<%=tt%>đ" type="text">
+
                         </div>
-                        <input class="input" name="tongTien" style="display: none" value="<%=tt%>đ" type="text">
+                        <%}%>
+                        <%
+                            int length = 5; // Độ dài chuỗi mong muốn
+                            String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Các ký tự có thể xuất hiện trong chuỗi
+                            Random rnd = new Random();
+
+                            StringBuilder sb = new StringBuilder(length);
+                            for (int j = 0; j < length; j++) {
+                                sb.append(characters.charAt(rnd.nextInt(characters.length())));
+                            }
+                            String randomString = sb.toString();
+                        %>
+<%--                        <li><span>Tặng bạn mã giảm giá 1000k: </span> <span><%=randomString%></span></li>--%>
+<%--                        <input class="date" name="reduce"  value="<%=randomString%>" type="text">--%>
+<%--                        <input class="date" name="name_dis"  value="ma100k" type="text">--%>
+                        <%if(tongtien >10000000){%>
+                        <li><span>Tặng bạn mã giảm giá 1000k: </span> <span><%=randomString%></span></li>
+                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis"  value="ma1000k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice"  value="1000000" type="text">
+                        <%}else if(tongtien > 5000000){%>
+                        <li><span>Tặng bạn mã giảm giá 500k: </span> <span><%=randomString%></span></li>
+                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis"  value="ma500k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice"  value="500000" type="text">
+                        <%}else if(tongtien > 3000000){%>
+                        <li><span>Tặng bạn mã giảm giá 100k: </span> <span><%=randomString%></span></li>
+                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis"  value="ma100k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice"  value="100000" type="text">
+                        <%}else {%>
+                        <li><span>Hãy mua tổng giá sản phẩm trên 3.000.000 đ để được tặng mã giảm giá </span></li>
+                        <input class="date" name="reduce" style="display: none" value="<%=randomString%>" type="text">
+                        <input class="date" name="name_dis" style="display: none" value="null" type="text">
+                        <input class="date" name="reducedPrice" style="display: none" value="0" type="text">
+
+                        <%}%>
+
+
+
+
                     </div>
                     <div class="payment-method">
                         <div class="input-radio">
@@ -486,7 +554,7 @@
                         </label>
                     </div>
                     <%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
-                    <button type="submit" class="primary-btn order-submit">Đặt hàng</button>
+                    <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng</button>
                 </div>
                 <!-- /Order Details -->
             </form>

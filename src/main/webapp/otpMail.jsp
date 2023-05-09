@@ -460,7 +460,7 @@
 
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block"name="action" value="submit">Gửi</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" name="action" value="submit">Gửi</button>
         </div>
             <div class="form-group">
                 <button type="submit" name="action" class="btn btn-success btn-lg btn-block" value="resend_otp">Resend OTP</button>

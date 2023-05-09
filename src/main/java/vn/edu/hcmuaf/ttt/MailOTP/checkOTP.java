@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.MailOTP;
 
 import vn.edu.hcmuaf.ttt.Mail.EmailUtil;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Email;
 import vn.edu.hcmuaf.ttt.service.UserService;
 
@@ -24,40 +26,13 @@ public class checkOTP extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String userOtp = request.getParameter("enterOTP");
-//        OTP code = OTPService.checkCodeOTP(userOtp);
-//        OTP expires_at = (OTP) OTPService.expires_at();
-//        Timestamp ht = new Timestamp(System.currentTimeMillis());
-
-
-//        Timestamp  expires_at1 = new Timestamp(System.currentTimeMillis() + 5*60*1000);
-
-//        if (userOtp.equals(code)) {
-////            if (ht.before(expires_at)) {
-//                // Mã OTP hợp lệ và chưa hết hạn
-//                // Thực hiện các thao tác tiếp theo ở đây
-//
-//            } else {
-//                // Mã OTP đã hết hạn
-//                // Thực hiện xử lý tại đây
-//                request.setAttribute("mess", "Mã OTP đã hết hạn");
-//            }
-//            response.sendRedirect("indext.jsp");
-//        } else {
-//            // Mã OTP không đúng
-//            // Thực hiện xử lý tại đâ
-//            request.setAttribute("messs", "Mã OTP không đúng");
-//            response.sendRedirect("indext.jsp");
-//
-//
-//        }
-// Kiểm tra xem mã OTP có hợp lệ không
 
         String action = request.getParameter("action");
         String userOtp = request.getParameter("enterOTP");
         String otp = request.getParameter("otp");
 
         String user_id = request.getParameter("id_user");
+        int id_user = Integer.parseInt(user_id);
 
         long currentTime = System.currentTimeMillis();
         int intNumber = Long.valueOf(currentTime).intValue();
@@ -68,16 +43,22 @@ public class checkOTP extends HttpServlet {
                     // Mã OTP hợp lệ và chưa hết hạn
                     //request.setAttribute("messs", "Mã OTP không đúng");
                     response.sendRedirect("passwordRamdom.jsp");
+                    DB.me().insert(new Log(Log.INFO,id_user,"Nhập OTP", userOtp ,0));
+
                 } else {
                     // Mã OTP đã hết hạn
                     // Thực hiện xử lý tại đây
                     request.setAttribute("messs", "Mã OTP đã hết hạn");
                     request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+                    DB.me().insert(new Log(Log.WARNING,id_user,"Nhập OTP hết hạn",  userOtp + "thời hết hạn " + expiryTime ,0));
+
                 }
                 otpAttempts = 0;
             } else {
                 request.setAttribute("err", "Mã OTP không đúng vui lòng nhập lại");
                 request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+                DB.me().insert(new Log(Log.ALERT,id_user,"Nhập OTP không đúng", userOtp ,0));
+
             }
             //neu nhap sai 3 lan se khoa tai khoan
             otpAttempts++;
@@ -85,6 +66,8 @@ public class checkOTP extends HttpServlet {
                 OTPService.updateLockUser(user_id);
                 request.setAttribute("errr", "Tài khoản của bạn đã bị khóa vui lòng liên hệ admin");
                 request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+                DB.me().insert(new Log(Log.DANGER,id_user,"tài khoan bị khóa", userOtp + otpAttempts,0));
+
             }
         }else if (action.equals("resend_otp")){
             try {
@@ -95,6 +78,8 @@ public class checkOTP extends HttpServlet {
 
                 if(acc == null) {
                     request.setAttribute("message", "Tài Khoản hoặc email không chính xác!");
+                    DB.me().insert(new Log(Log.ALERT,id_user,"nhập tài  khoản hoặc email không chinh xác.", email + ", " + user,0));
+
 
                 }else {
 
@@ -137,6 +122,8 @@ public class checkOTP extends HttpServlet {
                     EmailUtil.send(email1);
                     OTPService.codeOTP(Integer.parseInt(otpString), created_at, expires_at);
                     request.setAttribute("message", "OTP đã được gửi lại vào mail của bạn bạn hãy xem mail và nhập mã OTP.");
+                    DB.me().insert(new Log(Log.INFO,id_user,"gửi lại OTP", otpString,0));
+
                 }
 
             } catch (Exception e){

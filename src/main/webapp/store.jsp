@@ -9,6 +9,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
+<%@ page import="java.util.Base64" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 
@@ -251,13 +252,33 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
+                    <%if (auth == null ){%>
+                    <%String plainText = "1";
+                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());
+                    %>
+
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
-                        for (Category p:lista) {%>
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%=p.getcName()%></a></li>
+                        for (Category p:lista) { %>
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
+                    <%}else {%>
+                    <%
+                        //                        byte[] bytes = {Byte.parseByte(auth.getUser_id())}; // Chuyển số 1 thành mảng byte
+//                        String encoded = Base64.getEncoder().encodeToString(bytes); // Mã hóa mảng byte bằng Base64
+
+                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());
+
+                    %>
+                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>">Sản Phẩm</a></li>
+                    <% List<Category> lista = (List<Category>) request.getAttribute("listc");
+                        for (Category p:lista) { %>
+                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <% } %>
+                    <%}%>
+
+
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
                     <%}%>
