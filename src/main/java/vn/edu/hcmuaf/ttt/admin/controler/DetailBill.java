@@ -18,7 +18,7 @@ public class DetailBill extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
         } else {
             int soHD = Integer.parseInt(request.getParameter("SoHD"));
             int TTHD1 = Integer.parseInt(request.getParameter("SoHD"));

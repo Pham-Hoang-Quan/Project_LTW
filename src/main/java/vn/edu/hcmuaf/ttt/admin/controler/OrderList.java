@@ -18,7 +18,7 @@ public class OrderList extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
         } else {
             List<hoaDon> listHD0 = HoaDon.getListHD0(0);
             request.setAttribute("listHD0", listHD0);

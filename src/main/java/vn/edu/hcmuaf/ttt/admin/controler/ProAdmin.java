@@ -19,7 +19,7 @@ public class ProAdmin extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
         } else {
             List<Product> list = ProductService.getData();
             List<Category> listc = ProductService.getCategory();
@@ -41,7 +41,7 @@ public class ProAdmin extends HttpServlet {
                 endPage++;
             }
 
-//        request.setAttribute("list", list);
+            request.setAttribute("list", list);
             request.setAttribute("listc", listc);
             request.setAttribute("endP", endPage);
             request.setAttribute("tag", index);

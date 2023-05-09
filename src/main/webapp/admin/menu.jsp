@@ -14,13 +14,13 @@
                     <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>
                     <% } %>
                     <% if (auth.getUser_admin() == 1) { %>
-                    <span class="text-secondary text-small">Admin</span>
+                        <span class="text-secondary text-small">Admin</span>
                     <%}%>
                     <% if (auth.getUser_admin() == 2) { %>
-                    <span class="text-secondary text-small">Nhân viên bán hàng</span>
+                        <span class="text-secondary text-small">Nhân viên bán hàng</span>
                     <%}%>
                     <% if (auth.getUser_admin() == 3) { %>
-                    <span class="text-secondary text-small">Nhân viên đóng gói</span>
+                        <span class="text-secondary text-small">Nhân viên đóng gói</span>
                     <%}%>
 
                 </div>
@@ -32,9 +32,6 @@
 <%--        // --------- = 3 là nhân viên quản lý đơn hàng: xem trang đơn hàng, xác nhận, hủy đơn--%>
 
         <% if(auth.getUser_admin() == 1){%>
-
-
-
         <li class="nav-item">
             <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
                 <span class="menu-title">Trang chủ</span>
@@ -44,15 +41,7 @@
         <li class="nav-item">
             <a class="nav-link" href="http://localhost:8080/THDoAn_war/OrderList">
                 <span class="menu-title">Quản lý đơn hàng</span>
-
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8080/THDoAn_war/UserList">
-                <span class="menu-title">Quản lý người dùng</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
@@ -62,17 +51,36 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8080/THDoAn_war/SliderList">
-                <span class="menu-title">Quản lý slider</span>
-                <i class="mdi mdi-chart-bar menu-icon"></i>
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/HidenProductList">
+                <span class="menu-title">Sản phẩm đã ẩn</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8080/THDoAn_war/CategoryAdmin">
-                <span class="menu-title">Quản lý quản danh mục</span>
-                <i class="mdi mdi-table-large menu-icon"></i>
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Quản lý người dùng</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-basic" style="">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/THDoAn_war/UserList">Danh sách người dùng</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/THDoAn_war/UserLockList">Người dùng bị khóa</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/THDoAn_war/StaffList">
+                <span class="menu-title">Quản lý nhân viên</span>
+                <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
         </li>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link" href="http://localhost:8080/THDoAn_war/CategoryAdmin">--%>
+<%--                <span class="menu-title">Quản lý quản danh mục</span>--%>
+<%--                <i class="mdi mdi-table-large menu-icon"></i>--%>
+<%--            </a>--%>
+<%--        </li>--%>
 
         <li class="nav-item sidebar-actions">
                         <span class="nav-link">

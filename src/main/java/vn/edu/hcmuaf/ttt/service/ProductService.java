@@ -46,10 +46,8 @@ public class ProductService {
     }
 
     public static List<Product> getData() {
-
-//
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT * FROM products WHERE  isNew = 1 and isNew = 2").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products WHERE isNew <> 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
 
     }
@@ -456,6 +454,20 @@ public class ProductService {
         return JDBiConnector.me().withHandle(handle -> {
             return handle.createQuery("select * from products WHERE isNew = 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
+    }
+
+    public static String CountProducts() throws SQLException {
+        String Countrow="";
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet rs = statement.executeQuery("select count(id) from products");
+            while(rs.next()){
+                Countrow = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Countrow;
     }
     public static void main(String[] args) {
 //        System.out.println(ProductService.pagingProduct(1));
