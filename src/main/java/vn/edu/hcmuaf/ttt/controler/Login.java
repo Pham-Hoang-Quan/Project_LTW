@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
         String user_name = request.getParameter("user");
         String user_password = request.getParameter("pass");
 
+
         User user = UserService.getInstance().checkLogib(user_name, user_password);
 
         Cart cart = new Cart(user, 0, 0);

@@ -13,20 +13,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-    <link type="text/css" rel="stylesheet" href="css/base.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css1/base.css" />
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css1/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css1/style.css" />
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -414,7 +414,7 @@
             <p class="alert-danger">${messerger}</p>
             <div class="form-group">
                 <input type="password" class="form-control" name="enterpass_old" placeholder="Mật khẩu cũ" required="required">
-                <input class="date" name="pass_old" style="display: none" value="<%=auth.getUser_password()%>" type="text">
+                <input class="date" name="pass_old"  value="<%=auth.getUser_password()%>" type="text">
             </div>
 
 

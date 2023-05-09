@@ -25,17 +25,17 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css1/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css1/style.css" />
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -272,7 +272,7 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form action="/THDoAn_war/doHoaDon" method="post">
+            <form action="/THDoAn_war/doHoaDon" method="post" class="row">
                 <div class="col-md-7">
                     <!-- Billing Details -->
                     <div class="billing-details">

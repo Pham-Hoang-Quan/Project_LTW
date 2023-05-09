@@ -85,7 +85,7 @@ public class UserService {
     //lấy dữ liệu user từ facbook
     static public void sinupFB(String user_fullname, String user_email, String pass, String id_fb){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,0,?)")
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,0,?,0)")
                         .bind(0,user_fullname)
                         .bind(1,id_fb)
                         .bind(2,user_email)
@@ -173,7 +173,7 @@ public static User findByUserAndEmail(String user_name, String user_email){
     //lấy thông tin xuống bằng gg
     static public  void singupGoogle(String user_name, String email, String user_pass){
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0)")
+                h.createUpdate("INSERT INTO `user` VALUES (null,?,?,0,?,0,?,0,0,?,0,0)")
                         .bind(0,email)
 
                         .bind(1, user_name)

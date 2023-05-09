@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.LoginFB;
 
+import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
@@ -30,12 +31,15 @@ public class AddUserFB extends HttpServlet {
 //        String id_fb = request.getParameter("id");
         Random r = new Random();
         int user_passgg = r.nextInt(10000);
+        String s = String.valueOf(user_passgg);
+
+        String hashedPassword = BCrypt.hashpw( s, BCrypt.gensalt());
 //
         User user = UserService.checkIb_fb(user_name);
         if(user == null){
 
 
-            UserService.sinupFB(user_fullname,user_email,user_passgg + "",user_name);
+            UserService.sinupFB(user_fullname,user_email,hashedPassword + "",user_name);
 
             User users = UserService.checkIb_fb(user_name);
             HttpSession session = request.getSession(true);
@@ -46,7 +50,7 @@ public class AddUserFB extends HttpServlet {
             session.setAttribute("auth", user);
             response.sendRedirect("/THDoAn_war/");
         }
-        DB.me().insert(new Log(Log.INFO,1,"AddUserFB", user_fullname+", "+user_email+", "+user_passgg +", "+user_name ,0));
+        DB.me().insert(new Log(Log.INFO,1,"AddUserFB", user_fullname+", "+user_email+", "+hashedPassword +", "+user_name ,0));
 
 //
 //
