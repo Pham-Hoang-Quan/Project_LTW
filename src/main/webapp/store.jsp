@@ -2,14 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 
@@ -281,6 +278,7 @@
 
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <li><a href="<%="/THDoAn_war/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>
                     <%}%>
                 </ul>
                 <!-- /NAV -->
