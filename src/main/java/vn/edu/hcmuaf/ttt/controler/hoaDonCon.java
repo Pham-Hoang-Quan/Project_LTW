@@ -105,7 +105,8 @@ public class hoaDonCon extends HttpServlet {
 
 
             }
-        request.getRequestDispatcher("/detailStatus.jsp").forward(request,response);
+
+        response.sendRedirect("/THDoAn_war/");
 
         }
 
