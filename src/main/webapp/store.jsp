@@ -39,6 +39,10 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css1/style.css" />
 
+    <%--    drop--%>
+    <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+    <script defer src="js/dro.js"></script>
+
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -149,20 +153,28 @@
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fa fa-user-o"></i>
-                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
-                        </a>
-<%--                        <div class="cart-dropdown">--%>
-                            <h4>THÔNG TIN TÀI KHOẢN</h4>
-                            <div class="cart-summary">
-                                <h5> <%= auth.getUser_fullname()%></h5>
-                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+<%--                    <li class="dropdown">--%>
+<%--                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">--%>
+<%--                            <i class="fa fa-user-o"></i>--%>
+<%--                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>--%>
+<%--                        </a>--%>
+<%--&lt;%&ndash;                        <div class="cart-dropdown">&ndash;%&gt;--%>
+<%--                            <h4>THÔNG TIN TÀI KHOẢN</h4>--%>
+<%--                            <div class="cart-summary">--%>
+<%--                                <h5> <%= auth.getUser_fullname()%></h5>--%>
+<%--                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>--%>
+<%--                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>--%>
+<%--                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>--%>
 
-                            </div>
+<%--                            </div>--%>
+                    <div class="dropdown">
+                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div class="dropdown-content">
+                            <a href="userInfo.jsp">Thông tin tài khoản</a>
+                            <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                            <a href="/THDoAn_war/logOut?u=<%=auth.getUser_id()%>" >Đăng xuất</a>
+                        </div>
+                    </div>
 <%--                        </div>--%>
 
                     </li>
@@ -254,24 +266,22 @@
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
                     <%if (auth == null ){%>
-                    <%String plainText = "1";
-                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());
-                    %>
 
-                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>" >Sản Phẩm</a></li>
+
+                    <li><a href="/THDoAn_war/List-Product" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
                     <%}else {%>
-                    <%
-                        //                        byte[] bytes = {Byte.parseByte(auth.getUser_id())}; // Chuyển số 1 thành mảng byte
-//                        String encoded = Base64.getEncoder().encodeToString(bytes); // Mã hóa mảng byte bằng Base64
+<%--                    <%--%>
+<%--                        //                        byte[] bytes = {Byte.parseByte(auth.getUser_id())}; // Chuyển số 1 thành mảng byte--%>
+<%--//                        String encoded = Base64.getEncoder().encodeToString(bytes); // Mã hóa mảng byte bằng Base64--%>
 
-                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());
+<%--                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());--%>
 
-                    %>
-                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>">Sản Phẩm</a></li>
+<%--                    %>--%>
+                    <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>

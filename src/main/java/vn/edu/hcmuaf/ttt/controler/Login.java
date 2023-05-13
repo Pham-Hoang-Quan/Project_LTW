@@ -31,6 +31,7 @@ public class Login extends HttpServlet {
         String user_password = request.getParameter("pass");
 
 
+
         User user = UserService.getInstance().checkLogib(user_name, user_password);
 
         Cart cart = new Cart(user, 0, 0);
@@ -54,6 +55,10 @@ public class Login extends HttpServlet {
                 session.setAttribute("cart", cart);
                 session.setAttribute("userId", user.getUser_id());
 
+                User auth= (User) session.getAttribute("auth");
+                String user_id = auth.getUser_id();
+                int id_u = Integer.parseInt(user_id);
+
                 if (userl.isRemember()) {
                     CookieUtils.add("user", user_name, 2, response);
 
@@ -64,7 +69,7 @@ public class Login extends HttpServlet {
 
                 request.setAttribute("messs", "Bạn đã đăng nhập thành công");
                 response.sendRedirect("/THDoAn_war/");
-                DB.me().insert(new Log(Log.WARNING, 1, "dologin-Tài khoản đăng nhập thành công", user_name + ", " + user_password, 0));
+                DB.me().insert(new Log(Log.WARNING, id_u, "dologin-Tài khoản đăng nhập thành công", user_name , 0));
 //          response.sendRedirect("index1.jsp");
             }
         }

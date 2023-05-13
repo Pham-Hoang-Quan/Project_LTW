@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Product;
@@ -23,8 +24,18 @@ public class deleteProduct extends HttpServlet {
 
 
         response.sendRedirect("cart.jsp");
+        User auth= (User) session.getAttribute("auth");
+        if(auth == null){
+            DB.me().insert(new Log(Log.INFO,1,"deleteProduct", "id sản phẩm"+id,0));
 
-        DB.me().insert(new Log(Log.INFO,1,"deleteProduct", id,0));
+        }else{
+            String user_id = auth.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"deleteProduct","id sản phẩm"+ id,0));
+
+        }
+
+
 
     }
 
