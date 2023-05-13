@@ -35,6 +35,15 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css1/style.css" />
     <!-- update the version number as needed -->
+
+
+<%--    drop--%>
+    <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+    <script defer src="js/dro.js"></script>
+
+
+
+
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/9.5.0/firebase-auth-compat.js"></script>
@@ -142,18 +151,31 @@
 
 
                     <%if(auth==null){ %>
-                    <li><a href="login.jsp" target=""><i class="fa fa-user-o"></i>Đăng nhập</a></li>
+                    <li><a href="login.jsp" target=""><i class="fa fa-user-o "></i>Đăng nhập</a></li>
 <%--                    <%} if(user_name != null){%>--%>
 <%--                    <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%=user_name%></a>--%>
 <%--                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
 
                     <% } else{%>
-                    <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>
-                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>
+<%--                    <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
+<%--                        <a href="/THDoAn_war/logOut" target="_blank">  : Đăng xuất</a></li>--%>
+                    <div class="dropdown">
+                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div class="dropdown-content">
+                            <a href="userInfo.jsp">Thông tin tài khoản</a>
+                            <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                            <a href="/THDoAn_war/logOut?u=<%=auth.getUser_id()%>" >Đăng xuất</a>
+                        </div>
+                    </div>
+
+
+
                     <% if(auth.getUser_admin() == 1){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <% } %>
                     <%}%>
+
+
 
 
 
@@ -246,11 +268,11 @@
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="/THDoAn_war/">Trang chủ</a></li>
                     <%if (auth == null ){%>
-                    <%String plainText = "1";
-                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());
-                    %>
+<%--                    <%String plainText = "1";--%>
+<%--                        String encodedText = Base64.getEncoder().encodeToString(plainText.getBytes());--%>
+<%--                    %>--%>
 
-                    <li><a href="/THDoAn_war/List-Product?u=<%=encodedText%>" >Sản Phẩm</a></li>
+                    <li><a href="/THDoAn_war/List-Product" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
@@ -1056,6 +1078,36 @@
             }
         });
     </script>
+    <script>
+        function exportPDF() {
+            // Tạo đối tượng XMLHttpRequest để gửi yêu cầu xuất PDF đến máy chủ
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/exportPDF', true);
+            xhr.responseType = 'blob';
+
+            xhr.onload = function(e) {
+                if (this.status == 200) {
+                    // Tạo một URL đối tượng để tải xuống PDF
+                    var blob = new Blob([this.response], {type: 'application/pdf'});
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    // Hiển thị hộp thoại mở file để cho phép người dùng tải xuống PDF
+                    var a = document.createElement("a");
+                    a.href = downloadUrl;
+                    a.download = "filename.pdf";
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function() {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(downloadUrl);
+                    }, 0);
+                }
+            };
+            xhr.send();
+        }
+    </script>
+<%--    script của dropdows--%>
+
 </body>
 
 </html>

@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
@@ -18,9 +20,15 @@ import java.util.List;
 public class logOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String user_id = request.getParameter("u");
+        int is_u = Integer.parseInt(user_id);
+
         HttpSession session = request.getSession(false);
         session.invalidate();
         response.sendRedirect("/THDoAn_war/");
+
+        DB.me().insert(new Log(Log.WARNING, is_u, "/logOut", "Đăng xuất", 0));
+
 
 
     }

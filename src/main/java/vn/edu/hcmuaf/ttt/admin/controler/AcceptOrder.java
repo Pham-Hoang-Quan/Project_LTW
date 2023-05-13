@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,8 +17,22 @@ public class AcceptOrder extends HttpServlet {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+
         if (!isLoggedIn || isNormalUser) {
             response.sendRedirect("/THDoAn_war/List-Product");
+            //log
+            if(user == null){
+                DB.me().insert(new Log(Log.DANGER,1,"/AcceptOrder",  "Truy cập trái phép" ,1));
+
+            }else {
+                String user_id = user.getUser_id();
+                int id_u = Integer.parseInt(user_id);
+                DB.me().insert(new Log(Log.DANGER,id_u,"/AcceptOrder",  "Truy cập trái phép" ,1));
+            }
+
+
+            //
+
         } else {
             String soHD = request.getParameter("SoHD");
 

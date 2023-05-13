@@ -30,7 +30,7 @@ public class CategoryControler extends HttpServlet {
         request.setAttribute("tag", CTID);
 
         request.getRequestDispatcher("store.jsp").forward(request,response);
-        DB.me().insert(new Log(Log.INFO,1,"category", CTID + list.toString(),0));
+//        DB.me().insert(new Log(Log.INFO,1,"category", CTID + list.toString(),0));
 
 
 

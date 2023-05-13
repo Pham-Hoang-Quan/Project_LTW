@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
@@ -34,7 +35,19 @@ public class SearchControl extends HttpServlet {
         request.setAttribute("listsptt", listsptt);
 
         request.getRequestDispatcher("store.jsp").forward(request,response);
-        DB.me().insert(new Log(Log.INFO,1,"search", "noi dung: " + txtSearch + listsearch.toString() ,0));
+//        DB.me().insert(new Log(Log.INFO,1,"search", "noi dung: " + txtSearch + listsearch.toString() ,0));
+
+        //log
+        HttpSession sessionm = request.getSession(true);
+        User auth= (User) sessionm.getAttribute("auth");
+        if (auth == null) {
+            DB.me().insert(new Log(Log.INFO,1,"/search",  txtSearch ,0));
+        } else {
+            String user_id = auth.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"/search",  txtSearch ,0));
+        }
+        //
 
     }
 }

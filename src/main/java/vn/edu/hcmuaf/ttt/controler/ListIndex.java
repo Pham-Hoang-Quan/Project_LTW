@@ -55,7 +55,7 @@ public class ListIndex extends HttpServlet {
 
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
-        DB.me().insert(new Log(Log.INFO,1,name, listn.toString(),0));
+//        DB.me().insert(new Log(Log.INFO,1,name, listn.toString(),0));
 
     }
 

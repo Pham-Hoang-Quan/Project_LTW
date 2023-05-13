@@ -29,10 +29,13 @@
 
 <!-- Font Awesome Icon -->
 <link rel="stylesheet" href="css1/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css1/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet" href="css1/style.css" />
+<%--    drop--%>
+<link type="text/css" rel="stylesheet" href="css1/sty.css" />
+<script defer src="js/dro.js"></script>
 
 <!-- update the version number as needed -->
 <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
@@ -123,6 +126,41 @@
         }
     }
 </style>
+<style>
+    .formContainer {
+        display: flex; /* sử dụng Flexbox */
+        justify-content: center; /* căn giữa theo chiều ngang */
+        align-items: center; /* căn giữa theo chiều dọc */
+        height: 100%; /* đặt chiều cao */
+    }
+
+    .form {
+        display: flex; /* sử dụng Flexbox */
+        align-items: center; /* căn giữa theo chiều dọc */
+    }
+
+    .form_input {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .c-form__buttonLabel {
+        margin-left: 10px;
+    }
+
+    .form_button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>
 </head>
 
 <body>
@@ -143,23 +181,14 @@
                 <% if(auth==null){ %>
                 <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                 <% }else {%>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-user-o"></i>
-                        <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
-                    </a>
-                    <div class="cart-dropdown">
-                        <h4>THÔNG TIN TÀI KHOẢN</h4>
-                        <div class="cart-summary">
-                            <h5> <%= auth.getUser_fullname()%></h5>
-                            <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                            <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                            <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
-
-                        </div>
+                <div class="dropdown">
+                    <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                    <div class="dropdown-content">
+                        <a href="userInfo.jsp">Thông tin tài khoản</a>
+                        <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                        <a href="/THDoAn_war/logOut" >Đăng xuất</a>
                     </div>
-
-                </li>
+                </div>
 
                 <% if(auth.getUser_admin() == 1){%>
                 <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
@@ -374,6 +403,9 @@
                                     <h2>Giỏ Hàng</h2>
                                 </div>
 
+
+
+
                                 <div class="cart-table clearfix">
                                     <table class="table table-responsive">
                                         <thead>
@@ -410,7 +442,6 @@
                                             </td>
                                             <td class="qty">
                                                 <div class="qty-btn d-flex">
-                                                    <p>SL</p>
                                                     <div class="quantity">
                                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                                         class="fa fa-minus"
@@ -427,9 +458,16 @@
                                             </td>
                                             <td>
                                                 <a class="delete-product" href="/THDoAn_war/deleteProduct?id=<%=c.getId()%>">
-                                                    <i class="fa-solid fa-trash-can"></i>
+                                                    <i class="fa fa-trash" style="font-size: 24px"></i>
+<%--                                                    <i class="fa fa-trash" aria-hidden="true"></i>--%>
+<%--                                                    <i class="fa-solid fa-trash-can"></i>--%>
                                                 </a>
+
                                             </td>
+
+
+
+
                                         </tr>
                                         <%}%>
 <%--                                        <input type="number" name="countSP" style="display:none" value="<%=cart.getListproduct().size()%>" id="">--%>
@@ -452,9 +490,9 @@
                                         <li><span>Tiền Hàng:</span> <span><%=tt%>đ</span></li>
                                         <li><span>Vận Chuyển:</span> <span>Free</span></li>
 
-                                        <p class="alert-danger">${discount_err}</p>
-                                        <p class="alert-danger">${discount_errr}</p>
-                                        <p class="alert-danger">${discount_errrr}</p>
+                                        <p class="text-danger" >${discount_err}</p>
+                                        <p class="text-danger">${discount_errr}</p>
+                                        <p class="text-danger ">${discount_errrr}</p>
 
 
 
@@ -477,10 +515,19 @@
                                         <li><span>Tổng Tiền:</span> <span><%=totalPrice%>đ</span></li>
                                         <%}else {%>
 
-                                        <li><span>Nhập mã giảm giá</span>
-                                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">
-                                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>
+<%--                                        <li><span>Nhập mã giảm giá</span>--%>
+<%--                                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">--%>
+<%--                                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>--%>
+<%--                                        </li>--%>
+                                        <li>
+                                            <span>
+                                                  <input class="form_input" type="text"  name="enter_dis" placeholder="Nhập mã giảm giá" >
+                                            <button class="form_button" name="action" type="submit" value="apply" style="background: #959595">Áp dụng</button>
+                                            </span>
+
                                         </li>
+
+
                                         <li><span>Tổng Tiền:</span> <span><%=tt%>đ</span></li>
                                         <%}%>
 

@@ -132,6 +132,8 @@ public class hoaDonService {
 
                         .execute());
     }
+    // hiện hóa đơn theo soHD
+
 
 
     public static void main(String[] args) {
