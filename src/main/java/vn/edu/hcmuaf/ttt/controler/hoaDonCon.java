@@ -89,6 +89,7 @@ public class hoaDonCon extends HttpServlet {
                 listHoadon) {
 
 
+
             HttpSession session = request.getSession(true);
             Cart cart = (Cart) session.getAttribute("cart");
             Product product = ProductService.getProductById(s[0]);
