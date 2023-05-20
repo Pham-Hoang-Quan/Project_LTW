@@ -102,8 +102,8 @@
                                                 <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
                                                 </a>
-                                                <a title="Sửa" href="<%= "/THDoAn_war/HidenProduct?id=" + p.getId() %>" >
-                                                    <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i>Ẩn</label>
+                                                <a style="cursor: pointer; text-decoration: none" title="Sửa" href="<%= "/THDoAn_war/HidenProduct?id=" + p.getId() %>" >
+                                                    <label class="badge badge-warning">Ẩn</label>
                                                 </a>
                                             </td>
                                         </tr>
