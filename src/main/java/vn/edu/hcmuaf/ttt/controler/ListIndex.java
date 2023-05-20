@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.bean.Log;
+import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
@@ -22,6 +23,7 @@ public class ListIndex extends HttpServlet {
     String name="List_Index";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Product> listn = ProductService.getLast() ;
         List<Product> lists = ProductService.getSale();
         List<Category> listc = ProductService.getCategory();
@@ -55,6 +57,19 @@ public class ListIndex extends HttpServlet {
 
 
         request.getRequestDispatcher("index.jsp").forward(request,response);
+
+
+        //log
+        HttpSession session = request.getSession(true);
+        User auth= (User) session.getAttribute("auth");
+        if (auth == null) {
+            DB.me().insert(new Log(Log.INFO,1,name, "truy cập : " + listn.toString(),0));
+        } else {
+            String user_id = auth.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,name, "Truy cập: " + listn.toString() ,0));
+        }
+        //
 //        DB.me().insert(new Log(Log.INFO,1,name, listn.toString(),0));
 
     }

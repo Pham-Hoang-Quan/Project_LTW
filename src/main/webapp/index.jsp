@@ -295,6 +295,7 @@
 
                     <%if(auth!=null){%>
                     <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <li><a href="<%="/THDoAn_war/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>
                     <%}%>
                 </ul>
                 <!-- /NAV -->
