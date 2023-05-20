@@ -17,6 +17,19 @@ public class ListLog extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Log> logList = LogService.getData();
         request.setAttribute("logList", logList);
+
+        int countLog1 = LogService.getCountLog1();
+        request.setAttribute("countLog1", countLog1);
+
+        int countLog2 = LogService.getCountLog2();
+        request.setAttribute("countLog2", countLog2);
+
+        int countLog3 = LogService.getCountLog3();
+        request.setAttribute("countLog3", countLog3);
+
+        int countLog4 = LogService.getCountLog4();
+        request.setAttribute("countLog4", countLog4);
+
         request.getRequestDispatcher("admin/logTest.jsp").forward(request, response);
     }
 

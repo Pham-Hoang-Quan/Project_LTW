@@ -26,6 +26,7 @@
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
+        <jsp:include page="nav.jsp"></jsp:include>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
@@ -71,7 +72,7 @@
                                         <tr>
                                             <td><%= u.getUser_fullname()%></td>
                                             <td><%=u.getUser_name()%></td>
-                                            <td class="text-danger"> <%=u.getUser_email()%> </td>
+                                            <td class="text-danger"> <%=u.getEmail()%> </td>
                                             <td class="text-success"> <%=u.getUser_sdt()%> </td>
                                             <td>
                                                 <a href="<%= "/THDoAn_war/DeleteUser?id=" + u.getUser_id() %>">

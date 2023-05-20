@@ -46,10 +46,8 @@ public class ProductService {
     }
 
     public static List<Product> getData() {
-
-//
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT * FROM products ").mapToBean(Product.class).stream().collect(Collectors.toList());
+            return handle.createQuery("SELECT * FROM products WHERE isNew <> 3").mapToBean(Product.class).stream().collect(Collectors.toList());
         });
 
     }
@@ -293,11 +291,14 @@ public class ProductService {
         );
         return list;
     }
-
+    public static int getCountLog1() {
+        return JDBiConnector.me().withHandle(handle -> handle.createQuery("SELECT COUNT(log.id) FROM log WHERE MONTH(createAt) = (MONTH(CURRENT_DATE) -1)")
+                .mapTo(Integer.class).one());
+    }
     public static int countTotalProducts(ProductFilterParams filterParams) {
         boolean shouldGetProductsByAllClassifies = filterParams.getClassifies() == null || filterParams.getClassifies().size() == 0;
         if (shouldGetProductsByAllClassifies) {
-            return JDBiConnector.me().withHandle(handle -> handle.createQuery(
+             return JDBiConnector.me().withHandle(handle -> handle.createQuery(
                             countProduct
                     )
                     .mapTo(Integer.class).one());
@@ -379,10 +380,11 @@ public class ProductService {
         return list;
         //SELECT products.*, images.link_img FROM images,products WHERE images.pro_id = products.id ;
     }
+
     //Phân trang sản phẩm trên admin
     public static List<Product> pagingProductAdmin(int index) {
         List<Product> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM products limit ?,10")
+                handle.createQuery("SELECT * FROM products where isNew = 1 and isNew = 2 limit ?,10")
                         .bind(0, (index - 1) * 10)
                         .mapToBean(Product.class)
                         .stream()
@@ -393,6 +395,18 @@ public class ProductService {
     public static void deleteProduct(String id) {
         JDBiConnector.me().withHandle(h ->
                 h.createUpdate("delete from products where id = ? ")
+                        .bind(0, id)
+                        .execute());
+    }
+    public static void hidenProduct(String id) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("update products set isNew = 3 where id = ? ")
+                        .bind(0, id)
+                        .execute());
+    }
+    public static void unhidenProduct(String id) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("update products set isNew = 1 where id = ? ")
                         .bind(0, id)
                         .execute());
     }
@@ -436,10 +450,29 @@ public class ProductService {
                         .execute());
     }
 
+    public static List<Product> getHidenProduct() {
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("select * from products WHERE isNew = 3").mapToBean(Product.class).stream().collect(Collectors.toList());
+        });
+    }
 
+    public static String CountProducts() throws SQLException {
+        String Countrow="";
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet rs = statement.executeQuery("select count(id) from products");
+            while(rs.next()){
+                Countrow = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Countrow;
+    }
     public static void main(String[] args) {
 //        System.out.println(ProductService.pagingProduct(1));
-        System.out.println(ProductService.getProductById("1"));
+        // System.out.println(ProductService.getProductById("1"));
+        System.out.println(ProductService.getCountLog1());
 
 //
     }

@@ -89,6 +89,7 @@ public class hoaDonCon extends HttpServlet {
                 listHoadon) {
 
 
+
             HttpSession session = request.getSession(true);
             Cart cart = (Cart) session.getAttribute("cart");
             Product product = ProductService.getProductById(s[0]);
@@ -112,6 +113,7 @@ public class hoaDonCon extends HttpServlet {
 
             //log
             DB.me().insert(new Log(Log.INFO, id_user, "doHoaDon-Lập hóa đơn", "soHD: " + soHD + ", Họ và Tên:" + fullName + ", Email: " + email + ", SĐT: " + tel + ", Thành Phố: " + city + ", Quận: " + dis + ", Xã: " + wa + ", ghi chú: " + note + ", Tên sản Phẩm: " + s[1] + ", Tổng giá: " + s[3] + ", số lượng: " + s[2], 0));
+
 
 
 

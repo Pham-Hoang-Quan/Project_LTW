@@ -17,7 +17,7 @@ public class UserList extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
         if (!isLoggedIn || isNormalUser)  {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
         } else {
             List<User> listUser = UserService.listUser();
 

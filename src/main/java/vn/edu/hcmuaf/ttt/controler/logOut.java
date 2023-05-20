@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.ttt.controler;
 
+
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
@@ -13,8 +14,8 @@ import vn.edu.hcmuaf.ttt.service.hoaDonService;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "logOut", value = "/logOut")
 public class logOut extends HttpServlet {

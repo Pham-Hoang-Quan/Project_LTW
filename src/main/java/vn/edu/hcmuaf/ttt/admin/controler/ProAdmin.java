@@ -17,9 +17,9 @@ public class ProAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
-        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
         } else {
             List<Product> list = ProductService.getData();
             List<Category> listc = ProductService.getCategory();
@@ -41,7 +41,7 @@ public class ProAdmin extends HttpServlet {
                 endPage++;
             }
 
-//        request.setAttribute("list", list);
+            request.setAttribute("list", list);
             request.setAttribute("listc", listc);
             request.setAttribute("endP", endPage);
             request.setAttribute("tag", index);

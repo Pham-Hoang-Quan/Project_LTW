@@ -18,9 +18,10 @@ public class OrderList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
-        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+
+            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
 
             ///
             //log
@@ -35,6 +36,7 @@ public class OrderList extends HttpServlet {
 
             //
             ////
+
         } else {
             List<hoaDon> listHD0 = HoaDon.getListHD0(0);
             request.setAttribute("listHD0", listHD0);
