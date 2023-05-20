@@ -17,6 +17,9 @@
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
     <!-- <link rel="stylesheet" href="css1/bootstrap.min.css"> -->
+    <%--    drop--%>
+    <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+    <script defer src="js/dro.js"></script>
 
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="css1/slick.css" />
@@ -144,23 +147,14 @@
                     <% if(auth==null){ %>
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fa fa-user-o"></i>
-                            <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
-                        </a>
-                        <div class="cart-dropdown">
-                            <h4>THÔNG TIN TÀI KHOẢN</h4>
-                            <div class="cart-summary">
-                                <h5> <%= auth.getUser_fullname()%></h5>
-                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
-
-                            </div>
+                    <div class="dropdown">
+                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div class="dropdown-content">
+                            <a href="userInfo.jsp">Thông tin tài khoản</a>
+                            <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                            <a href="/THDoAn_war/logOut" >Đăng xuất</a>
                         </div>
-
-                    </li>
+                    </div>
 
                     <% if(auth.getUser_admin() == 1){%>
                     <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>

@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.UserService;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,6 +23,14 @@ public class DeleteUser extends HttpServlet {
             String id = request.getParameter("id");
             UserService.deleteUser(id);
             response.sendRedirect("UserList");
+
+
+            //log
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.ALERT, id_u, "/DeleteUser" , "id user: " + id , 1));
+
+            //
         }
 
     }

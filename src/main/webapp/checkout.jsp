@@ -27,6 +27,9 @@
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="css1/slick.css" />
     <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
+    <%--    drop--%>
+    <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+    <script defer src="js/dro.js"></script>
 
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
@@ -145,23 +148,14 @@
                 <% if(auth==null){ %>
                 <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                 <% }else {%>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-user-o"></i>
-                        <span style="cursor: pointer;">Chào bạn: <%= auth.getUser_fullname()%> <i class="fa fa-caret-down" style="color:#f0e2ff;"></i></span>
-                    </a>
-                    <div class="cart-dropdown">
-                        <h4>THÔNG TIN TÀI KHOẢN</h4>
-                        <div class="cart-summary">
-                            <h5> <%= auth.getUser_fullname()%></h5>
-                            <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
-                            <p><a href="uadateInfo.jsp" style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                            <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
-
-                        </div>
+                <div class="dropdown">
+                    <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                    <div class="dropdown-content">
+                        <a href="userInfo.jsp">Thông tin tài khoản</a>
+                        <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                        <a href="/THDoAn_war/logOut" >Đăng xuất</a>
                     </div>
-
-                </li>
+                </div>
 
                 <% if(auth.getUser_admin() == 1){%>
                 <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
@@ -385,6 +379,11 @@
                     <div class="section-title text-center">
                         <h3 class="title">Hóa Đơn</h3>
                     </div>
+                    <%  Random r = new Random();
+                        int soHD = r.nextInt(10000);
+                    %>
+                    <input class="input" name="soHD"  style="display: none"  value="<%=soHD%>" type="text">
+
                     <div class="order-summary">
 
                         <div class="order-col">
@@ -552,10 +551,15 @@
                             <span></span>
                             Bạn đọc rõ và chấp nhận <a href="#">Điều khoản và điều kiện</a>
                         </label>
+
                     </div>
                     <%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
+
+<%--                  --%>
+
                     <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng</button>
                 </div>
+<%--                <input class="date" name="soHD" style="display: none" value="<%=soHD.getSoHD()%>" type="text">--%>
                 <!-- /Order Details -->
             </form>
         </div>

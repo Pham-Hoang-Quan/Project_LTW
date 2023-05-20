@@ -38,6 +38,18 @@ public class ProductDetail extends HttpServlet {
         request.getRequestDispatcher("product.jsp").forward(request, response);
         DB.me().insert(new Log(Log.INFO,1,name, product.toString(),0));
 
+        //log
+        HttpSession session = request.getSession(true);
+        User auth= (User) session.getAttribute("auth");
+        if (auth == null) {
+            DB.me().insert(new Log(Log.INFO,1,"/detail", "xem sản phẩm : " + product.toString(),0));
+        } else {
+            String user_id = auth.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"/detail", "xem sản phẩm: " + product.toString() ,0));
+        }
+        //
+
 
 
     } else

@@ -1,6 +1,11 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+
+import vn.edu.hcmuaf.ttt.db.DB;
+import vn.edu.hcmuaf.ttt.service.ProductService;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,6 +27,7 @@ public class AddProduct extends HttpServlet {
     private String dbURL = "jdbc:mysql://localhost:3306/shops";
     private String dbUser = "root";
     private String dbPass = "";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -151,9 +157,19 @@ public class AddProduct extends HttpServlet {
                     }
                 }
                 // forwards to the message page
-                response.sendRedirect("ProAdmin");
-            }
 
+                response.sendRedirect("ProAdmin");
+
+
+                //log
+                String user_id = user.getUser_id();
+                int id_u = Integer.parseInt(user_id);
+                DB.me().insert(new Log(Log.INFO, id_u, "/AddProduct-Thêm sản phẩm" ,name +", "+ classify  +", "+ percent  +", "+qty  +", "+price  +", "+ content  +", "+ info, 1));
+
+
+            //
         }
+
     }
+}
 }

@@ -2,7 +2,9 @@ package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.admin.service.IndexService;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.Product;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
@@ -60,6 +62,12 @@ public class IndexAdmin extends HttpServlet {
             request.setAttribute("endP", endPage);
 
             request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+
+            //Log
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO, id_u, "/IndexAdmin" ,"truy cập vào admin"+listn.toString(), 1));
+            //
 
 
         }

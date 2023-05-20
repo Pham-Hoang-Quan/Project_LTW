@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
 import javax.servlet.*;
@@ -21,7 +23,14 @@ public class DeleteProduct extends HttpServlet {
             String id = request.getParameter("id");
             ProductService.deleteProduct(id);
             response.sendRedirect("ProAdmin");
+            //log
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO, id_u, "/DeleteProduct" , "id sản phẩm: " + id , 1));
+
+            //
         }
+
 
     }
 

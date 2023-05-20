@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,6 +25,12 @@ public class DeleteOrder extends HttpServlet {
             HoaDon.deleteOrder(soHD);
 
             response.sendRedirect("OrderList");
+            //log
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO, id_u, "/DeleteOrder" , "soHD" + soHD, 1));
+
+            //
         }
     }
 

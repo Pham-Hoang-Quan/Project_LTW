@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
@@ -28,6 +30,8 @@ public class DetailBill extends HttpServlet {
             request.setAttribute("LSsoHD", LSsoHD);
             request.setAttribute("TTHD1", tthoaDon);
             request.getRequestDispatcher("admin/detailBill.jsp").forward(request, response);
+
+
 
         }
     }

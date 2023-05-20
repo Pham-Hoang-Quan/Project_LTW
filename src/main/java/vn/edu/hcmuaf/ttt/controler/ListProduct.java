@@ -77,16 +77,16 @@ public class ListProduct extends HttpServlet {
 //            DB.me().insert(new Log(Log.INFO,userid,name, page.toString(),0));
 //
 //        }
-        String userId = request.getParameter("u");
-
-
-        //mã hóa id bằng Base64
-        byte[] decodedBytes = Base64.getDecoder().decode(userId);
-        String decodedText = new String(decodedBytes);
-        int userid = Integer.parseInt(decodedText);
+//        String userId = request.getParameter("u");
+//
+//
+//        //mã hóa id bằng Base64
+//        byte[] decodedBytes = Base64.getDecoder().decode(userId);
+//        String decodedText = new String(decodedBytes);
+//        int userid = Integer.parseInt(decodedText);
 
         request.getRequestDispatcher("store.jsp").forward(request, response);
-        DB.me().insert(new Log(Log.INFO,userid,name, page.toString(),0));
+//        DB.me().insert(new Log(Log.INFO,1,name, page.toString(),0));
     }
 
     @Override
