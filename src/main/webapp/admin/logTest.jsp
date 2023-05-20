@@ -1,6 +1,7 @@
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Log" %>
+<%@ page import="java.time.LocalDate" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +44,92 @@
 <body>
 <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
+<%--    <jsp:include page="nav.jsp"></jsp:include>--%>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
-        <jsp:include page="menu.jsp"></jsp:include>
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item nav-profile">
+                    <a href="#" class="nav-link">
+
+                        <div class="nav-profile-text d-flex flex-column">
+                            <% User auth= (User) session.getAttribute("auth");%>
+                            <% if(auth==null){ %>
+                            <span class="font-weight-bold mb-2">Nguyễn Thị Tiên</span>
+                            <% }else {%>
+                            <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>
+                            <% } %>
+                            <span class="text-secondary text-small">Admin</span>
+
+
+                        </div>
+                        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                    </a>
+                </li>
+                <%--        //user_admin = 1 là admin => quản lý tất cả trang admin, thăng chức nhân viên, trang thống kê.--%>
+                <%--        //---------- = 2 là nhân viên bán hàng : chỉ thêm, xóa, sửa sản phẩm, xem doanh thu theo tháng--%>
+                <%--        // --------- = 3 là nhân viên quản lý đơn hàng: xem trang đơn hàng, xác nhận, hủy đơn--%>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
+                        <span class="menu-title">Trang chủ</span>
+                        <i class="mdi mdi-home menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/THDoAn_war/OrderList">
+                        <span class="menu-title">Quản lý đơn hàng</span>
+                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/THDoAn_war/ProAdmin">
+                        <span class="menu-title">Quản lý sản phẩm</span>
+                        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/THDoAn_war/HidenProductList">
+                        <span class="menu-title">Sản phẩm đã ẩn</span>
+                        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">Quản lý người dùng</span>
+                        <i class="menu-arrow"></i>
+                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic" style="">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/THDoAn_war/UserList">Danh sách người dùng</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/THDoAn_war/UserLockList">Người dùng bị khóa</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/THDoAn_war/StaffList">
+                        <span class="menu-title">Quản lý nhân viên</span>
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
+                    </a>
+                </li>
+                <%--        <li class="nav-item">--%>
+                <%--            <a class="nav-link" href="http://localhost:8080/THDoAn_war/CategoryAdmin">--%>
+                <%--                <span class="menu-title">Quản lý quản danh mục</span>--%>
+                <%--                <i class="mdi mdi-table-large menu-icon"></i>--%>
+                <%--            </a>--%>
+                <%--        </li>--%>
+
+                <li class="nav-item sidebar-actions">
+                        <span class="nav-link">
+              </span>
+                </li>
+
+
+            </ul>
+        </nav>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -62,7 +145,7 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Line chart</h4>
+                                <h4 class="card-title">Lượt truy cập trong 4 tháng gần đây</h4>
                                 <canvas id="lineChart" style="height:250px"></canvas>
                             </div>
                         </div>
@@ -70,7 +153,7 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Bar chart</h4>
+                                <h4 class="card-title">Lượt truy cập trong 4 tháng gần đây</h4>
                                 <canvas id="barChart" style="height:230px"></canvas>
                             </div>
                         </div>
@@ -80,7 +163,7 @@
                     <div style="width:100%; max-width: 100%" class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div style="padding: 0 ;" class="card-body">
-                                <table id="log_table" class="table table-hover table-striped table-bordered" style="width: 100%;">
+                                <table id="log_table" class="table table-hover table-striped table-bordered" style="width: 100%; ">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -179,6 +262,10 @@
 <script src="admin/assets/js/chart.js"></script>
 <!-- End custom js for this page -->
 <script>
+    <%
+        LocalDate today = LocalDate.now();
+        int month = today.getMonthValue();
+    %>
     $(function () {
         /* ChartJS
          * -------
@@ -186,11 +273,19 @@
          */
         'use strict';
 
-        var data = {
-            labels: ["28", "2014", "2014", "2015", "2016", "2017"],
+        var dataLog = {
+            <%--labels: ["<%=month - 6%>", "<%=month - 5%>", "<%=month - 3%>", "<%=month - 2%>", "<%=month - 1%>", "<%=month%>"],--%>
+            labels: ["<%=month - 3%>", "<%=month - 2%>", "<%=month - 1%>", "<%=month%>"],
             datasets: [{
                 label: '# of Votes',
-                data: [10, 50, 3, 5, 2, 3],
+                <%
+                int countLog1 = (int) request.getAttribute("countLog1");
+                int countLog2 = (int) request.getAttribute("countLog2");
+                int countLog3 = (int) request.getAttribute("countLog3");
+                int countLog4 = (int) request.getAttribute("countLog4");
+                %>
+                <%--data: ["<%= countLog1%>", 50, 3, 5],--%>
+                data: [<%=countLog1%>, <%=countLog2%>, <%=countLog3%>, <%=countLog4%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -640,7 +735,7 @@
             // This will get the first returned node in the jQuery collection.
             var barChart = new Chart(barChartCanvas, {
                 type: 'bar',
-                data: data,
+                data: dataLog,
                 options: options
             });
         }
@@ -659,7 +754,7 @@
             var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
             var lineChart = new Chart(lineChartCanvas, {
                 type: 'line',
-                data: data,
+                data: dataLog,
                 options: options
             });
         }
@@ -763,15 +858,7 @@
         //Data from an URL ?
         $.get(urlUsers, function(responseData) {
             //Mofify "responseData" before showing ?
-            var modifiedUsers = responseData.map(eachUser => {
-                return {
-                    id: eachUser.id,
-                    name: eachUser.name,
-                    email: eachUser.email,
-                    address: `${eachUser.address.street}, ${eachUser.address.suite}, ${eachUser.address.city}`,
-                    phone: eachUser.phone
-                };
-            });
+
             table = $('#log_table').DataTable({
                 "processing": true,
 
@@ -792,10 +879,13 @@
                 $(this).css("background-color", "lightblue");
             },
         });
-        $("#btnReloadData").on("click", function(){
+        $("#btnReloadData").on("click", function() {
             //alert("reload data...")
             table.ajax.reload();
         });
     });
-
+console.log("datatable");
+</script>
+<script type="text/javascript"
+        charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
 </script>

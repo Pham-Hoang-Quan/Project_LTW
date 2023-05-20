@@ -2,18 +2,16 @@ package vn.edu.hcmuaf.ttt.controler;
 
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.db.DB;
-import vn.edu.hcmuaf.ttt.model.Cart;
 import vn.edu.hcmuaf.ttt.model.Category;
 import vn.edu.hcmuaf.ttt.model.Product;
-
 import vn.edu.hcmuaf.ttt.service.ProductService;
 
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ListIndex", value = "")

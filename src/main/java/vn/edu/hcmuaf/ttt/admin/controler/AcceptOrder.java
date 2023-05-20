@@ -16,6 +16,7 @@ public class AcceptOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
+
         boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
 
         if (!isLoggedIn || isNormalUser) {
@@ -32,6 +33,7 @@ public class AcceptOrder extends HttpServlet {
 
 
             //
+
 
         } else {
             String soHD = request.getParameter("SoHD");

@@ -31,7 +31,7 @@
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
-
+        <jsp:include page="nav.jsp"></jsp:include>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
 
@@ -44,7 +44,8 @@
                         <h3 class="page-title">
                             <span class="page-title-icon bg-gradient-primary text-white me-2">
                             <i class="mdi mdi-bitbucket"></i>
-                            </span> Quản lý sản phẩm
+                            </span>
+                             Quản lý sản phẩm
                         </h3>
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
@@ -100,6 +101,9 @@
                                                 </a>
                                                 <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
+                                                </a>
+                                                <a style="cursor: pointer; text-decoration: none" title="Sửa" href="<%= "/THDoAn_war/HidenProduct?id=" + p.getId() %>" >
+                                                    <label class="badge badge-warning">Ẩn</label>
                                                 </a>
                                             </td>
                                         </tr>
