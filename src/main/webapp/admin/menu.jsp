@@ -83,7 +83,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="http://localhost:8080/THDoAn_war/statisticsServlet">
-                <span class="menu-title">Thông kê</span>
+                <span class="menu-title">Thống kê</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
         </li>

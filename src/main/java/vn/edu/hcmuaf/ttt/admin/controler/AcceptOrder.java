@@ -20,7 +20,7 @@ public class AcceptOrder extends HttpServlet {
         boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
 
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("admin/login.jsp");
             //log
             if(user == null){
                 DB.me().insert(new Log(Log.DANGER,1,"/AcceptOrder",  "Truy cập trái phép" ,1));

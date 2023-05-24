@@ -25,19 +25,21 @@ public class OrderList extends HttpServlet {
 
             ///
             //log
-            if(user == null){
-                DB.me().insert(new Log(Log.DANGER,1,"/AcceptOrder",  "Truy cập trái phép" ,1));
+//            if(user.getUser_id() != null) {
+//                String user_id = user.getUser_id();
+//                int id_u = Integer.parseInt(user_id);
+//                DB.me().insert(new Log(Log.DANGER,id_u,"/OrderList",  "Truy cập trái phép" ,1));
+//            }
 
-            }else {
-                String user_id = user.getUser_id();
-                int id_u = Integer.parseInt(user_id);
-                DB.me().insert(new Log(Log.DANGER,id_u,"/AcceptOrder",  "Truy cập trái phép" ,1));
-            }
+
 
             //
             ////
 
         } else {
+
+
+
             List<hoaDon> listHD0 = HoaDon.getListHD0(0);
             request.setAttribute("listHD0", listHD0);
 
@@ -45,6 +47,10 @@ public class OrderList extends HttpServlet {
             request.setAttribute("listHD1", listHD1);
 
             request.getRequestDispatcher("admin/order-manage.jsp").forward(request, response);
+
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"/OrderList",  "Truy cập danh sách đơn hàng" ,1));
         }
     }
 
