@@ -153,12 +153,12 @@
                     <div class="dropdown-content">
                         <a href="userInfo.jsp">Thông tin tài khoản</a>
                         <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                        <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+                        <a href="/logOut" >Đăng xuất</a>
                     </div>
                 </div>
 
                 <% if(auth.getUser_admin() == 1){%>
-                <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
                 <li>
@@ -178,7 +178,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="/THDoAn_war/" class="logo">
+                        <a href="/" class="logo">
                             <img src="img/Logo250px.png" alt="">
                         </a>
                     </div>
@@ -266,7 +266,7 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form action="/THDoAn_war/doHoaDon" method="post" class="row">
+            <form action="/doHoaDon" method="post" class="row">
                 <div class="col-md-7">
                     <!-- Billing Details -->
                     <div class="billing-details">
@@ -352,15 +352,34 @@
                         <%--                                </div>--%>
                         <%--                            </div>--%>
                         <%--                        </div>--%>
+
+
+
                         <div class="form-group">
-                            <input class="input" type="text" name="city" placeholder="Thành Phố/Tỉnh">
+<%--                            <input class="input" type="text" name="city" placeholder="Thành Phố/Tỉnh">--%>
+                            <select  name="city" class="input" id="province"><option  value="">Thành Phố/Tỉnh</option></select>
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="dis" placeholder="Quận/Huyuện">
+<%--                            <input class="input" type="text" name="dis" placeholder="Quận/Huyuện">--%>
+                            <select  name="dis" class="input" id="district"> <option  value="">Quận/Huyuện</option></select>
+
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="wa" placeholder="Phường/xã">
+<%--                            <input class="input" type="text" name="wa" placeholder="Phường/xã">--%>
+                            <select  name="wa" class="input" id="ward"> <option   value="">Phường/xã</option></select>
+
                         </div>
+
+<%--                        <form action="">--%>
+<%--                            <select name="" id="province">--%>
+<%--                            </select>--%>
+<%--                            <select name="" id="district">--%>
+<%--                                <option  value="">chọn quận</option>--%>
+<%--                            </select>--%>
+<%--                            <select name="" id="ward">--%>
+<%--                                <option   value="">chọn phường</option>--%>
+<%--                            </select>--%>
+<%--                        </form>--%>
 
                     </div>
                     <!-- /Shiping Details -->
@@ -743,6 +762,9 @@
         }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/conscious.js"></script>
 </body>
 
 </html>

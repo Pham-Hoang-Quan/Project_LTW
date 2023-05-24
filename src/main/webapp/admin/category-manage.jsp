@@ -72,7 +72,7 @@
 <%--                    <td class="text-danger"> <%=u.getUser_email()%> </td>--%>
 <%--                    <td class="text-success"> <%=u.getUser_sdt()%> </td>--%>
                     <td>
-                      <a href="<%= "/THDoAn_war/DeleteCategory?id=" + u.getCid() %>">
+                      <a href="<%= "/DeleteCategory?id=" + u.getCid() %>">
                         <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
                       </a>
                     </td>

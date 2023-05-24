@@ -283,12 +283,12 @@
           <div class="dropdown-content">
             <a href="userInfo.jsp">Thông tin tài khoản</a>
             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-            <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+            <a href="/logOut" >Đăng xuất</a>
           </div>
         </div>
 
         <% if(auth.getUser_admin() == 1){%>
-        <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+        <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
         <%}%>
         <% } %>
         <li>
@@ -357,8 +357,8 @@
   <!-- /MAIN HEADER -->
 </header>
 <div class="signup-form">
-  <%--        <form action="/THDoAn_war/forgot-password" method="post">--%>
-  <form action="/THDoAn_war/passRamdom" method="post">
+  <%--        <form action="/forgot-password" method="post">--%>
+  <form action="/passRamdom" method="post">
     <h2 style="font-size:18px;">Mật khẩu mới cua bạn là</h2>
     <% User user = (User) session.getAttribute("user");%>
     <%  Random r = new Random();

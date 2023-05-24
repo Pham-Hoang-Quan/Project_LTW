@@ -38,11 +38,11 @@ public class Logingg extends HttpServlet {
             User users = UserService.checkemailandidgg(user_email);
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", users);
-            response.sendRedirect("/THDoAn_war/");
+            response.sendRedirect("/");
         }else {
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user);
-            response.sendRedirect("/THDoAn_war/");
+            response.sendRedirect("/");
         }
         DB.me().insert(new Log(Log.INFO,1,"doLogingg", user_name +", "+ user_email +", "+ hashedPassword ,0));
     }

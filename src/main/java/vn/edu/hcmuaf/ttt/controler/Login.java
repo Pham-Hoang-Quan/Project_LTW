@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
                 }
 
                 request.setAttribute("messs", "Bạn đã đăng nhập thành công");
-                response.sendRedirect("/THDoAn_war/");
+                response.sendRedirect("/");
                 DB.me().insert(new Log(Log.WARNING, id_u, "dologin-Tài khoản đăng nhập thành công", user_name , 0));
 //          response.sendRedirect("index1.jsp");
             }

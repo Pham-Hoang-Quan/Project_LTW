@@ -22,7 +22,7 @@ public class SingupGoogle extends HttpServlet {
         Random r = new Random();
         int user_passgg = r.nextInt(10000);
         UserService.singupGoogle(user_name,user_email, user_passgg + "");
-        response.sendRedirect("/THDoAn_war/");
+        response.sendRedirect("/");
 
     }
 }

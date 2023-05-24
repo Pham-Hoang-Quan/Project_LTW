@@ -33,11 +33,11 @@
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left p-5">
                         <div class="brand-logo">
-                            <img src="http://localhost:8080/THDoAn_war/img/Logo250px.png">
+                            <img src="/img/Logo250px.png">
                         </div>
                         <h4>Welcome to DRILLTECH</h4>
                         <h6 class="font-weight-light">Đăng nhập vào trang quản lý</h6>
-                        <form action="/THDoAn_war/LoginAdmin" method="post" class="pt-3">
+                        <form action="/LoginAdmin" method="post" class="pt-3">
                             <div class="form-group">
                                 <input name="user" class="form-control form-control-lg"  placeholder="Username">
                             </div>

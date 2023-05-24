@@ -312,12 +312,12 @@
                     <div class="dropdown-content">
                         <a href="userInfo.jsp">Thông tin tài khoản</a>
                         <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                        <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+                        <a href="/logOut" >Đăng xuất</a>
                     </div>
                 </div>
 
                 <% if (auth.getUser_admin() == 1) {%>
-                <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
                 <li>
@@ -387,8 +387,8 @@
 </header>
 <div class="signup-form">
     <% User user = (User) session.getAttribute("user");%>
-    <%--        <form action="/THDoAn_war/forgot-password" method="post">--%>
-    <form action="/THDoAn_war/checkOTP" method="post">
+    <%--        <form action="/forgot-password" method="post">--%>
+    <form action="/checkOTP" method="post">
         <h2 style="font-size:18px;">Nhập mã OTP</h2>
         <% String otp = (String) session.getAttribute("otp");%>
         <% int intNumber1 = (int) session.getAttribute("expiryTime");%>

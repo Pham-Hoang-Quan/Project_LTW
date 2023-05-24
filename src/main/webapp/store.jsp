@@ -161,7 +161,7 @@
 <%--                                <h5> <%= auth.getUser_fullname()%></h5>--%>
 <%--                                <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>--%>
 <%--                                <p><a href="uadateInfo.jsp"  style="color: #0b0c0d">Cập nhật tài khoản</a></p>--%>
-<%--                                <p> <a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>--%>
+<%--                                <p> <a href="/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>--%>
 
 <%--                            </div>--%>
                     <div class="dropdown">
@@ -169,7 +169,7 @@
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                            <a href="/THDoAn_war/logOut?u=<%=auth.getUser_id()%>" >Đăng xuất</a>
+                            <a href="/logOut?u=<%=auth.getUser_id()%>" >Đăng xuất</a>
                         </div>
                     </div>
 <%--                        </div>--%>
@@ -177,7 +177,7 @@
                     </li>
 
                     <% if(auth.getUser_admin() == 1){%>
-                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <%}%>
                     <% } %>
                     <li>
@@ -199,7 +199,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="/THDoAn_war/" class="logo">
+                            <a href="/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -261,14 +261,14 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li><a href="/THDoAn_war/">Trang chủ</a></li>
+                    <li><a href="/">Trang chủ</a></li>
                     <%if (auth == null ){%>
 
 
-                    <li><a href="/THDoAn_war/List-Product" >Sản Phẩm</a></li>
+                    <li><a href="/List-Product" >Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <li> <a  href="<%= "/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
                     <%}else {%>
 <%--                    <%--%>
@@ -278,17 +278,17 @@
 <%--                        String encodedText = Base64.getEncoder().encodeToString(auth.getUser_id().getBytes());--%>
 
 <%--                    %>--%>
-                    <li><a href="/THDoAn_war/List-Product">Sản Phẩm</a></li>
+                    <li><a href="/List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <li> <a  href="<%= "/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
                     <%}%>
 
 
                     <%if(auth!=null){%>
-                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
-                    <li><a href="<%="/THDoAn_war/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>
+                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <li><a href="<%="/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>
                     <%}%>
                 </ul>
                 <!-- /NAV -->
@@ -310,9 +310,9 @@
 
 
                     <ul class="breadcrumb-tree">
-                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
+                        <li><a href="/">Trang chủ</a></li>
 
-                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                        <li><a href="/List-Product">Sản Phẩm</a></li>
 
 
 
@@ -413,7 +413,7 @@
                             %>
                             <div class="product-body">
                                 <p class="product-category"><%= p.getClassify()%></p>
-                                <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
+                                <h3 class="product-name"><a href="<%= "/detail?id=" + p.getId()%>"><%= p.getName()%> </a></h3>
                                 <h4 class="product-price"><%=tt%>đ<del class="product-old-price"><%= p.getOldPrice()%></del></h4>
                             </div>
                         </div>
@@ -442,7 +442,7 @@
                             for (Product p:list) { %>
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
-                                <a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>">
+                                <a href="<%= "/detail?id=" + p.getId()%>">
                                 <div class="product-img">
 
 
@@ -464,7 +464,7 @@
                                 </a>
                                 <div class="product-body">
                                     <p class="product-category"><%= p.getClassify()%></p>
-                                    <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
+                                    <h3 class="product-name"><a href="<%= "/detail?id=" + p.getId()%>"><%= p.getName()%></a></h3>
                                     <%
                                         Locale locale = new Locale("vi");
                                         NumberFormat format = NumberFormat.getCurrencyInstance(locale);
@@ -487,7 +487,7 @@
 
                                 </div>
                                 <div class="add-to-cart">
-                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%= "/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                                 </div>
                             </div>
                         </div>
@@ -506,7 +506,7 @@
 
 <%--                            <li class="active">--%>
 <c:forEach begin="1" end="${endP}" var="i">
-    <li class="${tag == i?"active":""}"><a href="/THDoAn_war/List-Product?index=${i}">${i}</a></li>
+    <li class="${tag == i?"active":""}"><a href="/List-Product?index=${i}">${i}</a></li>
 </c:forEach>
 <%--                            <%List<Product> page =  (List<Product>) request.getAttribute("endP");%>--%>
 <%--                            <%--%>

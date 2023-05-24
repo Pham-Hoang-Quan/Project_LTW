@@ -213,7 +213,7 @@
                         </h5>
                         <p><a href="userInfo.jsp" style="color: #0b0c0d">Tài khoản của tôi</a></p>
                         <p><a href="uadateInfo.jsp" style="color: #0b0c0d">Cập nhật tài khoản</a></p>
-                        <p><a href="/THDoAn_war/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
+                        <p><a href="/logOut" target="_blank" style="color: #0b0c0d">Đăng xuất</a></p>
 
                     </div>
                     <%--                        </div>--%>
@@ -221,7 +221,7 @@
                 </li>
 
                 <% if (auth.getUser_admin() == 1) {%>
-                <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
                 <li>
@@ -243,7 +243,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="/THDoAn_war/" class="logo">
+                        <a href="/" class="logo">
                             <img src="./img/Logo250px.png" alt="">
                         </a>
                     </div>
