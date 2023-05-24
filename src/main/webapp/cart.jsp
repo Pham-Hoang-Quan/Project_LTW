@@ -186,12 +186,12 @@
                     <div class="dropdown-content">
                         <a href="userInfo.jsp">Thông tin tài khoản</a>
                         <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                        <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+                        <a href="/logOut" >Đăng xuất</a>
                     </div>
                 </div>
 
                 <% if(auth.getUser_admin() == 1){%>
-                <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
                 <li>
@@ -211,7 +211,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="/THDoAn_war/" class="logo">
+                        <a href="/" class="logo">
                             <img src="./img/Logo250px.png" alt="">
                         </a>
                     </div>
@@ -276,11 +276,11 @@
             <!-- NAV -->
             <%--                <ul class="main-nav nav navbar-nav">--%>
             <%--                    <ul class="main-nav nav navbar-nav">--%>
-            <%--                        <li><a href="/THDoAn_war/">Trang chủ</a></li>--%>
-            <%--                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>--%>
+            <%--                        <li><a href="/">Trang chủ</a></li>--%>
+            <%--                        <li><a href="//List-Product">Sản Phẩm</a></li>--%>
             <%--                        <% List<Category> lista = (List<Category>) request.getAttribute("listc");--%>
             <%--                            for (Category p:lista) { %>--%>
-            <%--                        <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>--%>
+            <%--                        <li> <a  href="<%= "/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>--%>
             <%--                        <% } %>--%>
             <%--                        <li><a href="support.html">Hỗ Trợ</a></li>--%>
             <%--                    </ul>--%>
@@ -301,7 +301,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
-                    <li><a href="/THDoAn_war/">Trang Chủ</a></li>
+                    <li><a href="/">Trang Chủ</a></li>
                     <li><a href="#">Giỏ Hàng</a></li>
 
                 </ul>
@@ -396,7 +396,7 @@
             <!-- store products -->
             <div class="cart-table-area section-padding-100">
                 <div class="container-fluid">
-                    <form method="post" action="/THDoAn_war/doSoLuong">
+                    <form method="post" action="/doSoLuong">
                         <div class="row">
                             <div class="col-12 col-lg-8">
                                 <div class="cart-title mt-50">
@@ -457,7 +457,7 @@
 
                                             </td>
                                             <td>
-                                                <a class="delete-product" href="/THDoAn_war/deleteProduct?id=<%=c.getId()%>">
+                                                <a class="delete-product" href="/deleteProduct?id=<%=c.getId()%>">
                                                     <i class="fa fa-trash" style="font-size: 24px"></i>
 <%--                                                    <i class="fa fa-trash" aria-hidden="true"></i>--%>
 <%--                                                    <i class="fa-solid fa-trash-can"></i>--%>

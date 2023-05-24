@@ -100,13 +100,13 @@
 
                       <td><%=h.getHD_sdt()%></td>
                       <td>
-                        <a style="text-decoration: none" href="<%= "/THDoAn_war/AcceptOrder?SoHD=" + h.getSoHD() %>">
+                        <a style="text-decoration: none" href="<%= "/AcceptOrder?SoHD=" + h.getSoHD() %>">
                           <label class="badge badge-success">Xác nhận</label>
                         </a>
-                        <a style="text-decoration: none" href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                        <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
                           <label class="badge badge-danger">Hủy đơn</label>
                         </a>
-                        <a style="text-decoration: none" href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
+                        <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                           <label class="badge badge-info">Xem chi tiết</label>
                         </a>
 
@@ -154,10 +154,10 @@
                       <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                       <td><%=h.getHD_sdt()%></td>
                       <td>
-                        <a style="text-decoration: none" href="<%= "/THDoAn_war/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                        <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
                           <label class="badge badge-danger">Xóa</label>
                         </a>
-                        <a style="text-decoration: none" href="<%= "/THDoAn_war/DetailBill?SoHD=" + h.getSoHD() %>">
+                        <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                           <label class="badge badge-info">Xem chi tiết</label>
                         </a>
 

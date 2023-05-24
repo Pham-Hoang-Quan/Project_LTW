@@ -162,12 +162,12 @@
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                            <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+                            <a href="/logOut" >Đăng xuất</a>
                         </div>
                     </div>
 
                     <% if(auth.getUser_admin() == 1){%>
-                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <%}%>
                     <% } %>
                     <li>
@@ -187,7 +187,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="/THDoAn_war/" class="logo">
+                            <a href="/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -253,14 +253,14 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                    <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="//List-Product">Sản Phẩm</a></li>
                     <% List<Category> lista = (List<Category>) request.getAttribute("listc");
                         for (Category p:lista) { %>
-                    <li> <a  href="<%= "/THDoAn_war/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
+                    <li> <a  href="<%= "/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
                     <%if(auth!=null){%>
-                    <li><a href="<%="/THDoAn_war/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
+                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
                     <%}%>
                 </ul>
                 <!-- /NAV -->
@@ -281,8 +281,8 @@
                 <% Product p= (Product) request.getAttribute("product"); %>
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
-                        <li><a href="/THDoAn_war//List-Product">Sản Phẩm</a></li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/List-Product">Sản Phẩm</a></li>
 <%--                        <li><a href="product.jsp">MÁY KHOAN XOAY BOSCH GBM 13 RE</a></li>--%>
                         <li><a href="#"><%= p.getName()%></a></li>
 
@@ -410,7 +410,7 @@
 
                         <div class="add-to-cart">
 
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
 
@@ -496,7 +496,7 @@
                                     <%if (auth != null) {%>
                                     <div class="col-md-3">
                                         <div id="review-form">
-                                            <form class="review-form" method="post" action="/THDoAn_war/Comment">
+                                            <form class="review-form" method="post" action="/Comment">
                                                 <% Date currentDate  = Date.valueOf(LocalDate.now()); %>
 
                                                 <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
@@ -562,7 +562,7 @@
                 <!-- product -->
                 <div class="col-md-3 col-xs-6">
                     <div class="product">
-                        <a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"></a>
+                        <a href="<%= "/detail?id=" + n.getId()%>"></a>
                         <div class="product-img">
                             <img src="<%= n.getImg()%>">
 
@@ -581,16 +581,16 @@
                         </div>
                         <div class="product-body">
                             <p class="product-category"><%= n.getClassify()%></p>
-                            <h3 class="product-name"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
+                            <h3 class="product-name"><a href="<%= "/detail?id=" + n.getId()%>"><%= n.getName()%></a></h3>
                             <h4 class="product-price"><%=tt%>đ <del class="product-old-price"><%= n.getOldPrice()%></del></h4>
                             <div class="product-btns">
                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thích</span></button>
                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp"> so sách</span></button>
-                                <button class="quick-view"><a href="<%= "/THDoAn_war/detail?id=" + n.getId()%>"  class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
+                                <button class="quick-view"><a href="<%= "/detail?id=" + n.getId()%>"  class=""> <i class="fa fa-eye"></i><span class="tooltipp">xem</span></a></button>
                             </div>
                         </div>
                         <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/THDoAn_war/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
                     </div>
 

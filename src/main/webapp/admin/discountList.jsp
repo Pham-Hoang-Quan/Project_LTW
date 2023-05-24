@@ -75,7 +75,7 @@
                     <td class="text-success"> <%=u.getCreated_at()%> </td>
                     <td class="text-success"> <%=u.getExpires_at()%> </td>
                     <td>
-                      <a style="text-decoration: none" href="<%= "/THDoAn_war/DeleteDis?idDis=" + u.getId_dis() %>">
+                      <a style="text-decoration: none" href="<%= "/DeleteDis?idDis=" + u.getId_dis() %>">
                         <label class="badge badge-danger">Xóa<i class="remove mdi mdi-close-circle-outline"></i></label>
                       </a>
                     </td>

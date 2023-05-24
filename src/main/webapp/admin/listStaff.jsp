@@ -75,10 +75,10 @@
                     <td class="text-danger"> <%=u.getEmail()%> </td>
                     <td class="text-success"> <%=u.getUser_sdt()%> </td>
                     <td>
-                      <a href="<%= "/THDoAn_war/DeleteUser?id=" + u.getUser_id() %>">
+                      <a href="<%= "/DeleteUser?id=" + u.getUser_id() %>">
                         <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
                       </a>
-                      <a href="<%= "/THDoAn_war/DetailUser?id=" + u.getUser_id() %>">
+                      <a href="<%= "/DetailUser?id=" + u.getUser_id() %>">
                         <label class="badge badge-danger">Sửa <i class="remove mdi mdi-wrench"></i></label>
                       </a>
                     </td>

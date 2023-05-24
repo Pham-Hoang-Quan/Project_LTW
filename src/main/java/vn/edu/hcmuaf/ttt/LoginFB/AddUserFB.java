@@ -44,11 +44,11 @@ public class AddUserFB extends HttpServlet {
             User users = UserService.checkIb_fb(user_name);
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", users);
-            response.sendRedirect("/THDoAn_war/");
+            response.sendRedirect("/");
         }else{
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user);
-            response.sendRedirect("/THDoAn_war/");
+            response.sendRedirect("/");
         }
         DB.me().insert(new Log(Log.INFO,1,"AddUserFB", user_fullname+", "+user_email+", "+hashedPassword +", "+user_name ,0));
 
@@ -59,6 +59,6 @@ public class AddUserFB extends HttpServlet {
 //        UserService.sinupFB(user_fullname,user_email,user_passgg + "",user_name);
 //        HttpSession session = request.getSession(true);
 //            session.setAttribute("fbname", user_fullname);
-//              response.sendRedirect("/THDoAn_war/");
+//              response.sendRedirect("/");
     }
 }

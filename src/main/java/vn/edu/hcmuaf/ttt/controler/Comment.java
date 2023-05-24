@@ -27,7 +27,7 @@ public class Comment extends HttpServlet {
 
 
         new CommentService().createNewComment(userIdComment,productIdComment,dateComment,textComment,ratingComment);
-        response.sendRedirect("/THDoAn_war/detail?id="+productIdComment);
+        response.sendRedirect("/detail?id="+productIdComment);
         DB.me().insert(new Log(Log.INFO,is_user,"Comment", productIdComment + "Nọi dung: " + textComment + ", số sao: " + ratingComment,0));
 
 
