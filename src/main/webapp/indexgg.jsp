@@ -35,7 +35,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
                     <% String email= (String) session.getAttribute("email");%>
-                    <form action="/THDoAn_war/logingoogle" method="post">
+                    <form action="/logingoogle" method="post">
                         <div class="form-group">
                             <label name="user_name1" class="form-control" > email: <%= email%></label>
                             <input class="date" name="email" style="display: none" value="<%=email%>" type="text">

@@ -70,7 +70,7 @@
                                         <td style="text-align: center; width: 50%"> <img style="width: 70%; height: 70%; border-radius: 0;" src="<%=s.getImg()%>"> </td>
                                         <td class="text-danger"> <%=s.getCreated()%> </td>
                                         <td>
-                                            <a href="<%= "/THDoAn_war/DeleteSlider?img=" + s.getImg() %>">
+                                            <a href="<%= "/DeleteSlider?img=" + s.getImg() %>">
                                                 <label class="badge badge-danger">Xóa <i class="remove mdi mdi-close-circle-outline"></i></label>
                                             </a>
                                         </td>

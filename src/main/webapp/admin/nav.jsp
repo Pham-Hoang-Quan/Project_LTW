@@ -36,7 +36,7 @@
                     <a class="dropdown-item" href="/THDoAn_war/ListLog">
                         <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/THDoAn_war/LogOutAdmin">
+                    <a class="dropdown-item" href="/LogOutAdmin">
                         <i  class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
                 </div>
             </li>

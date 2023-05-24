@@ -51,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/THDoAn_war/IndexAdmin">
+          <a class="nav-link" href="/IndexAdmin">
             <span class="menu-title">Trang chủ</span>
             <i class="mdi mdi-home menu-icon"></i>
           </a>

@@ -93,16 +93,16 @@
                                             %>
                                             <td class="text-danger"><%=gia%>đ</td>
                                             <td>
-                                                <a style="text-decoration: none" href="<%= "/THDoAn_war/detail?id=" + p.getId()%>" title="Xem">
+                                                <a style="text-decoration: none" href="<%= "/detail?id=" + p.getId()%>" title="Xem">
                                                     <label class="badge badge-success"><i style="cursor: pointer" class="mdi mdi-eye"></i></label>
                                                 </a>
-                                                <a style="text-decoration: none" title="Xóa" href="<%= "/THDoAn_war/DeleteProduct?id=" + p.getId() %>">
+                                                <a style="text-decoration: none" title="Xóa" href="<%= "/DeleteProduct?id=" + p.getId() %>">
                                                     <label class="badge badge-danger"><i style="cursor: pointer" class="remove mdi mdi-close-circle-outline"></i></label>
                                                 </a>
-                                                <a title="Sửa" href="<%= "/THDoAn_war/LoadProduct?id=" + p.getId() %>" >
+                                                <a title="Sửa" href="<%= "/LoadProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>
                                                 </a>
-                                                <a style="cursor: pointer; text-decoration: none" title="Sửa" href="<%= "/THDoAn_war/HidenProduct?id=" + p.getId() %>" >
+                                                <a style="cursor: pointer; text-decoration: none" title="Sửa" href="<%= "/HidenProduct?id=" + p.getId() %>" >
                                                     <label class="badge badge-warning">Ẩn</label>
                                                 </a>
                                             </td>

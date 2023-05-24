@@ -31,7 +31,7 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 
-		      	<form action="/THDoAn_war/doLogingg" method="post">
+		      	<form action="/doLogingg" method="post">
 		      		<div class="form-group">
 						<label name="id1" class="form-control" > ID: <%= id%></label>
 						<input class="id" name="id" style="display: none"  value="<%=id%>" type="text">

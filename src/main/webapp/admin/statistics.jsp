@@ -189,7 +189,7 @@
           <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-info card-img-holder text-white">
               <div class="card-body">
-                <a href="http://localhost:8080/THDoAn_war/StatisticsByTypeServlet">
+                <a href="/StatisticsByTypeServlet">
                 <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                 <h4 class="font-weight-normal mb-3">Thông kê số lượng truy cập <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                 </h4></a>
@@ -235,7 +235,7 @@
 
                     <!-- Thêm các tùy chọn khác cho các năm khác -->
                   </select>
-<%--                  <a href="http://localhost:8080/THDoAn_war/StatisticsByTypeServlet" class="button">Click Me</a>--%>
+<%--                  <a href="/StatisticsByTypeServlet" class="button">Click Me</a>--%>
 
                   <script>
                     function navigateToYear(year) {

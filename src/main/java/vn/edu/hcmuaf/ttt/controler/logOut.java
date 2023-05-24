@@ -26,7 +26,7 @@ public class logOut extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         session.invalidate();
-        response.sendRedirect("/THDoAn_war/");
+        response.sendRedirect("/");
 
         DB.me().insert(new Log(Log.WARNING, is_u, "/logOut", "Đăng xuất", 0));
 

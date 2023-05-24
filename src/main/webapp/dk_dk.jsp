@@ -151,12 +151,12 @@
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                            <a href="/THDoAn_war/logOut" >Đăng xuất</a>
+                            <a href="/logOut" >Đăng xuất</a>
                         </div>
                     </div>
 
                     <% if(auth.getUser_admin() == 1){%>
-                    <li><a href="/THDoAn_war/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
+                    <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <%}%>
                     <% } %>
                     <li>
@@ -178,7 +178,7 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="/THDoAn_war/" class="logo">
+                            <a href="/" class="logo">
                                 <img src="./img/Logo250px.png" alt="">
                             </a>
                         </div>
@@ -257,7 +257,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="/THDoAn_war/">Trang chủ</a></li>
+                        <li><a href="/">Trang chủ</a></li>
                         <li><a href="#">Điều khoản và điều kiện</a></li>
 
                     </ul>
