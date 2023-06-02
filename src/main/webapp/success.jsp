@@ -62,7 +62,7 @@
         .btn {
             background-color: #ffffff;
             border: none;
-            color: #8f0303;
+            color: #d10024;
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
@@ -73,12 +73,17 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease-in-out;
-            border: 2px solid #8f0303;
+            border: 2px solid #d10024;
         }
 
         .btn:hover {
-            background-color: #6b0202;
+            color: white;
+            background-color: #d10024;
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.93);
+        }
+
+        .fa:hover {
+            color: white;
         }
 
     </style>
@@ -413,7 +418,7 @@
             <p><strong>SĐT:</strong> <%=h.getHD_sdt()%></p>
             <p><strong>Địa chỉ :</strong> Thành Phố/Tỉnh: <%=h.getCity()%>, Quận/ Huyện: <%=h.getDistrict()%>, Phường/Xã: <%=h.getWard()%></p>
             <p><strong>Ghi chú:</strong> <%=h.getNote()%></p>
-            <p><strong>Ngày taoh hóa đơn:</strong> <%=h.getNgayTaoHD()%></p>
+            <p><strong>Ngày tạo hóa đơn:</strong> <%=h.getNgayTaoHD()%></p>
 
             <input class="input" name="soHD"  style="display: none"  value="<%=sohd%>" type="text">
 
@@ -489,7 +494,7 @@
 
 
 
-        <button class="btn">Lưu hóa đơn bằng PDF <i class="fa fa-file-pdf-o" style="color: #540202"></i></button>
+        <button class="btn">Lưu hóa đơn bằng PDF <i class="fa fa-file-pdf-o" style="color: #d10024"></i></button>
 
 
     </form>
