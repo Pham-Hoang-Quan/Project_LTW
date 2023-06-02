@@ -21,12 +21,13 @@ public class statisticsServlet extends HttpServlet {
         request.setAttribute("year", year);
         ArrayList<Integer> totalRevenue = statisticsService.getTotalRevenue();
         request.setAttribute("totalRevenue", totalRevenue);
-
-
-
-
-
-
+        int userFb = statisticsService.getFacebookAcc();
+        request.setAttribute("userFb", userFb);
+        int userGg = statisticsService.getGGAccount();
+        request.setAttribute("userGg", userGg);
+        int userNm = statisticsService.getNormalAcc();
+        request.setAttribute("userNm", userNm);
+        request.getRequestDispatcher("admin/statistics.jsp").forward(request,response);
 
 //        int yearr = Integer.parseInt(request.getParameter("yearr"));
 //
@@ -47,13 +48,6 @@ public class statisticsServlet extends HttpServlet {
 //            ArrayList<Integer> tongdon = statisticsService.getTongDonTheoThang(y);
 //            request.setAttribute("tongdon", tongdon);
 //        }
-
-
-
-
-
-        request.getRequestDispatcher("admin/statistics.jsp").forward(request,response);
-
     }
 
     @Override
