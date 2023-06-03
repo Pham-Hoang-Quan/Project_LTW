@@ -6,9 +6,11 @@ import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,9 +20,12 @@ public class DetailBill extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
-        boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
-        if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+//        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        boolean saler = isLoggedIn && user.getUser_admin() == 2 ;
+        boolean admin = isLoggedIn && user.getUser_admin() == 1 ;
+        if (!isLoggedIn) {
+            response.sendRedirect("admin/login.jsp");
+            DB.me().insert(new Log(Log.DANGER,1,"/DiscoutList",  "Truy cập trái phép" ,1));
         } else {
             int soHD = Integer.parseInt(request.getParameter("SoHD"));
             int TTHD1 = Integer.parseInt(request.getParameter("SoHD"));
@@ -30,9 +35,6 @@ public class DetailBill extends HttpServlet {
             request.setAttribute("LSsoHD", LSsoHD);
             request.setAttribute("TTHD1", tthoaDon);
             request.getRequestDispatcher("admin/detailBill.jsp").forward(request, response);
-
-
-
         }
     }
 

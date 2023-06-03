@@ -33,7 +33,7 @@ public class DBConnect {
     public Statement get(){
         try {
             if(connection==null) return null;
-           return connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            return connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
             return null;
 
@@ -46,9 +46,9 @@ public class DBConnect {
             Statement statement = DBConnect.getInstall().get();
             if(statement!=null) {
                 ResultSet rs = statement.executeQuery("select * from products");
-               while (rs.next()){
-                   System.out.println(rs.getInt(1) +" -- ");
-                   System.out.println(rs.getString(2));
+                while (rs.next()){
+                    System.out.println(rs.getInt(1) +" -- ");
+                    System.out.println(rs.getString(2));
 //                   System.out.println(rs.getString(3));
 //                   System.out.println(rs.getInt(4));
 //                   System.out.println(rs.getString(5));
@@ -57,7 +57,7 @@ public class DBConnect {
 //                   System.out.println(rs.getString(8));
 
 
-               }
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -83,7 +83,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/statisticsServlet">
-                <span class="menu-title">Thông kê</span>
+                <span class="menu-title">Thống kê</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
         </li>
@@ -110,6 +110,12 @@
             <a class="nav-link" href="/HidenProductList">
                 <span class="menu-title">Danh sách sản phẩm đã ẩn</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/OrderList">
+                <span class="menu-title">Quản lý đơn hàng</span>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">

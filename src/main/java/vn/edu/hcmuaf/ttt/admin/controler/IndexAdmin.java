@@ -18,14 +18,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "IndexAdmin", value = "/IndexAdmin")
-public class IndexAdmin extends HttpServlet {
+public class IndexAdmin extends HttpServlet { // đã phân quyền
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("admin/login.jsp");
         } else {
             List<Product> list = ProductService.getData();
             List<Product> listn = ProductService.getLast();

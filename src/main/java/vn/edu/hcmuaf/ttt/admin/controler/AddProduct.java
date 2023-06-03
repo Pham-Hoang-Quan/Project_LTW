@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
-
 import vn.edu.hcmuaf.ttt.db.DB;
-import vn.edu.hcmuaf.ttt.service.ProductService;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -39,7 +36,7 @@ public class AddProduct extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("/admin/login.jsp");
         } else {
             String id = request.getParameter("id");
             String name = request.getParameter("name");

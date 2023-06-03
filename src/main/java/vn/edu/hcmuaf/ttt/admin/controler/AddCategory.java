@@ -21,7 +21,7 @@ public class AddCategory extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser)  {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("admin/login.jsp");
         } else {
             String id = request.getParameter("id");
             String name = request.getParameter("name");

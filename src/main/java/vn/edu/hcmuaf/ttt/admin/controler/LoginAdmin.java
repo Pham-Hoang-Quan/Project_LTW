@@ -26,7 +26,7 @@ public class LoginAdmin extends HttpServlet {
         User user = UserService.getInstance().checkLogib(user_name,user_password);
 
         if(user == null){
-            request.getRequestDispatcher("login.jsp").forward(request,response);
+            request.getRequestDispatcher("admin/login.jsp").forward(request,response);
         }else {
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user);
@@ -35,7 +35,7 @@ public class LoginAdmin extends HttpServlet {
             }else {
                 CookieUtils.add("user", user_name, 0, response);
             }
-            response.sendRedirect("/THDoAn_war/IndexAdmin");
+            response.sendRedirect("/IndexAdmin");
         }
     }
 }

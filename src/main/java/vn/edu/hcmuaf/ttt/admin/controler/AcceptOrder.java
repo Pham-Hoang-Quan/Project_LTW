@@ -17,10 +17,10 @@ public class AcceptOrder extends HttpServlet {
         User user = (User) request.getSession().getAttribute("auth");
         boolean isLoggedIn = user != null;
 
-        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
+        boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
 
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("admin/login.jsp");
             //log
             if(user == null){
                 DB.me().insert(new Log(Log.DANGER,1,"/AcceptOrder",  "Truy cập trái phép" ,1));
@@ -41,6 +41,9 @@ public class AcceptOrder extends HttpServlet {
             HoaDon.acceptOrder(soHD);
 
             response.sendRedirect("OrderList");
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"/AcceptOrder",  "Xác nhận đơn hàng" ,1));
         }
     }
 

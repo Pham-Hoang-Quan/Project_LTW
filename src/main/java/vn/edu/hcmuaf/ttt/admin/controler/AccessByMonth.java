@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class AccessByMonth extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         int years = Integer.parseInt(request.getParameter("years"));
 //        ArrayList<Integer> accessByYear = statisticsService.getAccessByYear();
 //        request.setAttribute("accessByYear", accessByYear);
