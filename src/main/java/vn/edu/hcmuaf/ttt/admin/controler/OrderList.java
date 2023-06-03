@@ -21,7 +21,7 @@ public class OrderList extends HttpServlet {
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
 
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("/admin/login.jsp");
 
             ///
             //log

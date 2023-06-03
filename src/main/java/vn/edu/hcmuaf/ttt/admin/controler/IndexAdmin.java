@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "IndexAdmin", value = "/IndexAdmin")
-public class IndexAdmin extends HttpServlet {
+public class IndexAdmin extends HttpServlet { // đã phân quyền
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");

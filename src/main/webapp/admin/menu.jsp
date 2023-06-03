@@ -82,13 +82,8 @@
             </a>
         </li>
         <li class="nav-item">
-<<<<<<< HEAD
-            <a class="nav-link" href="http://localhost:8080/THDoAn_war/statisticsServlet">
-                <span class="menu-title">Thống kê</span>
-=======
             <a class="nav-link" href="/statisticsServlet">
-                <span class="menu-title">Thông kê</span>
->>>>>>> e7a05c48bdbf70052edd36e7729195bde0c35242
+                <span class="menu-title">Thống kê</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
         </li>
@@ -115,6 +110,12 @@
             <a class="nav-link" href="/HidenProductList">
                 <span class="menu-title">Danh sách sản phẩm đã ẩn</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/OrderList">
+                <span class="menu-title">Quản lý đơn hàng</span>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">

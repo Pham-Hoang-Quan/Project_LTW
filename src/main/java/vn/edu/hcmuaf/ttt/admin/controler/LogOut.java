@@ -11,7 +11,7 @@ public class LogOut extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         session.invalidate();
-        response.sendRedirect("/THDoAn_war/admin/login.jsp");
+        response.sendRedirect("/admin/login.jsp");
     }
 
     @Override
