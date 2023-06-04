@@ -36,15 +36,15 @@ public class updateFullname extends HttpServlet {
         String hashedPassword = BCrypt.hashpw(user_pass, BCrypt.gensalt());
         boolean match = BCrypt.checkpw(enterpass_old, pass_old);
 //        BCrypt.checkpw(user_password, user.getUser_password())
-        User a = UserService.checkExist(user_name);
+//        User a = UserService.checkExist(user_name);
 
-        if(a == null){
+//        if(a == null){
             if(user_pass != null && user_pass.length() <8 ){
 //                request.setAttribute("meseger", "mật khẩu phải ít nhất 8 ký tự");
-                request.getRequestDispatcher("uadateInfo.jsp").forward(request,response);
+                request.getRequestDispatcher("updateInfo.jsp").forward(request,response);
             }else if(user_pass != null && !user_pass.matches(".*[!@#$%^&*()].*") ) {
 //                request.setAttribute("mesegers", "mật khẩu phải có ít nhất một ký tự đặt biệt");
-                request.getRequestDispatcher("uadateInfo.jsp").forward(request, response);
+                request.getRequestDispatcher("updateInfo.jsp").forward(request, response);
 
             }else{
                 if(match == true){
@@ -58,20 +58,20 @@ public class updateFullname extends HttpServlet {
 
                 }  else {
                     request.setAttribute("messerger","mật khẩu cũ không trùng khớp");
-                    request.getRequestDispatcher("uadateInfo.jsp").forward(request,response);
+                    request.getRequestDispatcher("updateInfo.jsp").forward(request,response);
                     DB.me().insert(new Log(Log.WARNING,id_user,"update-fullname_mật khẩu cũ không trùng khớp", enterpass_old ,0));
 
                 }
             }
 
 
+//
+//        }else {
+//            request.setAttribute("mess", "Tên người dùng đã tồn tại, vui lòng đặt tên khác!");
+//            request.getRequestDispatcher("uadateInfo.jsp").forward(request,response);
+//            DB.me().insert(new Log(Log.INFO,id_user,"update-nhập tên người dùng bị trùng", user_name,0));
 
-        }else {
-            request.setAttribute("mess", "Tên người dùng đã tồn tại, vui lòng đặt tên khác!");
-            request.getRequestDispatcher("uadateInfo.jsp").forward(request,response);
-            DB.me().insert(new Log(Log.INFO,id_user,"update-nhập tên người dùng bị trùng", user_name,0));
-
-        }
+//        }
         }
 
 

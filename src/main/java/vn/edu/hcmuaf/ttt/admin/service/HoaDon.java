@@ -47,6 +47,8 @@ public class HoaDon {
                         .execute());
     }
 
+
+
     public static String CountHD() throws SQLException {
         String Countrow="";
         try {

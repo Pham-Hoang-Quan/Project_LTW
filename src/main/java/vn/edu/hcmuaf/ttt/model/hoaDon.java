@@ -21,6 +21,7 @@ public class hoaDon implements Serializable {
     private Date ngayTaoHD ;
     private  int status;
 
+
     public hoaDon(){
 
     }

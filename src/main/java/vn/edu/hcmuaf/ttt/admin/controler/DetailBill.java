@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
+import vn.edu.hcmuaf.ttt.model.oderdetail;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
 import javax.servlet.*;
@@ -20,7 +21,7 @@ public class DetailBill extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("/admin/login.jsp");
         } else {
             int soHD = Integer.parseInt(request.getParameter("SoHD"));
             int TTHD1 = Integer.parseInt(request.getParameter("SoHD"));
@@ -29,6 +30,9 @@ public class DetailBill extends HttpServlet {
             hoaDon tthoaDon = hoaDonService.getinfoBill(TTHD1);
             request.setAttribute("LSsoHD", LSsoHD);
             request.setAttribute("TTHD1", tthoaDon);
+            oderdetail oder_detaill = hoaDonService.getodertran(soHD);
+            request.setAttribute("oder_detaill", oder_detaill);
+
             request.getRequestDispatcher("admin/detailBill.jsp").forward(request, response);
 
 

@@ -1,9 +1,8 @@
 package vn.edu.hcmuaf.ttt.controler;
 
-import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
-import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
+import vn.edu.hcmuaf.ttt.model.oderdetail;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
 import javax.servlet.*;
@@ -12,22 +11,25 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Lichsu", value = "/lichsu")
-public class Lichsu extends HttpServlet {
+@WebServlet(name = "detailHistoryServlet", value = "/detailHistory")
+public class detailHistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(true);
         User auth= (User) session.getAttribute("auth");
-        String user_id = auth.getUser_id();
-        int id_user= Integer.parseInt(user_id);
-        List<hoaDon> LShoaDon = hoaDonService.getlichSu(user_id);
-        request.setAttribute("lshoadon", LShoaDon);
-        request.getRequestDispatcher("oder.jsp").forward(request,response);
-        DB.me().insert(new Log(Log.INFO,id_user,"lichsu-Xem lịch sử",LShoaDon.toString(),0));
+        int soHD = Integer.parseInt(request.getParameter("soHD"));
+        hoaDon tthoaDon = hoaDonService.getinfoBill(soHD);
+        request.setAttribute("tthoaDon", tthoaDon);
+        List<hoaDon> productOder = hoaDonService.getdetaibill(soHD);
+        request.setAttribute("productOder", productOder);
+        oderdetail oder_detail = hoaDonService.getodertran(soHD);
+        request.setAttribute("oder_detail", oder_detail);
 
 
 
+
+
+        request.getRequestDispatcher("detailHistory.jsp").forward(request,response);
 
     }
 

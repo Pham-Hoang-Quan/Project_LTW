@@ -279,11 +279,10 @@
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
                     <div class="dropdown">
-                        <div style="cursor: pointer"><li><a href="/lichsu"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                            <a href="/lichsu">Đơn mua</a>
                             <a href="/logOut" >Đăng xuất</a>
                         </div>
                     </div>
@@ -363,25 +362,40 @@
         <!-- /MAIN HEADER -->
     </header>
     <div class="signup-form">
-        <form action="/dosingup" method="post">
-            <h2>Đăng Ký</h2>
+        <form action="/update-fullname" method="post">
+            <h2>Cập nhật tài khoản</h2>
 
-            <p class="hint-text">Đăng ký tài khoản để trải nghiệm dịch vụ tốt nhất</p>
+
+            <input class="date" name="user_id" style="display: none" value="<%=auth.getUser_id()%>" type="text">
+
+            <p class="alert-danger">${mess}</p>
             <div class="form-group">
-                <p class="alert-danger">${mess}</p>
+
                 <div class="row">
-                    <div class="col"><input type="text" class="form-control" name="user_fullname" placeholder="Họ và tên" required="required"></div>
-                    <div class="col"><input type="text" class="form-control" name=user_name placeholder="Tên người dùng(dùng để đăng nhập)" required="required"></div>
+                    <div class="col"><input type="text" class="form-control" name="user_fullnameN" placeholder="Họ và tên" required="required" value="<%= auth.getUser_fullname()%>"></div>
+<%--                   họ và  ten cũ--%>
+<%--                    <input class="date"  style="" value="<%=auth.getUser_fullname()%>" type="text">--%>
+
+
+                    <div class="col"><input type="text" class="form-control" name="user_name" placeholder="Tên người dùng(dùng để đăng nhập)" required="required" value="<%= auth.getUser_name()%>"></div>
+<%--                     ten người dùng cũ--%>
+<%--                    <input class="date" style="display: none" value="<%=auth.getUser_name()%>" type="text">--%>
+
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="account" placeholder="Tài khoản" required="required">
+                <input type="text" class="form-control" name="account" placeholder="Tài khoản" required="required" value="<%=auth.getAccount()%>">
+<%--                 tài khoản cũ--%>
+                <input class="date" style="display: none" value="<%=auth.getAccount()%>" type="text">
+
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="user_email" placeholder="Email" required="required">
+                <input type="email" class="form-control" name="user_email" placeholder="Email" required="required" value="<%=auth.getemail()%>">
+<%--                email cũ--%>
+<%--                <input class="date" style="display: none" value="<%=auth.getUser_email()%>" type="text">--%>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="user_sdt" placeholder="Số điện thoại" required="required">
+                <input type="text" class="form-control" name="user_sdt" placeholder="Số điện thoại" required="required" value="<%= auth.getUser_sdt()%>">
             </div>
 <%--            <%  String pass = request.getParameter("user_password");--%>
 <%--            if(pass == null){--%>
@@ -389,34 +403,30 @@
 <%--            <small id="emailHelp" class="form-text text-muted">Mật khẩu phải có ít nhất 8 ký tự.</small>--%>
 <%--            <small id="emailHelp1" class="form-text text-muted">Mật khẩu phải có ít nhất một ký tự đặt biệt.</small>--%>
 <%--            <%}%>--%>
-
 <%--            <p class="alert-danger">${meseger}</p>--%>
 <%--            <p class="alert-danger">${mesegers}</p>--%>
+            <p class="alert-danger">${messerger}</p>
+            <div class="form-group">
+                <input type="password" class="form-control" name="enterpass_old" placeholder="Mật khẩu cũ" required="required">
+                <input class="date" name="pass_old" style="display: none" value="<%=auth.getUser_password()%>" type="text">
+            </div>
 
 
-
-<%--            <div class="form-group">--%>
-<%--                <input type="password" id="password"class="form-control" name="user_password" placeholder="Mật khẩu" required="required" >--%>
-<%--            </div>--%>
 
             <p id="paragraph" class="form-text text-muted" >Mật khẩu phải có ít nhất 8 ký tự. </p>
             <p id="paragraph1" class="form-text text-muted" >Mật khẩu phải có ít nhất một ký tự đặt biệt.</p>
             <div class="form-group">
-            <input type="password" id="password" class="form-control" name="user_password"  placeholder="Mật khẩu" oninput="hideParagraph()">
+                <input type="password" id="password" class="form-control" name="user_passNew" placeholder="Mật khẩu mới" required="required" oninput="hideParagraph()" >
             </div>
             <h5 id="password-length-message"></h5>
             <h5 id="password-special-char-message"></h5>
 
 
-            <p class="alert-danger">${messs}</p>
-            <div class="form-group">
-                <input type="password" class="form-control" name="repass" placeholder="Xác nhận mật khẩu" required="required">
-            </div>
             <div class="form-group">
                 <label class="form-check-label"><input type="checkbox" required="required"> Cập Nhật <a href="#">Điều khoản</a> &amp; <a href="#">Chính sách bảo mật</a></label>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Đăng Ký</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">xác nhập cập nhật</button>
             </div>
             <div class="text-center"> Bạn đã có một tài khoản ? <a href="login.jsp">Đăng Nhập</a></div>
     </div>
@@ -469,51 +479,53 @@
     <script src="js/jquery.zoom.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/bootshop.js"></script>
+    <script>
+        const passwordInput = document.getElementById("password");
+        const passwordLengthMessage = document.getElementById("password-length-message");
+        const passwordSpecialCharMessage = document.getElementById("password-special-char-message");
+
+        passwordInput.addEventListener("input", function() {
+            const password = passwordInput.value;
+            const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
+
+            if (password.length >= 8) {
+                passwordLengthMessage.innerText = "Mật khẩu đủ dài!";
+                passwordLengthMessage.style.color = "green";
+            } else {
+                passwordLengthMessage.innerText = "Mật khẩu phải ít nhất 8 ký tự!";
+                passwordLengthMessage.style.color = "red";
+            }
+
+            if (hasSpecialChar) {
+                passwordSpecialCharMessage.innerText = "Mật khẩu chứa ký tự đặc biệt!";
+                passwordSpecialCharMessage.style.color = "green";
+            } else {
+                passwordSpecialCharMessage.innerText = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt!";
+                passwordSpecialCharMessage.style.color = "red";
+            }
+        });
+
+
+
+
+    </script>
+    <script>
+        function hideParagraph() {
+            var input = document.getElementById("password").value;
+            var paragraph = document.getElementById("paragraph");
+            var paragraph1 = document.getElementById("paragraph1");
+            if (input !== "") {
+                paragraph.style.display = "none";
+                paragraph1.style.display = "none";
+            } else {
+                paragraph.style.display = "block";
+                paragraph1.style.display = "block";
+            }
+
+        }
+    </script>
+
 
 </body>
-<script>
-    const passwordInput = document.getElementById("password");
-    const passwordLengthMessage = document.getElementById("password-length-message");
-    const passwordSpecialCharMessage = document.getElementById("password-special-char-message");
 
-    passwordInput.addEventListener("input", function() {
-        const password = passwordInput.value;
-        const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
-
-        if (password.length >= 8) {
-            passwordLengthMessage.innerText = "Mật khẩu đủ dài!";
-            passwordLengthMessage.style.color = "green";
-        } else {
-            passwordLengthMessage.innerText = "Mật khẩu phải ít nhất 8 ký tự!";
-            passwordLengthMessage.style.color = "red";
-        }
-
-        if (hasSpecialChar) {
-            passwordSpecialCharMessage.innerText = "Mật khẩu chứa ký tự đặc biệt!";
-            passwordSpecialCharMessage.style.color = "green";
-        } else {
-            passwordSpecialCharMessage.innerText = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt!";
-            passwordSpecialCharMessage.style.color = "red";
-        }
-    });
-
-
-
-
-</script>
-<script>
-    function hideParagraph() {
-        var input = document.getElementById("password").value;
-        var paragraph = document.getElementById("paragraph");
-        var paragraph1 = document.getElementById("paragraph1");
-        if (input !== "") {
-            paragraph.style.display = "none";
-            paragraph1.style.display = "none";
-        } else {
-            paragraph.style.display = "block";
-            paragraph1.style.display = "block";
-        }
-
-    }
-</script>
 </html>

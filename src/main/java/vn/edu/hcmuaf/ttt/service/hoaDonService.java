@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.service;
 
+import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.db.JDBiConnector;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
+import vn.edu.hcmuaf.ttt.model.oderdetail;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -35,6 +37,18 @@ public class hoaDonService {
 
     }
 
+    //lấy thông tin mã giảm giá, phí vận chuyển
+
+    public static void oderdetail(int soHD, int discountFee, int transportFee, int totalPrice) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate(" INSERT INTO oderdetail VALUES (?,?,?,?)")
+                        .bind(0, soHD)
+                        .bind(1, discountFee)
+                        .bind(2, transportFee)
+                        .bind(3, totalPrice)
+                        .execute());
+    }
+
     //lấy mã giảm giá
     static public void discount(int id_dis, String name, String reduce, int reducedPrice, Timestamp created_at, Timestamp expires_at) {
         JDBiConnector.me().withHandle(h ->
@@ -61,6 +75,39 @@ public class hoaDonService {
         return list;
     }
 
+    // lấy ra đơn hàng đang chờ xác nhận
+    public static List<hoaDon> getOderXN(String user_id, int status) {
+        List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT * FROM hoadon WHERE user_id like ? AND `status` = ?")
+                        .bind(0, user_id)
+                        .bind(1, status)
+                        .mapToBean(hoaDon.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
+
+    // update trạng thái đơn hàng sang bị hủy
+    public static void updateStatus(int soHD) {
+        JDBiConnector.me().withHandle(h ->
+                h.createUpdate("UPDATE hoadon SET `status` = 3 WHERE soHD = ?")
+                        .bind(0, soHD)
+                        .execute());
+    }
+// upddate sang trạng thái giao thành công
+public static void updateStatus2(int soHD) {
+    JDBiConnector.me().withHandle(h ->
+            h.createUpdate("UPDATE hoadon SET `status` = 2 WHERE soHD = ?")
+                    .bind(0, soHD)
+                    .execute());
+}
+
+
+
+
+
+
     public static List<hoaDon> getStatusOrder(String user_id) {
         List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
                 handle.createQuery("SELECT * FROM hoadon WHERE user_id like ?")
@@ -74,7 +121,7 @@ public class hoaDonService {
 
     public static List<hoaDon> getdetaibill(int soHD) {
         List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
-                handle.createQuery("SELECT * FROM hoadon WHERE soHD = ?")
+                handle.createQuery("SELECT id, TenSp, toongGia, soLuong  FROM hoadon WHERE soHD = ?")
                         .bind(0, soHD)
                         .mapToBean(hoaDon.class)
                         .stream()
@@ -82,6 +129,18 @@ public class hoaDonService {
         );
         return list;
     }
+
+    public static List<hoaDon> getdetaibilll(int soHD) {
+        List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
+                handle.createQuery("SELECT hoadon.id, hoadon.TenSp, hoadon.toongGia, hoadon.soLuong , products.price, products.img  FROM hoadon, products WHERE products.id = hoadon.id AND soHD = ?")
+                        .bind(0, soHD)
+                        .mapToBean(hoaDon.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        return list;
+    }
+
 
     public static List<hoaDon> getdetailOrder(int soHD) {
         List<hoaDon> list = JDBiConnector.me().withHandle(handle ->
@@ -112,10 +171,39 @@ public class hoaDonService {
     //đơn hàng chi tiết
     public static hoaDon getinfoBill(int soHD) {
         return JDBiConnector.me().withHandle(handle -> {
-            return handle.createQuery("SELECT DISTINCT HoVaTen, HD_email, HD_sdt, city, district, ward, note, " +
-                            "ngayTaoHD FROM hoadon WHERE soHD = ?")
+            return handle.createQuery("\n" +
+                            "SELECT DISTINCT  soHD, user_id, HoVaTen, HD_email, HD_sdt, city, district, ward, note, ngayTaoHD, `status` FROM hoadon WHERE soHD = ?")
                     .bind(0, soHD)
                     .mapToBean(hoaDon.class).first();
+        });
+    }
+    //lấy chi tiết đơn hàng đang chờ xác nhận
+    public static hoaDon getoderX(int soHD) {
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("\n" +
+                            "SELECT DISTINCT  soHD, user_id, HoVaTen, HD_email, HD_sdt, city, district, ward, note, ngayTaoHD, `status` FROM hoadon WHERE soHD = ? AND `status` = 1")
+                    .bind(0, soHD)
+                    .mapToBean(hoaDon.class).first();
+        });
+    }
+
+    // 0: chờ xác nhận
+    // 1:đã xác nhận
+    // 2 đang giao
+    // 3 đã giao
+    // 4 hủy đơn
+    //lấy chi tiết đơn các đơn hàng đang vận chuyển
+
+
+
+
+
+    // lâý phí giao hàng theo sohd
+    public static oderdetail getodertran(int soHD) {
+        return JDBiConnector.me().withHandle(handle -> {
+            return handle.createQuery("SELECT DISTINCT * FROM oderdetail WHERE soHD = ?")
+                    .bind(0, soHD)
+                    .mapToBean(oderdetail.class).first();
         });
     }
 
@@ -132,11 +220,10 @@ public class hoaDonService {
 
                         .execute());
     }
-    // hiện hóa đơn theo soHD
-
-
 
     public static void main(String[] args) {
+
+
 
 
     }

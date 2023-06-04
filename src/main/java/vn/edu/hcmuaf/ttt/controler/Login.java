@@ -60,10 +60,10 @@ public class Login extends HttpServlet {
                 int id_u = Integer.parseInt(user_id);
 
                 if (userl.isRemember()) {
-                    CookieUtils.add("user", user_name, 2, response);
+                    CookieUtils.add("user", user_name, 9, response);
 
                 } else {
-                    CookieUtils.add("user", user_name, 0, response);
+                    CookieUtils.add("user", user_name, 9, response);
 
                 }
 

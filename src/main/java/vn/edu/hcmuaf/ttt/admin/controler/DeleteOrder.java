@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.ttt.admin.service.HoaDon;
 import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
 import vn.edu.hcmuaf.ttt.db.DB;
+import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,7 +23,8 @@ public class DeleteOrder extends HttpServlet {
         } else {
             String soHD = request.getParameter("SoHD");
 
-            HoaDon.deleteOrder(soHD);
+//            HoaDon.deleteOrder(soHD);
+            hoaDonService.updateStatus(Integer.parseInt(soHD));
 
             response.sendRedirect("OrderList");
             //log
