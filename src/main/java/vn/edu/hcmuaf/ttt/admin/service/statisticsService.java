@@ -298,6 +298,126 @@ public class statisticsService {
         return erruserByYear;
     }
 
+    //count số tài khoản được tạo bằng cách thông thường
+    public static int getFacebookAcc() {
+        int fbAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*) FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_fb <> 0");
+            if (fbacc.next()) {
+                fbAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        double percent = (double) fbAcc / totalAcc * 100;
+        return (int) percent;
+    }
+
+    //count số tài khoản được tạo bằng email
+    public static int getNormalAcc() {
+        int normalAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*)  FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_fb = 0 and id_gg = 0");
+            if (fbacc.next()) {
+                normalAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        double percent = (double) normalAcc / totalAcc * 100;
+        return (int) percent;
+    }
+
+    //count số tài khoản được tạo bằng gg
+    public static int getGGAccount() {
+        int ggAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*) FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_gg <> 0");
+            if (fbacc.next()) {
+                ggAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        double percent = (double) ggAcc / totalAcc * 100;
+        return (int) percent;
+    }
+
+    public static ArrayList<Integer> getBestSellerSL() {
+        ArrayList<Integer> listP = new ArrayList<>();
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT id, TenSp, count(*) as SLSP \n" +
+                    "FROM hoadon \n" +
+                    "GROUP BY id, TenSp\n" +
+                    "ORDER BY SLSP DESC\n" +
+                    "LIMIT 4;\n");
+            while (total.next()) {
+                int product = total.getInt("SLSP");
+                listP.add(product);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return listP;
+    }
+
+    public static ArrayList<String> getBestSellerId() {
+        ArrayList<String> listPName = new ArrayList<>();
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT id\n" +
+                    "from hoadon \n" +
+                    "GROUP BY id \n" +
+                    "ORDER BY count(*) desc");
+            while (total.next()) {
+                String product = total.getString("id");
+                listPName.add(product);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return listPName;
+    }
+
+    public static ArrayList<String> getBestSellerName() {
+        ArrayList<String> listPName = new ArrayList<>();
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT TenSp\n" +
+                    "from hoadon \n" +
+                    "GROUP BY TenSp \n" +
+                    "ORDER BY count(*) desc");
+            while (total.next()) {
+                String product = total.getString("TenSp");
+                listPName.add(product);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return listPName;
+    }
+
+
+
 
 
 

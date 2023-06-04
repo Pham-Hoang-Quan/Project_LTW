@@ -73,7 +73,10 @@
             margin: 0;
             padding: 0;
         }
-        
+
+        .color {
+            color: #d10024;
+        }
         #message {
             background: white;
             max-width: 360px;
@@ -112,6 +115,7 @@
             padding: 16px;
             border-radius: 4px;
         }
+
         
         #message,
         #message a {
@@ -411,7 +415,7 @@
 
                         <div class="add-to-cart">
 
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a class="color" style="color: white" href="<%="/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
                         </div>
 
 

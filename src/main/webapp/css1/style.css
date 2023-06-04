@@ -76,7 +76,7 @@ h6 {
 }
 
 a {
-    color: #2B2D42;
+    color: black;
     font-weight: 500;
     -webkit-transition: 0.2s color;
     transition: 0.2s color;
@@ -1121,11 +1121,6 @@ textarea.input {
     z-index: 2;
 }
 
-
-
-
-
-
 .product:hover .add-to-cart {
     -webkit-transform: translateY(100%);
     -ms-transform: translateY(100%);
@@ -1137,7 +1132,7 @@ textarea.input {
     border: 2px solid transparent;
     height: 40px;
     padding: 0 30px;
-    background-color: #ef233c;
+    background-color: #d10024;
     color: #FFF;
     text-transform: uppercase;
     font-weight: 700;
@@ -1153,15 +1148,15 @@ textarea.input {
     width: 40px;
     height: 40px;
     line-height: 38px;
-    color: #D10024;
+    color: #d10024;
     opacity: 0;
     visibility: hidden;
 }
 
 .product .add-to-cart .add-to-cart-btn:hover {
     background-color: #FFF;
-    color: #D10024;
-    border-color: #D10024;
+    color: #d10024;
+    border-color: #d10024;
     padding: 0px 30px 0px 50px;
 }
 

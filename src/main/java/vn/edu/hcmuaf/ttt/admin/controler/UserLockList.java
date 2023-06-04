@@ -17,7 +17,7 @@ public class UserLockList extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
         if (!isLoggedIn || isNormalUser)  {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("/admin/login.jsp");
         } else {
             List<User> listUser = UserService.listLockUser();
 

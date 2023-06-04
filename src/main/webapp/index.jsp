@@ -230,7 +230,7 @@
 
 
 
-                    <% if(auth.getUser_admin() == 1){%>
+                    <% if(auth.getUser_admin() > 0){%>
 
                     <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                     <% } %>

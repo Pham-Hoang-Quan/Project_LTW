@@ -16,7 +16,7 @@ public class UnlockUser extends HttpServlet {
         boolean isLoggedIn = user != null;
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser)  {
-            response.sendRedirect("/THDoAn_war/List-Product");
+            response.sendRedirect("/List-Product");
         } else {
             String id = request.getParameter("id");
             UserService.unlockUser(id);

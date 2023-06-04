@@ -21,24 +21,25 @@ public class OrderList extends HttpServlet {
         boolean isNormalUser = isLoggedIn && user.getUser_admin() == 0;
         if (!isLoggedIn || isNormalUser) {
 
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+            response.sendRedirect("/admin/login.jsp");
 
             ///
             //log
-            if(user == null){
-                DB.me().insert(new Log(Log.DANGER,1,"/AcceptOrder",  "Truy cập trái phép" ,1));
+//            if(user.getUser_id() != null) {
+//                String user_id = user.getUser_id();
+//                int id_u = Integer.parseInt(user_id);
+//                DB.me().insert(new Log(Log.DANGER,id_u,"/OrderList",  "Truy cập trái phép" ,1));
+//            }
 
-            }else {
-                String user_id = user.getUser_id();
-                int id_u = Integer.parseInt(user_id);
-                DB.me().insert(new Log(Log.DANGER,id_u,"/AcceptOrder",  "Truy cập trái phép" ,1));
-            }
+
 
             //
             ////
 
         } else {
+
             // 0: đơn chờ xác nhận
+
             List<hoaDon> listHD0 = HoaDon.getListHD0(0);
             request.setAttribute("listHD0", listHD0);
             // 1: đơn đang vận chuyển
@@ -53,6 +54,10 @@ public class OrderList extends HttpServlet {
             request.setAttribute("listHD3", listHD3);
 
             request.getRequestDispatcher("admin/order-manage.jsp").forward(request, response);
+
+            String user_id = user.getUser_id();
+            int id_u = Integer.parseInt(user_id);
+            DB.me().insert(new Log(Log.INFO,id_u,"/OrderList",  "Truy cập danh sách đơn hàng" ,1));
         }
     }
 

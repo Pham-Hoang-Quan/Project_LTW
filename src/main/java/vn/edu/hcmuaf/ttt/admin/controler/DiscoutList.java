@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.ttt.admin.controler;
 
 import vn.edu.hcmuaf.ttt.admin.service.DiscountService;
+import vn.edu.hcmuaf.ttt.bean.Log;
 import vn.edu.hcmuaf.ttt.bean.User;
+import vn.edu.hcmuaf.ttt.db.DB;
 import vn.edu.hcmuaf.ttt.model.discount;
 
 import javax.servlet.ServletException;
@@ -21,13 +23,23 @@ public class DiscoutList extends HttpServlet {
 //        boolean isNormalUser = isLoggedIn && user.getUser_admin() != 1;
         boolean saler = isLoggedIn && user.getUser_admin() == 2 ;
         boolean admin = isLoggedIn && user.getUser_admin() == 1 ;
-        if (!saler && !admin )  {
-            response.sendRedirect("http://localhost:8080/THDoAn_war/admin/login.jsp");
+        if (!isLoggedIn) {
+            response.sendRedirect("admin/login.jsp");
+            DB.me().insert(new Log(Log.DANGER,1,"/DiscoutList",  "Truy cập trái phép" ,1));
         } else {
-            List<discount> listDis = DiscountService.listDiscount();
-
-            request.setAttribute("listDis", listDis);
-            request.getRequestDispatcher("admin/discountList.jsp").forward(request, response);
+            if (!saler && !admin )  {
+                response.sendRedirect("admin/login.jsp");
+                String user_id = user.getUser_id();
+                int id_u = Integer.parseInt(user_id);
+                DB.me().insert(new Log(Log.DANGER,id_u,"/DiscoutList",  "Truy cập trái phép" ,1));
+            } else {
+                List<discount> listDis = DiscountService.listDiscount();
+                request.setAttribute("listDis", listDis);
+                request.getRequestDispatcher("admin/discountList.jsp").forward(request, response);
+                String user_id = user.getUser_id();
+                int id_u = Integer.parseInt(user_id);
+                DB.me().insert(new Log(Log.DANGER,id_u,"/DiscoutList",  "Truy cập trái phép" ,1));
+            }
         }
     }
 
