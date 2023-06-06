@@ -38,13 +38,20 @@ public class OrderList extends HttpServlet {
 
         } else {
 
-
+            // 0: đơn chờ xác nhận
 
             List<hoaDon> listHD0 = HoaDon.getListHD0(0);
             request.setAttribute("listHD0", listHD0);
+            // 1: đơn đang vận chuyển
 
             List<hoaDon> listHD1 = HoaDon.getListHD0(1);
             request.setAttribute("listHD1", listHD1);
+            //2: đơn hàng đã nhận
+            List<hoaDon> listHD2 = HoaDon.getListHD0(2);
+            request.setAttribute("listHD2", listHD2);
+            // 3: đơn đã hủy
+            List<hoaDon> listHD3 = HoaDon.getListHD0(3);
+            request.setAttribute("listHD3", listHD3);
 
             request.getRequestDispatcher("admin/order-manage.jsp").forward(request, response);
 

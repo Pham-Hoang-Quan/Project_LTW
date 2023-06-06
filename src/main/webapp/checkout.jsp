@@ -22,23 +22,23 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css1/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css1/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="css1/slick-theme.css"/>
     <%--    drop--%>
-    <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+    <link type="text/css" rel="stylesheet" href="css1/sty.css"/>
     <script defer src="js/dro.js"></script>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
+    <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="css1/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css1/style.css" />
+    <link type="text/css" rel="stylesheet" href="css1/style.css"/>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -123,6 +123,7 @@
                 background: white;
                 box-shadow: none;
             }
+
             body {
                 border-top: 16px solid #ffa100;
             }
@@ -139,25 +140,28 @@
                 <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0989839121</a></li>
                 <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i> DH20DT@email.com</a></li>
                 <li>
-                    <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
+                    <a target="_blank"
+                       href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i
+                            class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
                 </li>
             </ul>
             <ul class="header-links pull-right">
 
-                <% User auth= (User) session.getAttribute("auth");%>
-                <% if(auth==null){ %>
+                <% User auth = (User) session.getAttribute("auth");%>
+                <% if (auth == null) { %>
                 <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
-                <% }else {%>
+                <% } else {%>
                 <div class="dropdown">
-                    <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                    <div style="cursor: pointer"><li><a href="/lichsu"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
                     <div class="dropdown-content">
                         <a href="userInfo.jsp">Thông tin tài khoản</a>
                         <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                        <a href="/lichsu">Đơn mua</a>
                         <a href="/logOut" >Đăng xuất</a>
                     </div>
                 </div>
 
-                <% if(auth.getUser_admin() == 1){%>
+                <% if (auth.getUser_admin() == 1) {%>
                 <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
                 <% } %>
@@ -274,10 +278,11 @@
                             <h3 class="title">Thông tin giao hàng</h3>
                         </div>
 
-                        <% if(auth==null){ %>
+                        <% if (auth == null) { %>
                         <input class="input" name="userID" style="display: none" value="1" type="text">
-                        <% }else {%>
-                        <input class="input" name="userID" style="display: none" value="<%= auth.getUser_id()%>" type="text">
+                        <% } else {%>
+                        <input class="input" name="userID" style="display: none" value="<%= auth.getUser_id()%>"
+                               type="text">
                         <% } %>
 
                         <div class="form-group">
@@ -305,9 +310,11 @@
                                 <input type="checkbox" id="create-account">
 
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt.
                                     </p>
-                                    <input class="input" type="password" name="password" placeholder="Enter Your Password">
+                                    <input class="input" type="password" name="password"
+                                           placeholder="Enter Your Password">
                                 </div>
                             </div>
                         </div>
@@ -354,32 +361,27 @@
                         <%--                        </div>--%>
 
 
-
                         <div class="form-group">
-<%--                            <input class="input" type="text" name="city" placeholder="Thành Phố/Tỉnh">--%>
-                            <select  name="city" class="input" id="province"><option  value="">Thành Phố/Tỉnh</option></select>
+                            <%--                            <input class="input" type="text" name="city" placeholder="Thành Phố/Tỉnh">--%>
+                            <select name="city" class="input" id="province">
+                                <option value="">Thành Phố/Tỉnh</option>
+                            </select>
                         </div>
                         <div class="form-group">
-<%--                            <input class="input" type="text" name="dis" placeholder="Quận/Huyuện">--%>
-                            <select  name="dis" class="input" id="district"> <option  value="">Quận/Huyuện</option></select>
+                            <%--                            <input class="input" type="text" name="dis" placeholder="Quận/Huyuện">--%>
+                            <select name="dis" class="input" id="district">
+                                <option value="">Quận/Huyuện</option>
+                            </select>
 
                         </div>
                         <div class="form-group">
-<%--                            <input class="input" type="text" name="wa" placeholder="Phường/xã">--%>
-                            <select  name="wa" class="input" id="ward"> <option   value="">Phường/xã</option></select>
+                            <%--                            <input class="input" type="text" name="wa" placeholder="Phường/xã">--%>
+                            <select name="wa" class="input" id="ward">
+                                <option value="">Phường/xã</option>
+                            </select>
 
                         </div>
 
-<%--                        <form action="">--%>
-<%--                            <select name="" id="province">--%>
-<%--                            </select>--%>
-<%--                            <select name="" id="district">--%>
-<%--                                <option  value="">chọn quận</option>--%>
-<%--                            </select>--%>
-<%--                            <select name="" id="ward">--%>
-<%--                                <option   value="">chọn phường</option>--%>
-<%--                            </select>--%>
-<%--                        </form>--%>
 
                     </div>
                     <!-- /Shiping Details -->
@@ -398,10 +400,10 @@
                     <div class="section-title text-center">
                         <h3 class="title">Hóa Đơn</h3>
                     </div>
-                    <%  Random r = new Random();
+                    <% Random r = new Random();
                         int soHD = r.nextInt(10000);
                     %>
-                    <input class="input" name="soHD"  style="display: none"  value="<%=soHD%>" type="text">
+                    <input class="input" name="soHD" style="display: none" value="<%=soHD%>" type="text">
 
                     <div class="order-summary">
 
@@ -413,80 +415,119 @@
 
 
                         <%
-                            Cart cartt =(Cart) session.getAttribute("cart");
-                            double tongtien = 0;
-                            int i= 0;
+                            Cart cartt = (Cart) session.getAttribute("cart");
+                            int tongtien = 0;
+                            int i = 0;
                         %>
-                        <%for (Product c:cartt.getListproduct()) {
-                            tongtien+=(c.getPrice()*c.getQuantily());
-                            i++;
+                        <%
+                            for (Product c : cartt.getListproduct()) {
+                                tongtien += (c.getPrice() * c.getQuantily());
+                                i++;
                         %>
-                        <%Locale locale = new Locale("vi");
+                        <%
+                            Locale locale = new Locale("vi");
                             NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                            String tn = format.format(c.getPrice()*c.getQuantily()).split(",")[0];
+                            String tn = format.format(c.getPrice() * c.getQuantily()).split(",")[0];
                         %>
                         <div class="order-products">
-                            <div class="order-col" >
-                                <div><%=c.getName()%></div>
-                                <div>x<%=c.getQuantily()%></div>
+                            <div class="order-col pro-col" >
+                                <div><%=c.getName()%>
+                                </div>
+                                <div class="pro-col-num">x <%=c.getQuantily()%>
+                                </div>
                                 <div><%=tn%>đ</div>
                             </div>
                         </div>
-                        <input class="input" name="id<%=i%>"  style="display: none" value="<%=c.getId()%>" type="text">
-                        <input class="input" name="gia<%=i%>"  style="display: none" value="<%=c.getPrice()*c.getQuantily()%>" type="text">
-                        <input class="input" name="nameSP<%=i%>"  style="display: none" value="<%=c.getName()%>" type="text">
-                        <input class="input" name="soLuong<%=i%>"  style="display: none"  value="<%=c.getQuantily()%>" type="text">
-                        <input class="input" name="id<%=i%>"  style="display: none"  value="<%=c.getId()%>" type="text">
-                        <% Date currentDate  = Date.valueOf(LocalDate.now()); %>
+                        <input class="input" name="id<%=i%>" style="display: none" value="<%=c.getId()%>" type="text">
+                        <input class="input" name="gia<%=i%>" style="display: none"
+                               value="<%=c.getPrice()*c.getQuantily()%>" type="text">
+                        <input class="input" name="nameSP<%=i%>" style="display: none" value="<%=c.getName()%>"
+                               type="text">
+                        <input class="input" name="soLuong<%=i%>" style="display: none" value="<%=c.getQuantily()%>"
+                               type="text">
+                        <input class="input" name="id<%=i%>" style="display: none" value="<%=c.getId()%>" type="text">
+                        <% Date currentDate = Date.valueOf(LocalDate.now()); %>
 
-                        <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>" type="text">
+                        <input class="date" name="dateComment" style="display: none" value="<%=currentDate.toString()%>"
+                               type="text">
 
                         <%}%>
                         <% discount discount = (discount) session.getAttribute("discount");%>
-                        <input class="input" name="countSP"  style="display: none" value="<%=cartt.getListproduct().size()%>" type="number">
+                        <input class="input" name="countSP" style="display: none"
+                               value="<%=cartt.getListproduct().size()%>" type="number">
                         <div class="order-col">
                             <div>Phí giao hàng</div>
-                            <div><strong>MIỄN PHÍ</strong></div>
+                            <div><strong id="price-logistic">----</strong></div>
+                            <input type="hidden" id="price-logistic-total" name="price-logistic" value="">
+                            <input type="text"style="display: none" id="price-logistic" name="price-logistic" value="">
                         </div>
-                        <%if(discount != null){%>
                         <div class="order-col">
-                            <div>Đã áp dụng mã giảm giá <%=discount.getReduce()%></div>
-                            <input class="date" style="display: none" name="reduceSesstion"  value="<%=discount.getReduce()%>" type="text">
+                            <div>ước lượng thời gian giao hàng: </div>
+                            <div><strong id="time-logistic">----</strong></div>
+                            <input type="hidden" id="time-logistic-total" name="time-logistic" value="">
+                        </div>
+<%--                        <p id ="time_logistic_p">Ước lượng thời gian:--%>
+<%--                            <span id ="time_logistic"></span>--%>
 
-                            <%Locale locale = new Locale("vi");
+
+                        <%if (discount != null) {%>
+                        <div class="order-col">
+                            <div>Đã áp dụng mã giảm giá <%=discount.getReduce()%>
+                            </div>
+                            <input class="date" style="display: none" name="reduceSesstion"
+                                   value="<%=discount.getReduce()%>" type="text">
+
+                            <%
+                                Locale locale = new Locale("vi");
                                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                                 String reduPrice = format.format(discount.getReducedPrice()).split(",")[0];
                             %>
-                            <div><strong>-<%=reduPrice%></strong></div>
+                            <div><strong>-<%=reduPrice%>
+                                <input type="text" style="display: none" name="discountFee" value="<%=discount.getReducedPrice()%>">
+                            </strong></div>
                         </div>
                         <div class="order-col">
                             <div><strong>TỔNG</strong></div>
                             <% int tonggia = (int) (tongtien - discount.getReducedPrice());%>
-                            <%Locale local = new Locale("vi");
+                            <%
+                                Locale local = new Locale("vi");
                                 NumberFormat forma = NumberFormat.getCurrencyInstance(local);
                                 String tt = forma.format(tonggia).split(",")[0];
                             %>
 
-                            <div><strong class="order-total"><%=tt %>đ</strong></div>
-                            <input class="input" name="tongTien" style="display: none" value="<%=tt%>đ" type="text">
+                            <div><strong class="order-total" id="price-total-display"><%=tt %>
+                            </strong></div>
+
+                            <input class="input" name="tongTien" id="price-total-format" style="display: none" value="<%=tt%>đ" type="text">
+
+                            <input class="input" id="price-total" name="totalprice" value="<%=tonggia%>" type="hidden">
 
                         </div>
-                        <%}else {%>
-<%--                        <div class="order-col">--%>
-<%--                            <div>Nhập mã giảm giá</div>--%>
-<%--                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">--%>
-<%--                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>--%>
-<%--                        </div>--%>
+                        <%} else {%>
+                        <%--                        <div class="order-col">--%>
+                        <%--                            <div>Nhập mã giảm giá</div>--%>
+                        <%--                            <input class="input" type="text" name="enter_dis" placeholder="Nhập mã giảm giá">--%>
+                        <%--                            <button type="submit" name="action" class="primary-btn order-submit" value="apply">Áp dụng</button>--%>
+                        <%--                        </div>--%>
                         <div class="order-col">
-                            <input class="date" style="display: none" name="reduceSesstion"  value="null" type="text">
+                            <input class="date" style="display: none" name="reduceSesstion" value="null" type="text">
                             <div><strong>TỔNG</strong></div>
-                            <%Locale local = new Locale("vi");
+                            <%
+                                Locale local = new Locale("vi");
                                 NumberFormat forma = NumberFormat.getCurrencyInstance(local);
                                 String tt = forma.format(tongtien).split(",")[0];
                             %>
+                            <input type="text" style="display: none" name="discountFee" value="0">
 
-                            <div><strong class="order-total"><%=tt %></strong></div>
-                            <input class="input" name="tongTien" style="display: none" value="<%=tt%>đ" type="text">
+                            <div><strong class="order-total" id="price-total-display"><%=tt %>
+                            </strong></div>
+
+                            <input class="input" name="tongTien" id="price-total-format" style="display: none" value="<%=tt%>đ" type="text">
+                            <input class="input" id="price-total"  name="totalprice" value="<%=tongtien%>" type="hidden">
+<%--                            <% double dototalprice = tongtien;--%>
+<%--                            int totalprice= (int) dototalprice;--%>
+<%--                            %>--%>
+
 
                         </div>
                         <%}%>
@@ -501,33 +542,28 @@
                             }
                             String randomString = sb.toString();
                         %>
-<%--                        <li><span>Tặng bạn mã giảm giá 1000k: </span> <span><%=randomString%></span></li>--%>
-<%--                        <input class="date" name="reduce"  value="<%=randomString%>" type="text">--%>
-<%--                        <input class="date" name="name_dis"  value="ma100k" type="text">--%>
-                        <%if(tongtien >10000000){%>
+                        <%if (tongtien > 10000000) {%>
                         <li><span>Tặng bạn mã giảm giá 1000k: </span> <span><%=randomString%></span></li>
-                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
-                        <input class="date" style="display: none" name="name_dis"  value="ma1000k" type="text">
-                        <input class="date" style="display: none" name="reducedPrice"  value="1000000" type="text">
-                        <%}else if(tongtien > 5000000){%>
+                        <input class="date" style="display: none" name="reduce" value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis" value="ma1000k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice" value="1000000" type="text">
+                        <%} else if (tongtien > 5000000) {%>
                         <li><span>Tặng bạn mã giảm giá 500k: </span> <span><%=randomString%></span></li>
-                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
-                        <input class="date" style="display: none" name="name_dis"  value="ma500k" type="text">
-                        <input class="date" style="display: none" name="reducedPrice"  value="500000" type="text">
-                        <%}else if(tongtien > 3000000){%>
+                        <input class="date" style="display: none" name="reduce" value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis" value="ma500k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice" value="500000" type="text">
+                        <%} else if (tongtien > 3000000) {%>
                         <li><span>Tặng bạn mã giảm giá 100k: </span> <span><%=randomString%></span></li>
-                        <input class="date" style="display: none" name="reduce"  value="<%=randomString%>" type="text">
-                        <input class="date" style="display: none" name="name_dis"  value="ma100k" type="text">
-                        <input class="date" style="display: none" name="reducedPrice"  value="100000" type="text">
-                        <%}else {%>
+                        <input class="date" style="display: none" name="reduce" value="<%=randomString%>" type="text">
+                        <input class="date" style="display: none" name="name_dis" value="ma100k" type="text">
+                        <input class="date" style="display: none" name="reducedPrice" value="100000" type="text">
+                        <%} else {%>
                         <li><span>Hãy mua tổng giá sản phẩm trên 3.000.000 đ để được tặng mã giảm giá </span></li>
                         <input class="date" name="reduce" style="display: none" value="<%=randomString%>" type="text">
                         <input class="date" name="name_dis" style="display: none" value="null" type="text">
                         <input class="date" name="reducedPrice" style="display: none" value="0" type="text">
 
                         <%}%>
-
-
 
 
                     </div>
@@ -539,7 +575,8 @@
                                 Chuyển khoản trực tiếp
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
                         <!-- <div class="input-radio">
@@ -560,7 +597,8 @@
                                 Sau khi giao hàng
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
                     </div>
@@ -574,11 +612,12 @@
                     </div>
                     <%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
 
-<%--                  --%>
+                    <%--                  --%>
 
-                    <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng</button>
+                    <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng
+                    </button>
                 </div>
-<%--                <input class="date" name="soHD" style="display: none" value="<%=soHD.getSoHD()%>" type="text">--%>
+                <%--                <input class="date" name="soHD" style="display: none" value="<%=soHD.getSoHD()%>" type="text">--%>
                 <!-- /Order Details -->
             </form>
         </div>
@@ -638,10 +677,13 @@
                         <p>Địa Chỉ Thông Tin Liên Lạc</p>
                         <ul class="footer-links">
                             <li>
-                                <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
+                                <a target="_blank"
+                                   href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i
+                                        class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
                             </li>
                             <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0929831012</a></li>
-                            <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
+                            <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -726,7 +768,7 @@
 <script src="js/main.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const loadEl = document.querySelector('#load');
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!
@@ -761,10 +803,213 @@
             loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
         }
     });
+
+
+
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/conscious.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    jQuery(function () {
+        const province = $('#province');
+        const procol = $('.pro-col');
+        var numberProduct = 0;
+        console.log( Array.from(procol.children()))
+        const arr =  Array.from(procol.children())
+        arr.map((col,index)=>{
+            if (col.className === 'pro-col-num'){
+                const texts = col.innerText
+                const number = parseInt(texts.split(' ')[1])
+                numberProduct+= number
+            }
+        })
+
+console.log(numberProduct)
+        const callAPI = async ()=> {
+            await fetch('http://140.238.54.136/api/auth/login', {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                        email: 'fox@1234',
+                        password: '123456'
+                    }
+                )
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    const accessToken = data.access_token
+                    localStorage.setItem('accessToken', accessToken)
+                })
+            await fetch('http://140.238.54.136/api/province', {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('accessToken'),
+                },
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    let proviceDatas = data.original.data;
+                    province.append(`<option value="" >--Chọn--</option>`)
+
+                    proviceDatas.map((p, index) => {
+                        province.append(`<option value="` + p.ProvinceName + `" id="` + p.ProvinceID + `">` + p.ProvinceName + `</option>`)
+                    })
+                })
+
+            const district = $('#district')
+            province.on('change', async function (e) {
+                district.empty();
+                var idValueSelected = $(this).children(":selected").attr("id");
+                // console.log(idValueSelected)
+                await fetch('http://140.238.54.136/api/district' + "?provinceID=" + idValueSelected, {
+                    method: "GET", // *GET, POST, PUT, DELETE, etc.
+                    mode: "cors", // no-cors, *cors, same-origin
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem('accessToken'),
+                    },
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        let districtDatas = data.original.data;
+                        district.append(`<option value="" >--Chọn--</option>`)
+                        districtDatas.map((d, index) => {
+                            district.append(`<option value="` + d.DistrictName + `" id="` + d.DistrictID + `">` + d.DistrictName + `</option>`)
+                        })
+                    })
+            })
+
+
+//--------------------------//
+            const ward = $('#ward')
+            district.on('change', async function (e) {
+                ward.empty();
+                var idValueSelected = $(this).children(":selected").attr("id");
+                // console.log(idValueSelected)
+                await fetch('http://140.238.54.136/api/ward' + "?districtID=" + idValueSelected, {
+                    method: "GET", // *GET, POST, PUT, DELETE, etc.
+                    mode: "cors", // no-cors, *cors, same-origin
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem('accessToken'),
+                    },
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        let wardDatas = data.original.data;
+                        ward.append(`<option value="" >--Chọn--</option>`)
+                        wardDatas.map((w, index) => {
+                            ward.append(`<option value="` + w.WardName + `" id="` + w.WardCode + `">` + w.WardName + `</option>`)
+                        })
+                    })
+            })
+
+            //---------------//
+            var idWardFrom = 90737;
+            var idDistrictFrom = 3695;
+            const sizeM = {
+                height: 20,
+                width: 15,
+                length: 20,
+                weight: 1500
+            }
+
+
+            ward.on('change', async function (e) {
+                let idWardValueSelected = $(this).children(":selected").attr("id");
+                let idDistrictValueSelected = district.children(":selected").attr("id");
+                var details = {
+                    'from_district_id': idDistrictFrom,
+                    'from_ward_id': idWardFrom,
+                    'to_district_id': idDistrictValueSelected,
+                    'to_ward_id': idWardValueSelected,
+                    'height': (sizeM.height * numberProduct),
+                    'length': (sizeM.length * numberProduct) ,
+                    'width': (sizeM.width * numberProduct) ,
+                    'weight': (sizeM.weight * numberProduct)
+                };
+
+
+                var formBody = [];
+                for (var property in details) {
+                    var encodedKey = encodeURIComponent(property);
+                    var encodedValue = encodeURIComponent(details[property]);
+                    formBody.push(encodedKey + "=" + encodedValue);
+                }
+                formBody = formBody.join("&");
+                // get fee logistic
+                await fetch('http://140.238.54.136/api/calculateFee', {
+                    method: "POST", // *GET, POST, PUT, DELETE, etc.
+                    // mode: "cors",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        "Authorization": "Bearer "+localStorage.getItem('accessToken'),
+                    },body: formBody
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((datas) => {
+                        let moneyLogistic =  datas.data[0].service_fee;
+                        const price_logistic_p = document.getElementById('price-logistic')
+
+                        const price_logistic_input_format = document.getElementById('price-total-format')
+                        const price_logistic_input = document.getElementById('price-total')
+                        const beforePrice = parseFloat(price_logistic_input.value)
+                        const priceTotalFormat = beforePrice + parseFloat(moneyLogistic)
+                        console.log(priceTotalFormat)
+                        const price_logistic_display = document.getElementById('price-total-display')
+                        price_logistic_input_format.value = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceTotalFormat)
+                        price_logistic_display.innerText = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceTotalFormat)
+                        const price_logistic_total = document.getElementById('price-logistic-total')
+                        price_logistic_total.value = moneyLogistic
+                        price_logistic_p.innerText = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(moneyLogistic)
+
+                    })
+
+                //get time logistic
+                await fetch('http://140.238.54.136/api/leadTime', {
+                    method: "POST", // *GET, POST, PUT, DELETE, etc.
+                    // mode: "cors",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        "Authorization": "Bearer "+localStorage.getItem('accessToken'),
+                    },body: formBody
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((datas) => {
+                         let timeLogistic =  datas.data[0].timestamp;
+                        const date = new Date(parseInt(timeLogistic) * 1000);
+                        const time_logistic_p = document.getElementById('time-logistic')
+                        const time_logistic_total = document.getElementById('time-logistic-total')
+                        time_logistic_total.value = timeLogistic
+                        console.log(datas);
+                         time_logistic_p.innerText = date.toLocaleTimeString('vi-VN', {hour12: true})+", "+ date.toLocaleDateString('vi-VN');
+                    })
+            });
+        }
+        callAPI()
+
+    })
+</script>
 </body>
 
 </html>

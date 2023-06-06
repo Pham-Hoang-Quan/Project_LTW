@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.time.LocalDate" %>
@@ -9,26 +7,27 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="vn.edu.hcmuaf.ttt.model.Cart" %>
+<%@ page import="vn.edu.hcmuaf.ttt.service.CommentService" %>
+<%@ page import="vn.edu.hcmuaf.ttt.admin.service.HoaDon" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
-<%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
+<meta http-equiv="Content-Type" charset="UTF-8">
 
 <head>
-  <meta http-equiv="Content-Type" charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drill Technology</title>
-
-  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-  <%--    drop--%>
-  <link type="text/css" rel="stylesheet" href="css1/sty.css" />
-  <script defer src="js/dro.js"></script>
 
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
+  <%--    drop--%>
+  <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+  <script defer src="js/dro.js"></script>
 
   <!-- Slick -->
   <link type="text/css" rel="stylesheet" href="css1/slick.css" />
@@ -42,6 +41,13 @@
 
   <!-- Custom stlylesheet -->
   <link type="text/css" rel="stylesheet" href="css1/style.css" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -131,9 +137,195 @@
       }
     }
   </style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .gach-ngang {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+
+    .profile-container {
+      display: flex;
+
+      margin: 0 auto;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-container {
+      flex: 1;
+      background-color: #ffffff;
+      color: #fff;
+      padding: 20px;
+      text-align: right;
+    }
+
+    .menu-container ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: right; /* Đặt chữ chỗ menu nằm bên trái */
+    }
+
+    .menu-container li {
+      margin-bottom: 10px;
+    }
+
+    .profile-content {
+      flex: 3;
+      padding: 20px;
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .menu-container h2 .menu-image {
+      width: 30px;
+      height: 10px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .profile-info {
+      margin-bottom: 20px;
+    }
+
+    .profile-info h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .profile-info p {
+      margin: 0;
+    }
+  </style>
+  <style>
+    /* Định dạng thanh menu */
+    ul.menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color:  #f5f5f5;
+      overflow: hidden;
+    }
+
+    ul.menu li {
+      float: left;
+    }
+
+    ul.menu li a {
+      display: block;
+      color: #333;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    /* Định dạng màu nền khi được chọn */
+    ul.menu li a.active {
+      /*background-color: #D10024;*/
+      color: #D10024;
+      border-bottom: 4px solid  #D10024;
+    }
+    ul.menu li a:hover {
+      /*background-color: #D10024;*/
+      color: #D10024;
+      border-bottom: 4px solid  #D10024;
+    }
+  </style>
+  <style>
+
+
+
+    .purchase-history {
+
+      margin: 10px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .purchase-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .purchase-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .purchase-item .date,
+    .purchase-item .product,
+    .purchase-item .price {
+      display: inline-block;
+    }
+
+    .purchase-item .date {
+      font-weight: bold;
+      color: #888;
+    }
+
+    .purchase-item .price {
+      color: #888;
+
+
+    }
+    .button-dep {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #D10024;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-dep:hover {
+      background-color: #9f001a;
+    }
+
+  </style>
+  <script>
+    // Xử lý sự kiện khi được chọn
+    function setActive(element) {
+      // Xóa lớp active từ tất cả các menu item
+      var menuItems = document.getElementsByClassName('menu-item');
+      for (var i = 0; i < menuItems.length; i++) {
+        menuItems[i].classList.remove('active');
+      }
+
+      // Thêm lớp active cho menu item được chọn
+      element.classList.add('active');
+    }
+  </script>
 </head>
 
 <body>
+<!-- HEADER -->
 <header>
   <!-- TOP HEADER -->
   <div id="top-header">
@@ -160,6 +352,7 @@
             <a href="/logOut" >Đăng xuất</a>
           </div>
         </div>
+
         <% if(auth.getUser_admin() == 1){%>
         <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
         <%}%>
@@ -177,7 +370,6 @@
     <!-- container -->
     <div class="container">
       <!-- row -->
-
       <div class="row">
         <!-- LOGO -->
         <div class="col-md-3">
@@ -206,57 +398,58 @@
           <div class="header-ctn">
             <!-- Wishlist -->
 
+            <!-- /Wishlist -->
+
+            <!-- Cart -->
+            <div class="dropdown">
+              <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+
+                <i class="fa fa-shopping-cart"></i>
+                <span> Giỏ Hàng</span>
+                <div class="qty">${cart.quantily}</div>
+              </a>
+
+            </div>
+            <!-- /Cart -->
+
+            <!-- Menu Toogle -->
+            <div class="menu-toggle">
+              <a href="#">
+                <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </div>
+            <!-- /Menu Toogle -->
           </div>
-          <!-- /Wishlist -->
-
-          <!-- Cart -->
-
-          <!-- /Cart -->
-
-          <!-- Menu Toogle -->
-
-          <!-- /Menu Toogle -->
         </div>
+        <!-- /ACCOUNT -->
       </div>
-      <!-- /ACCOUNT -->
+      <!-- row -->
     </div>
-    <!-- row -->
-  </div>
-  <!-- container -->
+    <!-- container -->
   </div>
   <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
 
-<!-- NAVIGATION -->
-<nav id="navigation">
-  <!-- container -->
-  <div class="container">
-    <!-- responsive-nav -->
-    <div id="responsive-nav">
-      <!-- NAV -->
-
-      <!-- /NAV -->
-    </div>
-    <!-- /responsive-nav -->
-  </div>
-  <!-- /container -->
-</nav>
-<!-- /NAVIGATION -->
 
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
   <!-- container -->
   <div class="container">
     <!-- row -->
-    <div class="row">
-      <div class="col-md-12">
 
+    <div class="row">
+
+      <div class="col-md-12">
         <ul class="breadcrumb-tree">
-          <li><a href="/">Trang Chủ</a></li>
-          <li class="#">Chi tiết đơn hàng</li>
+          <li><a href="/">Trang chủ</a></li>
+          <li><a href="/List-Product">Tài khoản</a></li>
+          <%--                        <li><a href="product.jsp">MÁY KHOAN XOAY BOSCH GBM 13 RE</a></li>--%>
+
         </ul>
       </div>
+
     </div>
     <!-- /row -->
   </div>
@@ -264,146 +457,67 @@
 </div>
 <!-- /BREADCRUMB -->
 
-<!-- SECTION -->
-<div class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <% hoaDon h = (hoaDon) request.getAttribute("TTHD");%>
-    <div class="row">
-      <form action="/doHoaDon" method="post">
-        <div class="col-md-7">
-          <!-- Billing Details -->
-          <div class="billing-details">
-            <p>Đơn hàng ngày: <%=h.getNgayTaoHD()%></p>
-            <div class="section-title">
-              <h3 class="title">Thông tin giao hàng</h3>
-            </div>
-            <div class="form-group">
-              <div><strong>Họ và tên: </strong><%= h.getHoVaTen()%></div>
-            </div>
-
-            <div class="form-group">
-              <div><strong>Email giao hàng: </strong><%= h.getHD_email()%></div>
-            </div>
-            <div class="form-group">
-              <div><strong>Số điện thoại gia hàng: </strong><%= h.getHD_sdt()%></div>
-            </div>
-
-
-
-            <div class="form-group">
-              <div class="input-checkbox">
-                <input type="checkbox" id="create-account">
-
-                <div class="caption">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                  </p>
-                  <input class="input" type="password" name="password" placeholder="Enter Your Password">
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /Billing Details -->
-
-          <!-- Shiping Details -->
-          <div class="shiping-details">
-            <div class="section-title">
-              <h3 class="title">ĐỊA CHỈ GIAO HÀNG</h3>
-            </div>
-
-            <div class="form-group">
-              <div><strong>Thành Phố/Tỉnh: </strong><%= h.getCity()%></div>
-            </div>
-            <div class="form-group">
-              <div><strong>Quận/Huyuện: </strong><%= h.getDistrict()%></div>
-
-            </div>
-            <div class="form-group">
-              <div><strong>Phường/xã: </strong><%= h.getWard()%></div>
-
-            </div>
-
-          </div>
-          <!-- /Shiping Details -->
-
-          <!-- Order notes -->
-          <div class="order-notes">
-            <div><strong>Ghi chú khác: </strong><%= h.getNote()%></div>
-          </div>
-          <!-- /Order notes -->
-        </div>
-
-        <!-- Order Details -->
-
-        <div class="col-md-5 order-details">
-
-          <div class="section-title text-center">
-            <h3 class="title">Hóa Đơn</h3>
-          </div>
-          <div class="order-summary">
-
-            <div class="order-col">
-              <div><strong>SẢN PHẨM</strong></div>
-              <div><strong>Số lượng</strong></div>
-              <div><strong>Giá</strong></div>
-            </div>
-
-
-
-
-
-            <div class="order-products">
-              <% List<hoaDon> listhh = (List<hoaDon>) request.getAttribute("LSsoHD");
-                int total = 0 ;
-              %>
-
-
-              <%  for (hoaDon hh:listhh) {
-               String s = hh.getToongGia();
-               int i = Integer.parseInt(s);
-
-               total+=i;
-              %>
-              <%Locale locale = new Locale("vi");
-                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                String gia = format.format(i).split(",")[0];
-              %>
-              <div class="order-col" >
-                <div><%=hh.getTenSp()%></div>
-                <div>x<%=hh.getSoLuong()%></div>
-                <div><%=gia%> đ</div>
-
-              </div>
-              <%}%>
-            </div>
-            <div class="order-col">
-              <div>Phí giao hàng</div>
-              <div><strong>MIỄN PHÍ</strong></div>
-            </div>
-            <div class="order-col">
-              <%Locale locale = new Locale("vi");
-                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                String tn = format.format(total).split(",")[0];
-              %>
-              <div><strong>TỔNG GÍA TRỊ ĐƠN HÀNG</strong></div>
-              <div><strong><%=tn%> đ </strong></div>
-
-
-
-            </div>
-          </div>
-        </div>
-        <!-- /Order Details -->
-      </form>
-    </div>
-
-
-    <!-- /row -->
+<div class="profile-container">
+  <div class="menu-container" style="color: #0b0c0d">
+    <h4><img src="img/avtprofile/avatar-mac-dinh.png" alt="Menu Image" class="profile-image" style="width: 50px; height: 50px;"><%=auth.getUser_fullname()%></h4>
+    <ul>
+      <li><a href="userInfo.jsp">Tài khoản của tôi</a></li>
+      <li><a href="uadateInfo.jsp">Cập nhật tài khoản</a></li>
+      <li><a href="#">Đơn mua</a></li>
+      <li><a href="/logOut">Đăng xuất</a></li>
+    </ul>
   </div>
-  <!-- /container -->
+
+  <div class="profile-content">
+    <ul class="menu">
+      <li><a class="menu-item" href="/lichsu" onclick="setActive(this)">Tất cả</a></li>
+      <li><a class="menu-item" href="/orderType?st=0" onclick="setActive(this)">Chờ xác nhận</a></li>
+      <li><a class="menu-item" href="/orderType?st=1" onclick="setActive(this)">Đang giao</a></li>
+      <li><a class="menu-item" href="/orderType?st=2" onclick="setActive(this)">Đã giao</a></li>
+      <li><a class="menu-item" href="/orderType?st=3" onclick="setActive(this)">Đã hủy</a></li>
+    </ul>
+
+
+
+    <div class="profile-info">
+
+      <div class="purchase-history">
+        <% List<hoaDon> listh = (List<hoaDon>) request.getAttribute("lshoadon");
+
+          for (hoaDon h:listh) {%>
+
+
+
+
+        <div class="purchase-item">
+          <div class="date">Ngày mua: <%=h.getNgayTaoHD()%></div>
+          <div class="product"><a href="detailHistory?soHD=<%=h.getSoHD()%>"><%=h.getTenSp()%></a></div>
+          <div class="price">Giá: <%=h.getToongGia()%> Đ</div>
+          <%if (h.getStatus() == 0){%>
+          <button type="submit" class="button-dep">Chờ xác nhận</button>
+          <%} if (h.getStatus() == 1) {%>
+          <button type="submit" class="button-dep">Đang giao</button>
+          <%} if (h.getStatus() == 2) {%>
+          <button type="submit" class="button-dep">Hoàn thành</button>
+          <%} if(h.getStatus() == 3) {%>
+          <button type="submit" class="button-dep">Đơn Đã hủy</button>
+          <%}%>
+
+        </div>
+        <%}%>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
 </div>
-<!-- /SECTION -->
+
+
+
+
 
 <!-- NEWSLETTER -->
 <div id="newsletter" class="section">
@@ -415,8 +529,8 @@
         <div class="newsletter">
           <p>Đăng Ký <strong>Bản Tin</strong></p>
           <form>
-            <input class="input" type="email" placeholder="Nhập Email Của Bạn">
-            <button class="newsletter-btn"><i class="fa fa-envelope"></i>Đăng Ký</button>
+            <input class="input" type="email" placeholder="Nhập Email của bạn">
+            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
           </form>
           <ul class="newsletter-follow">
             <li>
@@ -542,6 +656,8 @@
 <script src="js/jquery.zoom.min.js"></script>
 <script src="js/main.js"></script>
 
+</body>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const loadEl = document.querySelector('#load');
@@ -559,6 +675,7 @@
     // firebase.performance(); // call to activate
     //
     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
     try {
       let app = firebase.app();
       let features = [

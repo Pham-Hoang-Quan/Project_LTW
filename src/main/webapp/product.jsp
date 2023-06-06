@@ -162,10 +162,11 @@
                     <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                     <% }else {%>
                     <div class="dropdown">
-                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div style="cursor: pointer"><li><a href="/lichsu"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
+                            <a href="/lichsu">Đơn mua</a>
                             <a href="/logOut" >Đăng xuất</a>
                         </div>
                     </div>
@@ -263,9 +264,9 @@
                         for (Category p:lista) { %>
                     <li> <a  href="<%= "/category?cName=" + p.getcName()%>"><%= p.getcName()%></a></li>
                     <% } %>
-                    <%if(auth!=null){%>
-                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
-                    <%}%>
+<%--                    <%if(auth!=null){%>--%>
+<%--                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>--%>
+<%--                    <%}%>--%>
                 </ul>
                 <!-- /NAV -->
             </div>

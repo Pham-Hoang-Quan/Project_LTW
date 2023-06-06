@@ -45,6 +45,12 @@ public class hoaDonCon extends HttpServlet {
         String reduce = request.getParameter("reduce");
         int reducedPrice = Integer.parseInt(request.getParameter("reducedPrice"));
         String reduceSesstion = request.getParameter("reduceSesstion");
+        int transportFee = Integer.parseInt(request.getParameter("price-logistic"));
+        int discountFee = Integer.parseInt(request.getParameter("discountFee"));
+//        int totalprice = Integer.parseInt(request.getParameter("totalprice"));
+        String stotalprice = request.getParameter("totalprice");
+        int totalprice = Integer.parseInt(stotalprice);
+
 
         //lấy mã giảm giá
 
@@ -102,8 +108,8 @@ public class hoaDonCon extends HttpServlet {
             discountService.updateStatus(reduceSesstion);
             //lưu hóa đơn
             new hoaDonService().hoaDon(soHD + "", user_id, fullName, email, tel, city, dis, wa, note, s[0], s[1], s[3], s[2], dateComment);
-
-
+            //lưu phí vận chuyển, phí giảm giá, tổng tiền
+            hoaDonService.oderdetail(Integer.parseInt(soHD + ""), discountFee,transportFee, totalprice);
 
             // lưu mã giảm giá
             hoaDonService.discount(id_dis, name_dis, reduce, reducedPrice, created_at, expiresAt);
@@ -118,7 +124,8 @@ public class hoaDonCon extends HttpServlet {
 
 
         }
-        request.getRequestDispatcher("/SuccessHD").forward(request,response);
+//        request.getRequestDispatcher("login.jsp").forward(request,response);
+        response.sendRedirect("/");
 
     }
 

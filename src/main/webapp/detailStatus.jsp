@@ -170,13 +170,14 @@
         height: 8px;
         width: 8px;
         border-radius: 50%;
-        background-color: #ddd;
+        background-color: #d5d0d0;
         top: 0;
         margin-top: -5px;
     }
 
     .horizontal-timeline .items .items-list {
         padding-top: 15px;
+
     }
 </style>
 

@@ -21,14 +21,13 @@ import java.io.IOException;
 public class logOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user_id = request.getParameter("u");
-        int is_u = Integer.parseInt(user_id);
+
 
         HttpSession session = request.getSession(false);
         session.invalidate();
         response.sendRedirect("/");
 
-        DB.me().insert(new Log(Log.WARNING, is_u, "/logOut", "Đăng xuất", 0));
+
 
 
 

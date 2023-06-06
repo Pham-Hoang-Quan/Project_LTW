@@ -60,6 +60,64 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-container {
+            flex: 1;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .menu-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-container li {
+            margin-bottom: 10px;
+        }
+
+        .profile-content {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-info h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            margin: 0;
+        }
+    </style>
 
     <style media="screen">
         body {
@@ -161,11 +219,12 @@
 <%--                    <li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
 <%--                        <a href="/logOut" target="_blank">  : Đăng xuất</a></li>--%>
                     <div class="dropdown">
-                        <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
+                        <div style="cursor: pointer"><li><a href="/lichsu"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
                         <div class="dropdown-content">
                             <a href="userInfo.jsp">Thông tin tài khoản</a>
                             <a href="uadateInfo.jsp">Cập nhật tài khoản</a>
-                            <a href="/logOut?u=<%=auth.getUser_id()%>" >Đăng xuất</a>
+                            <a href="/lichsu">Đơn mua</a>
+                            <a href="/logOut" >Đăng xuất</a>
                         </div>
                     </div>
 
@@ -295,10 +354,10 @@
                     <%}%>
 
 
-                    <%if(auth!=null){%>
-                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>
-                    <li><a href="<%="/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>
-                    <%}%>
+<%--                    <%if(auth!=null){%>--%>
+<%--                    <li><a href="<%="/lichsu?user_id=" + auth.getUser_id()%>">Xem lịch sử mua hàng</a></li>--%>
+<%--                    <li><a href="<%="/statusOrder?user_id=" + auth.getUser_id()%>">Quá trình vận chuyển</a></li>--%>
+<%--                    <%}%>--%>
                 </ul>
                 <!-- /NAV -->
             </div>

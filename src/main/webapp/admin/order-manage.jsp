@@ -49,11 +49,13 @@
                     <main>
 
                         <input class="" id="tab1" type="radio" name="tabs" checked>
-                        <label for="tab1">Chưa giao</label>
-
+                        <label for="tab1">Xác nhận đơn hàng</label>
                         <input id="tab2" type="radio" name="tabs">
-                        <label for="tab2">Đã giao</label>
-
+                        <label for="tab2">Đang giao</label>
+                        <input class="" id="tab4" type="radio" name="tabs" checked>
+                        <label for="tab4">Đã nhận</label>
+                        <input id="tab3" type="radio" name="tabs">
+                        <label for="tab3">Đã hủy</label>
 
 
                         <section id="content1">
@@ -140,9 +142,113 @@
 <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
-                                                        <label class="badge badge-danger">Xóa</label>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
+<%--                                                    </a>--%>
+                                                    <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
+                                                        <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
+
+                                                </td>
+
+
+                                            </tr>
+                                            <%}%>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </section>
+
+                        <section id="content4">
+
+                            <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div style="padding: 0 ;" class="card-body">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Mã đơn</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Trị giá</th>
+                                                <th>Thao tác</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <% List<hoaDon> list4 = (List<hoaDon>) request.getAttribute("listHD2");
+                                                for (hoaDon h: list4) { %>
+                                            <tr>
+                                                <td><%=h.getSoHD()%></td>
+                                                <td><%=h.getHoVaTen()%></td>
+                                                <%  int tg = Integer.parseInt(h.getToongGia());
+                                                    Locale locale = new Locale("vi");
+                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                    String gia = format.format(tg).split(",")[0];
+                                                %>
+                                                <td class="text-danger"> <%=gia%> đ </td>
+                                                <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
+                                                <td><%=h.getHD_sdt()%></td>
+                                                <td>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
+<%--                                                    </a>--%>
+                                                    <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
+                                                        <label class="badge badge-info">Xem chi tiết</label>
+                                                    </a>
+
+                                                </td>
+
+
+                                            </tr>
+                                            <%}%>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </section>
+
+                        <section id="content3">
+
+                            <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div style="padding: 0 ;" class="card-body">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Mã đơn</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Trị giá</th>
+                                                <th>Thao tác</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <% List<hoaDon> list3 = (List<hoaDon>) request.getAttribute("listHD3");%>
+                                              <%  for (hoaDon h: list3) { %>
+                                            <tr>
+                                                <td><%=h.getSoHD()%></td>
+                                                <td><%=h.getHoVaTen()%></td>
+                                                <%  int tg = Integer.parseInt(h.getToongGia());
+                                                    Locale locale = new Locale("vi");
+                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                                                    String gia = format.format(tg).split(",")[0];
+                                                %>
+                                                <td class="text-danger"> <%=gia%> đ </td>
+                                                <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
+                                                <td><%=h.getHD_sdt()%></td>
+                                                <td>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
+<%--                                                    </a>--%>
                                                     <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>

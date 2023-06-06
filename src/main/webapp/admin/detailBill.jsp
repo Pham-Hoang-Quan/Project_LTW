@@ -4,6 +4,7 @@
 <%@ page import="vn.edu.hcmuaf.ttt.model.hoaDon" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.oderdetail" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +26,63 @@
   <link rel="stylesheet" href="admin/assets/css/style.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10px;
+    background-color: #f0f0f0;
+
+  }
+  .status-bar2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10px;
+    background-color: #ffffff;
+    margin-top: 20px;
+      margin-bottom: 30px;
+  }
+  .status-item {
+    flex: 1;
+    text-align: right;
+    font-size: 30px;
+    line-height: 10px;
+    color: #777777;
+    font-weight: bold;
+  }
+  .status-item2 {
+    flex: 1;
+    text-align: right;
+    font-size: 15px;
+    line-height: 10px;
+    color: #777777;
+    font-weight: bold;
+  }
+
+  .status-item i {
+
+    margin-right: 5px;
+
+  }
+
+
+  .active {
+    color: #600112;
+    background-color: #D10024;
+    height: 10px;
+    display: flex;
+    justify-content:  right;
+    align-items: center;
+
+
+
+  }
+  </style>
 </head>
 
 <body>
@@ -48,9 +106,111 @@
         <main>
           <div style="width:100% ; padding: 10px" class="col-lg-6 grid-margin stretch-card">
             <div class="card">
+
+                <% hoaDon h = (hoaDon) request.getAttribute("TTHD1");%>
+                <% oderdetail oder_detaill = (oderdetail) request.getAttribute("oder_detaill");%>
               <div class="card-body">
+
+
+<%----%>
+                  <%if(h.getStatus() == 0) {%>
+    <div class="status-bar">
+        <div class="status-item active">
+            <i class="mdi mdi-clipboard"></i>
+        </div>
+        <div class="status-item ">
+            <i class="mdi mdi-truck"></i>
+        </div>
+        <div class="status-item ">
+            <i class="mdi mdi-dropbox"></i>
+        </div>
+        <div class="status-item ">
+            <i class="mdi mdi-check"></i>
+        </div>
+    </div>
+    <%} if(h.getStatus() == 1){%>
+    <div class="status-bar">
+        <div class="status-item active">
+            <i class="mdi mdi-clipboard"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-truck"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-dropbox"></i>
+        </div>
+        <div class="status-item ">
+            <i class="mdi mdi-check"></i>
+        </div>
+    </div>
+    <%} if(h.getStatus() == 2){%>
+    <div class="status-bar">
+        <div class="status-item active">
+            <i class="mdi mdi-clipboard"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-truck"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-dropbox"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-check"></i>
+        </div>
+    </div>
+    <%} if(h.getStatus() == 3){%>
+    <div class="status-bar">
+        <div class="status-item active">
+            <i class="mdi mdi-clipboard"></i>
+        </div>
+        <div class="status-item active">
+            <i class="mdi mdi-close"></i>
+        </div>
+        <div class="status-item  ">
+            <i class="mdi mdi-dropbox"></i>
+        </div>
+        <div class="status-item ">
+            <i class="mdi mdi-check"></i>
+        </div>
+    </div>
+    <%}%>
+<% if(h.getStatus() == 3){%>
+    <div class="status-bar2">
+        <div class="status-item2 ">
+            Chờ xác nhận
+        </div>
+        <div class="status-item2 ">
+           Đơn đã hủy
+        </div>
+        <div class="status-item2 ">
+            Đang giao
+        </div>
+        <div class="status-item2 ">
+            Đã nhận hàng
+        </div>
+    </div>
+    <%} else {%>
+    <div class="status-bar2">
+        <div class="status-item2 ">
+            Chờ xác nhận
+        </div>
+        <div class="status-item2 ">
+            Đã giao bên vận chuyển
+        </div>
+        <div class="status-item2 ">
+            Đang giao
+        </div>
+        <div class="status-item2 ">
+            Đã nhận hàng
+        </div>
+    </div>
+    <%}%>
+
+<%----%>
+
+
                 <div style="">
-                  <% hoaDon h = (hoaDon) request.getAttribute("TTHD1");%>
+
                   <div>
                     <p> <strong class="">Số hóa đơn: </strong> <%=h.getSoHD()%> </p>
                     <p> <strong class="">Ngày đặt:</strong> <%=h.getNgayTaoHD()%> </p>
@@ -117,8 +277,23 @@
                    <%Locale locale = new Locale("vi");
                      NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                      String gia = format.format(total).split(",")[0];
+
+                     String transportFee = format.format(oder_detaill.getTransportFee()).split(",")[0];
+                       String discountFee = format.format(oder_detaill.getDiscountFee()).split(",")[0];
+                       String totall = format.format(oder_detaill.getTotalPrice()).split(",")[0];
                    %>
-                    <p> <span class="card-title"> <strong>Tổng tiền:</strong><%=gia%>đ</span> </p>
+                     <p> <strong class="">Phí giao hàng: </strong> <%=transportFee%> đ</p>
+                     <p> <strong class="">Phí giảm giá: </strong> <%=discountFee%> đ</p>
+
+                     <%if(oder_detaill.getDiscountFee() == 0){
+                     int i = oder_detaill.getTotalPrice() + oder_detaill.getTransportFee();
+                         String totalg = format.format(i).split(",")[0];
+                     %>
+                     <p> <span class="card-title"> <strong>Tổng tiền: </strong><%=totalg%>đ</span> </p>
+                     <%} else {%>
+                     <p> <span class="card-title"> <strong>Tổng tiền: </strong><%=totall%>đ</span> </p>
+                     <%}%>
+
                  </div>
 
                 </div>

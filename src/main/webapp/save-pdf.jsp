@@ -10,6 +10,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="com.itextpdf.text.Font" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.oderdetail" %>
 
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
@@ -18,7 +19,8 @@
   </head>
   <body>
   <% hoaDon h = (hoaDon) request.getAttribute("infoCus");%>
-  <%int sohd = (int) session.getAttribute("sohdd");%>
+<%--  <%int sohd = (int) session.getAttribute("sohdd");%>--%>
+  <% oderdetail odertran = (oderdetail) request.getAttribute("odertran");%>
   <% List<hoaDon> listhh = (List<hoaDon>) request.getAttribute("detailsHD");
     int total = 0 ;
   %>
@@ -33,7 +35,7 @@
     Document document = new Document();
 
     // Tạo đối tượng PdfWriter để viết tài liệu vào OutputStream
-    String fileName = "example.pdf"; // tên file PDF
+    String fileName = "Oder.pdf"; // tên file PDF
     response.setContentType("application/pdf"); // định dạng của file PDF
     response.setHeader("Content-Disposition", "attachment;filename=" + fileName); // chọn nơi lưu file PDF
     PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
@@ -43,7 +45,7 @@
 
     // Thêm nội dung vào tài liệu
 
-    document.add(new Paragraph("Sô hóa đơn" + sohd,font));
+    document.add(new Paragraph("Sô hóa đơn" + odertran.getSoHD() ,font));
     document.add(new Paragraph("Thông tin khách hàng", font));
     document.add(new Paragraph("Tên: "+  h.getHoVaTen(),font));
     document.add(new Paragraph("Email: "+  h.getHD_email(),font));
@@ -69,8 +71,9 @@
      document.add(new Paragraph("Tên sản phẩm: " + hh.getTenSp() + " x " + hh.getSoLuong() + ", giá: " + giaSLL + "đ, " + ", Tổng: " + gia + "đ", font));
    }
 
-     document.add(new Paragraph("Phí giao hàng: Miễn Phí",font));
-     document.add(new Paragraph("Phí giảm giá: " ,font));
+     document.add(new Paragraph("Phí giao hàng: " + odertran.getTransportFee() + " đ" ,font));
+     document.add(new Paragraph("Phí giảm giá: " + odertran.getDiscountFee() + " đ",font));
+    document.add(new Paragraph("Tổng hóa đơn: " + odertran.getTotalPrice() + " đ" ,font));
 
      Locale localee = new Locale("vi");
      NumberFormat formatt = NumberFormat.getCurrencyInstance(localee);

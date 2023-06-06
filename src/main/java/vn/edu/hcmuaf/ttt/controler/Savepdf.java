@@ -7,10 +7,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import vn.edu.hcmuaf.ttt.model.hoaDon;
+import vn.edu.hcmuaf.ttt.model.oderdetail;
 import vn.edu.hcmuaf.ttt.service.hoaDonService;
 
 @WebServlet(name = "Savepdf", value = "/Savepdf")
@@ -27,6 +25,9 @@ public class Savepdf extends HttpServlet {
         hoaDon infoCus = hoaDonService.getinfoBill(soHds);
         request.setAttribute("detailsHD", detailsHD);
         request.setAttribute("infoCus", infoCus);
+        oderdetail odertran = hoaDonService.getodertran(soHds);
+        request.setAttribute("odertran", odertran);
+
         request.getRequestDispatcher("save-pdf.jsp").forward(request,response);
 
     }

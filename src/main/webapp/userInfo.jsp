@@ -1,7 +1,18 @@
+<%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Comment" %>
+<%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.ttt.bean.User" %>
+<%@ page import="vn.edu.hcmuaf.ttt.model.Category" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.ttt.service.CommentService" %>
+<%@ page import="vn.edu.hcmuaf.ttt.admin.service.HoaDon" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<jsp:useBean id="cart" class="vn.edu.hcmuaf.ttt.model.Cart" scope="session"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 <meta http-equiv="Content-Type" charset="UTF-8">
 
@@ -9,19 +20,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
-    <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
     <%--    drop--%>
     <link type="text/css" rel="stylesheet" href="css1/sty.css" />
     <script defer src="js/dro.js"></script>
 
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
-
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="css1/slick.css" />
     <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
-    <link type="text/css" rel="stylesheet" href="css1/base.css" />
+
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
 
@@ -30,6 +40,13 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css1/style.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -43,53 +60,16 @@
     <script defer src="/__/firebase/9.5.0/firebase-remote-config-compat.js"></script>
     <script defer src="/__/firebase/9.5.0/firebase-performance-compat.js"></script>
     <!--
-          initialize the SDK after all desired features are loaded, set useEmulator to false
-          to avoid connecting the SDK to running emulators.
-        -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-</head>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-    <!-- update the version number as needed -->
-    <!-- <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script> -->
-    <!-- include only the Firebase features as you need -->
-    <!-- <script defer src="/__/firebase/9.5.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.5.0/firebase-performance-compat.js"></script> -->
-    <!--
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-    <!-- <script defer src="/__/firebase/init.js?useEmulator=true"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="login-form-16/css/style.css">
-
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
     <style media="screen">
         body {
             background: #ffffff;
             color: rgba(0, 0, 0, 0.87);
-            /* font-family: Roboto, Helvetica, Arial, sans-serif; */
+            font-family: Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -155,138 +135,102 @@
                 border-top: 16px solid #ffa100;
             }
         }
-
+    </style>
+    <style>
         body {
-            color: rgba(255, 255, 255, 0.932);
-            background: #f5f3f3;
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-
-        .form-control {
-            height: 40px;
-            box-shadow: none;
-            color: #969fa4;
-        }
-
-        .form-control:focus {
-            border-color: #5cb85c;
-        }
-
-        .form-control,
-        .btn {
-            border-radius: 3px;
-        }
-
-        .signup-form {
-            width: 450px;
-            margin: 0 auto;
-            padding: 30px 0;
-            font-size: 15px;
-        }
-
-        .signup-form h2 {
-            color: #636363;
-            margin: 0 0 15px;
-            position: relative;
-            text-align: center;
-        }
-
-        .signup-form h2:before,
-        .signup-form h2:after {
-            content: "";
+        .gach-ngang {
+            display: block;
+            width: 100%;
             height: 2px;
-            width: 30%;
-            background: #d4d4d4;
-            position: absolute;
-            top: 50%;
-            z-index: 2;
-        }
-
-        .signup-form h2:before {
-            left: 0;
-        }
-
-        .signup-form h2:after {
-            right: 0;
-        }
-
-        .signup-form .hint-text {
-            color: #999;
+            background-color: black;
             margin-bottom: 30px;
-            text-align: center;
+            margin-top: 30px;
         }
 
-        .signup-form form {
-            color: #999;
-            border-radius: 3px;
-            margin-bottom: 15px;
-            background: #f2f3f7;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
+        .profile-container {
+            display: flex;
+
+            margin: 0 auto;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .signup-form .form-group {
+        .menu-container {
+            flex: 1;
+            background-color: #ffffff;
+            color: #fff;
+            padding: 20px;
+            text-align: right;
+        }
+
+        .menu-container ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: right; /* Đặt chữ chỗ menu nằm bên trái */
+        }
+
+        .menu-container li {
+            margin-bottom: 10px;
+        }
+
+        .profile-content {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .menu-container h2 .menu-image {
+            width: 30px;
+            height: 10px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile-info {
             margin-bottom: 20px;
         }
 
-        .signup-form input[type="checkbox"] {
-            margin-top: 3px;
-        }
-
-        .signup-form .btn {
-            font-size: 16px;
+        .profile-info h2 {
+            font-size: 24px;
             font-weight: bold;
-            min-width: 140px;
-            outline: none !important;
+            margin-bottom: 10px;
         }
 
-        .signup-form .row div:first-child {
-            padding-right: 10px;
-        }
-
-        .signup-form .row div:last-child {
-            padding-left: 10px;
-        }
-
-        .signup-form a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .signup-form a:hover {
-            text-decoration: none;
-        }
-
-        .signup-form form a {
-            color: #5cb85c;
-            text-decoration: none;
-        }
-
-        .signup-form form a:hover {
-            text-decoration: underline;
+        .profile-info p {
+            margin: 0;
         }
     </style>
 </head>
 
 <body>
+<!-- HEADER -->
 <header>
     <!-- TOP HEADER -->
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i>0989839121</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> DH20DT@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a></li>
+                <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0989839121</a></li>
+                <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i> DH20DT@email.com</a></li>
+                <li>
+                    <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
+                </li>
             </ul>
-            <ul class="header-links pull-right">>
+            <ul class="header-links pull-right">
+
                 <% User auth= (User) session.getAttribute("auth");%>
                 <% if(auth==null){ %>
                 <li><a href="login.jsp" target="_blank"><i class="fa fa-user-o"></i> Bạn chưa đăng nhập</a></li>
                 <% }else {%>
-
-                <%--                    --%>
-                <%--                    <li><a target="_blank"><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%></a>--%>
-
                 <div class="dropdown">
                     <div style="cursor: pointer"><li><a target=""><i class="fa fa-user-o"></i>Chào bạn: <%= auth.getUser_fullname()%><i class="fa fa-caret-down" style="color:#f0e2ff;"></i></a></li></div>
                     <div class="dropdown-content">
@@ -296,7 +240,6 @@
                     </div>
                 </div>
 
-                <%--                        <a href="/logOut" target="_blank">  : Đăng xuất</a></li>--%>
                 <% if(auth.getUser_admin() == 1){%>
                 <li><a href="/IndexAdmin" target="_blank"> <i class="fa fa-cog"></i>Quản Lý</a></li>
                 <%}%>
@@ -330,7 +273,7 @@
                     <div class="header-search">
                         <form action="search" method="post">
 
-                            <input name="txt" class="input" placeholder="Tìm Sản Phẩm">
+                            <input name="s" class="input" placeholder="Tìm Sản Phẩm">
                             <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -341,15 +284,18 @@
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <!-- Wishlist -->
+
                         <!-- /Wishlist -->
 
                         <!-- Cart -->
-                        <div>
-                            <a href="cart.jsp">
+                        <div class="dropdown">
+                            <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Giỏ Hàng</span>
+                                <span> Giỏ Hàng</span>
                                 <div class="qty">${cart.quantily}</div>
                             </a>
+
                         </div>
                         <!-- /Cart -->
 
@@ -371,62 +317,199 @@
     </div>
     <!-- /MAIN HEADER -->
 </header>
+<!-- /HEADER -->
 
 
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Thông tin tài khoản</h2>
-                </div>
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/List-Product">Tài khoản</a></li>
+                    <%--                        <li><a href="product.jsp">MÁY KHOAN XOAY BOSCH GBM 13 RE</a></li>--%>
+
+                </ul>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-7">
-                    <div class="login-wrap">
-                        <form action="#" class="signin-form d-md-flex">
-                            <div class="half p-4 py-md-5">
 
-                                <div class="form-group mt-3">
-                                    <label type="text" class="form-control" >Họ Và Tên : <%=auth.getUser_fullname()%></label>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
 
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label type="text" class="form-control" >Email : <%= auth.getEmail()%></label>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label type="text" class="form-control" >Số điện thoại : <%=auth.getUser_sdt()%></label>
-                                </div>
+<div class="profile-container">
+    <div class="menu-container" style="color: #0b0c0d">
+        <h4><img src="img/avtprofile/avatar-mac-dinh.png" alt="Menu Image" class="profile-image" style="width: 50px; height: 50px;"><%=auth.getUser_fullname()%></h4>
+        <ul>
+            <li><a href="userInfo.jsp">Tài khoản của tôi</a></li>
+            <li><a href="uadateInfo.jsp">Cập nhật tài khoản</a></li>
+            <li><a href="/lichsu">Đơn mua</a></li>
+            <li><a href="/logOut">Đăng xuất</a></li>
+        </ul>
+    </div>
+    <div class="profile-content">
+        <h2>Hồ sở của tôi</h2>
+        <p style="color: #938c8c">Quản lý thông tin hồ sơ</p>
+
+        <div class="gach-ngang"></div>
+        <div class="profile-info">
+            <h2><%=auth.getUser_fullname()%></h2>
+            <p>Email: <%=auth.getEmail()%></p>
+            <p>Số điện thoại: <%=auth.getUser_sdt()%></p>
+            <p>tài khoản: <%=auth.getUser_name()%></p>
+        </div>
+    </div>
+</div>
 
 
-                            </div>
-                            <div class="half p-4 py-md-5 bg-primary">
-                                <div class="form-group">
-                                    <label type="text" style="color: honeydew; cursor: pointer;" href="userInfo.jsp"><i class="fa fa-play"></i>  Thông tin tài khoản</label>
-                                </div>
-                                <div class="form-group">
-                                    <label type="text" style="color: honeydew; cursor: pointer;" href="uadateInfo.jsp"><i class="fa fa-play"></i>  Cập nhật tài khoản</label>
-                                </div>
-                                <div class="form-group">
-                                    <label type="text" style="color: honeydew; cursor: pointer;" href="/logOut" ><i class="fa fa-play"></i>  Đăng xuất</label>
-                                </div>
 
-                            </div>
-                        </form>
-                    </div>
+
+
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Đăng Ký <strong>Bản Tin</strong></p>
+                    <form>
+                        <input class="input" type="email" placeholder="Nhập Email của bạn">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /NEWSLETTER -->
 
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">About </h3>
+                        <p>Địa Chỉ Thông Tin Liên Lạc</p>
+                        <ul class="footer-links">
+                            <li>
+                                <a target="_blank" href="https://www.google.com/maps/place/C%C3%B4ng+ty+Cu%E1%BB%99c+S%E1%BB%91ng+Xanh+(GLAB)/@10.8712764,106.7891868,17z/data=!4m12!1m6!3m5!1s0x3175276398969f7b:0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRwLiBI4buTIENow60gTWluaA!8m2!3d10.8712764!4d106.7917617!3m4!1s0x3174d89ddbf832ab:0xedd62ee42a254940!8m2!3d10.8730978!4d106.787919"><i class="fa fa-map-marker"></i>TP.Hồ Chí Minh</a>
+                            </li>
+                            <li><a href="tel:0929831012"><i class="fa fa-phone"></i>0929831012</a></li>
+                            <li><a href="mailto: abc@example.com"><i class="fa fa-envelope-o"></i>DH20DT@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Sản Phảm</h3>
+                        <ul class="footer-links">
+                            <li><a href="khoan-mini.html">Khoan mini</a></li>
+                            <li><a href="khoan-dong-luc.html">Khoan động lực</a></li>
+                            <li><a href="khoan-be-tong.html">Khoan bê tông</a></li>
+                            <li><a href="khoan-ban.html">Khoan bàn</a></li>
+                            <li><a href="phukien.html">Phụ kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div class="clearfix visible-xs"></div>
 
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Thông Tin</h3>
+                        <ul class="footer-links">
+                            <li><a href="about.jsp">Giới thiệu</a></li>
+                            <li><a href="lien_he.jsp">Liên hệ chúng tôi</a></li>
+                            <li><a href="Cs_bao_mat.jsp">Chính sách bảo mật</a></li>
+                            <li><a href="Cs_trahang.jsp">Đơn hàng và Trả hàng</a></li>
+                            <li><a href="dk_dk.jsp">Điều khoản và điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-<script src="login-form-16/js/jquery.min.js"></script>
-<script src="login-form-16/js/popper.js"></script>
-<script src="login-form-16/js/bootstrap.min.js"></script>
-<script src="login-form-16/js/main.js"></script>
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Dịch Vụ</h3>
+                        <ul class="footer-links">
+                            <li><a href="login.jsp">Tài Khoản Của Tôi</a></li>
+                            <li><a href="cart.jsp">Xem Giỏ Hàng</a></li>
+                            <li><a href="heart.html">Danh Sách Yêu Thích</a></li>
+                            <li><a href="support.html">Hổ Trợ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
 
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <ul class="footer-payments">
+                        <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+                        <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/jquery.zoom.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -466,16 +549,6 @@
         }
     });
 </script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/bootshop.js"></script>
-
-
-
 </body>
 
 </html>
