@@ -117,6 +117,15 @@
         .profile-info p {
             margin: 0;
         }
+
+        .add-to-cart-btn > a {
+            color: white;
+        }
+
+        .add-to-cart-btn:hover > a {
+            color: #D10024;
+        }
+
     </style>
 
     <style media="screen">
@@ -127,7 +136,7 @@
             margin: 0;
             padding: 0;
         }
-        
+
         #message {
             background: white;
             max-width: 360px;
@@ -135,27 +144,27 @@
             padding: 32px 24px;
             border-radius: 3px;
         }
-        
+
         #message h2 {
             color: #ffa100;
             font-weight: bold;
             font-size: 16px;
             margin: 0 0 8px;
         }
-        
+
         #message h1 {
             font-size: 22px;
             font-weight: 300;
             color: rgba(0, 0, 0, 0.6);
             margin: 0 0 16px;
         }
-        
+
         #message p {
             line-height: 140%;
             margin: 16px 0 24px;
             font-size: 14px;
         }
-        
+
         #message a {
             display: block;
             text-align: center;
@@ -166,18 +175,30 @@
             padding: 16px;
             border-radius: 4px;
         }
-        
+
         #message,
         #message a {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         }
-        
+
         #load {
             color: rgba(0, 0, 0, 0.4);
             text-align: center;
             font-size: 13px;
         }
-        
+
+        .product {
+            margin: 8px 4px;
+        }
+
+        .product .product-body {
+            padding: 0px;
+        }
+
+        .product .add-to-cart {
+            bottom: 13px;
+        }
+
         @media (max-width: 600px) {
             body,
             #message {
@@ -522,7 +543,7 @@
                         <div class="products-tabs">
                             <!-- tab -->
                             <div id="tab1" class="tab-pane active">
-                                <div class="products-slick" data-nav="#slick-nav-1" style="height: fit-content">
+                                <div class="products-slick" data-nav="#slick-nav-1" style="height: fit-content; display: flex">
                                     <!-- product -->
                                     <% List<Product> list = (List<Product>) request.getAttribute("listn");
                                         for (Product p:list) { %>
@@ -558,7 +579,7 @@
 <%--                                            </div>--%>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="<%="/addToCart?id=" + p.getId()%>"> Thêm vào giỏ hàng</a></button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a class="colorWhite" href="<%="/addToCart?id=" + p.getId()%>">Thêm vào giỏ hàng</a></button>
                                         </div>
                                     </div>
 
@@ -663,7 +684,7 @@
                         <div class="products-tabs">
                             <!-- tab -->
                             <div id="tab2" class="tab-pane fade in active">
-                                <div class="products-slick" data-nav="#slick-nav-2 " style="height: fit-content">
+                                <div class="products-slick" data-nav="#slick-nav-2 " style="height: fit-content; display: flex">
                                     <!-- product -->
                                     <% List<Product> list1 = (List<Product>) request.getAttribute("lists");
                                         for (Product p:list1) { %>
@@ -977,16 +998,16 @@
                         </form>
                         <ul class="newsletter-follow">
                             <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-facebook" style="margin: 10px"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-twitter" style="margin: 10px"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-instagram" style="margin: 10px"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-pinterest" style="margin: 10px"></i></a>
                             </li>
                         </ul>
                     </div>
