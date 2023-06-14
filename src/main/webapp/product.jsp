@@ -153,7 +153,6 @@
             background-color: #D10024;
         }
 
-
         @media (max-width: 600px) {
             body,
             #message {
