@@ -27,6 +27,12 @@ public class statisticsServlet extends HttpServlet {
         request.setAttribute("userGg", userGg);
         int userNm = statisticsService.getNormalAcc();
         request.setAttribute("userNm", userNm);
+        int userttNm = statisticsService.getTotalNormalAcc();
+        request.setAttribute("userttNm", userttNm);
+        int userttGG = statisticsService.getTotalGGAccount();
+        request.setAttribute("userttGG", userttGG);
+        int userttFB = statisticsService.getTotalFacebookAcc();
+        request.setAttribute("userttFB", userttFB);
         request.getRequestDispatcher("admin/statistics.jsp").forward(request,response);
 
 //        int yearr = Integer.parseInt(request.getParameter("yearr"));

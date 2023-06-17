@@ -5,6 +5,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="vn.edu.hcmuaf.ttt.model.Product" %>
 <%@ page import="vn.edu.hcmuaf.ttt.admin.service.statisticsService" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,96 +98,99 @@
 <body>
 <div class="container-scroller">
   <!-- partial:../../partials/_navbar.html -->
+  <jsp:include page="nav.jsp"></jsp:include>
   <%--    <jsp:include page="nav.jsp"></jsp:include>--%>
   <!-- partial -->
   <div class="container-fluid page-body-wrapper">
     <!-- partial:../../partials/_sidebar.html -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-      <ul class="nav">
-        <li class="nav-item nav-profile">
-          <a href="#" class="nav-link">
 
-            <div class="nav-profile-text d-flex flex-column">
-              <% User auth = (User) session.getAttribute("auth");%>
-              <% if (auth == null) { %>
-              <span class="font-weight-bold mb-2">Nguyễn Thị Tiên</span>
-              <% } else {%>
-              <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>
-              <% } %>
-              <span class="text-secondary text-small">Admin</span>
+    <jsp:include page="menu.jsp"></jsp:include>
+<%--    <nav class="sidebar sidebar-offcanvas" id="sidebar">--%>
+<%--      <ul class="nav">--%>
+<%--        <li class="nav-item nav-profile">--%>
+<%--          <a href="#" class="nav-link">--%>
 
-
-            </div>
-            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-          </a>
-        </li>
-        <%--        //user_admin = 1 là admin => quản lý tất cả trang admin, thăng chức nhân viên, trang thống kê.--%>
-        <%--        //---------- = 2 là nhân viên bán hàng : chỉ thêm, xóa, sửa sản phẩm, xem doanh thu theo tháng--%>
-        <%--        // --------- = 3 là nhân viên quản lý đơn hàng: xem trang đơn hàng, xác nhận, hủy đơn--%>
+<%--            <div class="nav-profile-text d-flex flex-column">--%>
+<%--              <% User auth = (User) session.getAttribute("auth");%>--%>
+<%--              <% if (auth == null) { %>--%>
+<%--              <span class="font-weight-bold mb-2">Nguyễn Thị Tiên</span>--%>
+<%--              <% } else {%>--%>
+<%--              <span class="font-weight-bold mb-2"><%= auth.getUser_fullname()%></span>--%>
+<%--              <% } %>--%>
+<%--              <span class="text-secondary text-small">Admin</span>--%>
 
 
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/IndexAdmin">
-            <span class="menu-title">Trang chủ</span>
-            <i class="mdi mdi-home menu-icon"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/OrderList">
-            <span class="menu-title">Quản lý đơn hàng</span>
-            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/ProAdmin">
-            <span class="menu-title">Quản lý sản phẩm</span>
-            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/HidenProductList">
-            <span class="menu-title">Sản phẩm đã ẩn</span>
-            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-             aria-controls="ui-basic">
-            <span class="menu-title">Quản lý người dùng</span>
-            <i class="menu-arrow"></i>
-            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-          </a>
-          <div class="collapse" id="ui-basic" style="">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><a class="nav-link" href="http://localhost:8080/UserList">Danh
-                sách người dùng</a></li>
-              <li class="nav-item"><a class="nav-link"
-                                      href="http://localhost:8080/UserLockList">Người dùng bị
-                khóa</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/StaffList">
-            <span class="menu-title">Quản lý nhân viên</span>
-            <i class="mdi mdi-chart-bar menu-icon"></i>
-          </a>
-        </li>
-        <%--        <li class="nav-item">--%>
-        <%--            <a class="nav-link" href="http://localhost:8080/CategoryAdmin">--%>
-        <%--                <span class="menu-title">Quản lý quản danh mục</span>--%>
-        <%--                <i class="mdi mdi-table-large menu-icon"></i>--%>
-        <%--            </a>--%>
-        <%--        </li>--%>
-
-        <li class="nav-item sidebar-actions">
-                        <span class="nav-link">
-              </span>
-        </li>
+<%--            </div>--%>
+<%--            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>--%>
+<%--          </a>--%>
+<%--        </li>--%>
+<%--        &lt;%&ndash;        //user_admin = 1 là admin => quản lý tất cả trang admin, thăng chức nhân viên, trang thống kê.&ndash;%&gt;--%>
+<%--        &lt;%&ndash;        //---------- = 2 là nhân viên bán hàng : chỉ thêm, xóa, sửa sản phẩm, xem doanh thu theo tháng&ndash;%&gt;--%>
+<%--        &lt;%&ndash;        // --------- = 3 là nhân viên quản lý đơn hàng: xem trang đơn hàng, xác nhận, hủy đơn&ndash;%&gt;--%>
 
 
-      </ul>
-    </nav>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link" href="http://localhost:8080/IndexAdmin">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Trang chủ</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-home menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link" href="http://localhost:8080/OrderList">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Quản lý đơn hàng</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-crosshairs-gps menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link" href="http://localhost:8080/ProAdmin">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Quản lý sản phẩm</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-format-list-bulleted menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link" href="http://localhost:8080/HidenProductList">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Sản phẩm đã ẩn</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-format-list-bulleted menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"&ndash;%&gt;--%>
+<%--&lt;%&ndash;             aria-controls="ui-basic">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Quản lý người dùng</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="menu-arrow"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-crosshairs-gps menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <div class="collapse" id="ui-basic" style="">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <ul class="nav flex-column sub-menu">&ndash;%&gt;--%>
+<%--&lt;%&ndash;              <li class="nav-item"><a class="nav-link" href="http://localhost:8080/UserList">Danh&ndash;%&gt;--%>
+<%--&lt;%&ndash;                sách người dùng</a></li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;              <li class="nav-item"><a class="nav-link"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                      href="http://localhost:8080/UserLockList">Người dùng bị&ndash;%&gt;--%>
+<%--&lt;%&ndash;                khóa</a></li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            </ul>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--&lt;%&ndash;          <a class="nav-link" href="http://localhost:8080/StaffList">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <span class="menu-title">Quản lý nhân viên</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <i class="mdi mdi-chart-bar menu-icon"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </li>&ndash;%&gt;--%>
+<%--        &lt;%&ndash;        <li class="nav-item">&ndash;%&gt;--%>
+<%--        &lt;%&ndash;            <a class="nav-link" href="http://localhost:8080/CategoryAdmin">&ndash;%&gt;--%>
+<%--        &lt;%&ndash;                <span class="menu-title">Quản lý quản danh mục</span>&ndash;%&gt;--%>
+<%--        &lt;%&ndash;                <i class="mdi mdi-table-large menu-icon"></i>&ndash;%&gt;--%>
+<%--        &lt;%&ndash;            </a>&ndash;%&gt;--%>
+<%--        &lt;%&ndash;        </li>&ndash;%&gt;--%>
+
+<%--        <li class="nav-item sidebar-actions">--%>
+<%--                        <span class="nav-link">--%>
+<%--              </span>--%>
+<%--        </li>--%>
+
+
+<%--      </ul>--%>
+<%--    </nav>--%>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -201,55 +206,56 @@
             </ul>
           </nav>
         </div>
-        <div class="row">
-          <div class="col-md-4 stretch-card grid-margin">
-            <div class="card bg-gradient-danger card-img-holder text-white">
-              <div class="card-body">
-                <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                     alt="circle-image"/>
-                <h4 class="font-weight-normal mb-3"> Doanh thu <i
-                        class="mdi mdi-chart-line mdi-24px float-right"></i>
-                </h4>
+<%--        <div class="row">--%>
+<%--          <div class="col-md-4 stretch-card grid-margin">--%>
+<%--            <div class="card bg-gradient-danger card-img-holder text-white">--%>
+<%--              <div class="card-body">--%>
+<%--                <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"--%>
+<%--                     alt="circle-image"/>--%>
+<%--                <h4 class="font-weight-normal mb-3"> Doanh thu <i--%>
+<%--                        class="mdi mdi-chart-line mdi-24px float-right"></i>--%>
+<%--                </h4>--%>
 
-                <h2 class="mb-5">123 đ</h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 stretch-card grid-margin">
-            <div class="card bg-gradient-info card-img-holder text-white">
-              <div class="card-body">
-                <a href="http://localhost:8080/StatisticsByTypeServlet">
-                  <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                       alt="circle-image"/>
-                  <h4 class="font-weight-normal mb-3">Thông kê số lượng truy cập <i
-                          class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                  </h4></a>
+<%--                <h2 class="mb-5">123 đ</h2>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="col-md-4 stretch-card grid-margin">--%>
+<%--            <div class="card bg-gradient-info card-img-holder text-white">--%>
+<%--              <div class="card-body">--%>
+<%--                <a href="http://localhost:8080/StatisticsByTypeServlet">--%>
+<%--                  <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"--%>
+<%--                       alt="circle-image"/>--%>
+<%--                  <h4 class="font-weight-normal mb-3">Thông kê số lượng truy cập <i--%>
+<%--                          class="mdi mdi-bookmark-outline mdi-24px float-right"></i>--%>
+<%--                  </h4></a>--%>
 
-                <h2 class="mb-5">123</h2>
+<%--                <h2 class="mb-5">123</h2>--%>
 
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 stretch-card grid-margin">
-            <div class="card bg-gradient-success card-img-holder text-white">
-              <div class="card-body">
-                <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                     alt="circle-image">
-                <h4 class="font-weight-normal mb-3">Số lượng sản phẩm<i
-                        class="mdi mdi-diamond mdi-24px float-right"></i>
-                </h4>
-                <h2 class="mb-5">123</h2>
-                <% ArrayList<Integer> months = (ArrayList<Integer>) request.getAttribute("stayear");
-                %>
-                <% ArrayList<Integer> tongdontheothang = (ArrayList<Integer>) request.getAttribute("tongyear");
-                %>
-                <% ArrayList<Integer> totalRevenues = (ArrayList<Integer>) request.getAttribute("totalRevenue");
-                %>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="col-md-4 stretch-card grid-margin">--%>
+<%--            <div class="card bg-gradient-success card-img-holder text-white">--%>
+<%--              <div class="card-body">--%>
+<%--                <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"--%>
+<%--                     alt="circle-image">--%>
+<%--                <h4 class="font-weight-normal mb-3">Số lượng sản phẩm<i--%>
+<%--                        class="mdi mdi-diamond mdi-24px float-right"></i>--%>
+<%--                </h4>--%>
+<%--                <h2 class="mb-5">123</h2>--%>
+<%--               --%>
 
-              </div>
-            </div>
-          </div>
-        </div>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+        <% ArrayList<Integer> months = (ArrayList<Integer>) request.getAttribute("stayear");
+        %>
+        <% ArrayList<Integer> tongdontheothang = (ArrayList<Integer>) request.getAttribute("tongyear");
+        %>
+        <% ArrayList<Integer> totalRevenues = (ArrayList<Integer>) request.getAttribute("totalRevenue");
+        %>
         <div class="row">
           <div class="col-12 grid-margin">
             <div class="card">
@@ -259,11 +265,12 @@
                 </div>
                 <div class="table-responsive">
                   <select class="year-dropdown" onchange="navigateToYear(this.value)">
-                    <option value="">-- chọn năm --</option>
+                    <option >-- chọn năm --</option>
                     <% ArrayList<Integer> year = (ArrayList<Integer>) request.getAttribute("year");
                       for (int y : year) { %>
                     <option value="<%=y%>">-- <%=y%> --</option>
                     <%}%>
+
 
                     <!-- Thêm các tùy chọn khác cho các năm khác -->
                   </select>
@@ -440,12 +447,17 @@
 
 
                       %>
+                      <%
+                        Locale locale = new Locale("vi");
+                        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                        String tt = format.format(totalR).split(",")[0];
+                      %>
                       <tr>
                         <td><%= month %>
                         </td>
                         <td><%= total %>
                         </td>
-                        <td><%= totalR %>
+                        <td><%= tt %>
                         </td>
                       </tr>
                       <%
@@ -455,7 +467,27 @@
                       <tr class="total-row">
                         <td>Total</td>
                         <td></td>
-                        <td>$50,000</td>
+<%--                        <%--%>
+<%--                          int sum = 0;--%>
+<%--                          for (int i = 0; i < tongdontheothang.size(); i++) {--%>
+<%--                            sum += tongdontheothang.get(i);--%>
+<%--                          }%>--%>
+<%--                        <td><%=sum%></td>--%>
+                        <%
+                          int revenue = 0;
+                          for (int i = 0; i < totalRevenues.size(); i++) {
+                            revenue += totalRevenues.get(i);
+                          }
+
+                        %>
+                        <%
+                          Locale locale = new Locale("vi");
+                          NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                          String tt = format.format(revenue).split(",")[0];
+                        %>
+                        <td><%=tt%></td>
+
+
                       </tr>
                       </tbody>
                     </table>
@@ -471,13 +503,126 @@
               <div class="card-body">
                 <h4 class="card-title">Thống kê loại tài khoản</h4>
                 <canvas id="pieChart" style="height:250px"></canvas>
+                <div>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Loại tài khoản
+
+                      </th>
+                      <th>      </th>
+                      <th>Số lượng đăng ký</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%  int userttNm = (int) request.getAttribute("userttNm");
+                      int userttGG = (int) request.getAttribute("userttGG");
+                      int userttFB = (int) request.getAttribute("userttFB");
+                      int totall = userttNm + userttGG + userttFB;
+                    %>
+                    <tr>
+                      <td>Tài Khoản thường</td>
+                      <td>     </td>
+                      <td><%=userttNm%></td>
+                    </tr>
+
+                    <tr>
+                      <td>Tài Khoản Facebook</td>
+                      <td>     </td>
+                      <td><%=userttFB%></td>
+                    </tr>
+                    <tr>
+                      <td>Tài Khoản Google</td>
+                      <td>     </td>
+                      <td><%=userttGG%></td>
+                    </tr>
+                    <!-- Add more rows for other months and years -->
+                    <tr class="total-row">
+                      <td>Tổng</td>
+                      <td></td>
+                      <%--                        <%--%>
+                      <%--                          int sum = 0;--%>
+                      <%--                          for (int i = 0; i < tongdontheothang.size(); i++) {--%>
+                      <%--                            sum += tongdontheothang.get(i);--%>
+                      <%--                          }%>--%>
+                      <%--                        <td><%=sum%></td>--%>
+
+                      <td><%=totall%></td>
+
+
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="card m-2">
               <div class="card-body">
                 <h4 class="card-title">Thống kê sản phẩm bán chạy</h4>
                 <canvas id="barChart" style="height:250px"></canvas>
+                <div>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Tên sản phẩm
+
+                      </th>
+                      <th>Số lượng bán ra</th>
+<%--                      <th>Doanh thu</th>--%>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%   ArrayList<String> dataTen = statisticsService.getBestSellerName();
+                      String t = dataTen.get(0);
+                      String n = dataTen.get(1);
+                      String q = dataTen.get(2);
+                      String v = dataTen.get(3);
+                      ArrayList<Integer> dataa = statisticsService.getBestSellerSL();
+                      int a = dataa.get(0);
+                      int b = dataa.get(1);
+                      int c = dataa.get(2);
+                      int d = dataa.get(3);
+
+                    %>
+                    <tr>
+                      <td style="font-size: 15px"><%=t%></td>
+                      <td style="font-size: 15px"><%=a%></td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 15px"><%=n%></td>
+                      <td style="font-size: 15px"><%=b%></td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 15px"><%=q%></td>
+                      <td style="font-size: 15px"><%=c%></td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 15px"><%=v%></td>
+                      <td style="font-size: 15px"><%=d%></td>
+                    </tr>
+
+
+
+                    <!-- Add more rows for other months and years -->
+<%--                    <tr class="total-row">--%>
+<%--                      <td>Tôn</td>--%>
+<%--                      <td></td>--%>
+<%--                      &lt;%&ndash;                        &lt;%&ndash;%>--%>
+<%--                      &lt;%&ndash;                          int sum = 0;&ndash;%&gt;--%>
+<%--                      &lt;%&ndash;                          for (int i = 0; i < tongdontheothang.size(); i++) {&ndash;%&gt;--%>
+<%--                      &lt;%&ndash;                            sum += tongdontheothang.get(i);&ndash;%&gt;--%>
+<%--                      &lt;%&ndash;                          }%>&ndash;%&gt;--%>
+<%--                      &lt;%&ndash;                        <td><%=sum%></td>&ndash;%&gt;--%>
+
+<%--                      <td>tt</td>--%>
+
+
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -530,11 +675,7 @@
     'use strict';
 
     <%
-        ArrayList<Integer> dataa = statisticsService.getBestSellerSL();
-        int a = dataa.get(0);
-        int b = dataa.get(1);
-        int c = dataa.get(2);
-        int d = dataa.get(3);
+
         ArrayList<String> dataaId = statisticsService.getBestSellerId();
         String e = dataaId.get(0);
         String f = dataaId.get(1);

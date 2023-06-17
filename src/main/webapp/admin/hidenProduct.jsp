@@ -26,6 +26,45 @@
   <link rel="stylesheet" href="admin/assets/css/style.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #f2f2f2;
+      padding: 8px;
+      border-left: none;
+      border-right: none;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e5e5e5;
+      cursor: pointer;
+    }
+    td img {
+      width: 40px; /* Kích thước ảnh nhỏ lại */
+      height: 40px;
+      border-radius: 50%; /* Áp dụng hình dạng tròn */
+      object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    }
+  </style>
 
 
 </head>
@@ -52,8 +91,9 @@
         <main>
           <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
             <div class="card">
-              <div style="padding: 0 ;" class="card-body">
-                <table class="table table-hover">
+              <div style="padding: 20px ;" class="card-body">
+
+                <table id="myTablee" style="padding: 20px;">
                   <thead>
                   <tr>
                     <th>Tên</th>
@@ -61,7 +101,6 @@
                     <th>Phân loại</th>
                     <th>Giá</th>
                     <th>Thao tác</th>
-
                   </tr>
                   </thead>
                   <tbody>
@@ -99,6 +138,52 @@
 
                   </tbody>
                 </table>
+<%--                <table class="table table-hover">--%>
+<%--                  <thead>--%>
+<%--                  <tr>--%>
+<%--                    <th>Tên</th>--%>
+<%--                    <th>Ảnh</th>--%>
+<%--                    <th>Phân loại</th>--%>
+<%--                    <th>Giá</th>--%>
+<%--                    <th>Thao tác</th>--%>
+
+<%--                  </tr>--%>
+<%--                  </thead>--%>
+<%--                  <tbody>--%>
+<%--                  <% List<Product> list = (List<Product>) request.getAttribute("list");--%>
+<%--                    for (Product p: list) { %>--%>
+<%--                  <tr>--%>
+<%--                    <td> <%= p.getName()%></td>--%>
+<%--                    <td>--%>
+<%--                      <img src="<%= p.getImg()%>" alt="">--%>
+<%--                    </td>--%>
+<%--                    <td class="text-success"> <%= p.getClassify()%> </td>--%>
+<%--                    <%--%>
+<%--                      Locale locale = new Locale("vi");--%>
+<%--                      NumberFormat format = NumberFormat.getCurrencyInstance(locale);--%>
+<%--                      String gia = format.format(p.getPrice()).split(",")[0];--%>
+<%--                    %>--%>
+<%--                    <td class="text-danger"><%=gia%>đ</td>--%>
+<%--                    <td>--%>
+<%--                      <a style="text-decoration: none" href="<%= "/detail?id=" + p.getId()%>" title="Xem">--%>
+<%--                        <label class="badge badge-success"><i style="cursor: pointer" class="mdi mdi-eye"></i></label>--%>
+<%--                      </a>--%>
+<%--                      <a style="text-decoration: none" title="Xóa" href="<%= "/DeleteProduct?id=" + p.getId() %>">--%>
+<%--                        <label class="badge badge-danger"><i style="cursor: pointer" class="remove mdi mdi-close-circle-outline"></i></label>--%>
+<%--                      </a>--%>
+<%--                      <a title="Sửa" href="<%= "/LoadProduct?id=" + p.getId() %>" >--%>
+<%--                        <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix"></i></label>--%>
+<%--                      </a>--%>
+<%--                      <a title="Hiển thị sản phẩm" href="<%= "/UnhidenProduct?id=" + p.getId() %>" >--%>
+<%--                        <label class="badge badge-warning"><i style="cursor: pointer" class="mdi mdi-auto-fix">Mở sản phẩm</i></label>--%>
+<%--                      </a>--%>
+<%--                    </td>--%>
+<%--                  </tr>--%>
+<%--                  <% }%>--%>
+
+
+<%--                  </tbody>--%>
+<%--                </table>--%>
               </div>
             </div>
           </div>
@@ -128,6 +213,38 @@
 <script src="../../admin/assets/js/off-canvas.js"></script>
 <script src="../../admin/assets/js/hoverable-collapse.js"></script>
 <script src="../../admin/assets/js/misc.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var table = $('#myTablee').DataTable(
+            {
+              language: {
+                search: "Tìm kiếm",
+                paginate: {
+                  next: "Sau",
+                  previous: "Trước"
+                },
+                info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                lengthMenu: "Hiển thị _MENU_ mục",
+                infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                infoEmpty: "Không tìm thấy mục nào",
+                emptyTable: "Không có dữ liệu"
+              }
+            }
+    );
+
+    $('#myTablee tbody').on('mouseover', 'tr', function() {
+      $(this).css('background-color', '#e5e5e5');
+    });
+
+    $('#myTablee tbody').on('mouseout', 'tr', function() {
+      $(this).css('background-color', '');
+    });
+  });
+</script>
+
+
 <!-- endinject -->
 <!-- Custom js for this page -->
 <!-- End custom js for this page -->

@@ -23,6 +23,38 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
 
+<%--  data table--%>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e5e5e5;
+      cursor: pointer;
+    }
+  </style>
+
 
 </head>
 
@@ -54,36 +86,77 @@
         <main>
           <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
             <div class="card">
-              <div style="padding: 0 ;" class="card-body">
-                <table id="dis_table" class="table table-hover table-hover table-striped table-bordered">
+              <div style="padding: 20px ;" class="card-body">
+
+
+                <table id="myTable" style="padding: 20px;">
                   <thead>
                   <tr>
                     <th>Tên</th>
-                    <th>Mã giảm giá</th>
-                    <th>Giá trị mã</th>
+                    <th>Mã Giảm Giá</th>
+                    <th>Giá Trị Mã</th>
                     <th>Ngày tạo</th>
-                    <th>Ngày hết hạn</th>
+                    <th>Nga hết hạn</th>
+                    <th>    </th>
                   </tr>
                   </thead>
                   <tbody>
-                  <% List<discount> list = (List<discount>) request.getAttribute("listDis");
-                    for (discount u: list) { %>
+                  <% List<discount> listt = (List<discount>) request.getAttribute("listDis");
+                    for (discount d: listt) { %>
                   <tr>
-                    <td><%= u.getName()%></td>
-                    <td><%=u.getReduce()%></td>
-                    <td class="text-danger"> <%=u.getReducedPrice()%>đ </td>
-                    <td class="text-success"> <%=u.getCreated_at()%> </td>
-                    <td class="text-success"> <%=u.getExpires_at()%> </td>
+                    <td><%= d.getName()%></td>
+                    <td><%=d.getReduce()%></td>
+                    <td class="text-danger"><%=d.getReducedPrice()%>đ</td>
+                    <td class="text-success"><%=d.getCreated_at()%></td>
+                    <td class="text-success"><%=d.getExpires_at()%></td>
                     <td>
-                      <a style="text-decoration: none" href="<%= "/DeleteDis?idDis=" + u.getId_dis() %>">
+                      <a style="text-decoration: none" href="<%= "/DeleteDis?idDis=" + d.getId_dis() %>">
                         <label class="badge badge-danger">Xóa<i class="remove mdi mdi-close-circle-outline"></i></label>
                       </a>
                     </td>
                   </tr>
                   <%}%>
-
                   </tbody>
                 </table>
+
+
+
+
+
+
+
+
+
+
+<%--                <table id="dis_table" class="table table-hover table-hover table-striped table-bordered">--%>
+<%--                  <thead>--%>
+<%--                  <tr>--%>
+<%--                    <th>Tên</th>--%>
+<%--                    <th>Mã giảm giá</th>--%>
+<%--                    <th>Giá trị mã</th>--%>
+<%--                    <th>Ngày tạo</th>--%>
+<%--                    <th>Ngày hết hạn</th>--%>
+<%--                  </tr>--%>
+<%--                  </thead>--%>
+<%--                  <tbody>--%>
+<%--                  <% List<discount> list = (List<discount>) request.getAttribute("listDis");--%>
+<%--                    for (discount u: list) { %>--%>
+<%--                  <tr>--%>
+<%--                    <td><%= u.getName()%></td>--%>
+<%--                    <td><%=u.getReduce()%></td>--%>
+<%--                    <td class="text-danger"> <%=u.getReducedPrice()%>đ </td>--%>
+<%--                    <td class="text-success"> <%=u.getCreated_at()%> </td>--%>
+<%--                    <td class="text-success"> <%=u.getExpires_at()%> </td>--%>
+<%--                    <td>--%>
+<%--                      <a style="text-decoration: none" href="<%= "/DeleteDis?idDis=" + u.getId_dis() %>">--%>
+<%--                        <label class="badge badge-danger">Xóa<i class="remove mdi mdi-close-circle-outline"></i></label>--%>
+<%--                      </a>--%>
+<%--                    </td>--%>
+<%--                  </tr>--%>
+<%--                  <%}%>--%>
+
+<%--                  </tbody>--%>
+<%--                </table>--%>
               </div>
             </div>
           </div>
@@ -246,6 +319,39 @@
 <!-- endinject -->
 <!-- Custom js for this page -->
 <!-- End custom js for this page -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var table = $('#myTable').DataTable(
+            {
+              language: {
+                search: "Tìm kiếm",
+                paginate: {
+                  next: "Sau",
+                  previous: "Trước"
+                },
+                info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                lengthMenu: "Hiển thị _MENU_ mục",
+                infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                infoEmpty: "Không tìm thấy mục nào",
+                emptyTable: "Không có dữ liệu"
+              }
+            }
+    );
+
+    $('#myTable tbody').on('mouseover', 'tr', function() {
+      $(this).css('background-color', '#e5e5e5');
+    });
+
+    $('#myTable tbody').on('mouseout', 'tr', function() {
+      $(this).css('background-color', '');
+    });
+  });
+</script>
+
+
 </body>
 
 

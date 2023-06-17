@@ -38,35 +38,43 @@ public class checkOTP extends HttpServlet {
         int intNumber = Long.valueOf(currentTime).intValue();
         int expiryTime = Integer.parseInt(request.getParameter("expiryTime"));
         if (action.equals("submit")) {
-            if (userOtp.equals(otp)) {
-                if (intNumber < expiryTime) {
-                    // Mã OTP hợp lệ và chưa hết hạn
-                    //request.setAttribute("messs", "Mã OTP không đúng");
-                    response.sendRedirect("passwordRamdom.jsp");
-                    DB.me().insert(new Log(Log.INFO,id_user,"Nhập OTP", userOtp ,0));
+            if(otpAttempts < MAX_OTP_ATTEMPTS){
+                if (userOtp.equals(otp)) {
+                    if (intNumber < expiryTime) {
+                        // Mã OTP hợp lệ và chưa hết hạn
+                        //request.setAttribute("messs", "Mã OTP không đúng");
+                        response.sendRedirect("passwordRamdom.jsp");
+                        DB.me().insert(new Log(Log.INFO,id_user,"Nhập OTP", userOtp ,0));
 
+                    } else {
+                        // Mã OTP đã hết hạn
+                        // Thực hiện xử lý tại đây
+                        request.setAttribute("messs", "Mã OTP đã hết hạn");
+                        request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+                        DB.me().insert(new Log(Log.WARNING,id_user,"Nhập OTP hết hạn",  userOtp + "thời hết hạn " + expiryTime ,0));
+
+                    }
+                    otpAttempts = 0;
                 } else {
-                    // Mã OTP đã hết hạn
-                    // Thực hiện xử lý tại đây
-                    request.setAttribute("messs", "Mã OTP đã hết hạn");
+                    request.setAttribute("err", "Mã OTP không đúng vui lòng nhập lại");
                     request.getRequestDispatcher("otpMail.jsp").forward(request, response);
-                    DB.me().insert(new Log(Log.WARNING,id_user,"Nhập OTP hết hạn",  userOtp + "thời hết hạn " + expiryTime ,0));
-
+                    DB.me().insert(new Log(Log.ALERT, id_user, "Nhập OTP không đúng", userOtp, 0));
+                    otpAttempts++;
                 }
-                otpAttempts = 0;
-            } else {
-                request.setAttribute("err", "Mã OTP không đúng vui lòng nhập lại");
-                request.getRequestDispatcher("otpMail.jsp").forward(request, response);
-                DB.me().insert(new Log(Log.ALERT,id_user,"Nhập OTP không đúng", userOtp ,0));
-
-            }
-            //neu nhap sai 3 lan se khoa tai khoan
-            otpAttempts++;
-            if (otpAttempts >= MAX_OTP_ATTEMPTS) {
+            }else {
                 OTPService.updateLockUser(user_id);
-                request.setAttribute("errr", "Tài khoản của bạn đã bị khóa vui lòng liên hệ admin");
+                request.setAttribute("errr", "Tài khoản của bạn đã bị khóa vui lòng liên hệ số hotline: 18008080 ");
                 request.getRequestDispatcher("otpMail.jsp").forward(request, response);
-                DB.me().insert(new Log(Log.DANGER,id_user,"tài khoan bị khóa", userOtp + otpAttempts,0));
+                DB.me().insert(new Log(Log.DANGER, id_user, "tài khoan bị khóa", userOtp + otpAttempts, 0));
+            }
+
+            //neu nhap sai 3 lan se khoa tai khoan
+
+                if (otpAttempts > MAX_OTP_ATTEMPTS) {
+                    OTPService.updateLockUser(user_id);
+                    request.setAttribute("errr", "Tài khoản của bạn đã bị khóa vui lòng liên hệ admin");
+                    request.getRequestDispatcher("otpMail.jsp").forward(request, response);
+                    DB.me().insert(new Log(Log.DANGER, id_user, "tài khoan bị khóa", userOtp + otpAttempts, 0));
 
             }
         }else if (action.equals("resend_otp")){

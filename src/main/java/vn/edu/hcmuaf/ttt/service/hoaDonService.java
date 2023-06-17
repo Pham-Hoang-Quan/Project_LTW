@@ -52,7 +52,7 @@ public class hoaDonService {
     //lấy mã giảm giá
     static public void discount(int id_dis, String name, String reduce, int reducedPrice, Timestamp created_at, Timestamp expires_at) {
         JDBiConnector.me().withHandle(h ->
-                h.createUpdate(" INSERT INTO discount VALUES (?,?,?,?,?,?,0)")
+                h.createUpdate(" INSERT  INTO discount VALUES (?,?,?,?,?,?,0)")
                         .bind(0, id_dis)
                         .bind(1, name)
                         .bind(2, reduce)

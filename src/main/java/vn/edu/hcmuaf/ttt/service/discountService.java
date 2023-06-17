@@ -28,7 +28,7 @@ public class discountService {
 
     public  static discount checkDiscount(String reduce){
         List<discount> dis = JDBiConnector.me().withHandle(h ->
-                h.createQuery("SELECT * FROM discount WHERE reduce =?").bind(0,reduce).mapToBean(discount.class).stream().collect(Collectors.toList())
+                h.createQuery("SELECT DISTINCT * FROM discount WHERE reduce =?").bind(0,reduce).mapToBean(discount.class).stream().collect(Collectors.toList())
         );
         if(dis.size() != 1) return null;
         discount discoutt = dis.get(0);
@@ -46,7 +46,8 @@ public class discountService {
 
 
     public static void main(String[] args) {
-        updateStatus("null");
+
+        System.out.println( checkDiscount("GUlDW"));
     }
 
 }

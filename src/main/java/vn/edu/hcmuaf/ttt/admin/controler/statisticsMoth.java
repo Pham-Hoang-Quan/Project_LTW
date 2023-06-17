@@ -22,7 +22,18 @@ public class statisticsMoth extends HttpServlet {
         request.setAttribute("year", year);
         ArrayList<Integer> revenueByMonth = statisticsService.getRevenueByMonth(yearr);
         request.setAttribute("totalRevenue", revenueByMonth);
-
+        int userFb = statisticsService.getFacebookAcc();
+        request.setAttribute("userFb", userFb);
+        int userGg = statisticsService.getGGAccount();
+        request.setAttribute("userGg", userGg);
+        int userNm = statisticsService.getNormalAcc();
+        request.setAttribute("userNm", userNm);
+        int userttNm = statisticsService.getTotalNormalAcc();
+        request.setAttribute("userttNm", userttNm);
+        int userttGG = statisticsService.getTotalGGAccount();
+        request.setAttribute("userttGG", userttGG);
+        int userttFB = statisticsService.getTotalFacebookAcc();
+        request.setAttribute("userttFB", userttFB);
 
         request.getRequestDispatcher("admin/statistics.jsp").forward(request, response);
 

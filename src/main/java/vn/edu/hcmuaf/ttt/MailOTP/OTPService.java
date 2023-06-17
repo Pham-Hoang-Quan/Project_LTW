@@ -60,7 +60,7 @@ public class OTPService {
     //khóa người dùng khi nhập sai mã otp quá 3 lần
     static public boolean updateLockUser(String user_id) {
         JDBiConnector.me().withHandle(handle ->
-                handle.createUpdate("UPDATE `user` SET locked = 1 WHERE user_id = ?;")
+                handle.createUpdate("UPDATE `user` SET looked = 1 WHERE user_id = ?;")
                         .bind(0,user_id).execute());
         return false;
     }

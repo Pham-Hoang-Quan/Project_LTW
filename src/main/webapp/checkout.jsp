@@ -55,6 +55,11 @@
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
+<%--vnp--%>
+    <link href="/assets/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="/assets/jumbotron-narrow.css" rel="stylesheet">
+    <script src="/assets/jquery-1.11.3.min.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
     <style media="screen">
@@ -270,7 +275,9 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form action="/doHoaDon" method="post" class="row">
+            <form action="/doHoaDon"  method="post" class="row">
+<%--                <form   action="/ajaxServlet" id="frmCreateOrder" method="post" class="row">--%>
+
                 <div class="col-md-7">
                     <!-- Billing Details -->
                     <div class="billing-details">
@@ -503,6 +510,13 @@
                             <input class="input" id="price-total" name="totalprice" value="<%=tonggia%>" type="hidden">
 
                         </div>
+                        <%
+                            // Lấy đối tượng HttpSession từ request
+                            HttpSession sessionm = request.getSession();
+                            // Lưu giá trị vào session
+                            int price = tonggia;
+                            sessionm.setAttribute("price", price);
+                        %>
                         <%} else {%>
                         <%--                        <div class="order-col">--%>
                         <%--                            <div>Nhập mã giảm giá</div>--%>
@@ -530,6 +544,17 @@
 
 
                         </div>
+                        <%
+                            // Lấy đối tượng HttpSession từ request
+                            HttpSession sessionm = request.getSession();
+
+                            // Lưu giá trị vào session
+                            int price = tongtien;
+
+                            sessionm.setAttribute("price", price);
+
+
+                        %>
                         <%}%>
                         <%
                             int length = 5; // Độ dài chuỗi mong muốn
@@ -569,14 +594,34 @@
                     </div>
                     <div class="payment-method">
                         <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-1">
+
+                            <input type="radio" name="payment" id="payment-1" onclick="handleRadioSelection(this.value)" value="2">
                             <label for="payment-1">
                                 <span></span>
                                 Chuyển khoản trực tiếp
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+<%--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor--%>
+<%--                                    incididunt ut labore et dolore magna aliqua.</p>--%>
+<%--                           <a href="/vnpay_pay.jsp"><p>Giao dịch thanh toán</p></a>--%>
+<%--    <form action="/ajaxServlet" id="frmCreateOrder" method="post">--%>
+        <div class="form-group">
+
+            <input style="display: none" class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" name="amount" type="number" value="100000" />
+        </div>
+
+        <div class="form-group">
+
+            <input type="radio" Checked="True" id="bankCode" name="bankCode" value="">
+            <label for="bankCode">Thanh Toán qua VNPAY</label><br>
+
+
+
+        </div>
+<%--    </form>--%>
+
+
+
                             </div>
                         </div>
                         <!-- <div class="input-radio">
@@ -591,17 +636,26 @@
                             </div>
                         </div> -->
                         <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-3">
+                            <input type="radio" name="payment" id="payment-3" onclick="handleRadioSelection(this.value)" value="1">
                             <label for="payment-3">
                                 <span></span>
                                 Sau khi giao hàng
                             </label>
                             <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+<%--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor--%>
+<%--                                    incididunt ut labore et dolore magna aliqua.</p>--%>
+                                <p>
+                                    Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.</p>
                             </div>
                         </div>
                     </div>
+
+                    <%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
+
+                    <%--                  --%>
+
+                    <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng
+                    </button>
                     <div class="input-checkbox">
                         <input type="checkbox" id="terms">
                         <label for="terms">
@@ -610,12 +664,6 @@
                         </label>
 
                     </div>
-                    <%--                    <a href="#" class="primary-btn order-submit">Đặt hàng</a>--%>
-
-                    <%--                  --%>
-
-                    <button type="submit" name="action" class="primary-btn order-submit" value="submit">Đặt hàng
-                    </button>
                 </div>
                 <%--                <input class="date" name="soHD" style="display: none" value="<%=soHD.getSoHD()%>" type="text">--%>
                 <!-- /Order Details -->
@@ -1009,6 +1057,58 @@ console.log(numberProduct)
         callAPI()
 
     })
+</script>
+<%--vnpay--%>
+<link href="https://pay.vnpay.vn/lib/vnpay/vnpay.css" rel="stylesheet" />
+<script src="https://pay.vnpay.vn/lib/vnpay/vnpay.min.js"></script>
+<script type="text/javascript">
+    $("#frmCreateOrder").submit(function () {
+        var postData = $("#frmCreateOrder").serialize();
+        var submitUrl = $("#frmCreateOrder").attr("action");
+        $.ajax({
+            type: "POST",
+            url: submitUrl,
+            data: postData,
+            dataType: 'JSON',
+            success: function (x) {
+                if (x.code === '00') {
+                    if (window.vnpay) {
+                        vnpay.open({width: 768, height: 600, url: x.data});
+                    } else {
+                        location.href = x.data;
+                    }
+                    return false;
+                } else {
+                    alert(x.Message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
+
+<%--radio--%>
+<script>
+    var selectedRadioId = null;
+
+    function handleRadioSelection(radioId) {
+        selectedRadioId = radioId;
+        console.log("Selected radio ID: " + selectedRadioId);
+    }
+
+    document.getElementById("paymentForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn submit form mặc định
+
+        if (selectedRadioId !== null) {
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "selectedRadioId");
+            input.setAttribute("value", selectedRadioId);
+            this.appendChild(input);
+        }
+
+        this.submit(); // Gửi form đến servlet
+    });
 </script>
 </body>
 
