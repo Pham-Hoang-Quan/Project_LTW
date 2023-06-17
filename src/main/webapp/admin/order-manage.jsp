@@ -16,6 +16,42 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
+
+<%--    data table--%>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #f2f2f2;
+            padding: 8px;
+            border-left: none;
+            border-right: none;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e5e5e5;
+            cursor: pointer;
+        }
+    </style>
+
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -52,7 +88,7 @@
                         <label for="tab1">Xác nhận đơn hàng</label>
                         <input id="tab2" type="radio" name="tabs">
                         <label for="tab2">Đang giao</label>
-                        <input class="" id="tab4" type="radio" name="tabs" checked>
+                        <input class="" id="tab4" type="radio" name="tabs">
                         <label for="tab4">Đã nhận</label>
                         <input id="tab3" type="radio" name="tabs">
                         <label for="tab3">Đã hủy</label>
@@ -62,16 +98,16 @@
                             <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
                                 <div class="card">
                                     <div style="padding: 0 ;" class="card-body">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Mã đơn</th>
-                                                    <th>Tên khách hàng</th>
-                                                    <th>Trị giá</th>
-                                                    <th>Điện thoại</th>
-                                                    <th>Thao tác</th>
 
-                                                </tr>
+                                        <table id="myTable" style="padding-right: 20px;">
+                                            <thead>
+                                            <tr>
+                                                <th>Mã đơn</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Trị giá</th>
+                                                <th>Điện thoại</th>
+                                                <th>Thao tác</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
                                             <% List<hoaDon> list = (List<hoaDon>) request.getAttribute("listHD0");
@@ -85,7 +121,6 @@
                                                     String gia1 = format.format(tg).split(",")[0];
                                                 %>
                                                 <td class="text-danger"> <%=gia1%> đ </td>
-
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
                                                     <a style="text-decoration: none" href="<%= "/AcceptOrder?SoHD=" + h.getSoHD() %>">
@@ -99,13 +134,58 @@
                                                     </a>
 
                                                 </td>
-
-
                                             </tr>
-                                            <%}%>
-
+                                         <%}%>
                                             </tbody>
                                         </table>
+
+
+
+
+<%--                                        <table class="table table-hover">--%>
+<%--                                            <thead>--%>
+<%--                                                <tr>--%>
+<%--                                                    <th>Mã đơn</th>--%>
+<%--                                                    <th>Tên khách hàng</th>--%>
+<%--                                                    <th>Trị giá</th>--%>
+<%--                                                    <th>Điện thoại</th>--%>
+<%--                                                    <th>Thao tác</th>--%>
+
+<%--                                                </tr>--%>
+<%--                                            </thead>--%>
+<%--                                            <tbody>--%>
+<%--                                            <% List<hoaDon> list = (List<hoaDon>) request.getAttribute("listHD0");--%>
+<%--                                                for (hoaDon h: list) { %>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><%=h.getSoHD()%></td>--%>
+<%--                                                <td><%=h.getHoVaTen()%></td>--%>
+<%--                                                <%  int tg = Integer.parseInt(h.getToongGia());--%>
+<%--                                                    Locale locale = new Locale("vi");--%>
+<%--                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);--%>
+<%--                                                    String gia1 = format.format(tg).split(",")[0];--%>
+<%--                                                %>--%>
+<%--                                                <td class="text-danger"> <%=gia1%> đ </td>--%>
+
+<%--                                                <td><%=h.getHD_sdt()%></td>--%>
+<%--                                                <td>--%>
+<%--                                                    <a style="text-decoration: none" href="<%= "/AcceptOrder?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-success">Xác nhận</label>--%>
+<%--                                                    </a>--%>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-danger">Hủy đơn</label>--%>
+<%--                                                    </a>--%>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-info">Xem chi tiết</label>--%>
+<%--                                                    </a>--%>
+
+<%--                                                </td>--%>
+
+
+<%--                                            </tr>--%>
+<%--                                            <%}%>--%>
+
+<%--                                            </tbody>--%>
+<%--                                        </table>--%>
                                     </div>
                                 </div>
                             </div>
@@ -117,15 +197,16 @@
                             <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
                                 <div class="card">
                                     <div style="padding: 0 ;" class="card-body">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Mã đơn</th>
-                                                    <th>Tên khách hàng</th>
-                                                    <th>Trị giá</th>
-                                                    <th>Thao tác</th>
 
-                                                </tr>
+                                        <table id="myTablee" style="padding-right: 20px;">
+                                            <thead>
+                                            <tr>
+                                                <th>Mã đơn</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Trị giá</th>
+                                                <th>Điện thoại</th>
+                                                <th>Thao tác</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
                                             <% List<hoaDon> list1 = (List<hoaDon>) request.getAttribute("listHD1");
@@ -139,12 +220,12 @@
                                                     String gia = format.format(tg).split(",")[0];
                                                 %>
                                                 <td class="text-danger"> <%=gia%> đ </td>
-<%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
+                                                <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
-<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
-<%--                                                    </a>--%>
+                                                                                                        <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                                                                            <label class="badge badge-danger">Xóa</label>
+                                                                                                        </a>
                                                     <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
@@ -154,9 +235,51 @@
 
                                             </tr>
                                             <%}%>
-
                                             </tbody>
                                         </table>
+
+
+
+<%--                                        <table class="table table-hover">--%>
+<%--                                            <thead>--%>
+<%--                                                <tr>--%>
+<%--                                                    <th>Mã đơn</th>--%>
+<%--                                                    <th>Tên khách hàng</th>--%>
+<%--                                                    <th>Trị giá</th>--%>
+<%--                                                    <th>Thao tác</th>--%>
+
+<%--                                                </tr>--%>
+<%--                                            </thead>--%>
+<%--                                            <tbody>--%>
+<%--                                            <% List<hoaDon> list1 = (List<hoaDon>) request.getAttribute("listHD1");--%>
+<%--                                                for (hoaDon h: list1) { %>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><%=h.getSoHD()%></td>--%>
+<%--                                                <td><%=h.getHoVaTen()%></td>--%>
+<%--                                                <%  int tg = Integer.parseInt(h.getToongGia());--%>
+<%--                                                    Locale locale = new Locale("vi");--%>
+<%--                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);--%>
+<%--                                                    String gia = format.format(tg).split(",")[0];--%>
+<%--                                                %>--%>
+<%--                                                <td class="text-danger"> <%=gia%> đ </td>--%>
+<%--&lt;%&ndash;                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>&ndash;%&gt;--%>
+<%--                                                <td><%=h.getHD_sdt()%></td>--%>
+<%--                                                <td>--%>
+<%--&lt;%&ndash;                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <label class="badge badge-danger">Xóa</label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    </a>&ndash;%&gt;--%>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-info">Xem chi tiết</label>--%>
+<%--                                                    </a>--%>
+
+<%--                                                </td>--%>
+
+
+<%--                                            </tr>--%>
+<%--                                            <%}%>--%>
+
+<%--                                            </tbody>--%>
+<%--                                        </table>--%>
                                     </div>
                                 </div>
                             </div>
@@ -166,17 +289,18 @@
 
                         <section id="content4">
 
-                            <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
+                            <div style="width:100% ; padding: 0;" class="col-lg-6 grid-margin stretch-card">
                                 <div class="card">
-                                    <div style="padding: 0 ;" class="card-body">
-                                        <table class="table table-hover">
+                                    <div style="padding: 0;" class="card-body">
+
+                                        <table id="myTable4" style="padding-right: 20px;">
                                             <thead>
                                             <tr>
                                                 <th>Mã đơn</th>
                                                 <th>Tên khách hàng</th>
                                                 <th>Trị giá</th>
+                                                <th>Điện thoại</th>
                                                 <th>Thao tác</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -194,9 +318,9 @@
                                                 <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
-<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
-<%--                                                    </a>--%>
+                                                                                                        <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                                                                            <label class="badge badge-danger">Xóa</label>
+                                                                                                        </a>
                                                     <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
@@ -206,9 +330,9 @@
 
                                             </tr>
                                             <%}%>
-
                                             </tbody>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
@@ -221,19 +345,20 @@
                             <div style="width:100% ;" class="col-lg-6 grid-margin stretch-card">
                                 <div class="card">
                                     <div style="padding: 0 ;" class="card-body">
-                                        <table class="table table-hover">
+
+                                        <table id="myTable3" style="padding-right: 20px;">
                                             <thead>
                                             <tr>
                                                 <th>Mã đơn</th>
                                                 <th>Tên khách hàng</th>
                                                 <th>Trị giá</th>
+                                                <th>Điện thoại</th>
                                                 <th>Thao tác</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <% List<hoaDon> list3 = (List<hoaDon>) request.getAttribute("listHD3");%>
-                                              <%  for (hoaDon h: list3) { %>
+                                            <%  for (hoaDon h: list3) { %>
                                             <tr>
                                                 <td><%=h.getSoHD()%></td>
                                                 <td><%=h.getHoVaTen()%></td>
@@ -246,9 +371,9 @@
                                                 <%--                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>--%>
                                                 <td><%=h.getHD_sdt()%></td>
                                                 <td>
-<%--                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">--%>
-<%--                                                        <label class="badge badge-danger">Xóa</label>--%>
-<%--                                                    </a>--%>
+                                                                                                        <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">
+                                                                                                            <label class="badge badge-danger">Xóa</label>
+                                                                                                        </a>
                                                     <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">
                                                         <label class="badge badge-info">Xem chi tiết</label>
                                                     </a>
@@ -261,6 +386,50 @@
 
                                             </tbody>
                                         </table>
+
+
+
+
+<%--                                        <table class="table table-hover">--%>
+<%--                                            <thead>--%>
+<%--                                            <tr>--%>
+<%--                                                <th>Mã đơn</th>--%>
+<%--                                                <th>Tên khách hàng</th>--%>
+<%--                                                <th>Trị giá</th>--%>
+<%--                                                <th>Thao tác</th>--%>
+
+<%--                                            </tr>--%>
+<%--                                            </thead>--%>
+<%--                                            <tbody>--%>
+<%--                                            <% List<hoaDon> list3 = (List<hoaDon>) request.getAttribute("listHD3");%>--%>
+<%--                                              <%  for (hoaDon h: list3) { %>--%>
+<%--                                            <tr>--%>
+<%--                                                <td><%=h.getSoHD()%></td>--%>
+<%--                                                <td><%=h.getHoVaTen()%></td>--%>
+<%--                                                <%  int tg = Integer.parseInt(h.getToongGia());--%>
+<%--                                                    Locale locale = new Locale("vi");--%>
+<%--                                                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);--%>
+<%--                                                    String gia = format.format(tg).split(",")[0];--%>
+<%--                                                %>--%>
+<%--                                                <td class="text-danger"> <%=gia%> đ </td>--%>
+<%--                                                &lt;%&ndash;                                                <td class="text-danger"> <%=h.getToongGia()%> đ </td>&ndash;%&gt;--%>
+<%--                                                <td><%=h.getHD_sdt()%></td>--%>
+<%--                                                <td>--%>
+<%--&lt;%&ndash;                                                    <a style="text-decoration: none" href="<%= "/DeleteOrder?SoHD=" + h.getSoHD() %>">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <label class="badge badge-danger">Xóa</label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    </a>&ndash;%&gt;--%>
+<%--                                                    <a style="text-decoration: none" href="<%= "/DetailBill?SoHD=" + h.getSoHD() %>">--%>
+<%--                                                        <label class="badge badge-info">Xem chi tiết</label>--%>
+<%--                                                    </a>--%>
+
+<%--                                                </td>--%>
+
+
+<%--                                            </tr>--%>
+<%--                                            <%}%>--%>
+
+<%--                                            </tbody>--%>
+<%--                                        </table>--%>
                                     </div>
                                 </div>
                             </div>
@@ -292,6 +461,117 @@
     <script src="../../admin/assets/js/off-canvas.js"></script>
     <script src="../../admin/assets/js/hoverable-collapse.js"></script>
     <script src="../../admin/assets/js/misc.js"></script>
+
+
+<%--    datatable--%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#myTable').DataTable( {
+                language: {
+                    search: "   ",
+                    paginate: {
+                        next: "Sau",
+                        previous: "Trước"
+                    },
+                    info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                    lengthMenu: "   ",
+                    infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                    infoEmpty: "Không tìm thấy mục nào",
+                    emptyTable: "Không có dữ liệu"
+                }
+            });
+
+            $('#myTable tbody').on('mouseover', 'tr', function() {
+                $(this).css('background-color', '#e5e5e5');
+            });
+
+            $('#myTable tbody').on('mouseout', 'tr', function() {
+                $(this).css('background-color', '');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#myTablee').DataTable( {
+                language: {
+                    search: "   ",
+                    paginate: {
+                        next: "Sau",
+                        previous: "Trước"
+                    },
+                    info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                    lengthMenu: "   ",
+                    infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                    infoEmpty: "Không tìm thấy mục nào",
+                    emptyTable: "Không có dữ liệu"
+                }
+            });
+
+            $('#myTablee tbody').on('mouseover', 'tr', function() {
+                $(this).css('background-color', '#e5e5e5');
+            });
+
+            $('#myTablee tbody').on('mouseout', 'tr', function() {
+                $(this).css('background-color', '');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#myTable4').DataTable( {
+                language: {
+                    search: "   ",
+                    paginate: {
+                        next: "Sau",
+                        previous: "Trước"
+                    },
+                    info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                    lengthMenu: "   ",
+                    infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                    infoEmpty: "Không tìm thấy mục nào",
+                    emptyTable: "Không có dữ liệu"
+                }
+            });
+
+            $('#myTable4 tbody').on('mouseover', 'tr', function() {
+                $(this).css('background-color', '#e5e5e5');
+            });
+
+            $('#myTable4 tbody').on('mouseout', 'tr', function() {
+                $(this).css('background-color', '');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#myTable3').DataTable(
+                {
+                    language: {
+                        search: "   ",
+                        paginate: {
+                            next: "Sau",
+                            previous: "Trước"
+                        },
+                        info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục",
+                        lengthMenu: "   ",
+                        infoFiltered: "(được lọc từ _MAX_ tổng số mục)",
+                        infoEmpty: "Không tìm thấy mục nào",
+                        emptyTable: "Không có dữ liệu"
+                    }
+                }
+            );
+
+            $('#myTable3 tbody').on('mouseover', 'tr', function() {
+                $(this).css('background-color', '#e5e5e5');
+            });
+
+            $('#myTable3 tbody').on('mouseout', 'tr', function() {
+                $(this).css('background-color', '');
+            });
+        });
+    </script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->

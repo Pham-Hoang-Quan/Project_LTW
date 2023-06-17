@@ -298,7 +298,7 @@ public class statisticsService {
         return erruserByYear;
     }
 
-    //count số tài khoản được tạo bằng cách thông thường
+    //count số tài khoản được tạo bằng cách thông thường trả về phần trăm
     public static int getFacebookAcc() {
         int fbAcc = 0;
         int totalAcc = 0;
@@ -319,7 +319,28 @@ public class statisticsService {
         return (int) percent;
     }
 
-    //count số tài khoản được tạo bằng email
+    //count số tài khoản được tạo bằng cách thông thường trả về tổng số đăng ký
+    public static int getTotalFacebookAcc() {
+        int fbAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*) FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_fb <> 0");
+            if (fbacc.next()) {
+                fbAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return (int) fbAcc;
+    }
+
+
+    //count số tài khoản được tạo bằng email trả về phần trăm
     public static int getNormalAcc() {
         int normalAcc = 0;
         int totalAcc = 0;
@@ -339,8 +360,29 @@ public class statisticsService {
         double percent = (double) normalAcc / totalAcc * 100;
         return (int) percent;
     }
+    //count số tài khoản được tạo bằng email trả về số tai khoản
+    public static int getTotalNormalAcc() {
+        int normalAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*)  FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_fb = 0 and id_gg = 0");
+            if (fbacc.next()) {
+                normalAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-    //count số tài khoản được tạo bằng gg
+        return (int) normalAcc;
+    }
+
+
+    //count số tài khoản được tạo bằng gg trả về phần trăm
     public static int getGGAccount() {
         int ggAcc = 0;
         int totalAcc = 0;
@@ -360,6 +402,27 @@ public class statisticsService {
         double percent = (double) ggAcc / totalAcc * 100;
         return (int) percent;
     }
+    //count số tài khoản được tạo bằng gg trả về tổng số đăng ký
+    public static int getTotalGGAccount() {
+        int ggAcc = 0;
+        int totalAcc = 0;
+        try {
+            Statement statement = DBConnect.getInstall().get();
+            ResultSet total = statement.executeQuery("SELECT COUNT(*) FROM `user`");
+            if (total.next()) {
+                totalAcc = total.getInt(1);
+            }
+            ResultSet fbacc = statement.executeQuery("SELECT COUNT(*) FROM `user` WHERE id_gg <> 0");
+            if (fbacc.next()) {
+                ggAcc = fbacc.getInt(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return (int) ggAcc;
+    }
+
 
     public static ArrayList<Integer> getBestSellerSL() {
         ArrayList<Integer> listP = new ArrayList<>();
@@ -422,6 +485,6 @@ public class statisticsService {
 
 
     public static void main(String[] args) {
-        System.out.println(statisticsService.accessMotnh(2023));
+        System.out.println(statisticsService.getBestSellerName());
     }
 }

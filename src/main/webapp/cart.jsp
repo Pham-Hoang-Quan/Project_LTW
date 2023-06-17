@@ -505,8 +505,9 @@
                                         %>
 
                                         <li><span>Đã áp dụng mã giảm giá <%=discount.getReduce()%> : </span> <span>-<%=reduPrice%>đ</span></li>
+                                        <li><span>Hạn sử dụng  : </span> <span><%=discount.getExpires_at()%></span></li>
 
-                                        <input class="date"  name="ex"  value="<%=discount.getExpires_at()%>" type="text">
+                                        <input style="display: none" class="date"  name="ex"  value="<%=discount.getExpires_at()%>" type="text">
 
                                         <% int tonggia = (int) (tongtien - discount.getReducedPrice());%>
                                         <%Locale localee = new Locale("vi");
