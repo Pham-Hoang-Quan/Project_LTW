@@ -690,16 +690,16 @@
                     </form>
                     <ul class="newsletter-follow">
                         <li>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-facebook" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-twitter" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-instagram" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="#"><i class="fa fa-pinterest" style="margin: 10px"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -906,6 +906,7 @@ console.log(numberProduct)
                     "Authorization": "Bearer " + localStorage.getItem('accessToken'),
                 },
             })
+
                 .then((response) => {
                     return response.json()
                 })
@@ -1044,13 +1045,13 @@ console.log(numberProduct)
                         return response.json()
                     })
                     .then((datas) => {
-                         let timeLogistic =  datas.data[0].timestamp;
+                        let timeLogistic =  datas.data[0].timestamp;
                         const date = new Date(parseInt(timeLogistic) * 1000);
                         const time_logistic_p = document.getElementById('time-logistic')
                         const time_logistic_total = document.getElementById('time-logistic-total')
                         time_logistic_total.value = timeLogistic
                         console.log(datas);
-                         time_logistic_p.innerText = date.toLocaleTimeString('vi-VN', {hour12: true})+", "+ date.toLocaleDateString('vi-VN');
+                        time_logistic_p.innerText = date.toLocaleTimeString('vi-VN', {hour12: true})+", "+ date.toLocaleDateString('vi-VN');
                     })
             });
         }

@@ -54,11 +54,11 @@ public class addToCart extends HttpServlet {
 
         //log
         if (auth == null) {
-            DB.me().insert(new Log(Log.INFO,1,"/addToCart", "thêm vào giỏ hàng: " + id,0));
+            DB.me().insert(new Log(Log.INFO,1,request.getRequestURI(), "thêm vào giỏ hàng: " + id,0));
         } else {
             String user_id = auth.getUser_id();
             int id_u = Integer.parseInt(user_id);
-            DB.me().insert(new Log(Log.INFO,id_u,"/addToCart", "Thêm vào giỏ hàng: " + id ,0));
+            DB.me().insert(new Log(Log.INFO,id_u,request.getRequestURI(), "Thêm vào giỏ hàng: " + id ,0));
         }
         //
 

@@ -153,6 +153,10 @@
             background-color: #D10024;
         }
 
+        #product-tab {
+            margin-top: -150px;
+        }
+
         @media (max-width: 600px) {
             body,
             #message {
@@ -375,15 +379,15 @@
                         <img src="<%= p.getImg2()%>" alt="">
                     </div>
 
-                    <div class="product-preview">
-                        <%--                            <img src="<%= p.getImg3()%>" alt="">--%>
-                        <img src="<%= p.getImg3()%>" alt="">
-                    </div>
+<%--                    <div class="product-preview">--%>
+<%--                        &lt;%&ndash;                            <img src="<%= p.getImg3()%>" alt="">&ndash;%&gt;--%>
+<%--                        <img src="<%= p.getImg3()%>" alt="">--%>
+<%--                    </div>--%>
 
-                    <div class="product-preview">
-                        <%--                            <img src="<%= p.getImg4()%>" alt="">--%>
-                        <img src="<%= p.getImg4()%>" alt="">
-                    </div>
+<%--                    <div class="product-preview">--%>
+<%--                        &lt;%&ndash;                            <img src="<%= p.getImg4()%>" alt="">&ndash;%&gt;--%>
+<%--                        <img src="<%= p.getImg4()%>" alt="">--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <script>
@@ -688,18 +692,19 @@
                         <input class="input" type="email" placeholder="Nhập Email của bạn">
                         <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
                     </form>
+
                     <ul class="newsletter-follow">
                         <li>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-facebook" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-twitter" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-instagram" style="margin: 10px"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="#"><i class="fa fa-pinterest" style="margin: 10px"></i></a>
                         </li>
                     </ul>
                 </div>
