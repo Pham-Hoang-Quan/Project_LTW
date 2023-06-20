@@ -132,6 +132,21 @@
             cursor: default;
         }
 
+        .input-checkbox input[type="checkbox"]+label span:after {
+            content: '\2714';
+            position: absolute;
+            top: -2px;
+            left: 1px;
+            font-size: 10px;
+            color: #FFF;
+            opacity: 0;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
         @media (max-width: 600px) {
             body,
             #message {

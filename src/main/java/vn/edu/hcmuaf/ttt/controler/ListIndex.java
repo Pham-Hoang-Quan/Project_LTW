@@ -62,7 +62,7 @@ public class ListIndex extends HttpServlet {
         HttpSession session = request.getSession(true);
         User auth= (User) session.getAttribute("auth");
         if (auth == null) {
-            DB.me().insert(new Log(Log.INFO,1,name, "truy cập : " + listn.toString(),0));
+            DB.me().insert(new Log(Log.INFO,1,name, "Truy cập : " + listn.toString(),0));
         } else {
             String user_id = auth.getUser_id();
             int id_u = Integer.parseInt(user_id);

@@ -420,16 +420,16 @@
           </form>
           <ul class="newsletter-follow">
             <li>
-              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-facebook" style="margin: 10px"></i></a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-twitter" style="margin: 10px"></i></a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-instagram" style="margin: 10px"></i></a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-pinterest"></i></a>
+              <a href="#"><i class="fa fa-pinterest" style="margin: 10px"></i></a>
             </li>
           </ul>
         </div>
