@@ -433,8 +433,6 @@ public class ProductService {
                         .execute());
     }
 
-
-
     static public void editProduct(String id, String name, String classify, String percent, int qty, int price,
                                    String content, String info) {
         JDBiConnector.me().withHandle(h ->

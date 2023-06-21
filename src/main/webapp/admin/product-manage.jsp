@@ -240,7 +240,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Thêm sản phẩm</h4>
                     <p class="card-description"> Nhập thông tin </p>
-                    <form action="AddProduct" method="post" class="forms-sample" enctype="multipart/form-data">
+                    <form action="/AddProduct" method="post" class="forms-sample" enctype="multipart/form-data">
 <%--                        <div class="form-group row">--%>
 <%--                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Mã sản phẩm</label>--%>
 <%--                            <div class="col-sm-9">--%>
