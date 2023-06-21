@@ -23,6 +23,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
     <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
     <%--    drop--%>
     <link type="text/css" rel="stylesheet" href="css1/sty.css" />

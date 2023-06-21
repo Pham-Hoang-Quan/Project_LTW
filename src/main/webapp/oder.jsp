@@ -25,6 +25,8 @@
 
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="css1/bootstrap.min.css" />
+  <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
   <%--    drop--%>
   <link type="text/css" rel="stylesheet" href="css1/sty.css" />
   <script defer src="js/dro.js"></script>

@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" charset="UTF-8">
 
 <head>
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>

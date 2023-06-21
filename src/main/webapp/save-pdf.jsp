@@ -16,6 +16,8 @@
 <meta http-equiv="Content-Type" charset="UTF-8">
   <head>
     <title>BDF</title>
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
   </head>
   <body>
   <% hoaDon h = (hoaDon) request.getAttribute("infoCus");%>

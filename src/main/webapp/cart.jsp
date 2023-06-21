@@ -35,6 +35,8 @@
 <link type="text/css" rel="stylesheet" href="css1/style.css" />
 <%--    drop--%>
 <link type="text/css" rel="stylesheet" href="css1/sty.css" />
+<link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
 <script defer src="js/dro.js"></script>
 
 <!-- update the version number as needed -->

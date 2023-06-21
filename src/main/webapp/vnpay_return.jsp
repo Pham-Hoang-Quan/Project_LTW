@@ -21,6 +21,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>VNPAY RESPONSE</title>
+        <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
         <!-- Bootstrap core CSS -->
         <link href="/assets/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->

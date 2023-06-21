@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drill Technology</title>
 
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">

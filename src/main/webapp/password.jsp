@@ -59,6 +59,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
+
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.5.0/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->

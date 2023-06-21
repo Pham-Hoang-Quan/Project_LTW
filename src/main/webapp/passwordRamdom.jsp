@@ -9,6 +9,8 @@
 <title>Welcome to Firebase Hosting</title>
 <!-- Google font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+<link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
 
 <%--    drop--%>
 <link type="text/css" rel="stylesheet" href="css1/sty.css" />

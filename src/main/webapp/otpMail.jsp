@@ -52,6 +52,9 @@
 <!-- nouislider -->
 <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css"/>
 
+<link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
+
 <!-- Font Awesome Icon -->
 <link rel="stylesheet" href="css1/font-awesome.min.css">
 

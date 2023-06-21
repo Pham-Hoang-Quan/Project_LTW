@@ -29,6 +29,8 @@
   <!-- Slick -->
   <link type="text/css" rel="stylesheet" href="css1/slick.css" />
   <link type="text/css" rel="stylesheet" href="css1/slick-theme.css" />
+  <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+
 
   <!-- nouislider -->
   <link type="text/css" rel="stylesheet" href="css1/nouislider.min.css" />
