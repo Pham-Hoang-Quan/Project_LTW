@@ -199,6 +199,31 @@
             bottom: 13px;
         }
 
+        .chatbot {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 10000;
+            color: #D10024;
+            border: 1px solid #D10024;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            background-color: white;
+        }
+
+        #frame {
+            position: fixed;
+            bottom: 74px;
+            right: 15px;
+            z-index: 10000;
+        }
+
+        #framebot {
+            border-radius: 15px;
+            border: 1px solid #D10024;
+        }
+
         @media (max-width: 600px) {
             body,
             #message {
@@ -1121,7 +1146,6 @@
     <script src="js/main.js"></script>
     <script src="js/bootshop.js"></script>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loadEl = document.querySelector('#load');
@@ -1187,9 +1211,34 @@
             };
             xhr.send();
         }
-    </script>
-<%--    script của dropdows--%>
 
+        function showChatBot() {
+                document.getElementById('frame').style.display = 'block';
+        }
+
+        var isChatBotVisible = false;
+
+        function toggleChatBot() {
+            var frame = document.getElementById('frame');
+
+            if (isChatBotVisible) {
+                frame.style.display = 'none';
+            } else {
+                frame.style.display = 'block';
+            }
+
+            isChatBotVisible = !isChatBotVisible;
+        }
+
+    </script>
+
+<%--    script của dropdows--%>
+    <div id="frame" style="display: none">
+        <iframe id="framebot" src="https://chatrace.com/webchat/?p=1169765&headerTitle=Drill%20Shop"
+                height="480">
+        </iframe>
+    </div>
+    <button onclick="toggleChatBot()" class="chatbot"><i class="fa fa-commenting" aria-hidden="true" style="font-size: 30px"></i></button>
 </body>
 
 </html>

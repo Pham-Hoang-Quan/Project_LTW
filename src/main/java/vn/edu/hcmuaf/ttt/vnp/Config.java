@@ -14,7 +14,7 @@ public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 //    public static String vnp_Returnurl = "http://localhost:8080/vnpay_return.jsp";
-    public static String vnp_Returnurl = "/";
+    public static String vnp_Returnurl = "http://localhost:8080/";
     public static String vnp_TmnCode = "ZB1I15AO";
     public static String vnp_HashSecret = "ZYZBUYOWKJIARCMWWUGDGDDSTKQWLXHK";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
